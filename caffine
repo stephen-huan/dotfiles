@@ -1,1 +1,14 @@
-/Users/stephenhuan/Programs/bin/caffine
+#!/bin/bash
+# toggles on and off between caffeinate
+
+read -r state<~/Programs/bin/state.caf
+
+if [ "$state" = "true" ]; then
+  yabai -m config status_bar_space_icon_strip       6 7 8 9 "                                                                                                                                                                                                                                                                                                                                                 "
+  caffeinate -disu &
+  echo false > ~/Programs/bin/state.caf
+else
+  yabai -m config status_bar_space_icon_strip       6 7 8 9 "                                                                                                                                                                                                                                                                                                                                                 "
+  killall caffeinate
+  echo true >  ~/Programs/bin/state.caf
+fi
