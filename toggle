@@ -28,8 +28,8 @@ function get_icon
 
 lspaces="                                                                                                                                                                                                                                                                                                                                   "
 lespace="            "
-sspaces="                                                                                                                                                                                                                                                                                      "
-sespace="            "
+sspaces="                                                                                                                                                                                                                                                                       "
+sespace="           "
 
 # change spacing based off monitor resolution
 # laptop width

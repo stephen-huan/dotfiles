@@ -78,6 +78,5 @@ function update_battery_loop() {
 # run the function async
 # update_battery_loop &
 
-# run caffine twice to maintain state while updating icon
-~/Programs/bin/caffine
-~/Programs/bin/caffine
+# maintain state while updating icon
+toggle c c
