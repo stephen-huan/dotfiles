@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# prints the horizontal resolution
+
+i=0
+for word in $(system_profiler SPDisplaysDataType | grep Resolution);
+do
+  if [ "$i" -eq 1 ]; then
+   echo $word
+  fi
+  i=$[$i+1]
+done
