@@ -3,6 +3,18 @@
 # have to use karabiner tricks for mod + shift (double shift confuses skhd)
 # don't use floating windows
 
+# open calendars
+hyper - c : kitty ranger ~/Desktop/TJHSST/10th\ Grade/Calendars/
+
+# open messenger
+hyper - g : open http://www.messenger.com
+
+# caffeinate
+hyper - m : ~/Programs/bin/caffine
+
+# zap
+hyper - 0x29 : ~/Programs/bin/zap
+
 # open terminal
 # hyper - return : open -a Terminal --new
 # hyper - return: open -a iTerm --new
@@ -13,8 +25,8 @@ hyper - return: /Applications/Kitty.app/Contents/MacOS/kitty --single-instance -
 # hyper - t : killall iTerm2
 hyper - t : killall kitty
 
-# caffeinate
-hyper - m : ~/Programs/bin/caffine
+# restart yabai
+hyper - v : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 
 # focus window
 hyper - j : yabai -m window --focus west

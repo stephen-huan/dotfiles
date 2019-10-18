@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# actually kills things
+
+# 10 minutes
+frequency=600
+
+while [ true ]
+  do
+    osascript -e 'tell app "Finder" to quit'
+    sleep $frequency
+  done
