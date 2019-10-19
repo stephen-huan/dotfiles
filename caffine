@@ -10,5 +10,5 @@ else
   killall caffeinate
 fi
 
-~/Programs/bin/toggle c t
 ~/Programs/bin/toggle_bool $state > ~/Programs/bin/caffine.state
+~/Programs/bin/toggle

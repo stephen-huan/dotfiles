@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# adds an animation onto the desktop
+# soft symlink a video into ~/background
+
+# enable video wallpaper, disable start subtitle and audio
+vlc ~/background --video-wallpaper --no-video-title-show --no-audio &
+
+# wait for window to launch - TODO: find actual command line interface
+sleep 1
+
+# focus window and close it
+yabai -m window --focus last
+skhd -k "cmd - w"

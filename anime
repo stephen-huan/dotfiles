@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# animates the desktop
+
+read -r state<~/Programs/bin/anime.state
+
+if [ "$state" = "true" ]; then
+  ~/Programs/bin/wallpaper
+else
+  killall VLC
+fi
+
+~/Programs/bin/toggle_bool $state > ~/Programs/bin/anime.state
+~/Programs/bin/toggle

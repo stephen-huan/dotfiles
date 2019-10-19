@@ -15,6 +15,9 @@ hyper - m : ~/Programs/bin/caffine
 # zap
 hyper - 0x29 : ~/Programs/bin/zap
 
+# animate desktop
+0x5F: ~/Programs/bin/anime
+
 # open terminal
 # hyper - return : open -a Terminal --new
 # hyper - return: open -a iTerm --new

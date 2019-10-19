@@ -10,5 +10,5 @@ else
   pkill -f zapkill
 fi
 
-~/Programs/bin/toggle t c
 ~/Programs/bin/toggle_bool $state > ~/Programs/bin/zap.state
+~/Programs/bin/toggle

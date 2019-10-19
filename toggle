@@ -1,19 +1,6 @@
 #!/bin/bash
 
 # toggles the yabai menu bar
-# called via toggle t c ... c c t
-# where t is to toggle the icon and c is to let it remain the same
-
-function update_state
-{
-  if [ "$1" = "t" ]; then
-    result="$(~/Programs/bin/toggle_bool $2)"
-  else
-    result=$2
-  fi
-
-  echo $result
-}
 
 # run as get_icon state icon_if_off icon_if_on
 # reversed becauase state read in is actually the *next* state
@@ -26,9 +13,9 @@ function get_icon
   fi
 }
 
-lspaces="                                                                                                                                                                                                                                                                                                                                   "
+lspaces="                                                                                                                                                                                                                                                                                                                   "
 lespace="            "
-sspaces="                                                                                                                                                                                                                                                                       "
+sspaces="                                                                                                                                                                                                                                                          "
 sespace="           "
 
 # change spacing based off monitor resolution
@@ -41,10 +28,9 @@ else
   espace=$lespace
 fi
 
-read -r state1<~/Programs/bin/zap.state
-read -r state2<~/Programs/bin/caffine.state
+# read in the states from right to left
+read -r state1<~/Programs/bin/caffine.state
+read -r state2<~/Programs/bin/zap.state
+read -r state3<~/Programs/bin/anime.state
 
-state1="$(update_state $1 $state1)"
-state2="$(update_state $2 $state2)"
-
-yabai -m config status_bar_space_icon_strip       6 7 8 9 "${spaces}$(get_icon $state1  )${espace}$(get_icon $state2  )"
+yabai -m config status_bar_space_icon_strip       6 7 8 9 "${spaces}$(get_icon $state3  )${espace}$(get_icon $state2  )${espace}$(get_icon $state1  )"
