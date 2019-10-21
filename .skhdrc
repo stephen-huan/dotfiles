@@ -12,6 +12,9 @@ hyper - g : open http://www.messenger.com
 # caffeinate
 hyper - m : ~/Programs/bin/caffine
 
+# f.lux
+0x41: ~/Programs/bin/flux
+
 # zap
 hyper - 0x29 : ~/Programs/bin/zap
 

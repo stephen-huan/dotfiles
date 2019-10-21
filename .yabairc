@@ -69,7 +69,6 @@ function update_battery_loop() {
 			yabai -m config status_bar_power_icon_strip battery-empty plug
 		fi
 
-		# wait 5 minutes
 		sleep $frequency
 	done
 }
@@ -79,4 +78,4 @@ function update_battery_loop() {
 # update_battery_loop &
 
 # maintain state while updating icon
-~/Programs/bin/toggle 
+~/Programs/bin/toggle

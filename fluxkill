@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# kills flux then waits and turns it back on again
+lock=~/Programs/bin/flux.lock
+
+# disable for an hour
+delay=3600
+
+if [ -f "$lock" ]; then
+    echo "Doing nothing..."
+else
+    touch $lock
+    osascript -e 'tell app "Flux" to quit'
+    sleep $delay
+    osascript -e 'tell app "Flux" to run'
+    rm $lock
+fi

@@ -13,9 +13,9 @@ function get_icon
   fi
 }
 
-lspaces="                                                                                                                                                                                                                                                                                                                   "
+lspaces="                                                                                                                                                                                                                                                                                                     "
 lespace="            "
-sspaces="                                                                                                                                                                                                                                                          "
+sspaces="                                                                                                                                                                                                                                            "
 sespace="           "
 
 # change spacing based off monitor resolution
@@ -30,7 +30,9 @@ fi
 
 # read in the states from right to left
 read -r state1<~/Programs/bin/caffine.state
-read -r state2<~/Programs/bin/zap.state
-read -r state3<~/Programs/bin/anime.state
+read -r state2<~/Programs/bin/flux.state
+read -r state3<~/Programs/bin/zap.state
+read -r state4<~/Programs/bin/anime.state
 
-yabai -m config status_bar_space_icon_strip       6 7 8 9 "${spaces}$(get_icon $state3  )${espace}$(get_icon $state2  )${espace}$(get_icon $state1  )"
+yabai -m config status_bar_space_icon_strip       6 7 8 9 \
+"${spaces}$(get_icon $state4  )${espace}$(get_icon $state3  )${espace}$(get_icon $state2  )${espace}$(get_icon $state1  )"

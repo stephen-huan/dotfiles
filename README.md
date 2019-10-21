@@ -29,6 +29,15 @@ Alternatively, as Python 2.7 is depreciating in 2020:
 2. Follow the same instructions as before
 3. Alias ranger to the actual path of the ranger executable if you're using pyenv.
 
+#### Image Preview
+
+Set the variable `preview_images` to true and `preview_images_method` to kitty.
+Note that it leaves a black rectange in some cases if you quit ranger while on an image (most notably, vim). To fix this, press the left arrow before exiting ranger to unload the image.
+
+#### Syntax Highlighting
+
+`brew install highlight`. To pick a theme, copy the scope via `ranger --copy-config=scope` and edit the variable `HIGHLIGHT_STYLE` near the top. To use a base16 theme, replace the highlight command near the bottom. You can also enable video preview via thumbnails by uncommenting the block (`brew install ffmpegthumbnailer`) and pdf image previews by `pip install pdftoppm` (install the dependancies via `brew install pkg-config poppler`).
+
 ### Fonts
 
 The default status bar uses font icons, install the font by double clicking on final.ttf, which was constructed from [feather.ttf](https://github.com/AT-UI/feather-font) and [alt.ttf](https://github.com/oblador/react-native-vector-icons/blob/master/Fonts/Feather.ttf). The first was missing the coffee icon, the second had weirdly glitched icons for some of them. Merged together via [FontForge](https://fontforge.github.io/en-US).
