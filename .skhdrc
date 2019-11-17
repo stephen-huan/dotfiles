@@ -4,7 +4,7 @@
 # don't use floating windows
 
 # open calendars
-hyper - c : kitty ranger ~/Desktop/TJHSST/10th\ Grade/Calendars/
+hyper - c : kitty --single-instance ranger ~/Desktop/TJHSST/11th\ Grade/Calendars/
 
 # open messenger
 hyper - g : open http://www.messenger.com
@@ -24,7 +24,7 @@ hyper - 0x29 : ~/Programs/bin/zap
 # open terminal
 # hyper - return : open -a Terminal --new
 # hyper - return: open -a iTerm --new
-hyper - return: /Applications/Kitty.app/Contents/MacOS/kitty --single-instance -d ~
+hyper - return: kitty --single-instance 
 
 # close all open terminals
 # hyper - t : killall Terminal
@@ -77,7 +77,7 @@ shift - 0x53 : yabai -m space --create && \
                   yabai -m space --focus "${index}"
 
 # destroy desktop
-hyper - q : yabai -m space --destroy
+shift - 0x51 : yabai -m space --destroy
 
 # fast focus desktop
 0x58 : yabai -m space --focus recent

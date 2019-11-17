@@ -2,8 +2,12 @@
 
 # kills flux then waits and turns it back on again
 # disable for an hour
+state=~/Programs/bin/flux.state
 delay=3600
 
 osascript -e 'tell app "Flux" to quit'
 sleep $delay
 osascript -e 'tell app "Flux" to run'
+
+echo false > $state
+~/Programs/bin/toggle 

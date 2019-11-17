@@ -7,7 +7,7 @@ yabai -m config status_bar_icon_font         "feather:Regular:12.0"
 # yabai -m config status_bar_icon_font         "Font Awesome 5 Free:Solid:12"
 yabai -m config status_bar_background_color  0xff202020
 yabai -m config status_bar_foreground_color  0xffa8a8a8
-# yabai -m config status_bar_space_icon_strip  I II III IV V VI VII VIII IX X
+yabai -m config status_bar_space_icon_strip  I II III IV V VI VII VIII IX X
 # yabai -m config status_bar_space_icon_strip       VI VII VIII IX X
 yabai -m config status_bar_space_icon_strip       6 7 8 9 10
 # yabai -m config status_bar_power_icon_strip   
@@ -35,7 +35,7 @@ yabai -m config active_window_opacity        1.0
 yabai -m config normal_window_opacity        0.90
 yabai -m config split_ratio                  0.50
 yabai -m config auto_balance                 off
-yabai -m config mouse_modifier               option
+yabai -m config mouse_modifier               alt
 yabai -m config mouse_action1                move
 yabai -m config mouse_action2                resize
 
@@ -47,7 +47,38 @@ yabai -m config left_padding                 20
 yabai -m config right_padding                20
 yabai -m config window_gap                   10
 
-echo "yabai configuration loaded.."
+# Particular space settings
+
+fullscreen() {
+	yabai -m space --toggle padding; yabai -m space --toggle gap
+	yabai -m window --toggle border
+}
+
+# save current workspace
+curr=$(yabai -m query --spaces --space | jq .index)
+
+# 1 - Google Chrome ("work")
+# remove borders and gaps
+yabai -m space --focus 1
+fullscreen
+
+# 2 - Terminal (Kitty)
+# do nothing
+yabai -m space --focus 2
+
+# 3 - Text editor (Atom)
+yabai -m space --focus 3
+fullscreen
+
+# 4 - Google Chrome (entertainment)
+yabai -m space --focus 4
+fullscreen
+
+# 5 - Mail
+yabai -m space --focus 5
+fullscreen
+
+yabai -m space --focus $curr
 
 # updates every 5 minutes
 frequency=300
@@ -79,3 +110,5 @@ function update_battery_loop() {
 
 # maintain state while updating icon
 ~/Programs/bin/toggle
+
+echo "yabai configuration loaded.."
