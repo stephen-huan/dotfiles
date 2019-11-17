@@ -7,7 +7,7 @@ yabai -m config status_bar_icon_font         "feather:Regular:12.0"
 # yabai -m config status_bar_icon_font         "Font Awesome 5 Free:Solid:12"
 yabai -m config status_bar_background_color  0xff202020
 yabai -m config status_bar_foreground_color  0xffa8a8a8
-yabai -m config status_bar_space_icon_strip  I II III IV V VI VII VIII IX X
+# yabai -m config status_bar_space_icon_strip  I II III IV V VI VII VIII IX X
 # yabai -m config status_bar_space_icon_strip       VI VII VIII IX X
 yabai -m config status_bar_space_icon_strip       6 7 8 9 10
 # yabai -m config status_bar_power_icon_strip   
@@ -47,38 +47,14 @@ yabai -m config left_padding                 20
 yabai -m config right_padding                20
 yabai -m config window_gap                   10
 
-# Particular space settings
+# Signals
+# Enable i3-gaps style "smart" gaps and borders
+# It only makes sense to have gaps/borders if there are > 1 windows in a space
+yabai -m signal --add event=window_created action="~/Programs/bin/smart_yabai inc"
+yabai -m signal --add event=window_destroyed action="~/Programs/bin/smart_yabai dec"
+yabai -m signal --add event=space_changed action="~/Programs/bin/smart_yabai"
 
-fullscreen() {
-	yabai -m space --toggle padding; yabai -m space --toggle gap
-	yabai -m window --toggle border
-}
-
-# save current workspace
-curr=$(yabai -m query --spaces --space | jq .index)
-
-# 1 - Google Chrome ("work")
-# remove borders and gaps
-yabai -m space --focus 1
-fullscreen
-
-# 2 - Terminal (Kitty)
-# do nothing
-yabai -m space --focus 2
-
-# 3 - Text editor (Atom)
-yabai -m space --focus 3
-fullscreen
-
-# 4 - Google Chrome (entertainment)
-yabai -m space --focus 4
-fullscreen
-
-# 5 - Mail
-yabai -m space --focus 5
-fullscreen
-
-yabai -m space --focus $curr
+yabai -m signal --add event=window_destroyed action="~/Programs/bin/focus_yabai"
 
 # updates every 5 minutes
 frequency=300
