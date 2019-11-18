@@ -1,16 +1,21 @@
 #!/bin/bash
 
-# yabai -m query --spaces --space | jq '.windows | .[]' | xargs -n1 -I{} yabai -m window {}  --toggle border
+# Only count actual windows
+count=0
+while read -r line ; do
+  if [ $(yabai -m query --windows --window $line | jq -r ".role") == "AXWindow" ]; then
+    count=$((count + 1))
+  fi
+done < <(yabai -m query --spaces --space | jq '.windows | .[]')
 
 # transition -> 1 window
-if [ $(yabai -m query --spaces --space | jq '.windows' | jq length) -eq 1 ]; then
+if [ $count -eq 1 ]; then
   # turn off borders
   yabai -m query --spaces --space | jq '.windows | .[]' | xargs -n1 ~/Programs/bin/border_off
   # turn off gaps and padding
   yabai -m space --padding abs:0:0:0:0; yabai -m space --gap abs:0
-  # yabai -m space --toggle padding; yabai -m space --toggle gap
 # 1 window -> 2 windows
-elif [ $(yabai -m query --spaces --space | jq '.windows' | jq length) -eq 2 ] && [ "$1" == "inc" ]; then
+elif [ $count -eq 2 ] && [ "$1" == "inc" ]; then
   # turn on border for each window
   yabai -m query --spaces --space | jq '.windows | .[]' | xargs -n1 ~/Programs/bin/border_on
   # turn on gaps and padding

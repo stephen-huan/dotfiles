@@ -54,7 +54,11 @@ yabai -m signal --add event=window_created action="~/Programs/bin/smart_yabai in
 yabai -m signal --add event=window_destroyed action="~/Programs/bin/smart_yabai dec"
 yabai -m signal --add event=space_changed action="~/Programs/bin/smart_yabai"
 
+# switch focus on a closed window
 yabai -m signal --add event=window_destroyed action="~/Programs/bin/focus_yabai"
+
+# update icons
+yabai -m signal --add event=space_changed action="~/Programs/bin/toggle"
 
 # updates every 5 minutes
 frequency=300

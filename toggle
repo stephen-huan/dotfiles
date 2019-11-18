@@ -13,19 +13,16 @@ function get_icon
   fi
 }
 
-lspaces="                                                                                                                                                                                                                                                                                                     "
-lespace="            "
-sspaces="                                                                                                                                                                                                                                            "
-sespace="           "
-
 # change spacing based off monitor resolution
 # laptop width
 if [ $(~/Programs/bin/res) -eq 2880 ]; then
-  spaces=$sspaces
-  espace=$sespace
+  spaces="                                                                                                                                                                                                                                            "
+  espace="           "
+  factor=8
 else
-  spaces=$lspaces
-  espace=$lespace
+  spaces="                                                                                                                                                                                                                                                                                                     "
+  espace="            "
+  factor=8
 fi
 
 # read in the states from right to left
@@ -34,5 +31,15 @@ read -r state2<~/Programs/bin/flux.state
 read -r state3<~/Programs/bin/zap.state
 read -r state4<~/Programs/bin/anime.state
 
-yabai -m config status_bar_space_icon_strip       6 7 8 9 \
-"${spaces}$(get_icon $state4  )${espace}$(get_icon $state3  )${espace}$(get_icon $state2  )${espace}$(get_icon $state1  )"
+num="$(yabai -m query --spaces | jq length)"
+nums="|||||6|7|8|9|10"
+# add spacing factor in order to prevent icons from shifting left
+icons="${spaces}$(printf '%0.s ' $(seq 1 $(( $factor*(10 - num) ))))$(get_icon $state4  )${espace}$(get_icon $state3  )${espace}$(get_icon $state2  )${espace}$(get_icon $state1  )"
+
+# replace last desktop with icons
+comb="${nums//$num/$icons}"
+
+# split | seperated string into an array
+IFS='|' read -r -a array <<< "$comb"
+# unpack array into arguments
+yabai -m config status_bar_space_icon_strip "${array[@]}"
