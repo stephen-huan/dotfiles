@@ -1,11 +1,10 @@
 function fzfz
   # pipe z to fzf to get a file path
-  set l (z | fzf --height 40% --preview "tree -C (_parse_z {})")
+  set l (z | tac | fzf --preview "_preview_path (_parse_z {})")
   set p (_parse_z $l)
 
   # if not a directory, return
-  test -d "$p"
-  if test $status -ne 0
+  if ! test -d "$p"
     commandline -f repaint
     return
   end
