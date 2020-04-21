@@ -166,6 +166,30 @@
                     {
                         "manipulators": [
                             {
+                                "description": "shift + esc → ~",
+                                "from": {
+                                    "key_code": "escape",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "grave_accent_and_tilde",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "manipulators": [
+                            {
                                 "description": "hyperkey + n → keypad 1",
                                 "from": {
                                     "key_code": "n",
@@ -373,6 +397,30 @@
                                 "to": [
                                     {
                                         "key_code": "keypad_9"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "manipulators": [
+                            {
+                                "description": "hyperkey + q → keypad equal sign",
+                                "from": {
+                                    "key_code": "q",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command",
+                                            "option",
+                                            "control",
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "keypad_equal_sign"
                                     }
                                 ],
                                 "type": "basic"
@@ -820,42 +868,118 @@
                         ]
                     },
                     {
-                      "description": "Disable Command-Shift-Option-Control-Period (.)",
-                      "manipulators": [
-                        {
-                          "type": "basic",
-                          "from": {
-                            "key_code": "period",
-                            "modifiers": {
-                              "mandatory": [
-                                "command",
-                                "shift",
-                                "option",
-                                "control"
-                              ]
+                        "manipulators": [
+                            {
+                                "description": "hyperkey + . → keypad_period (disables sysdiagnose)",
+                                "from": {
+                                    "key_code": "period",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command",
+                                            "shift",
+                                            "option",
+                                            "control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "keypad_period"
+                                    }
+                                ],
+                                "type": "basic"
                             }
-                          }
-                        }
-                      ]
+                        ]
                     },
                     {
-                      "description": "Disable Command-Shift-Option-Control-Comma (,)",
-                      "manipulators": [
-                        {
-                          "type": "basic",
-                          "from": {
-                            "key_code": "comma",
-                            "modifiers": {
-                              "mandatory": [
-                                "command",
-                                "shift",
-                                "option",
-                                "control"
-                              ]
+                        "manipulators": [
+                            {
+                                "description": "hyperkey + , → keypad_comma (disables sysdiagnose)",
+                                "from": {
+                                    "key_code": "comma",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command",
+                                            "shift",
+                                            "option",
+                                            "control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "keypad_comma"
+                                    }
+                                ],
+                                "type": "basic"
                             }
-                          }
-                        }
-                      ]
+                        ]
+                    },
+                    {
+                        "manipulators": [
+                            {
+                                "description": "cmd + m → nothing",
+                                "from": {
+                                    "key_code": "m",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "vk_none"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "manipulators": [
+                            {
+                                "description": "cmd + h → nothing",
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "vk_none"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "manipulators": [
+                            {
+                                "description": "option + c → esc c",
+                                "from": {
+                                    "key_code": "c",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                      "key_code": "escape"
+                                    },
+                                    {
+                                        "key_code": "c"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
@@ -1019,6 +1143,19 @@
                     },
                     "ignore": false,
                     "manipulate_caps_lock_led": false,
+                    "simple_modifications": []
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 636,
+                        "vendor_id": 1452
+                    },
+                    "ignore": false,
+                    "manipulate_caps_lock_led": true,
                     "simple_modifications": []
                 }
             ],
