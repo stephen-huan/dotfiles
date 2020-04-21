@@ -71,7 +71,7 @@ Yabai breaks if Dock doesn't exist anyways so the next best thing is to hide the
 defaults write com.apple.dock autohide -bool true 
 defaults write com.apple.dock autohide-delay -float 1000 
 defaults write com.apple.dock launchanim -bool false 
-killalll Dock
+killall Dock
 
 # Restore Dock
 defaults write com.apple.dock autohide -bool false 
