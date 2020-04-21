@@ -32,7 +32,7 @@ hyper - return: kitty --single-instance
 hyper - t : killall kitty
 
 # restart yabai
-hyper - v : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+hyper - v : bash -c 'launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"'
 
 # focus window
 hyper - j : yabai -m window --focus west
@@ -66,15 +66,15 @@ hyper - l : yabai -m window --focus east
 # shift + alt - right  : yabai -m window --grid 1:2:1:0:1:1
 
 # create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
-0x53 : yabai -m space --create && \
-                  index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
+0x53 : bash -c 'yabai -m space --create && \
+                  index="$(yabai -m query --spaces --display | jq \'map(select(."native-fullscreen" == 0))[-1].index\')" && \
                   yabai -m window --space "${index}" && \
-                  yabai -m space --focus "${index}"
+                  yabai -m space --focus "${index}"'
 
 # create desktop and follow focus - uses jq for parsing json (brew install jq)
-shift - 0x53 : yabai -m space --create && \
-                  index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" &&# \
-                  yabai -m space --focus "${index}"
+shift - 0x53 : bash -c 'yabai -m space --create && \
+                  index="$(yabai -m query --spaces --display | jq \'map(select(."native-fullscreen" == 0))[-1].index\')" &&# \
+                  yabai -m space --focus "${index}"'
 
 # destroy desktop
 shift - 0x51 : yabai -m space --destroy

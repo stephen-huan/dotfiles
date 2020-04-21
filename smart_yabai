@@ -8,14 +8,12 @@ while read -r line ; do
   fi
 done < <(yabai -m query --spaces --space | jq '.windows | .[]')
 
-# transition -> 1 window
-if [ $count -eq 1 ]; then
+if [ "$count" -eq 1 ]; then
   # turn off borders
   yabai -m query --spaces --space | jq '.windows | .[]' | xargs -n1 ~/Programs/bin/border_off
   # turn off gaps and padding
   yabai -m space --padding abs:0:0:0:0; yabai -m space --gap abs:0
-# 1 window -> 2 windows
-elif [ $count -eq 2 ] && [ "$1" == "inc" ]; then
+elif [ "$count" -ge 2 ]; then
   # turn on border for each window
   yabai -m query --spaces --space | jq '.windows | .[]' | xargs -n1 ~/Programs/bin/border_on
   # turn on gaps and padding

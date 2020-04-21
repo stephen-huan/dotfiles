@@ -25,7 +25,7 @@ yabai -m config window_opacity               off
 yabai -m config window_opacity_duration      0.0
 yabai -m config window_shadow                on
 yabai -m config window_border                on
-yabai -m config window_border_width          4
+yabai -m config window_border_width          3
 # yabai -m config active_window_border_color   0xff775759
 yabai -m config active_window_border_color   0xff66BB6A
 yabai -m config normal_window_border_color   0xff505050
@@ -47,18 +47,30 @@ yabai -m config left_padding                 20
 yabai -m config right_padding                20
 yabai -m config window_gap                   10
 
-# Signals
+### SIGNALS
 # Enable i3-gaps style "smart" gaps and borders
 # It only makes sense to have gaps/borders if there are > 1 windows in a space
-yabai -m signal --add event=window_created action="~/Programs/bin/smart_yabai inc"
-yabai -m signal --add event=window_destroyed action="~/Programs/bin/smart_yabai dec"
+yabai -m signal --add event=window_created action="~/Programs/bin/smart_yabai"
+yabai -m signal --add event=window_destroyed action="~/Programs/bin/smart_yabai"
 yabai -m signal --add event=space_changed action="~/Programs/bin/smart_yabai"
+
+# application launched for the first time doesn't send a window_created signal
+# same goes for application terminated
+yabai -m signal --add event=application_launched action="~/Programs/bin/smart_yabai"
+yabai -m signal --add event=application_terminated action="~/Programs/bin/smart_yabai"
 
 # switch focus on a closed window
 yabai -m signal --add event=window_destroyed action="~/Programs/bin/focus_yabai"
 
 # update icons
 yabai -m signal --add event=space_changed action="~/Programs/bin/toggle"
+
+### EXCEPTIONS
+# in general, things with tabs sometimes break yabai and it can't really be fixed
+# TODO: fix it! (with shell hacking)
+yabai -m rule --add app="^Finder$" manage=off
+# tiling effects window size, which is gives information
+yabai -m rule --add app="^Tor Browser$" manage=off
 
 # updates every 5 minutes
 frequency=300
@@ -90,5 +102,8 @@ function update_battery_loop() {
 
 # maintain state while updating icon
 ~/Programs/bin/toggle
+
+# auto-update
+YABAI_CERT=yabai-cert sh -c "$(curl -sSL "https://git.io/update-yabai")" &
 
 echo "yabai configuration loaded.."
