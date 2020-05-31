@@ -1,5 +1,7 @@
 #!/bin/bash
 
+YABAI_SCRIPTS="$HOME/Programs/bin/yabai"
+
 # Only count actual windows
 count=0
 while read -r line ; do
@@ -10,12 +12,12 @@ done < <(yabai -m query --spaces --space | jq '.windows | .[]')
 
 if [ "$count" -eq 1 ]; then
   # turn off borders
-  yabai -m query --spaces --space | jq '.windows | .[]' | xargs -n1 ~/Programs/bin/border_off
+  # yabai -m query --spaces --space | jq '.windows | .[]' | xargs -n1 $YABAI_SCRIPTS/border_off
   # turn off gaps and padding
   yabai -m space --padding abs:0:0:0:0; yabai -m space --gap abs:0
 elif [ "$count" -ge 2 ]; then
   # turn on border for each window
-  yabai -m query --spaces --space | jq '.windows | .[]' | xargs -n1 ~/Programs/bin/border_on
+  # yabai -m query --spaces --space | jq '.windows | .[]' | xargs -n1 $YABAI_SCRIPTS/border_on
   # turn on gaps and padding
   yabai -m space --padding abs:20:20:20:20; yabai -m space --gap abs:10
 fi

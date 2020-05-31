@@ -2,6 +2,8 @@
 
 # toggles the yabai menu bar
 
+YABAI_SCRIPTS="$HOME/Programs/bin/yabai"
+
 # run as get_icon state icon_if_off icon_if_on
 # reversed becauase state read in is actually the *next* state
 function get_icon
@@ -14,22 +16,23 @@ function get_icon
 }
 
 # change spacing based off monitor resolution
-# laptop width
-if [ $(~/Programs/bin/res) -eq 2880 ]; then
-  spaces="                                                                                                                                                                                                                                            "
-  espace="           "
-  factor=8
-else
+# desktop width
+if [ "$(env HOME=/tmp fish $YABAI_SCRIPTS/resolution.fish)" -eq 1920 ]; then
   spaces="                                                                                                                                                                                                                                                                                                     "
   espace="            "
+  factor=8
+# assume laptop
+else
+  spaces="                                                                                                                                                                                                                                            "
+  espace="           "
   factor=8
 fi
 
 # read in the states from right to left
-read -r state1<~/Programs/bin/caffine.state
-read -r state2<~/Programs/bin/flux.state
-read -r state3<~/Programs/bin/zap.state
-read -r state4<~/Programs/bin/anime.state
+read -r state1<$YABAI_SCRIPTS/caffine.state
+read -r state2<$YABAI_SCRIPTS/flux.state
+read -r state3<$YABAI_SCRIPTS/zap.state
+read -r state4<$YABAI_SCRIPTS/anime.state
 
 num="$(yabai -m query --spaces | jq length)"
 nums="|||||6|7|8|9|10"
@@ -42,4 +45,4 @@ comb="${nums//$num/$icons}"
 # split | seperated string into an array
 IFS='|' read -r -a array <<< "$comb"
 # unpack array into arguments
-yabai -m config status_bar_space_icon_strip "${array[@]}"
+spacebar -m config space_icon_strip "${array[@]}"

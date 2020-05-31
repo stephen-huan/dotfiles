@@ -1,20 +1,4 @@
-#!/usr/bin/env sh
-
-# bar settings
-yabai -m config status_bar                   on
-yabai -m config status_bar_text_font         "Helvetica Neue:Bold:12.0"
-yabai -m config status_bar_icon_font         "feather:Regular:12.0"
-# yabai -m config status_bar_icon_font         "Font Awesome 5 Free:Solid:12"
-yabai -m config status_bar_background_color  0xff202020
-yabai -m config status_bar_foreground_color  0xffa8a8a8
-# yabai -m config status_bar_space_icon_strip  I II III IV V VI VII VIII IX X
-# yabai -m config status_bar_space_icon_strip       VI VII VIII IX X
-yabai -m config status_bar_space_icon_strip       6 7 8 9 10
-# yabai -m config status_bar_power_icon_strip   
-yabai -m config status_bar_power_icon_strip   
-yabai -m config status_bar_space_icon        
-# yabai -m config status_bar_clock_icon        
-yabai -m config status_bar_clock_icon        
+#!/usr/bin/env fish
 
 # global settings
 yabai -m config mouse_follows_focus          on
@@ -24,13 +8,16 @@ yabai -m config window_topmost               off
 yabai -m config window_opacity               off
 yabai -m config window_opacity_duration      0.0
 yabai -m config window_shadow                on
-yabai -m config window_border                on
-yabai -m config window_border_width          3
+
+# borders are gone
+# yabai -m config window_border                on
+# yabai -m config window_border_width          3
 # yabai -m config active_window_border_color   0xff775759
-yabai -m config active_window_border_color   0xff66BB6A
-yabai -m config normal_window_border_color   0xff505050
+# yabai -m config active_window_border_color   0xff66BB6A
+# yabai -m config normal_window_border_color   0xff505050
 # yabai -m config insert_window_border_color   0xffd75f5f
-yabai -m config insert_window_border_color   0xffE57373
+# yabai -m config insert_window_border_color   0xffE57373
+
 yabai -m config active_window_opacity        1.0
 yabai -m config normal_window_opacity        0.90
 yabai -m config split_ratio                  0.50
@@ -41,69 +28,74 @@ yabai -m config mouse_action2                resize
 
 # general space settings
 yabai -m config layout                       bsp
-yabai -m config top_padding                  20
+yabai -m config top_padding                  26
 yabai -m config bottom_padding               20
 yabai -m config left_padding                 20
 yabai -m config right_padding                20
 yabai -m config window_gap                   10
 
+# let spacebar handle bar
+yabai -m config external_bar all:26:0
+
 ### SIGNALS
+
 # Enable i3-gaps style "smart" gaps and borders
 # It only makes sense to have gaps/borders if there are > 1 windows in a space
-yabai -m signal --add event=window_created action="~/Programs/bin/smart_yabai"
-yabai -m signal --add event=window_destroyed action="~/Programs/bin/smart_yabai"
-yabai -m signal --add event=space_changed action="~/Programs/bin/smart_yabai"
+# env trick to make fish start up faster
+yabai -m signal --add event=window_created action="env HOME=/tmp fish $YABAI_SCRIPTS/smart.fish"
+yabai -m signal --add event=window_destroyed action="env HOME=/tmp fish $YABAI_SCRIPTS/smart.fish"
+yabai -m signal --add event=space_changed action="env HOME=/tmp fish $YABAI_SCRIPTS/smart.fish"
 
 # application launched for the first time doesn't send a window_created signal
 # same goes for application terminated
-yabai -m signal --add event=application_launched action="~/Programs/bin/smart_yabai"
-yabai -m signal --add event=application_terminated action="~/Programs/bin/smart_yabai"
+yabai -m signal --add event=application_launched action="env HOME=/tmp fish $YABAI_SCRIPTS/smart.fish"
+yabai -m signal --add event=application_terminated action="env HOME=/tmp fish $YABAI_SCRIPTS/smart.fish"
 
 # switch focus on a closed window
-yabai -m signal --add event=window_destroyed action="~/Programs/bin/focus_yabai"
+yabai -m signal --add event=window_destroyed action="$YABAI_SCRIPTS/focus_yabai"
 
 # update icons
-yabai -m signal --add event=space_changed action="~/Programs/bin/toggle"
+yabai -m signal --add event=space_changed action="$YABAI_SCRIPTS/toggle"
 
 ### EXCEPTIONS
 # in general, things with tabs sometimes break yabai and it can't really be fixed
 # TODO: fix it! (with shell hacking)
-yabai -m rule --add app="^Finder$" manage=off
+yabai -m rule --add app="^Finder" manage=off
 # tiling effects window size, which is gives information
-yabai -m rule --add app="^Tor Browser$" manage=off
+yabai -m rule --add app="^Tor Browser" manage=off
 
 # updates every 5 minutes
-frequency=300
+set frequency 300
 
-function update_battery_loop() {
-	while true; do
-		# Get the current battery percentage.
-		battery=$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)
-
-		if [ $battery -gt 84 ]; then
-			yabai -m config status_bar_power_icon_strip battery-full plug
-		elif [ $battery -gt 60 ]; then
-			yabai -m config status_bar_power_icon_strip battery-three-quarters plug
-		elif [ $battery -gt 39 ]; then
-			yabai -m config status_bar_power_icon_strip battery-half plug
-		elif [ $battery -gt 14 ]; then
-			yabai -m config status_bar_power_icon_strip battery-quarter plug
-		else
-			yabai -m config status_bar_power_icon_strip battery-empty plug
-		fi
-
-		sleep $frequency
-	done
-}
+# function update_battery_loop() {
+# 	while true; do
+# 		# Get the current battery percentage.
+# 		battery=$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)
+#
+# 		if [ $battery -gt 84 ]; then
+# 			yabai -m config status_bar_power_icon_strip battery-full plug
+# 		elif [ $battery -gt 60 ]; then
+# 			yabai -m config status_bar_power_icon_strip battery-three-quarters plug
+# 		elif [ $battery -gt 39 ]; then
+# 			yabai -m config status_bar_power_icon_strip battery-half plug
+# 		elif [ $battery -gt 14 ]; then
+# 			yabai -m config status_bar_power_icon_strip battery-quarter plug
+# 		else
+# 			yabai -m config status_bar_power_icon_strip battery-empty plug
+# 		fi
+#
+# 		sleep $frequency
+# 	done
+# }
 
 # TODO: make icons for battery percentage
 # run the function async
 # update_battery_loop &
 
 # maintain state while updating icon
-~/Programs/bin/toggle
+$YABAI_SCRIPTS/toggle
 
-# auto-update
-YABAI_CERT=yabai-cert sh -c "$(curl -sSL "https://git.io/update-yabai")" &
+# auto-update from https://git.io/update-yabai
+YABAI_CERT=yabai-cert sh -c "$YABAI_SCRIPTS/yabai_update" &
 
 echo "yabai configuration loaded.."

@@ -1,8 +1,10 @@
 #!/bin/bash
 
+YABAI_SCRIPTS="$HOME/Programs/bin/yabai"
+
 # kills flux then waits and turns it back on again
 # disable for an hour
-state=~/Programs/bin/flux.state
+state=$YABAI_SCRIPTS/flux.state
 delay=3600
 
 osascript -e 'tell app "Flux" to quit'
@@ -10,4 +12,4 @@ sleep $delay
 osascript -e 'tell app "Flux" to run'
 
 echo false > $state
-~/Programs/bin/toggle 
+$YABAI_SCRIPTS/toggle

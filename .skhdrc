@@ -7,24 +7,27 @@
 hyper - c : kitty --single-instance ranger ~/Desktop/TJHSST/11th\ Grade/Calendars/
 
 # open messenger
-hyper - g : open http://www.messenger.com
+# hyper - g : open http://www.messenger.com
 
 # caffeinate
-hyper - m : ~/Programs/bin/caffine
+hyper - m : ~/Programs/bin/yabai/caffine
 
 # f.lux
-0x41: ~/Programs/bin/flux
+0x41: ~/Programs/bin/yabai/flux
+
+# authy-like 2fa code 
+hyper - g : kitty --single-instance fish -c 'yubi_2fa' 
 
 # zap
-hyper - 0x29 : ~/Programs/bin/zap
+# hyper - 0x29 : ~/Programs/bin/yabai/zap
 
 # animate desktop
-0x5F: ~/Programs/bin/anime
+# 0x5F: ~/Programs/bin/yabai/anime
 
 # open terminal
 # hyper - return : open -a Terminal --new
 # hyper - return: open -a iTerm --new
-hyper - return: kitty --single-instance 
+hyper - return: kitty --single-instance
 
 # close all open terminals
 # hyper - t : killall Terminal
@@ -35,9 +38,9 @@ hyper - t : killall kitty
 hyper - v : bash -c 'launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"'
 
 # focus window
-hyper - j : yabai -m window --focus west
-hyper - k : yabai -m window --focus south
-hyper - i : yabai -m window --focus north
+hyper - h : yabai -m window --focus west
+hyper - j : yabai -m window --focus south
+hyper - k : yabai -m window --focus north
 hyper - l : yabai -m window --focus east
 
 # swap window
@@ -192,7 +195,7 @@ hyper - u : yabai -m window --toggle float;\
           yabai -m window --grid 4:4:1:1:2:2
 
 # toggle sticky (show on all spaces)
-hyper - h : yabai -m window --toggle sticky
+hyper - i : yabai -m window --toggle sticky
 
 # toggle topmost (keep above other windows)
 alt - o : yabai -m window --toggle topmost

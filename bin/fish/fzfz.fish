@@ -1,10 +1,9 @@
-function fzfz
+function fzfz --description "uses z to jump directories"
   # pipe z to fzf to get a file path
-  set l (z | tac | fzf --preview "_preview_path (_parse_z {})")
-  set p (_parse_z $l)
+  set p (_z | fzf --preview '_preview_path {}')
 
   # if not a directory, return
-  if ! test -d "$p"
+  if not test -d "$p"; or test -z "$p"
     commandline -f repaint
     return
   end

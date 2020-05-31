@@ -1,0 +1,21 @@
+#!/usr/bin/env fish
+
+# defaults
+# spacebar -m config text_font         "Helvetica Neue:Bold:12.0"
+# spacebar -m config icon_font         "Font Awesome 5:Regular:12.0"
+# spacebar -m config background_color  0xff202020
+# spacebar -m config foreground_color  0xffa8a8a8
+# spacebar -m config space_icon_strip  I II III IV V VI VII VIII IX X
+# spacebar -m config power_icon_strip   
+# spacebar -m config space_icon        
+# spacebar -m config clock_icon        
+
+# bar settings
+spacebar -m config text_font         "Helvetica Neue:Bold:12.0"
+spacebar -m config icon_font         "feather:Regular:12.0"
+spacebar -m config background_color  0xff202020
+spacebar -m config foreground_color  0xffa8a8a8
+spacebar -m config space_icon_strip       6 7 8 9 10
+spacebar -m config power_icon_strip   
+spacebar -m config space_icon        
+spacebar -m config clock_icon        

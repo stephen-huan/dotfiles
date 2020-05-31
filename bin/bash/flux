@@ -1,12 +1,14 @@
 #!/bin/bash
 
+YABAI_SCRIPTS="$HOME/Programs/bin/yabai"
+
 # toggles the state of flux
 # TODO: until sunrise, etc.
-state=~/Programs/bin/flux.state
+state=$YABAI_SCRIPTS/flux.state
 
 if pgrep -q Flux; then
   # disable flux for a certain amount of time
-  ~/Programs/bin/fluxkill &
+  $YABAI_SCRIPTS/fluxkill &
 
   echo "Disabled f.lux for an hour"
   echo true > $state
@@ -20,4 +22,4 @@ else
   echo false > $state
 fi
 
-~/Programs/bin/toggle
+$YABAI_SCRIPTS/toggle

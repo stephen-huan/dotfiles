@@ -1,12 +1,11 @@
-function fzff --description "uses fzf to get a path"
+function fzfd --description "uses fzf to get a path"
   # get the current token on the command line
   set t (commandline -t)
   # use fzf to get a path
-  set p (string escape (pwd))
-  set result (find * | fzf --query $t --preview "_preview_path "$p"/{}")
+  set result (_z | fzf --preview '_preview_path {}')
 
   # if not a path, return
-  if not test -e "$result"; or test -z "$result"
+  if not test -d "$result"; or test -z "$result"
     commandline -f repaint
     return
   end

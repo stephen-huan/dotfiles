@@ -1,8 +1,15 @@
 # Configuration 
 
-![ss.png](https://raw.githubusercontent.com/stephen-huan/macos_dotfiles/master/ss.png "Screenshot of environment")
+![yabai.png](https://raw.githubusercontent.com/stephen-huan/macos_dotfiles/master/screenshots/yabai.png "Screenshot of environment")
+![vim_tmux.png](https://raw.githubusercontent.com/stephen-huan/macos_dotfiles/master/screenshots/vim_tmux.png "vim + tmux")
 
-Primarily used for [Yabai](https://github.com/koekeishiya/yabai). Includes [skhd](https://github.com/koekeishiya/skhd), [karabiner](https://pqrs.org/osx/karabiner/index.html), and some miscellaneous things.
+Primarily used for [Yabai](https://github.com/koekeishiya/yabai). Includes 
+[spacebar](https://github.com/somdoron/spacebar),
+[skhd](https://github.com/koekeishiya/skhd), 
+[karabiner](https://pqrs.org/osx/karabiner/index.html), 
+[vim](https://www.vim.org/), 
+[tmux](https://github.com/tmux/tmux/wiki), 
+and some miscellaneous things.
 
 Follow the instructions at the [Yabai wiki](https://github.com/koekeishiya/yabai/wiki) to get started, as they're very helpful and unfortunately Google is not - Yabai isn't very popular.
 
@@ -53,6 +60,15 @@ Hide the dock by System Preferences -> Dock -> hide and show the Dock
 
 Minimize transitions by System Preferences -> Accessibility -> Display -> Reduce motion
 
+Recently, there are sometimes random transitions between desktops.
+Disable application focus switching with System Preferences -> Mission Control -> 
+When switching to an application, switch to a Space with open windows 
+for the application. Note that this prevents switching for something like
+Spotlight.
+Also, run: 
+```bash
+defaults write com.apple.Dock workspaces-auto-swoosh -bool no
+```
 
 #### Finder
 
