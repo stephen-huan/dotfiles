@@ -16,9 +16,10 @@ Plug 'SirVer/ultisnips'           " snippets engine
 Plug 'honza/vim-snippets'         " community snippets
 Plug 'dense-analysis/ale'         " syntax checking
 Plug 'tpope/vim-commentary'       " comment
-Plug 'roryokane/detectindent'     " detect indent and adjust indent options
+Plug 'tpope/vim-sleuth'           " detect indent and adjust indent options 
 Plug 'godlygeek/tabular'          " misc. text operations
 Plug 'andymass/vim-matchup'       " matching
+Plug 'vim-scripts/auto-pairs-gentle'                " insert pairs automatically               
 Plug 'easymotion/vim-easymotion'  " move around easily
 Plug 'tpope/vim-repeat'           " allow plugins to . repeat
 Plug 'svermeulen/vim-yoink'       " maintain a yank history
@@ -244,7 +245,7 @@ endfunction
 function! s:buf_copy(e)
   let s = substitute(a:e, '\', '\\\\\\\\', 'g')
   let s = escape(s, '''"\')
-  echo system("fish -c \"echo -ne (string replace -a '^M' '\\n' (_parse_token -p '" . s . "')) | pbcopy\"")
+  echo system("fish -c \"echo -ne (string sub -s 3 (string replace -a '^M' '\\n' (_parse_token -p '" . s . "'))) | pbcopy\"")
 endfunction
 
 nnoremap <leader>p :call fzf#run(fzf#wrap({
@@ -352,13 +353,16 @@ let g:goyo_width=81              " weirdly, goyo character width changes by two
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Hide', 'border': 'rounded'} }
 
 " YouCompleteMe {{{2
-let g:ycm_complete_in_comments = 1                             " run in comments
+let g:ycm_complete_in_comments = 1                           " run in comments
 
 "ultisnips {{{2
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "snipps"]    " directories
 
 " ale {{{2
 let g:ale_enabled = 0            " disable ale
+
+" autopair {{{2
+let g:AutoPairsUseInsertedCount = 1                          "'gentle' algorithm
 
 " easymotion {{{2
 let g:EasyMotion_smartcase = 1   " equivalent to vim's smartcase
@@ -417,7 +421,6 @@ augroup vimrc
               \ |   let g:startify_custom_header = startify#pad(split(system('cat ~/Programs/bin/logo.txt'), '\n'))
               \ |  endif
 
-  autocmd BufEnter * DetectIndent
   autocmd BufWritePost *.tex call <SID>start_server()
 
   autocmd! User GoyoEnter nested call <SID>goyo_enter()

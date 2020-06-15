@@ -60,8 +60,9 @@ Hide the dock by System Preferences -> Dock -> hide and show the Dock
 
 Minimize transitions by System Preferences -> Accessibility -> Display -> Reduce motion
 
-Recently, there are sometimes random transitions between desktops.
-Disable application focus switching with System Preferences -> Mission Control -> 
+I don't recommend this,
+but if there are sometimes random transitions between desktops, 
+disable application focus switching with System Preferences -> Mission Control -> 
 When switching to an application, switch to a Space with open windows 
 for the application. Note that this prevents switching for something like
 Spotlight.

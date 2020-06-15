@@ -9,12 +9,12 @@ yabai -m config window_opacity               off
 yabai -m config window_opacity_duration      0.0
 yabai -m config window_shadow                on
 
-# borders are gone
-# yabai -m config window_border                on
-# yabai -m config window_border_width          3
+# borders
+yabai -m config window_border                on
+yabai -m config window_border_width          3
 # yabai -m config active_window_border_color   0xff775759
-# yabai -m config active_window_border_color   0xff66BB6A
-# yabai -m config normal_window_border_color   0xff505050
+yabai -m config active_window_border_color   0xff66BB6A
+yabai -m config normal_window_border_color   0xff505050
 # yabai -m config insert_window_border_color   0xffd75f5f
 # yabai -m config insert_window_border_color   0xffE57373
 
@@ -96,6 +96,6 @@ set frequency 300
 $YABAI_SCRIPTS/toggle
 
 # auto-update from https://git.io/update-yabai
-YABAI_CERT=yabai-cert sh -c "$YABAI_SCRIPTS/yabai_update" &
+# YABAI_CERT=yabai-cert sh -c "$YABAI_SCRIPTS/yabai_update" &
 
 echo "yabai configuration loaded.."

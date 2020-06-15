@@ -4,7 +4,7 @@
 
 YABAI_SCRIPTS="$HOME/Programs/bin/yabai"
 
-read -r state<~$YABAI_SCRIPTS/"anime.state"
+read -r state<$YABAI_SCRIPTS/"anime.state"
 
 if [ "$state" = "true" ]; then
   $YABAI_SCRIPTS/wallpaper

@@ -9,5 +9,6 @@ function fish_user_key_bindings --description "defines user keybindings"
   # alt shortcuts
   bind \et fzftmux
   bind \ek _clear
+  bind \ea fzfpass
 end
 
