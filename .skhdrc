@@ -4,7 +4,7 @@
 # don't use floating windows
 
 # open calendars
-hyper - c : kitty --single-instance ranger ~/Desktop/TJHSST/11th\ Grade/Calendars/
+hyper - c : kitty --single-instance ranger ~/Desktop/tjhsst/Calendars/
 
 # open messenger
 # hyper - g : open http://www.messenger.com
