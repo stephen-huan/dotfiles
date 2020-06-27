@@ -49,17 +49,12 @@ set -gw window-status-current-format " #[fg=$orange1]#I#[default] #W#{?window_fl
 # tmux-online-status
 set -g @online_icon "#[bright,fg=$green2]o#[default]"
 set -g @offline_icon "#[bright,fg=$red]x#[default]"
-# tmux-network-bandwith
-set-option -g @tmux-network-bandwidth-padding 8
 
 set -g status-right-length 200
 set -g status-right-style fg="$fg",bg="$grey2"
 set -g status-right "#{?client_utf8,utf-8,}\
  | #{client_termname}\
- | online: #{online_status}\
- | #{network_bandwidth}\
-#[fg=$fg] | #[default]#(tmux-mem-cpu-load --interval 2 -m 2 -g 16 -a 3)\
-#[fg=$fg] |#[bright,fg=$bg,bg=$blue] #(fish -c 'sgtime') #[default]"
+ | online: #{online_status} "
 
 ## highlight active window
 # setw -g window-style 'bg=#efefef'
@@ -86,11 +81,9 @@ set -g status-right "#{?client_utf8,utf-8,}\
 # set -g message-command-style fg="#000000"
 
 # message bar or "prompt"
-# set -g message-style bg="#2d2d2d"
-# set -g message-style fg="#cc99cc"
-
-# set -g mode-style bg="#ffffff"
-# set -g mode-style fg="#f5871f"
+set -g message-style fg="$fg",bg="$grey2"
+# selection with mouse
+set -g mode-style fg="$orange2",bg="$grey3"
 
 # make background window look like white tab
 # set-window-option -g window-status-style bg=default

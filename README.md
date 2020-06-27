@@ -7,9 +7,12 @@ Primarily used for [Yabai](https://github.com/koekeishiya/yabai). Includes
 [spacebar](https://github.com/somdoron/spacebar),
 [skhd](https://github.com/koekeishiya/skhd), 
 [karabiner](https://pqrs.org/osx/karabiner/index.html), 
+[fish](http://fishshell.com/),
 [vim](https://www.vim.org/), 
-[tmux](https://github.com/tmux/tmux/wiki), 
-and some miscellaneous things.
+[tmux](https://github.com/tmux/tmux/wiki),
+[stubby](https://dnsprivacy.org/wiki/display/DP/DNS+Privacy+Daemon+-+Stubby),
+[unbound](https://dnsprivacy.org/wiki/display/DP/DNS+Privacy+Clients#DNSPrivacyClients-Unbound)
+and some other miscellaneous things.
 
 Follow the instructions at the [Yabai wiki](https://github.com/koekeishiya/yabai/wiki) to get started, as they're very helpful and unfortunately Google is not - Yabai isn't very popular.
 
@@ -44,6 +47,15 @@ Note that it leaves a black rectange in some cases if you quit ranger while on a
 #### Syntax Highlighting
 
 `brew install highlight`. To pick a theme, copy the scope via `ranger --copy-config=scope` and edit the variable `HIGHLIGHT_STYLE` near the top. To use a base16 theme, replace the highlight command near the bottom. You can also enable video preview via thumbnails by uncommenting the block (`brew install ffmpegthumbnailer`) and pdf image previews by `pip install pdftoppm` (install the dependancies via `brew install pkg-config poppler`).
+
+### [Vim](https://www.vim.org/) (text editor)
+First, install [vim-plug](https://github.com/junegunn/vim-plug) with:
+```bash
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+```
+
+Then, run `:PlugInstall` to install the various plugins.
 
 ### Fonts
 
