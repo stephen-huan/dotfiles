@@ -95,7 +95,7 @@ Yabai relies on Dock so this is a bit questionable. The Finder trick doesn't wor
 
 Yabai breaks if Dock doesn't exist anyways so the next best thing is to hide the dock.
 
-```
+```bash
 # Hide Dock
 defaults write com.apple.dock autohide -bool true 
 defaults write com.apple.dock autohide-delay -float 1000 
@@ -116,7 +116,7 @@ Something I've noticed is that if a folder, e.g. the Downloads folder is on the 
 One thing that's useful about Dock is that it shows open GUI applications, as opposed to commands like top and htop which show all processes. 
 You can replace this functionality by using Swift to query for "regular" apps.
 
-```
+```swift
 #!/usr/bin/env swift
 import Cocoa
 

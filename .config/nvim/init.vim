@@ -1,5 +1,5 @@
 " vim-plug plugins {{{1
-call plug#begin('~/.vim/plugged') " Plugins will be downloaded under the specified directory.
+call plug#begin(stdpath('data') . '/plugged') " Plugins will be downloaded under the specified directory.
 Plug 'rakr/vim-one'               " Atom's One theme
 Plug 'itchyny/lightline.vim'      " line
 Plug 'mhinz/vim-startify'         " start manager
@@ -10,8 +10,8 @@ Plug 'francoiscabrol/ranger.vim'  " ranger integration
 " Plug '/usr/local/opt/fzf'       " homebrew path to fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " cutting-edge fzf version
 Plug 'junegunn/fzf.vim'           " fzf + vim integration
-" Plug 'ycm-core/YouCompleteMe'                     " autocomplete
-Plug '~/.vim/plugged/YouCompleteMe'                 " load YCM without updating
+Plug 'ycm-core/YouCompleteMe'                       " autocomplete
+" Plug stdpath('data') .  '/plugged/YouCompleteMe'  " load YCM without updating
 Plug 'SirVer/ultisnips'           " snippets engine
 Plug 'honza/vim-snippets'         " community snippets
 Plug 'dense-analysis/ale'         " syntax checking
@@ -53,6 +53,10 @@ call plug#end()                   " List ends here. Plugins become visible to Vi
 
 " default options {{{1
 " list of options ':options'
+" providers {{{2
+let g:python_host_prog   = '/usr/bin/python'
+let g:python3_host_prog  = '/Users/stephenhuan/.pyenv/versions/3.8.0/bin/python'
+
 " editing {{{2
 set nocompatible                  " turn off vi compatibility mode
 filetype plugin indent on         " autoindent based on filetype
@@ -83,7 +87,7 @@ set wildmenu                      " visual autocomplete for command menu
 set number                        " line numbers
 set relativenumber                " numbers relative to cursor line
 set cursorline                    " highlight current line
-set cursorlineopt=screenline,number                " screenline vs file line
+" set cursorlineopt=screenline,number                " screenline vs file line
 set noshowmatch                   " disable matching [{()}]
 set nolist                        " disable show whitespace with characters
 set wrap                          " wrap if longer than window size
@@ -116,7 +120,7 @@ set thesaurus+=~/.vim/thesaurus/english.txt  " add thesaurus
 set dictionary+=/usr/share/dict/words        " add dictionary
 
 " insert completions {{{2
-set completeopt=menuone,popup     " open extra information in a popup window 
+" set completeopt=menuone,popup     " open extra information in a popup window 
 set complete+=kspell              " spelling in autocomplete
 set infercase                     " smartcase but for completions
 
@@ -132,7 +136,7 @@ set foldlevelstart=0              " don't open folds by default
 set sessionoptions-=blank         " remove blank files from sessions
 
 " miscellaneous {{{2
-set clipboard=unnamed             " system clipboard
+set clipboard+=unnamedplus        " system clipboard
 set mouse=a                       " mouse support
 set mousemodel=popup              " right clicking opens a menu
 set tildeop                       " ~ becomes an operator
@@ -197,7 +201,7 @@ nnoremap <leader>c :set nohlsearch<CR>
 " turn off spell check
 nnoremap <leader>C :set nospell<CR>
 " source vimrc
-nnoremap <leader>v :source ~/.vim/vimrc<CR>
+nnoremap <leader>v :source ~/.config/nvim/init.vim<CR>
 
 function! s:make_term()
 	let buf = term_start('fish', #{hidden: 1, term_finish: 'close'})
@@ -386,6 +390,7 @@ let g:python_highlight_all = 1    " highlight python
 " vimtex {{{2
 let g:tex_flavor='latex'          " don't use plain TeX
 let g:vimtex_view_method='skim'   " set viewer
+let g:vimtex_compiler_progname='nvr'  " use compiler callbacks 
 let g:vimtex_quickfix_autoclose_after_keystrokes=3           " close quickfix
 let g:vimtex_compiler_latexmk = {
             \ 'executable' : 'latexmk',

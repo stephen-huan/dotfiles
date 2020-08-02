@@ -1,7 +1,8 @@
 # primarily for yabi
 # based around hyper (shift + ctrl + alt + cmd) as a mod key
 # have to use karabiner tricks for mod + shift (double shift confuses skhd)
-# don't use floating windows
+
+### applications
 
 # open calendars
 hyper - c : kitty --single-instance ranger ~/Desktop/tjhsst/Calendars/
@@ -30,12 +31,20 @@ hyper - g : kitty --single-instance fish -c 'yubi_2fa'
 hyper - return: kitty --single-instance
 
 # close all open terminals
-# hyper - t : killall Terminal
-# hyper - t : killall iTerm2
-hyper - t : killall kitty
+# hyper - t : killall kitty
+
+# open music player
+hyper - t : kitty --single-instance fish -c "tmux attach -t cmus"
+
+### yabai
 
 # restart yabai
 hyper - v : bash -c 'launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"'
+
+# i3 easter egg: shift + mod + e to logout
+shift - 0x45 : skhd -k "cmd + shift - q"
+
+### windows
 
 # focus window
 hyper - h : yabai -m window --focus west
@@ -50,14 +59,60 @@ hyper - l : yabai -m window --focus east
 0x4E : yabai -m window --swap east
 
 # move window
-# shift - 0x4B : yabai -m window --warp west
-# shift - 0x4C : yabai -m window --warp south
-# shift - 0x43 : yabai -m window --warp north
-# shift - 0x4E : yabai -m window --warp east
+cmd - 0x4B : yabai -m window --warp west
+cmd - 0x4C : yabai -m window --warp south
+cmd - 0x43 : yabai -m window --warp north
+cmd - 0x4E : yabai -m window --warp east
 
-# balance size of windows
-# done in karabiner
-# shift + alt - 0 : yabai -m space --balance
+# set insertion point in focused container
+shift - 0x4B : yabai -m window --insert west
+shift - 0x4C : yabai -m window --insert south
+shift - 0x43 : yabai -m window --insert north
+shift - 0x4E : yabai -m window --insert east
+
+# increase window size
+0x54 : yabai -m window --resize left:-20:0
+0x55 : yabai -m window --resize bottom:0:20
+0x56 : yabai -m window --resize top:0:-20
+0x57 : yabai -m window --resize right:20:0
+
+# decrease window size
+cmd - 0x54 : yabai -m window --resize left:20:0
+cmd - 0x55 : yabai -m window --resize bottom:0:-20
+cmd - 0x56 : yabai -m window --resize top:0:20
+cmd - 0x57 : yabai -m window --resize right:-20:0
+
+# toggle window border
+0x5E : yabai -m window --toggle border
+
+# toggle window parent zoom
+hyper - p : yabai -m window --toggle zoom-parent
+
+# toggle window fullscreen zoom
+0x5C : yabai -m window --toggle zoom-fullscreen
+
+# toggle window native fullscreen
+shift - 0x5C : yabai -m window --toggle native-fullscreen
+
+# toggle window split type
+0x45 : yabai -m window --toggle split
+
+# toggle sticky (show on all spaces)
+# hyper - i : yabai -m window --toggle sticky
+
+# toggle topmost (keep above other windows)
+# alt - o : yabai -m window --toggle topmost
+
+# toggle sticky, topmost and resize to picture-in-picture size
+# alt - p : yabai -m window --toggle sticky;\
+#           yabai -m window --toggle topmost;\
+#           yabai -m window --grid 5:5:4:0:1:1
+
+### floating windows
+
+# float / unfloat window and center on screen
+hyper - u : yabai -m window --toggle float;\
+            yabai -m window --grid 4:4:1:1:2:2
 
 # make floating window fill screen
 # shift + alt - up     : yabai -m window --grid 1:1:0:0:1:1
@@ -67,6 +122,14 @@ hyper - l : yabai -m window --focus east
 
 # make floating window fill right-half of screen
 # shift + alt - right  : yabai -m window --grid 1:2:1:0:1:1
+
+# move window
+# shift + ctrl - a : yabai -m window --move rel:-20:0
+# shift + ctrl - s : yabai -m window --move rel:0:20
+# shift + ctrl - w : yabai -m window --move rel:0:-20
+# shift + ctrl - d : yabai -m window --move rel:20:0
+
+### spaces
 
 # create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
 0x53 : bash -c 'yabai -m space --create && \
@@ -86,39 +149,51 @@ shift - 0x51 : yabai -m space --destroy
 0x58 : yabai -m space --focus recent
 0x59 : yabai -m space --focus prev
 0x5B : yabai -m space --focus next
-f13 : yabai -m space --focus 1
-f14 : yabai -m space --focus 2
-f15 : yabai -m space --focus 3
-f16 : yabai -m space --focus 4
-f17 : yabai -m space --focus 5
-f18 : yabai -m space --focus 6
-f19 : yabai -m space --focus 7
-
+f13  : yabai -m space --focus 1
+f14  : yabai -m space --focus 2
+f15  : yabai -m space --focus 3
+f16  : yabai -m space --focus 4
+f17  : yabai -m space --focus 5
+f18  : yabai -m space --focus 6
+f19  : yabai -m space --focus 7
 # broken for some reason, have to use keycode as workaround
 0x5A : yabai -m space --focus 8
-
-# function keys beyond 20 exlusive to karabiner (kernal extension)
 0x52 : yabai -m space --focus 9
-# f21 : yabai -m space --focus 9
-# f22 : yabai -m space --focus 10
 
 # send window to desktop and follow focus
 shift - 0x58 : yabai -m window --space recent; yabai -m space --focus recent
 shift - 0x59 : yabai -m window --space prev; yabai -m space --focus prev
 shift - 0x5B : yabai -m window --space next; yabai -m space --focus next
-shift - f13 : yabai -m window --space  1; yabai -m space --focus 1
-shift - f14 : yabai -m window --space  2; yabai -m space --focus 2
-shift - f15 : yabai -m window --space  3; yabai -m space --focus 3
-shift - f16 : yabai -m window --space  4; yabai -m space --focus 4
-shift - f17 : yabai -m window --space  5; yabai -m space --focus 5
-shift - f18 : yabai -m window --space  6; yabai -m space --focus 6
-shift - f19 : yabai -m window --space  7; yabai -m space --focus 7
-
+shift - f13  : yabai -m window --space  1; yabai -m space --focus 1
+shift - f14  : yabai -m window --space  2; yabai -m space --focus 2
+shift - f15  : yabai -m window --space  3; yabai -m space --focus 3
+shift - f16  : yabai -m window --space  4; yabai -m space --focus 4
+shift - f17  : yabai -m window --space  5; yabai -m space --focus 5
+shift - f18  : yabai -m window --space  6; yabai -m space --focus 6
+shift - f19  : yabai -m window --space  7; yabai -m space --focus 7
 shift - 0x5A : yabai -m window --space  8; yabai -m space --focus 8
 shift - 0x52 : yabai -m window --space  9; yabai -m space --focus 9
 
-# shift - f21 : yabai -m window --space  9; yabai -m space --focus 9
-# shift - f22 : yabai -m window --space 10; yabai -m space --focus 10
+# change layout of desktop
+cmd - 0x5E : yabai -m space --layout bsp
+cmd - 0x5D : yabai -m space --layout float
+
+# balance size of windows
+hyper - 0 : yabai -m space --balance
+
+# rotate tree
+hyper - r : yabai -m space --rotate 90
+
+# mirror tree y-axis
+hyper - y : yabai -m space --mirror y-axis
+
+# mirror tree x-axis
+hyper - x : yabai -m space --mirror x-axis
+
+# toggle desktop offset
+0x5D : yabai -m space --toggle padding; yabai -m space --toggle gap
+
+### multiple monitors
 
 # focus monitor
 # ctrl + alt - x  : yabai -m display --focus recent
@@ -136,75 +211,3 @@ shift - 0x52 : yabai -m window --space  9; yabai -m space --focus 9
 # ctrl + cmd - 2  : yabai -m window --display 2; yabai -m display --focus 2
 # ctrl + cmd - 3  : yabai -m window --display 3; yabai -m display --focus 3
 
-# move window
-# shift + ctrl - a : yabai -m window --move rel:-20:0
-# shift + ctrl - s : yabai -m window --move rel:0:20
-# shift + ctrl - w : yabai -m window --move rel:0:-20
-# shift + ctrl - d : yabai -m window --move rel:20:0
-
-# increase window size
-0x54 : yabai -m window --resize left:-20:0
-0x55 : yabai -m window --resize bottom:0:20
-0x56 : yabai -m window --resize top:0:-20
-0x57 : yabai -m window --resize right:20:0
-
-# decrease window size
-shift - 0x54 : yabai -m window --resize left:20:0
-shift - 0x55 : yabai -m window --resize bottom:0:-20
-shift - 0x56: yabai -m window --resize top:0:20
-shift - 0x57 : yabai -m window --resize right:-20:0
-
-# set insertion point in focused container
-shift - 0x4B: yabai -m window --insert west
-shift - 0x4C : yabai -m window --insert south
-shift - 0x43 : yabai -m window --insert north
-shift - 0x4E : yabai -m window --insert east
-
-# rotate tree
-hyper - r : yabai -m space --rotate 90
-
-# mirror tree y-axis
-hyper - y : yabai -m space --mirror y-axis
-
-# mirror tree x-axis
-hyper - x : yabai -m space --mirror x-axis
-
-# toggle desktop offset
-hyper - o : yabai -m space --toggle padding; yabai -m space --toggle gap
-
-# toggle window parent zoom
-hyper - p : yabai -m window --toggle zoom-parent
-
-# toggle window fullscreen zoom
-0x5C : yabai -m window --toggle zoom-fullscreen
-
-# toggle window native fullscreen
-shift - 0x5C : yabai -m window --toggle native-fullscreen
-
-# toggle window border
-hyper - b : yabai -m window --toggle border
-
-# toggle window split type
-0x45 : yabai -m window --toggle split
-
-# i3 easter egg: shift + mod + e to logout
-shift - 0x45 : skhd -k "cmd + shift - q"
-
-# float / unfloat window and center on screen
-hyper - u : yabai -m window --toggle float;\
-          yabai -m window --grid 4:4:1:1:2:2
-
-# toggle sticky (show on all spaces)
-hyper - i : yabai -m window --toggle sticky
-
-# toggle topmost (keep above other windows)
-alt - o : yabai -m window --toggle topmost
-
-# toggle sticky, topmost and resize to picture-in-picture size
-# alt - p : yabai -m window --toggle sticky;\
-#           yabai -m window --toggle topmost;\
-#           yabai -m window --grid 5:5:4:0:1:1
-
-# change layout of desktop
-# ctrl + alt - a : yabai -m space --layout bsp
-# ctrl + alt - d : yabai -m space --layout float

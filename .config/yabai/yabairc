@@ -60,7 +60,7 @@ yabai -m signal --add event=space_changed action="$YABAI_SCRIPTS/toggle"
 ### EXCEPTIONS
 # in general, things with tabs sometimes break yabai and it can't really be fixed
 # TODO: fix it! (with shell hacking)
-yabai -m rule --add app="^Finder" manage=off
+# yabai -m rule --add app="^Finder" manage=off
 # tiling effects window size, which is gives information
 yabai -m rule --add app="^Tor Browser" manage=off
 
