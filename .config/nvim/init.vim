@@ -10,8 +10,8 @@ Plug 'francoiscabrol/ranger.vim'  " ranger integration
 " Plug '/usr/local/opt/fzf'       " homebrew path to fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " cutting-edge fzf version
 Plug 'junegunn/fzf.vim'           " fzf + vim integration
-Plug 'ycm-core/YouCompleteMe'                       " autocomplete
-" Plug stdpath('data') .  '/plugged/YouCompleteMe'  " load YCM without updating
+" Plug 'ycm-core/YouCompleteMe'                   " autocomplete
+Plug stdpath('data') .  '/plugged/YouCompleteMe'  " load YCM without updating
 Plug 'SirVer/ultisnips'           " snippets engine
 Plug 'honza/vim-snippets'         " community snippets
 Plug 'dense-analysis/ale'         " syntax checking
@@ -27,6 +27,7 @@ Plug 'farmergreg/vim-lastplace'   " go to the last position when loading a file
 Plug 'chrisbra/Colorizer', {'on': 'ColorHighlight', 'for': 'startify'}  " colors
 Plug 'airblade/vim-gitgutter'     " show git in the gutter
 Plug 'dstein64/vim-startuptime'   " measure startup time
+Plug 'voldikss/vim-floaterm'      " floating terminal
 " Plug 'mattn/emmet-vim'            " fancy web development plugin
 " Plugins for specific languages
 Plug 'vim-python/python-syntax'   " python
@@ -55,7 +56,7 @@ call plug#end()                   " List ends here. Plugins become visible to Vi
 " list of options ':options'
 " providers {{{2
 let g:python_host_prog   = '/usr/bin/python'
-let g:python3_host_prog  = '/Users/stephenhuan/.pyenv/versions/3.8.0/bin/python'
+let g:python3_host_prog  = '/Users/stephenhuan/.pyenv/versions/3.8.5/bin/python'
 
 " editing {{{2
 set nocompatible                  " turn off vi compatibility mode
@@ -203,15 +204,6 @@ nnoremap <leader>C :set nospell<CR>
 " source vimrc
 nnoremap <leader>v :source ~/.config/nvim/init.vim<CR>
 
-function! s:make_term()
-	let buf = term_start('fish', #{hidden: 1, term_finish: 'close'})
-	let winid = popup_create(buf, #{minwidth: float2nr(round(0.6*winwidth(0))), minheight: float2nr(round(0.6*winheight(0))), 
-        \ border: [], borderhighlight: ["fafafa"], borderchars: ['-', '|', '-', '|', '┌', '┐', '┘', '└'],
-        \ title: " terminal "})
-endfunction
-
-nnoremap <leader>t :call <sid>make_term()<CR>
-
 " startify {{{2
 nnoremap <leader>s :execute 'SSave!' . fnamemodify(v:this_session, ':t')<CR>
 
@@ -296,6 +288,9 @@ omap ic <Plug>(GitGutterTextObjectInnerPending)
 omap ac <Plug>(GitGutterTextObjectOuterPending)
 xmap ic <Plug>(GitGutterTextObjectInnerVisual)
 xmap ac <Plug>(GitGutterTextObjectOuterVisual)
+
+" vim-floaterm
+nnoremap <leader>t :FloatermNew<CR>
 
 " vim-markdown {{{2
 map <Plug> <Plug>Markdown_MoveToCurHeader

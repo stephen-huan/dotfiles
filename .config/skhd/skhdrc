@@ -1,4 +1,4 @@
-# primarily for yabi
+# primarily for yabai
 # based around hyper (shift + ctrl + alt + cmd) as a mod key
 # have to use karabiner tricks for mod + shift (double shift confuses skhd)
 
@@ -39,7 +39,7 @@ hyper - t : kitty --single-instance fish -c "tmux attach -t cmus"
 ### yabai
 
 # restart yabai
-hyper - v : bash -c 'launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"'
+hyper - v : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 
 # i3 easter egg: shift + mod + e to logout
 shift - 0x45 : skhd -k "cmd + shift - q"
@@ -132,16 +132,16 @@ hyper - u : yabai -m window --toggle float;\
 ### spaces
 
 # create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
-0x53 : bash -c 'yabai -m space --create && \
-                  index="$(yabai -m query --spaces --display | jq \'map(select(."native-fullscreen" == 0))[-1].index\')" && \
-                  yabai -m window --space "${index}" && \
-                  yabai -m space --focus "${index}"'
+0x53 : yabai -m space --create && \
+       index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
+       yabai -m window --space "${index}" && \
+       yabai -m space --focus "${index}"  
 
 # create desktop and follow focus - uses jq for parsing json (brew install jq)
-shift - 0x53 : bash -c 'yabai -m space --create && \
-                  index="$(yabai -m query --spaces --display | jq \'map(select(."native-fullscreen" == 0))[-1].index\')" &&# \
-                  yabai -m space --focus "${index}"'
-
+shift - 0x53 : yabai -m space --create && \
+       index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
+       yabai -m space --focus "${index}"  
+                   
 # destroy desktop
 shift - 0x51 : yabai -m space --destroy
 

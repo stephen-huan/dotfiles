@@ -52,50 +52,20 @@ yabai -m signal --add event=application_launched action="env HOME=/tmp fish $YAB
 yabai -m signal --add event=application_terminated action="env HOME=/tmp fish $YABAI_SCRIPTS/smart.fish"
 
 # switch focus on a closed window
-yabai -m signal --add event=window_destroyed action="$YABAI_SCRIPTS/focus_yabai"
+yabai -m signal --add event=window_destroyed action="env HOME=/tmp fish $YABAI_SCRIPTS/focus_yabai"
 
 # update icons
 yabai -m signal --add event=space_changed action="$YABAI_SCRIPTS/toggle"
 
 ### EXCEPTIONS
-# in general, things with tabs sometimes break yabai and it can't really be fixed
-# TODO: fix it! (with shell hacking)
-# yabai -m rule --add app="^Finder" manage=off
-# tiling effects window size, which is gives information
+# tiling affects window size, which gives information
 yabai -m rule --add app="^Tor Browser" manage=off
 
-# updates every 5 minutes
-set frequency 300
-
-# function update_battery_loop() {
-# 	while true; do
-# 		# Get the current battery percentage.
-# 		battery=$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)
-#
-# 		if [ $battery -gt 84 ]; then
-# 			yabai -m config status_bar_power_icon_strip battery-full plug
-# 		elif [ $battery -gt 60 ]; then
-# 			yabai -m config status_bar_power_icon_strip battery-three-quarters plug
-# 		elif [ $battery -gt 39 ]; then
-# 			yabai -m config status_bar_power_icon_strip battery-half plug
-# 		elif [ $battery -gt 14 ]; then
-# 			yabai -m config status_bar_power_icon_strip battery-quarter plug
-# 		else
-# 			yabai -m config status_bar_power_icon_strip battery-empty plug
-# 		fi
-#
-# 		sleep $frequency
-# 	done
-# }
-
-# TODO: make icons for battery percentage
-# run the function async
-# update_battery_loop &
-
-# maintain state while updating icon
+# maintain state while updating icons
 $YABAI_SCRIPTS/toggle
 
 # auto-update from https://git.io/update-yabai
 # YABAI_CERT=yabai-cert sh -c "$YABAI_SCRIPTS/yabai_update" &
 
 echo "yabai configuration loaded.."
+
