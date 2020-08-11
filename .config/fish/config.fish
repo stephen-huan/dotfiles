@@ -3,14 +3,15 @@ if test $SHLVL -le 2
   cdp
 end
 
-set -gx SHELL "/usr/local/bin/fish"
+### USER PATH
 
-### PATH
-
-# reset path to most basic level
-# set -gx PATH (string split ":" (getconf PATH))
-
-set -gx PATH "/usr/local/bin" "/usr/local/sbin" $PATH # homebrew
+# broken: /usr/bin/iconv, /usr/local/opt/ncurses/bin/tabs
+_add_path "/Library/TeX/texbin"                           # TeX commands
+_add_path "$HOME/Programs/bin"                            # user created shell functions
+_add_path "$HOME/Programs/bin/yabai"                      # convert to fish later
+_add_path "/usr/local/opt/llvm/bin"                       # llvm
+_add_path "/usr/local/opt/gettext/bin" "$HOME/.cargo/bin" # fix weird git thing
+_add_path "$HOME/Programs/bin/catdoc-0.95/src"            # catdoc
 
 ### ENVIRONMENT
 
@@ -26,16 +27,6 @@ set -gx PATH "/usr/local/bin" "/usr/local/sbin" $PATH # homebrew
 
 # iterm2 shell integration
 # test -e /Users/stephenhuan/.iterm2_shell_integration.fish ; and source /Users/stephenhuan/.iterm2_shell_integration.fish ; or true
-
-### USER PATH
-
-# broken: /usr/bin/iconv, /usr/local/opt/ncurses/bin/tabs
-_add_path "/Library/TeX/texbin"                           # TeX commands
-_add_path "$HOME/Programs/bin"                            # user created shell functions
-_add_path "$HOME/Programs/bin/yabai"                      # convert to fish later
-_add_path "/usr/local/opt/llvm/bin"                       # llvm
-_add_path "/usr/local/opt/gettext/bin" "$HOME/.cargo/bin" # fix weird git thing
-_add_path "$HOME/Programs/bin/catdoc-0.95/src"            # catdoc
 
 ### TIMER
 

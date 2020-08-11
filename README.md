@@ -3,24 +3,52 @@
 ![yabai.png](https://raw.githubusercontent.com/stephen-huan/macos_dotfiles/master/screenshots/yabai.png "Screenshot of environment")
 ![vim_tmux.png](https://raw.githubusercontent.com/stephen-huan/macos_dotfiles/master/screenshots/vim_tmux.png "vim + tmux")
 
-Primarily used for [Yabai](https://github.com/koekeishiya/yabai). Includes 
-[spacebar](https://github.com/somdoron/spacebar),
-[skhd](https://github.com/koekeishiya/skhd), 
-[karabiner](https://pqrs.org/osx/karabiner/index.html), 
+Primarily used for [Yabai](#yabai-window-manager). Includes 
+[spacebar](#spacebar-icons),
+[skhd](#skhd-hotkeys), 
+[karabiner](#karabiner-keyboard-shortcuts)
+[kitty](#kitty-terminal-emulator),
 [fish](http://fishshell.com/),
-[vim](https://www.vim.org/), 
+[vim](#vim-text-editor), 
 [tmux](https://github.com/tmux/tmux/wiki),
 [stubby](https://dnsprivacy.org/wiki/display/DP/DNS+Privacy+Daemon+-+Stubby),
 [unbound](https://dnsprivacy.org/wiki/display/DP/DNS+Privacy+Clients#DNSPrivacyClients-Unbound)
 and some other miscellaneous things.
 
-Follow the instructions at the [Yabai wiki](https://github.com/koekeishiya/yabai/wiki) to get started, as they're very helpful and unfortunately Google is not - Yabai isn't very popular.
+This isn't a systematic layout so I can replicate my setup on another computer; 
+this is an ad-hoc file sharing protocol.
 
-This isn't a systematic layout so I can replicate my setup on another computer; this is an ad hoc file sharing protocal.
+### [Yabai](https://github.com/koekeishiya/yabai) (window manager):
+
+Follow the instructions at the 
+[Yabai wiki](https://github.com/koekeishiya/yabai/wiki) to get started, 
+as they're very helpful and unfortunately Google is not - 
+Yabai isn't very popular.
+
+#### [Spacebar](https://github.com/somdoron/spacebar) Icons
+
+Spacebar is the bar that used to be part of Yabai, but was removed.
+The default spacebar status bar uses font icons, 
+install the font by double clicking on final.ttf, 
+which was constructed from [feather.ttf](https://github.com/AT-UI/feather-font) 
+and [alt.ttf](https://github.com/oblador/react-native-vector-icons/blob/master/Fonts/Feather.ttf). 
+The first was missing the coffee icon, 
+the second had weirdly glitched icons for some of them. 
+Merged together via [FontForge](https://fontforge.github.io/en-US).
+
+### [Karabiner](https://pqrs.org/osx/karabiner/index.html) (keyboard shortcuts):
+
+Karabiner is a kernel extention, so it can modify keybindings at a low level.
+
+### [skhd](https://github.com/koekeishiya/skhd) (hotkeys):
+
+skhd modifies hotkeys at a higher level than Karabiner, and is used 
+for the actual Yabai interaction.
 
 ### [Kitty](https://sw.kovidgoyal.net/kitty/) (terminal emulator):
 
-To theme follow the helpful [instructions](https://github.com/dexpota/kitty-themes); I use Tango Light.
+To theme follow the helpful 
+[instructions](https://github.com/dexpota/kitty-themes); I use Tango Light.
 
 Set opacity by editing the config at ~/.config/kitty/kitty.conf. 
 
@@ -42,11 +70,19 @@ Alternatively, as Python 2.7 is depreciating in 2020:
 #### Image Preview
 
 Set the variable `preview_images` to true and `preview_images_method` to kitty.
-Note that it leaves a black rectange in some cases if you quit ranger while on an image (most notably, vim). To fix this, press the left arrow before exiting ranger to unload the image.
+Note that it leaves a black rectangle in some cases if you quit ranger 
+while on an image (most notably, vim).
+To fix this, press the left arrow before exiting ranger to unload the image.
 
 #### Syntax Highlighting
 
-`brew install highlight`. To pick a theme, copy the scope via `ranger --copy-config=scope` and edit the variable `HIGHLIGHT_STYLE` near the top. To use a base16 theme, replace the highlight command near the bottom. You can also enable video preview via thumbnails by uncommenting the block (`brew install ffmpegthumbnailer`) and pdf image previews by `pip install pdftoppm` (install the dependancies via `brew install pkg-config poppler`).
+`brew install highlight`. 
+To pick a theme, copy the scope via `ranger --copy-config=scope` 
+and edit the variable `HIGHLIGHT_STYLE` near the top. 
+To use a base16 theme, replace the highlight command near the bottom.
+You can also enable video preview via thumbnails by uncommenting the block 
+(`brew install ffmpegthumbnailer`) and pdf image previews by `pip install pdftoppm` 
+(install the dependancies via `brew install pkg-config poppler`).
 
 ### [Vim](https://www.vim.org/) (text editor)
 First, install [vim-plug](https://github.com/junegunn/vim-plug) with:
@@ -57,23 +93,20 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 
 Then, run `:PlugInstall` to install the various plugins.
 
-### Fonts
+### MacOS-Specific Tips
 
-The default status bar uses font icons, install the font by double clicking on final.ttf, which was constructed from [feather.ttf](https://github.com/AT-UI/feather-font) and [alt.ttf](https://github.com/oblador/react-native-vector-icons/blob/master/Fonts/Feather.ttf). The first was missing the coffee icon, the second had weirdly glitched icons for some of them. Merged together via [FontForge](https://fontforge.github.io/en-US).
+Who needs a desktop environment with a tiling window manger?
+Kill the desktop environment via 
+`defaults write com.apple.finder CreateDesktop false`
+and reset Finder via `killall Finder`. 
+The background and all files are preserved.
 
-### Miscellaneous Tips
-
-Kill the desktop environment via `defaults write com.apple.finder CreateDesktop false`
-and reset finder via `killall Finder`. Who needs a desktop when you have a tiling window manger? Image and files are preserved.
-
-Hide the menu bar by going to System Preferences -> General -> hide and show the menu bar
-
-Hide the dock by System Preferences -> Dock -> hide and show the Dock
-
-Minimize transitions by System Preferences -> Accessibility -> Display -> Reduce motion
+- Hide the menu bar by going to System Preferences -> General -> hide and show the menu bar
+- Hide the dock by System Preferences -> Dock -> hide and show the Dock
+- Minimize transitions by System Preferences -> Accessibility -> Display -> Reduce motion
 
 I don't recommend this,
-but if there are sometimes random transitions between desktops, 
+but if there are random transitions between desktops, 
 disable application focus switching with System Preferences -> Mission Control -> 
 When switching to an application, switch to a Space with open windows 
 for the application. Note that this prevents switching for something like
@@ -85,15 +118,29 @@ defaults write com.apple.Dock workspaces-auto-swoosh -bool no
 
 #### Finder
 
-Run `osascript -e 'tell app "Finder" to quit'` to kill Finder (semi-permanently), `osascript -e 'tell app "Finder" to run'` to bring it back, or you can click on it. Finder can still launch because of other apps, so you could move it to temporary storage then move it back to reactivate.
+Run `osascript -e 'tell app "Finder" to quit'` to kill Finder temporarily, 
+`osascript -e 'tell app "Finder" to run'` to bring it back, 
+or you can click on it. Finder can still launch because of other apps, 
+so you could move it to temporary storage then move it back to reactivate.
 
-Is macOS broken if you disable Finder? Surprisingly not. Trash is broken, Atom -> Reveal in Finder crashes Atom, but other than that everything seems to be working. It really seems to be just another file explorer, which I've replaced with ranger.
+How do you move Finder when Catalina now loads 
+macOS system files on a read only boot partition?
+```bash
+sudo mount -uw /
+```
+System Integrity Protection (SIP) needs to be disabled
+but that's a given for Yabai to work well.
+
+Is macOS broken if you disable Finder? Surprisingly, no. 
+Trash is broken, Atom -> Reveal in Finder crashes Atom, 
+but other than that everything seems to be working. 
+It really seems to be just another file explorer, 
+which I've replaced with ranger.
 
 #### Dock
 
-Yabai relies on Dock so this is a bit questionable. The Finder trick doesn't work as it regenerates itself, so the only thing left is to move it; unfortunately that is also impossible as Catalina now loads macOS on a read only boot partition.
-
-Yabai breaks if Dock doesn't exist anyways so the next best thing is to hide the dock.
+There's no point to disable the Dock if 
+Yabai breaks so the next best thing is to hide the dock.
 
 ```bash
 # Hide Dock
@@ -109,11 +156,18 @@ defaults write com.apple.dock launchanim -bool true
 killall Dock
 ```
 
-It's helpful to then run the fast yabai reset (`launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"` compared to `brew services restart yabai`).
+It's helpful to then run the fast yabai reset 
+(`launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"`
+compared to `brew services restart yabai`).
 
-Something I've noticed is that if a folder, e.g. the Downloads folder is on the Dock and an file is added to it, the file will bounce to indicate that it was downloaded even if launchanim is set to false. The way to fix it is to simply remove the offending folder from the dock.
+Something I've noticed is that if a folder, 
+e.g. the Downloads folder is on the Dock and an file is added to it, 
+the file will bounce to indicate that it was downloaded
+even if `launchanim` is set to false. 
+The way to fix this is to simply remove the offending folder from the dock.
 
-One thing that's useful about Dock is that it shows open GUI applications, as opposed to commands like top and htop which show all processes. 
+One thing that's useful about Dock is that it shows open GUI applications, 
+as opposed to commands like `top` and `htop` which show all processes. 
 You can replace this functionality by using Swift to query for "regular" apps.
 
 ```swift
@@ -128,20 +182,27 @@ for app in apps {
 }
 ```
 
-Cocoa is a fairly expensive import so I'd recommend compiling this into an execeutable via `swiftc -o openapps openapps.swift`.
+Cocoa is a fairly expensive import so I'd recommend 
+compiling this into an executable via `swiftc -o openapps openapps.swift`.
 
 #### Spotlight
 
-Spotlight becomes the main way to launch applications once there is no Dock or Finder. However, by default, it uses a ridiculous amount of battery and violates your privacy by sending data over the internet to Apple, Bing, Google, etc. 
+Spotlight becomes the main way to launch applications without Dock or Finder. 
+However, by default, it uses an excessive amount of battery and 
+violates your privacy by sending data over the internet to 3rd parties.
 
-System Preferences -> Search Results -> uncheck Other and Spotlight Suggestions and uncheck "Allow Spotlight Suggestions in Look up".
-There should be a info window on how Spotlight will only use disk from now on and not the internet.
+System Preferences -> Spotlight -> Search Results -> uncheck Other and Spotlight Suggestions 
+and uncheck "Allow Spotlight Suggestions in Look up".
+There should be a info window on how Spotlight 
+will only use disk from now on and not the internet.
 
 #### Launchctl
 
-Yabai may drain battery life. What better time to optimize performance?
+Yabai may drain battery life
+(honestly, I think my battery life went up from not running Finder). 
+What better time to optimize performance?
 
-Check battery by activity monitor -> energy.
+Check battery by Activity Monitor -> energy.
 
 `cd` into one of these directories
 
@@ -153,8 +214,13 @@ Check battery by activity monitor -> energy.
 /System/Library/LaunchDaemons  OS X System wide daemons.
 ```
 
-and run `launchctl unload -wF com.whatever` to stop it from running. Sometimes you have to run `launchctl disable domain/com.whatever` where domain is `system`, `gui/uid`, `user/uid`, and other options. Get your uid by running `id -u`.
+and run `launchctl unload -wF com.whatever` to stop it from running. 
+Sometimes you have to run `launchctl disable domain/com.whatever` 
+where domain is `system`, `gui/uid`, `user/uid`, and other options. 
+Get your uid by running `id -u`.
 
 `ps aux | grep whatever` to see whether something is still running.
 
-Another (untested) way to disable an application: run `sudo chmod 000` (755 to revert).
+Another (untested) way to disable an application: 
+run `sudo chmod 000` (755 to revert).
+
