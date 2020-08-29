@@ -1,6 +1,6 @@
 function fzfz --description "uses z to jump directories"
   # pipe z to fzf to get a file path
-  set p (_z | fzf --preview '_preview_path {}')
+  set p (_z | fzf --preview "_preview_path {}" --tiebreak=index)
 
   # if not a directory, return
   if not test -d "$p"; or test -z "$p"

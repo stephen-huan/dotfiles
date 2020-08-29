@@ -37,8 +37,7 @@ Plug 'tpope/vim-git'              " git
 Plug 'octol/vim-cpp-enhanced-highlight'            " c++
 " would be nice if there was a good java syntax plugin
 Plug 'fatih/vim-go'               " go
-" recent update made it slow, cannot determine whether it is this plug or vim
-" Plug 'plasticboy/vim-markdown'    " markdown
+Plug 'plasticboy/vim-markdown'    " markdown
 " markdown preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'chrisbra/csv.vim'           " CSVs
@@ -167,6 +166,11 @@ nnoremap <c-n> :tabnew<CR>
 
 " comments
 vmap <c-_> gc 
+
+" show highlight under cursor
+noremap <c-h> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " fzf {{{3
 " mappings
@@ -315,19 +319,20 @@ let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 " plugins {{{1
 " one {{{2
 function! s:set_colors()                                     " overwrite default colors
+    " error highlight from https://github.com/habamax/vim-polar
+    call one#highlight('Error', 'ffffff', 'e07070', '')
     " spell highlight
     call one#highlight('SpellBad', 'e45649', '', '')         " red
     call one#highlight('SpellCap', '4078f2', '', '')         " blue
     call one#highlight('SpellRare', 'a626a4', '', '')        " magenta
     call one#highlight('SpellLocal', '0184bc', '', '')       " cyan
-    " diff taken from https://github.com/endel/vim-github-colorscheme/blob/master/colors/github.vim
+    " diff taken from https://github.com/endel/vim-github-colorscheme
     call one#highlight('DiffAdd', '494b53', 'ddffdd', '')    " green
     call one#highlight('DiffChange', '', 'f0f0f0', '')       " grey
     call one#highlight('DiffText', '494b53', 'ddddff', '')   " blue
     call one#highlight('DiffDelete', 'ffdddd', 'ffdddd', '') " red
     " hide things
     call one#highlight('Hide', 'fafafa', 'fafafa', 'none')
-    call one#highlight('Conceal', 'a0a1a7', '', '')
 endfunction
 
 call <SID>set_colors()

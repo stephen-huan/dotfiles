@@ -92,7 +92,7 @@ hyper - p : yabai -m window --toggle zoom-parent
 0x5C : yabai -m window --toggle zoom-fullscreen
 
 # toggle window native fullscreen
-shift - 0x5C : yabai -m window --toggle native-fullscreen
+cmd - 0x5C : yabai -m window --toggle native-fullscreen
 
 # toggle window split type
 0x45 : yabai -m window --toggle split
@@ -138,12 +138,12 @@ hyper - u : yabai -m window --toggle float;\
        yabai -m space --focus "${index}"  
 
 # create desktop and follow focus - uses jq for parsing json (brew install jq)
-shift - 0x53 : yabai -m space --create && \
+cmd - 0x53 : yabai -m space --create && \
        index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
        yabai -m space --focus "${index}"  
                    
 # destroy desktop
-shift - 0x51 : yabai -m space --destroy
+cmd - 0x51 : yabai -m space --destroy
 
 # fast focus desktop
 0x58 : yabai -m space --focus recent
@@ -161,18 +161,18 @@ f19  : yabai -m space --focus 7
 0x52 : yabai -m space --focus 9
 
 # send window to desktop and follow focus
-shift - 0x58 : yabai -m window --space recent; yabai -m space --focus recent
-shift - 0x59 : yabai -m window --space prev; yabai -m space --focus prev
-shift - 0x5B : yabai -m window --space next; yabai -m space --focus next
-shift - f13  : yabai -m window --space  1; yabai -m space --focus 1
-shift - f14  : yabai -m window --space  2; yabai -m space --focus 2
-shift - f15  : yabai -m window --space  3; yabai -m space --focus 3
-shift - f16  : yabai -m window --space  4; yabai -m space --focus 4
-shift - f17  : yabai -m window --space  5; yabai -m space --focus 5
-shift - f18  : yabai -m window --space  6; yabai -m space --focus 6
-shift - f19  : yabai -m window --space  7; yabai -m space --focus 7
-shift - 0x5A : yabai -m window --space  8; yabai -m space --focus 8
-shift - 0x52 : yabai -m window --space  9; yabai -m space --focus 9
+cmd - 0x58 : yabai -m window --space recent; yabai -m space --focus recent
+cmd - 0x59 : yabai -m window --space prev; yabai -m space --focus prev
+cmd - 0x5B : yabai -m window --space next; yabai -m space --focus next
+cmd - f13  : yabai -m window --space  1; yabai -m space --focus 1
+cmd - f14  : yabai -m window --space  2; yabai -m space --focus 2
+cmd - f15  : yabai -m window --space  3; yabai -m space --focus 3
+cmd - f16  : yabai -m window --space  4; yabai -m space --focus 4
+cmd - f17  : yabai -m window --space  5; yabai -m space --focus 5
+cmd - f18  : yabai -m window --space  6; yabai -m space --focus 6
+cmd - f19  : yabai -m window --space  7; yabai -m space --focus 7
+cmd - 0x5A : yabai -m window --space  8; yabai -m space --focus 8
+cmd - 0x52 : yabai -m window --space  9; yabai -m space --focus 9
 
 # change layout of desktop
 cmd - 0x5E : yabai -m space --layout bsp

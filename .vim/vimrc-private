@@ -1,0 +1,10 @@
+set viminfo=""
+set history=0
+set noswapfile
+set nobackup
+set nowritebackup
+set noundofile
+set secure
+set nomodeline
+set noshelltemp
+

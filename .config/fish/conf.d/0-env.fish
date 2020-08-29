@@ -10,5 +10,5 @@ set -gx PATH "/usr/local/bin" "/usr/local/sbin" $PATH # homebrew
 
 ### Z
 
-set -g Z_EXCLUDE /Users/stephenhuan /Users/stephenhuan/Programs   
+set -g Z_EXCLUDE "^/Users/stephenhuan\$" "^/Users/stephenhuan/Programs\$"   
 

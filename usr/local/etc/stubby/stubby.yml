@@ -163,6 +163,7 @@ dnssec: GETDNS_EXTENSION_TRUE
 # Specify the location of the installed trust anchor file to override the
 # default location (see above)
 # dnssec_trust_anchors: "/etc/unbound/getdns-root.key"
+# dnssec_trust_anchors: "/usr/local/etc/unbound/root.key" 
 
 
 ##################################  UPSTREAMS  ################################
