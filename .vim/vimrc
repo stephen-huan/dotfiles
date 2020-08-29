@@ -319,6 +319,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 " plugins {{{1
 " one {{{2
 function! s:set_colors()                                     " overwrite default colors
+    call one#highlight('Normal', '', 'ffffff', '')
     " error highlight from https://github.com/habamax/vim-polar
     call one#highlight('Error', 'ffffff', 'e07070', '')
     " spell highlight
