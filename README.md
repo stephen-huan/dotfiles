@@ -6,9 +6,9 @@
 Primarily used for [Yabai](#yabai-window-manager). Includes 
 [spacebar](#spacebar-icons),
 [skhd](#skhd-hotkeys), 
-[karabiner](#karabiner-keyboard-shortcuts)
+[karabiner](#karabiner-keyboard-shortcuts),
 [kitty](#kitty-terminal-emulator),
-[fish](#fish-shell,
+[fish](#fish-shell),
 [vim](#vim-text-editor), 
 [tmux](https://github.com/tmux/tmux/wiki),
 [stubby](#stubby-dns),
