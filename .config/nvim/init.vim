@@ -38,8 +38,7 @@ Plug 'tpope/vim-git'              " git
 Plug 'octol/vim-cpp-enhanced-highlight'            " c++
 " would be nice if there was a good java syntax plugin
 Plug 'fatih/vim-go'               " go
-" recent update made it slow, cannot determine whether it is this plug or vim
-" Plug 'plasticboy/vim-markdown'    " markdown
+Plug 'plasticboy/vim-markdown'    " markdown
 " markdown preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'chrisbra/csv.vim'           " CSVs

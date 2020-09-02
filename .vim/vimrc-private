@@ -8,3 +8,20 @@ set secure
 set nomodeline
 set noshelltemp
 
+set nocompatible                  " turn off vi compatibility mode
+set backspace=indent,eol,start    " make backspace always work
+set showcmd                       " show an incomplete command
+set showmode                      " show mode
+
+" save file for all modes
+noremap  <c-s> :w<CR>
+noremap! <c-s> <esc>:w<CR>li
+" exit file for all modes
+noremap  <c-q> <esc>:q!<CR>
+noremap! <c-q> <esc>:q!<CR>
+" exit all tabs for all modes
+noremap  <c-j> <esc>:qa!<CR>
+noremap! <c-j> <esc>:qa!<CR>
+" new tab
+nnoremap <c-n> :tabnew<CR>
+
