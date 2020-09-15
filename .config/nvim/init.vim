@@ -10,13 +10,14 @@ Plug 'francoiscabrol/ranger.vim'  " ranger integration
 " Plug '/usr/local/opt/fzf'       " homebrew path to fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " cutting-edge fzf version
 Plug 'junegunn/fzf.vim'           " fzf + vim integration
-" Plug 'ycm-core/YouCompleteMe'                   " autocomplete
-Plug stdpath('data') .  '/plugged/YouCompleteMe'  " load YCM without updating
+" Plug 'ycm-core/YouCompleteMe'                     " autocomplete
+Plug '~/.vim/plugged/YouCompleteMe'                 " load YCM without updating
 Plug 'SirVer/ultisnips'           " snippets engine
 Plug 'honza/vim-snippets'         " community snippets
 Plug 'dense-analysis/ale'         " syntax checking
 Plug 'tpope/vim-commentary'       " comment
 Plug 'tpope/vim-sleuth'           " detect indent and adjust indent options 
+Plug 'tpope/vim-surround'         " editing character pairs
 Plug 'godlygeek/tabular'          " misc. text operations
 Plug 'andymass/vim-matchup'       " matching
 Plug 'vim-scripts/auto-pairs-gentle'                " insert pairs automatically               
@@ -27,7 +28,6 @@ Plug 'farmergreg/vim-lastplace'   " go to the last position when loading a file
 Plug 'chrisbra/Colorizer', {'on': 'ColorHighlight', 'for': 'startify'}  " colors
 Plug 'airblade/vim-gitgutter'     " show git in the gutter
 Plug 'dstein64/vim-startuptime'   " measure startup time
-Plug 'voldikss/vim-floaterm'      " floating terminal
 " Plug 'mattn/emmet-vim'            " fancy web development plugin
 " Plugins for specific languages
 Plug 'vim-python/python-syntax'   " python
@@ -47,6 +47,8 @@ Plug 'Glench/Vim-Jinja2-Syntax'   " jinja, setting up matchup
 Plug 'pangloss/vim-javascript'    " javascript
 Plug 'hail2u/vim-css3-syntax'     " css
 Plug 'cakebaker/scss-syntax.vim'  " sass 
+Plug 'tpope/vim-dadbod'           " databases
+Plug 'vim-scripts/dbext.vim'      " original database plugin
 Plug 'mityu/vim-applescript'      " applescript
 Plug 'sudar/vim-arduino-syntax'   " arduino
 call plug#end()                   " List ends here. Plugins become visible to Vim after this call.
@@ -78,8 +80,6 @@ set nrformats=alpha,hex,bin       " number formats for ctrl-a and ctrl-x
 set termguicolors                 " 24 bit colors
 set background=light              " light background
 syntax on                         " syntax highlighting
-let g:one_allow_italics = 1       " support italics
-colorscheme one                   " colorscheme
 set laststatus=2                  " draw status bar for each window
 set showcmd                       " show an incomplete command
 set noshowmode                    " don't show mode, shown in bar already
@@ -136,10 +136,10 @@ set foldlevelstart=0              " don't open folds by default
 set sessionoptions-=blank         " remove blank files from sessions
 
 " miscellaneous {{{2
-set clipboard+=unnamedplus        " system clipboard
+set clipboard=unnamed             " system clipboard
 set mouse=a                       " mouse support
 set mousemodel=popup              " right clicking opens a menu
-set tildeop                       " ~ becomes an operator
+set notildeop                     " ~ not an operator
 
 " keybindings {{{1
 " timing {{{2
@@ -156,19 +156,24 @@ noremap <up> gk
 
 " ctrl shortcuts {{{2
 " save file for all modes
-noremap  <c-s> :w<CR>
-noremap! <c-s> <esc>:w<CR>li
+noremap  <c-s> :w<cr>
+noremap! <c-s> <esc>:w<cr>li
 " exit file for all modes
-noremap  <c-q> <esc>:q!<CR>
-noremap! <c-q> <esc>:q!<CR>
+noremap  <c-q> <esc>:q!<cr>
+noremap! <c-q> <esc>:q!<cr>
 " exit all tabs for all modes
-noremap  <c-j> <esc>:qa!<CR>
-noremap! <c-j> <esc>:qa!<CR>
+noremap  <c-j> <esc>:qa!<cr>
+noremap! <c-j> <esc>:qa!<cr>
 " new tab
-nnoremap <c-n> :tabnew<CR>
+nnoremap <c-n> :tabnew<cr>
 
 " comments
 vmap <c-_> gc 
+
+" show highlight under cursor
+noremap <c-h> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<cr>
 
 " fzf {{{3
 " mappings
@@ -192,46 +197,60 @@ function! s:get_words(e)
 endfunction
 
 inoremap <expr> <c-x><c-t> fzf#vim#complete(fzf#wrap({
-  \ 'source': function('<sid>get_words'),
-  \ 'options': '--query ""'}))
+\ 'source': function('<sid>get_words'), 
+\ 'options': '--query ""'}))
 
 " leader shortcuts {{{2
 " turn off search highlight
-nnoremap <leader>c :set nohlsearch<CR>
+nnoremap <leader>c :set nohlsearch<cr>
 " turn off spell check
-nnoremap <leader>C :set nospell<CR>
+nnoremap <leader>C :set nospell<cr>
 " source vimrc
-nnoremap <leader>v :source ~/.config/nvim/init.vim<CR>
+nnoremap <leader>v :source ~/.vim/vimrc<cr>
+" reset syntax
+nnoremap <leader>e :syntax off <bar> syntax on<cr>
+
+function! s:make_term()
+	let buf = term_start('fish', #{hidden: 1, term_finish: 'close'})
+	let winid = popup_create(buf, #{
+                \ minwidth : float2nr(round(0.6*winwidth(0))),
+                \ minheight: float2nr(round(0.6*winheight(0))), 
+                \ border: [], borderhighlight: ['Normal'], 
+                \ borderchars: ['-', '|', '-', '|', '┌', '┐', '┘', '└'],
+                \ title: ' terminal '})
+endfunction
+
+nnoremap <leader>t :call <sid>make_term()<cr>
 
 " startify {{{2
-nnoremap <leader>s :execute 'SSave!' . fnamemodify(v:this_session, ':t')<CR>
+nnoremap <leader>s :execute 'SSave!' . fnamemodify(v:this_session, ':t')<cr>
 
 " undotree {{{2
-nnoremap <leader>u :UndotreeToggle<CR>
+nnoremap <leader>u :UndotreeToggle<cr>
 
 " goyo {{{2
-nnoremap <leader>y :Goyo<CR>
+nnoremap <leader>y :Goyo<cr>
 
 " ranger {{{3
 let g:ranger_map_keys = 0
-nnoremap <leader>r :Ranger<CR>
+nnoremap <leader>r :Ranger<cr>
 
 " fzf {{{2
 " directory jumping with z
 nnoremap <leader>g :call fzf#run(fzf#wrap({
-      \ 'source': 'fish -c ''_z''', 
-      \ 'sink': 'cd', 
-      \ 'options': ['--preview', '_preview_path {}']}))<CR>
+\ 'source': 'fish -c ''_z''', 
+\ 'sink': 'cd', 
+\ 'options': ['--preview', '_preview_path {}']}))<cr>
 " files with fzf
-nnoremap <leader>o :Files<CR>
+nnoremap <leader>o :Files<cr>
 " ag searcher
-nnoremap <leader>a :Ag<CR>
+nnoremap <leader>a :Ag<cr>
 " lines in current buffer
-nnoremap <leader>L :BLines<CR>
+nnoremap <leader>L :BLines<cr>
 " windows
-nnoremap <leader>W :Windows<CR>
+nnoremap <leader>W :Windows<cr>
 " help
-nnoremap <leader>H :Helptags<CR>
+nnoremap <leader>H :Helptags<cr>
 
 " use fzf to select a entry from the yank stack
 function! s:yank_list()
@@ -248,8 +267,8 @@ function! s:buf_copy(e)
 endfunction
 
 nnoremap <leader>p :call fzf#run(fzf#wrap({
-      \'source': <sid>yank_list(), 
-      \'sink': function('<sid>buf_copy')}))<CR>
+\ 'source': <sid>yank_list(),
+\ 'sink': function('<sid>buf_copy')}))<cr>
 
 " vim-easymotion {{{2
 map s <Plug>(easymotion-jumptoanywhere)
@@ -288,9 +307,6 @@ omap ac <Plug>(GitGutterTextObjectOuterPending)
 xmap ic <Plug>(GitGutterTextObjectInnerVisual)
 xmap ac <Plug>(GitGutterTextObjectOuterVisual)
 
-" vim-floaterm
-nnoremap <leader>t :FloatermNew<CR>
-
 " vim-markdown {{{2
 map <Plug> <Plug>Markdown_MoveToCurHeader
 map ]h <Plug>Markdown_MoveToCurHeader
@@ -311,27 +327,36 @@ let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 " plugins {{{1
 " one {{{2
 function! s:set_colors()                                     " overwrite default colors
+    highlight Normal                   guibg=#ffffff
+    " error highlight from https://github.com/habamax/vim-polar
+    highlight Error      guifg=#ffffff guibg=#e07070
+ 
     " spell highlight
-    call one#highlight('SpellBad', 'e45649', '', '')         " red
-    call one#highlight('SpellCap', '4078f2', '', '')         " blue
-    call one#highlight('SpellRare', 'a626a4', '', '')        " magenta
-    call one#highlight('SpellLocal', '0184bc', '', '')       " cyan
-    " diff taken from https://github.com/endel/vim-github-colorscheme/blob/master/colors/github.vim
-    call one#highlight('DiffAdd', '494b53', 'ddffdd', '')    " green
-    call one#highlight('DiffChange', '', 'f0f0f0', '')       " grey
-    call one#highlight('DiffText', '494b53', 'ddddff', '')   " blue
-    call one#highlight('DiffDelete', 'ffdddd', 'ffdddd', '') " red
+    highlight SpellBad   guifg=#e45649 guibg=NONE    " red
+    highlight SpellCap   guifg=#4078f2 guibg=NONE    " blue
+    highlight SpellRare  guifg=#a626a4 guibg=NONE    " magenta
+    highlight SpellLocal guifg=#0184bc guibg=NONE    " cyan
+    " diff taken from https://github.com/endel/vim-github-colorscheme
+    highlight DiffAdd    guifg=#494b53 guibg=#ddffdd " green
+    highlight DiffChange               guibg=#f0f0f0 " grey
+    highlight DiffText   guifg=#494b53 guibg=#ddddff " blue
+    highlight DiffDelete guifg=#ffdddd guibg=#ffdddd " red
     " hide things
-    call one#highlight('Hide', 'fafafa', 'fafafa', 'none')
-    call one#highlight('Conceal', 'a0a1a7', '', '')
+    highlight Hide       guifg=#ffffff guibg=NONE 
 endfunction
 
-call <SID>set_colors()
+augroup colors
+    autocmd!
+    autocmd ColorScheme * call <SID>set_colors() 
+augroup END
+
+let g:one_allow_italics = 1       " support italics
+colorscheme one                   " colorscheme
 
 " lightline {{{2
 let g:lightline = {
-      \ 'colorscheme': 'mono',
-      \ }
+\   'colorscheme': 'mono', 
+\ }
 
 " vim-startify {{{2
 let g:startify_session_persistence = 0                       " update sessions
@@ -340,25 +365,22 @@ let g:startify_session_persistence = 0                       " update sessions
 let g:undotree_WindowLayout=3    " open on right side
 
 " goyo.vim {{{2
-function! s:goyo_enter()         " callbacks for goyo starting and exiting
-endfunction
-
-function! s:goyo_leave()
-    call <SID>set_colors()       " goyo resets colors
-endfunction
-
 let g:goyo_width=81              " weirdly, goyo character width changes by two
 
 " fzf {{{2
 " start in new window
 " hide border because --border is part of the default args for fzf
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Hide', 'border': 'rounded'} }
+let g:fzf_layout = {'window': 
+\   { 'width': 0.9, 'height': 0.6, 
+\     'highlight': 'Hide', 'border': 'rounded'
+\   } 
+\ }
 
 " YouCompleteMe {{{2
 let g:ycm_complete_in_comments = 1                           " run in comments
 
 "ultisnips {{{2
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "snipps"]    " directories
+let g:UltiSnipsSnippetDirectories=['UltiSnips', 'snipps']    " directories
 
 " ale {{{2
 let g:ale_enabled = 0            " disable ale
@@ -384,18 +406,17 @@ let g:python_highlight_all = 1    " highlight python
 " vimtex {{{2
 let g:tex_flavor='latex'          " don't use plain TeX
 let g:vimtex_view_method='skim'   " set viewer
-let g:vimtex_compiler_progname='nvr'  " use compiler callbacks 
 let g:vimtex_quickfix_autoclose_after_keystrokes=3           " close quickfix
 let g:vimtex_compiler_latexmk = {
-            \ 'executable' : 'latexmk',
-            \ 'options' : [
-            \   '-verbose',
-            \   '-file-line-error',
-            \   '-synctex=1',
-            \   '-interaction=nonstopmode',
-            \   '-shell-escape'
-            \ ],
-            \}
+\   'executable' : 'latexmk',
+\   'options' : [
+\     '-verbose',
+\     '-file-line-error',
+\     '-synctex=1',
+\     '-interaction=nonstopmode',
+\     '-shell-escape'
+\   ],
+\}
 
 " start server on first BufWrite, always call VimtexView
 let g:latex_started = 0
@@ -419,16 +440,14 @@ let g:mkdp_browser = 'Google Chrome'                         " browser
 " autocmds {{{1
 augroup vimrc
   autocmd!
+
   " only load custom header when startify starts
   autocmd VimEnter *
-              \ if !argc()
-              \ |   let g:startify_custom_header = startify#pad(split(system('cat ~/logo.txt'), '\n'))
-              \ |  endif
+    \ if !argc()
+    \ |   let g:startify_custom_header = startify#pad(split(system('cat ~/logo.txt'), '\n'))
+    \ |  endif
 
   autocmd BufWritePost *.tex call <SID>start_server()
-
-  autocmd! User GoyoEnter nested call <SID>goyo_enter()
-  autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
   autocmd FileType markdown,text,tex setlocal spell spelllang=en_us
   autocmd FileType c,cpp,python let b:ycm_hover = {

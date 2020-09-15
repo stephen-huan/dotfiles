@@ -196,18 +196,16 @@ hyper - x : yabai -m space --mirror x-axis
 ### multiple monitors
 
 # focus monitor
-# ctrl + alt - x  : yabai -m display --focus recent
-# ctrl + alt - z  : yabai -m display --focus prev
-# ctrl + alt - c  : yabai -m display --focus next
-# ctrl + alt - 1  : yabai -m display --focus 1
-# ctrl + alt - 2  : yabai -m display --focus 2
-# ctrl + alt - 3  : yabai -m display --focus 3
+shift - 0x58 : yabai -m display --focus recent
+shift - 0x59 : yabai -m display --focus prev
+shift - 0x5B : yabai -m display --focus next
+shift - f13  : yabai -m display --focus 1
+shift - f14  : yabai -m display --focus 2
 
 # send window to monitor and follow focus
-# ctrl + cmd - x  : yabai -m window --display recent; yabai -m display --focus recent
-# ctrl + cmd - z  : yabai -m window --display prev; yabai -m display --focus prev
-# ctrl + cmd - c  : yabai -m window --display next; yabai -m display --focus next
-# ctrl + cmd - 1  : yabai -m window --display 1; yabai -m display --focus 1
-# ctrl + cmd - 2  : yabai -m window --display 2; yabai -m display --focus 2
-# ctrl + cmd - 3  : yabai -m window --display 3; yabai -m display --focus 3
+shift + cmd - 0x58 : yabai -m window --display recent; yabai -m display --focus recent
+shift + cmd - 0x59 : yabai -m window --display prev; yabai -m display --focus prev
+shift + cmd - 0x5B : yabai -m window --display next; yabai -m display --focus next
+shift + cmd - f13  : yabai -m window --display 1; yabai -m display --focus 1
+shift + cmd - f14  : yabai -m window --display 2; yabai -m display --focus 2
 

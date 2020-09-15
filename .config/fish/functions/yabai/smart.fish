@@ -5,8 +5,10 @@ function __yabai_smart --description "intelligently changes the borders"
     # only count actual windows
     set count 0
     for id in $ids
-        set role (yabai -m query --windows --window $id | jq -r ".subrole")
-        if test "$role" = "AXStandardWindow"
+        set info (yabai -m query --windows --window $id) 
+        set role  (echo $info | jq -r ".subrole")
+        set level (echo $info | jq -r ".level")
+        if test "$role" = "AXStandardWindow" -a $level -eq 0
             set count (math $count + 1)
         end
     end

@@ -135,7 +135,7 @@ set sessionoptions-=blank         " remove blank files from sessions
 set clipboard=unnamed             " system clipboard
 set mouse=a                       " mouse support
 set mousemodel=popup              " right clicking opens a menu
-set tildeop                       " ~ becomes an operator
+set notildeop                     " ~ not an operator
 
 " keybindings {{{1
 " timing {{{2
@@ -152,16 +152,16 @@ noremap <up> gk
 
 " ctrl shortcuts {{{2
 " save file for all modes
-noremap  <c-s> :w<CR>
-noremap! <c-s> <esc>:w<CR>li
+noremap  <c-s> :w<cr>
+noremap! <c-s> <esc>:w<cr>li
 " exit file for all modes
-noremap  <c-q> <esc>:q!<CR>
-noremap! <c-q> <esc>:q!<CR>
+noremap  <c-q> <esc>:q!<cr>
+noremap! <c-q> <esc>:q!<cr>
 " exit all tabs for all modes
-noremap  <c-j> <esc>:qa!<CR>
-noremap! <c-j> <esc>:qa!<CR>
+noremap  <c-j> <esc>:qa!<cr>
+noremap! <c-j> <esc>:qa!<cr>
 " new tab
-nnoremap <c-n> :tabnew<CR>
+nnoremap <c-n> :tabnew<cr>
 
 " comments
 vmap <c-_> gc 
@@ -169,7 +169,7 @@ vmap <c-_> gc
 " show highlight under cursor
 noremap <c-h> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<cr>
 
 " fzf {{{3
 " mappings
@@ -193,16 +193,18 @@ function! s:get_words(e)
 endfunction
 
 inoremap <expr> <c-x><c-t> fzf#vim#complete(fzf#wrap({
-            \ 'source': function('<sid>get_words'),
-            \ 'options': '--query ""'}))
+\ 'source': function('<sid>get_words'), 
+\ 'options': '--query ""'}))
 
 " leader shortcuts {{{2
 " turn off search highlight
-nnoremap <leader>c :set nohlsearch<CR>
+nnoremap <leader>c :set nohlsearch<cr>
 " turn off spell check
-nnoremap <leader>C :set nospell<CR>
+nnoremap <leader>C :set nospell<cr>
 " source vimrc
-nnoremap <leader>v :source ~/.vim/vimrc<CR>
+nnoremap <leader>v :source ~/.vim/vimrc<cr>
+" reset syntax
+nnoremap <leader>e :syntax off <bar> syntax on<cr>
 
 function! s:make_term()
 	let buf = term_start('fish', #{hidden: 1, term_finish: 'close'})
@@ -214,37 +216,37 @@ function! s:make_term()
                 \ title: ' terminal '})
 endfunction
 
-nnoremap <leader>t :call <sid>make_term()<CR>
+nnoremap <leader>t :call <sid>make_term()<cr>
 
 " startify {{{2
-nnoremap <leader>s :execute 'SSave!' . fnamemodify(v:this_session, ':t')<CR>
+nnoremap <leader>s :execute 'SSave!' . fnamemodify(v:this_session, ':t')<cr>
 
 " undotree {{{2
-nnoremap <leader>u :UndotreeToggle<CR>
+nnoremap <leader>u :UndotreeToggle<cr>
 
 " goyo {{{2
-nnoremap <leader>y :Goyo<CR>
+nnoremap <leader>y :Goyo<cr>
 
 " ranger {{{3
 let g:ranger_map_keys = 0
-nnoremap <leader>r :Ranger<CR>
+nnoremap <leader>r :Ranger<cr>
 
 " fzf {{{2
 " directory jumping with z
 nnoremap <leader>g :call fzf#run(fzf#wrap({
-      \ 'source': 'fish -c ''_z''', 
-      \ 'sink': 'cd', 
-      \ 'options': ['--preview', '_preview_path {}']}))<CR>
+\ 'source': 'fish -c ''_z''', 
+\ 'sink': 'cd', 
+\ 'options': ['--preview', '_preview_path {}']}))<cr>
 " files with fzf
-nnoremap <leader>o :Files<CR>
+nnoremap <leader>o :Files<cr>
 " ag searcher
-nnoremap <leader>a :Ag<CR>
+nnoremap <leader>a :Ag<cr>
 " lines in current buffer
-nnoremap <leader>L :BLines<CR>
+nnoremap <leader>L :BLines<cr>
 " windows
-nnoremap <leader>W :Windows<CR>
+nnoremap <leader>W :Windows<cr>
 " help
-nnoremap <leader>H :Helptags<CR>
+nnoremap <leader>H :Helptags<cr>
 
 " use fzf to select a entry from the yank stack
 function! s:yank_list()
@@ -261,7 +263,8 @@ function! s:buf_copy(e)
 endfunction
 
 nnoremap <leader>p :call fzf#run(fzf#wrap({
-\'source': <sid>yank_list(), 'sink': function('<sid>buf_copy')}))<CR>
+\ 'source': <sid>yank_list(),
+\ 'sink': function('<sid>buf_copy')}))<cr>
 
 " vim-easymotion {{{2
 map s <Plug>(easymotion-jumptoanywhere)
