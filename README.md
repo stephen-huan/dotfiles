@@ -146,6 +146,20 @@ The commands in `vimrc-private` were taken from this
 /usr/local/bin/vim --clean --noplugin -nu ~/.vim/vimrc-private
 ```
 
+#### macOS Integration
+Make an application with Automator from the tips given
+[here](https://gregrs-uk.github.io/2018-11-01/open-files-neovim-iterm2-macos-finder/).
+When launching Automator, pick "application" as the type,
+and add a new "Run AppleScript" task.
+Copy the `applications/vim-kitty.swift` file into the task and
+press "export" in the menu bar options to create a new application.
+This application can now be set as the default application to open files in,
+and double clicking on an appropriate file in Finder will now open it in a
+kitty window, which contains an instance of vim.
+Changing the icon of the application can be done by opening the image you want
+as an icon in Preview, copying to clipboard, right clicking on the application,
+"Get Info", click on the icon in the top left, and pasting with command-v. 
+
 ## [Stubby](https://dnsprivacy.org/wiki/display/DP/DNS+Privacy+Daemon+-+Stubby) (DNS) 
 It's recommended to use Stubby and Unbound in conjunction
 (Stubby for some TLS managing functionality Unbound doesn't have,
