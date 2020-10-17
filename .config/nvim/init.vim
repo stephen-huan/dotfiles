@@ -11,7 +11,8 @@ Plug 'francoiscabrol/ranger.vim'  " ranger integration
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " cutting-edge fzf version
 Plug 'junegunn/fzf.vim'           " fzf + vim integration
 " Plug 'ycm-core/YouCompleteMe'                     " autocomplete
-Plug '~/.vim/plugged/YouCompleteMe'                 " load YCM without updating
+Plug stdpath('data') .  '/plugged/YouCompleteMe'    " load YCM without updating
+Plug 'ncm2/float-preview.nvim'    " open previews in a floating window
 Plug 'SirVer/ultisnips'           " snippets engine
 Plug 'honza/vim-snippets'         " community snippets
 Plug 'dense-analysis/ale'         " syntax checking
@@ -28,6 +29,7 @@ Plug 'farmergreg/vim-lastplace'   " go to the last position when loading a file
 Plug 'chrisbra/Colorizer', {'on': 'ColorHighlight', 'for': 'startify'}  " colors
 Plug 'airblade/vim-gitgutter'     " show git in the gutter
 Plug 'dstein64/vim-startuptime'   " measure startup time
+Plug 'voldikss/vim-floaterm'      " floating terminal
 " Plug 'mattn/emmet-vim'            " fancy web development plugin
 " Plugins for specific languages
 Plug 'vim-python/python-syntax'   " python
@@ -136,7 +138,7 @@ set foldlevelstart=0              " don't open folds by default
 set sessionoptions-=blank         " remove blank files from sessions
 
 " miscellaneous {{{2
-set clipboard=unnamed             " system clipboard
+set clipboard=unnamedplus         " system clipboard
 set mouse=a                       " mouse support
 set mousemodel=popup              " right clicking opens a menu
 set notildeop                     " ~ not an operator
@@ -201,26 +203,14 @@ inoremap <expr> <c-x><c-t> fzf#vim#complete(fzf#wrap({
 \ 'options': '--query ""'}))
 
 " leader shortcuts {{{2
-" turn off search highlight
-nnoremap <leader>c :set nohlsearch<cr>
-" turn off spell check
-nnoremap <leader>C :set nospell<cr>
+" toggle search highlight
+nnoremap <leader>c :set hlsearch! hlsearch?<cr>
+" toggle spell check
+nnoremap <leader>C :set spell! spell?<cr>
 " source vimrc
-nnoremap <leader>v :source ~/.vim/vimrc<cr>
+nnoremap <leader>v :source ~/.config/nvim/init.vim<cr>
 " reset syntax
 nnoremap <leader>e :syntax off <bar> syntax on<cr>
-
-function! s:make_term()
-	let buf = term_start('fish', #{hidden: 1, term_finish: 'close'})
-	let winid = popup_create(buf, #{
-                \ minwidth : float2nr(round(0.6*winwidth(0))),
-                \ minheight: float2nr(round(0.6*winheight(0))), 
-                \ border: [], borderhighlight: ['Normal'], 
-                \ borderchars: ['-', '|', '-', '|', '┌', '┐', '┘', '└'],
-                \ title: ' terminal '})
-endfunction
-
-nnoremap <leader>t :call <sid>make_term()<cr>
 
 " startify {{{2
 nnoremap <leader>s :execute 'SSave!' . fnamemodify(v:this_session, ':t')<cr>
@@ -306,6 +296,9 @@ omap ic <Plug>(GitGutterTextObjectInnerPending)
 omap ac <Plug>(GitGutterTextObjectOuterPending)
 xmap ic <Plug>(GitGutterTextObjectInnerVisual)
 xmap ac <Plug>(GitGutterTextObjectOuterVisual)
+
+" vim-floaterm
+nnoremap <leader>t :FloatermNew<CR>
 
 " vim-markdown {{{2
 map <Plug> <Plug>Markdown_MoveToCurHeader

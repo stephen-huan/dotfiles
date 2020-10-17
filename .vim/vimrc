@@ -197,10 +197,10 @@ inoremap <expr> <c-x><c-t> fzf#vim#complete(fzf#wrap({
 \ 'options': '--query ""'}))
 
 " leader shortcuts {{{2
-" turn off search highlight
-nnoremap <leader>c :set nohlsearch<cr>
-" turn off spell check
-nnoremap <leader>C :set nospell<cr>
+" toggle search highlight
+nnoremap <leader>c :set hlsearch! hlsearch?<cr>
+" toggle spell check
+nnoremap <leader>C :set spell! spell?<cr>
 " source vimrc
 nnoremap <leader>v :source ~/.vim/vimrc<cr>
 " reset syntax
@@ -383,6 +383,47 @@ let g:ale_enabled = 0            " disable ale
 
 " autopair {{{2
 let g:AutoPairsUseInsertedCount = 1                          "'gentle' algorithm
+
+" default pairs base on filetype
+func! AutoPairsDefaultPairs()
+  if exists('b:autopairs_defaultpairs')
+    return b:autopairs_defaultpairs
+  end
+  let r = copy(g:AutoPairs)
+  let allPairs = {
+        \ 'vim': {'\v^\s*\zs"': ''},
+        \ 'rust': {'\w\zs<': '>', '&\zs''': ''},
+        \ 'php': {'<?': '?>//k]', '<?php': '?>//k]'}
+        \ }
+  for [filetype, pairs] in items(allPairs)
+    if &filetype == filetype
+      for [open, close] in items(pairs)
+        let r[open] = close
+      endfor
+    end
+  endfor
+  let b:autopairs_defaultpairs = r
+  return r
+endf
+
+" add or delete pairs base on g:AutoPairs
+" AutoPairsDefine(addPairs:dict[, removeOpenPairList:list])
+"
+" eg:
+"   au FileType html let b:AutoPairs = AutoPairsDefine({'<!--' : '-->'}, ['{'])
+"   add <!-- --> pair and remove '{' for html file
+func! AutoPairsDefine(pairs, ...)
+  let r = AutoPairsDefaultPairs()
+  if a:0 > 0
+    for open in a:1
+      unlet r[open]
+    endfor
+  end
+  for [open, close] in items(a:pairs)
+    let r[open] = close
+  endfor
+  return r
+endf
 
 " easymotion {{{2
 let g:EasyMotion_smartcase = 1   " equivalent to vim's smartcase

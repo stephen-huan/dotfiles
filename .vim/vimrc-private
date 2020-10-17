@@ -24,4 +24,8 @@ noremap  <c-j> <esc>:qa!<CR>
 noremap! <c-j> <esc>:qa!<CR>
 " new tab
 nnoremap <c-n> :tabnew<CR>
+" toggle search highlight
+nnoremap <leader>c :set hlsearch! hlsearch?<cr>
+" toggle spell check
+nnoremap <leader>C :set spell! spell?<cr>
 
