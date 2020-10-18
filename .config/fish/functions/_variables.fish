@@ -1,5 +1,6 @@
 function _variables --description "set variables"
   ### Miscellaneous
+  set -Ux VISUAL "/usr/local/bin/vim"
   set -Ux EDITOR "/usr/local/bin/vim"
   # use neovim to read man pages
   set -Ux MANPAGER "/usr/local/bin/nvim -u ~/.config/nvim/init-pager.vim +Man!"

@@ -77,9 +77,6 @@ noremap! <c-j> <esc>:qa!<cr>
 " new tab
 nnoremap <c-n> :tabnew<cr>
 
-" comments
-vmap <c-_> gc 
-
 " show highlight under cursor
 noremap <c-h> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
