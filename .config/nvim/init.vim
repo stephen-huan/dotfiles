@@ -109,11 +109,12 @@ set wrapscan                      " wrap search
 
 " backup/undo {{{2
 set backup                        " store backups
-set backupdir=~/.vim/backup//,.   " store file at .vim, defaulting to . if not found
+" store file at nvim, defaulting to . if not found
+set backupdir=~/.config/nvim/backupdir//,. 
 " set patchmode=.orig               " store original files (doesn't store to backupdir)
 set undofile                      " store undo information to a file
-set undodir=~/.vim/undodir,.      " store file at .vim, defaulting to . if not found
-set directory=~/.vim/swap//,.     " store swapfiles at .vim, defaulting to . if not found
+set undodir=~/.config/nvim/undodir,.
+set directory=~/.config/nvim/swapdir//,. 
 set updatetime=100                " swapfile write frequency, also cursor update
 
 " spellcheck {{{2

@@ -50,6 +50,7 @@ set splitright                    " split windows right
 set clipboard=unnamedplus         " system clipboard
 set mouse=a                       " mouse support
 set mousemodel=popup              " right clicking opens a menu
+set updatetime=100                " swapfile write frequency, also cursor update
 
 " keybindings {{{1
 " timing {{{2
