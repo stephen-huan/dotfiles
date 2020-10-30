@@ -1,6 +1,6 @@
 import json
 
-""" Compiles the file at ~/.config/karabiner/karabiner_source.json 
+""" Compiles the file at ~/.config/karabiner/karabiner_source.json
 into a karabiner.json file, according to the rules in rulesrc
 (which is formatted in notation inspired by skhd). """
 
@@ -28,7 +28,7 @@ def parse_key(line: str) -> tuple:
     """ A key is formatted as {mod1} + {mod2} + ... + {modk} - {key},
     where if there no mods, then the - is optional. """
     mods, key = (("-" + line) if "-" not in line else line).split(KEY_DELIM)
-    mods, key = split_strip(mods, MOD_DELIM), key.strip() 
+    mods, key = split_strip(mods, MOD_DELIM), key.strip()
     return parse_mods(mods), key
 
 def get_rule(line: str) -> tuple:
@@ -39,7 +39,7 @@ def get_rule(line: str) -> tuple:
     to_key, tap_keys = (to_key[0], "") if len(to_key) == 1 else to_key
     from_mod, from_key = parse_key(from_key)
     return {"from_mod": from_mod,
-            "from_key": from_key, 
+            "from_key": from_key,
             "keys": tuple(map(parse_key, to_key.split(KEYS_DELIM))),
             "tap_keys": tuple(map(parse_key, tap_keys.split(KEYS_DELIM)))
                         if len(tap_keys) > 0 else (),
@@ -55,7 +55,7 @@ def format_key(key: tuple) -> str:
 
 def get_mods(mods: list) -> dict:
     """ Returns whether modifiers are mandatory or not. """
-    return {"mandatory": mods} if "any" not in mods else {"optional": ["any"]}  
+    return {"mandatory": mods} if "any" not in mods else {"optional": ["any"]}
 
 def get_key(key: str) -> str:
     """ Returns the type of the key. """
@@ -63,18 +63,18 @@ def get_key(key: str) -> str:
 
 def make_rule(from_mod: list, from_key: str, keys: tuple, tap_keys: tuple) -> dict:
     """ Makes a complex rule in karabiner format. """
-    rules = {"description": f"{format_key((from_mod, from_key))} -> {(KEYS_DELIM + ' ').join(map(format_key, keys))}", 
-             "manipulators": [{"from": 
+    rules = {"description": f"{format_key((from_mod, from_key))} -> {(KEYS_DELIM + ' ').join(map(format_key, keys))}",
+             "manipulators": [{"from":
                                   {"modifiers": get_mods(from_mod),
                                    get_key(from_key): from_key
                                   },
                               "to": [
-                                  {"modifiers": mod, 
+                                  {"modifiers": mod,
                                    get_key(key): key,
                                   } for mod, key in keys
                               ],
                               "to_if_alone": [
-                                  {"modifiers": mod, 
+                                  {"modifiers": mod,
                                    get_key(key): key,
                                   } for mod, key in tap_keys
                               ],
@@ -85,7 +85,7 @@ def make_rule(from_mod: list, from_key: str, keys: tuple, tap_keys: tuple) -> di
 
 if __name__ == "__main__":
     with open(RULES) as f:
-        rules = [make_rule(**get_rule(line)) for line in 
+        rules = [make_rule(**get_rule(line)) for line in
                  map(lambda l: l.split("#")[0].strip(), f) if len(line) > 0]
 
     with open(SOURCE) as f:

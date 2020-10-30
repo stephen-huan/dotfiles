@@ -229,7 +229,7 @@ nnoremap <leader>r :Ranger<cr>
 " fzf {{{2
 " directory jumping with z
 nnoremap <leader>g :call fzf#run(fzf#wrap({
-\ 'source': 'fish -c ''_z''', 
+\ 'source': 'TMPFILE=`mktemp -t vim_fzf_z` \|\| exit 1; fish -c "_z" > $TMPFILE; cat $TMPFILE', 
 \ 'sink': 'cd', 
 \ 'options': ['--preview', '_preview_path {}']}))<cr>
 " files with fzf

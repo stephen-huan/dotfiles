@@ -20,6 +20,9 @@ function _variables --description "set variables"
   set -Ux FZF_LEGACY_KEYBINDINGS 0
   set -Ux FZF_TMUX_HEIGHT "40%"
 
+  ### pass
+  set -Ux PASSWORD_STORE_ENABLE_EXTENSIONS "true"
+
   ### z
   set -Ux Z_EXCLUDE "^/Users/stephenhuan\$" "^/Users/stephenhuan/Programs\$"
   set -Ux Z_DECAY 0.99
