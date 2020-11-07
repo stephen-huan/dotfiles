@@ -231,7 +231,7 @@ nnoremap <leader>r :Ranger<cr>
 nnoremap <leader>g :call fzf#run(fzf#wrap({
 \ 'source': 'TMPFILE=`mktemp -t vim_fzf_z` \|\| exit 1; fish -c "_z" > $TMPFILE; cat $TMPFILE', 
 \ 'sink': 'cd', 
-\ 'options': ['--preview', '_preview_path {}']}))<cr>
+\ 'options': ['--preview', '_preview_path {}']}))<cr><cr>
 " files with fzf
 nnoremap <leader>o :Files<cr>
 " ag searcher
@@ -363,10 +363,8 @@ let g:goyo_width=81              " weirdly, goyo character width changes by two
 
 " fzf {{{2
 " start in new window
-" hide border because --border is part of the default args for fzf
 let g:fzf_layout = {'window': 
-\   { 'width': 0.9, 'height': 0.6, 
-\     'highlight': 'Hide', 'border': 'rounded'
+\   { 'width': 0.9, 'height': 0.6, 'border': 'rounded'
 \   } 
 \ }
 

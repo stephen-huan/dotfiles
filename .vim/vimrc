@@ -366,10 +366,8 @@ let g:goyo_width=81              " weirdly, goyo character width changes by two
 
 " fzf {{{2
 " start in new window
-" hide border because --border is part of the default args for fzf
 let g:fzf_layout = {'window': 
-\   { 'width': 0.9, 'height': 0.6, 
-\     'highlight': 'Hide', 'border': 'rounded'
+\   { 'width': 0.9, 'height': 0.6, 'border': 'rounded'
 \   } 
 \ }
 

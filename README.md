@@ -5,14 +5,11 @@
 
 Primarily used for [Yabai](#yabai-window-manager). Includes 
 [spacebar](#spacebar-icons),
-[skhd](#skhd-hotkeys), 
-[karabiner](#karabiner-keyboard-shortcuts),
-[kitty](#kitty-terminal-emulator),
-[fish](#fish-shell),
-[vim](#vim-text-editor), 
+[skhd](#skhd-hotkeys), [karabiner](#karabiner-keyboard-shortcuts),
+[kitty](#kitty-terminal-emulator), [fish](#fish-shell),
+[vim](#vim-text-editor), [cmus](#cmus-music-player),
 [tmux](https://github.com/tmux/tmux/wiki),
-[stubby](#stubby-dns),
-[unbound](#unbound-dns),
+[stubby](#stubby-dns), [unbound](#unbound-dns),
 and some other miscellaneous things.
 
 This isn't a systematic layout so I can replicate my setup on another computer; 
@@ -78,14 +75,14 @@ To theme follow the helpful
 
 Set opacity by editing the config at ~/.config/kitty/kitty.conf. 
 
-## [Fish](http://fishshell.com/) (shell)
+## [fish](http://fishshell.com/) (shell)
 
 Fish is a non-POSIX compliant shell that can do a lot of interesting things.
 Check my [asciinema](https://asciinema.org/~vazae) for inspiration.
 Package manager is [fisher](https://github.com/jorgebucaran/fisher)
 although it has its quirks (can only update all packages).
 
-## [Ranger](https://ranger.github.io/) (file manager)
+## [ranger](https://ranger.github.io/) (file manager)
 
 Getting ranger to do image previews via kitty:
 
@@ -117,7 +114,7 @@ You can also enable video preview via thumbnails by uncommenting the block
 (`brew install ffmpegthumbnailer`) and pdf image previews by `pip install pdftoppm` 
 (install the dependancies via `brew install pkg-config poppler`).
 
-## [Vim](https://www.vim.org/) (text editor)
+## [vim](https://www.vim.org/) (text editor)
 First, install [vim-plug](https://github.com/junegunn/vim-plug) with:
 ```bash
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
@@ -159,6 +156,12 @@ kitty window, which contains an instance of vim.
 Changing the icon of the application can be done by opening the image you want
 as an icon in Preview, copying to clipboard, right clicking on the application,
 "Get Info", click on the icon in the top left, and pasting with command-v. 
+
+## [cmus](https://cmus.github.io/) (music player)
+cmus is a terminal based music player.
+Lightweight and fast, I can't complain.
+The only issue is that if you close the window, the music stops playing so it's
+useful to put run in a tmux server.
 
 ## [Stubby](https://dnsprivacy.org/wiki/display/DP/DNS+Privacy+Daemon+-+Stubby) (DNS) 
 It's recommended to use Stubby and Unbound in conjunction
