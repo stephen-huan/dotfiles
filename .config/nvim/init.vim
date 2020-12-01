@@ -231,7 +231,7 @@ nnoremap <leader>r :Ranger<cr>
 nnoremap <leader>g :call fzf#run(fzf#wrap({
 \ 'source': 'TMPFILE=`mktemp -t vim_fzf_z` \|\| exit 1; fish -c "_z" > $TMPFILE; cat $TMPFILE', 
 \ 'sink': 'cd', 
-\ 'options': ['--preview', '_preview_path {}']}))<cr><cr>
+\ 'options': ['--preview', '_preview_path {}', '--tiebreak=index']}))<cr><cr>
 " files with fzf
 nnoremap <leader>o :Files<cr>
 " ag searcher
@@ -245,10 +245,7 @@ nnoremap <leader>H :Helptags<cr>
 
 " use fzf to select a entry from the yank stack
 function! s:yank_list()
-  redir => y
-  execute "Yanks"
-  redir END
-  return split(y, '\n')[1:]
+  return split(execute("Yanks"), '\n')[1:]
 endfunction
 
 function! s:buf_copy(e)

@@ -8,7 +8,6 @@ function _variables --description "set variables"
 
   set -Ux YABAI_SCRIPTS "/Users/stephenhuan/Programs/bin/yabai"
   set -Ux STOCKFISH_EXECUTABLE "/usr/local/bin/stockfish"
-  set -U  headphones "cc-98-8b-f4-8e-af"
   # pyenv compile options
   set -Ux PYTHON_CONFIGURE_OPTS "--enable-framework"
 
