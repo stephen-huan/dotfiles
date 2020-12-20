@@ -12,7 +12,10 @@ function _variables --description "set variables"
   set -Ux PYTHON_CONFIGURE_OPTS "--enable-framework"
 
   set -Ux MACOSX_DEPLOYMENT_TARGET "10.15"
-  set -Ux SDKROOT "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk" 
+  set -Ux SDKROOT "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
+
+  # par
+  set -Ux PARINIT "rTbgqR B=.,?'_A_a_@ Q=_s>|"
 
   ### fzf
   set -Ux FZF_DEFAULT_OPTS "--height 40% --reverse --color light --border"

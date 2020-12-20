@@ -77,6 +77,7 @@ set shiftround                    " round shifts to the nearest multiple
 set autoindent                    " autoindent based on current line
 set copyindent                    " get autoindent from other lines
 set nrformats=alpha,hex,bin       " number formats for ctrl-a and ctrl-x
+set formatprg=far                 " (f)ast rewrite of p(ar)
 
 " appearance {{{2
 set termguicolors                 " 24 bit colors
