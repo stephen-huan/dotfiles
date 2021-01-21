@@ -15,18 +15,25 @@ function get_icon
   fi
 }
 
+# return the number of spaces
+function get_spaces
+{
+  printf '%0.s ' $(seq 1 $1)
+}
+
 # change spacing based off monitor resolution
 # desktop width
 if [ "$(env HOME=/tmp fish $YABAI_SCRIPTS/resolution.fish)" -eq 1920 ]; then
-  spaces="                                                                                                                                                                                                                                                                                                     "
-  espace="            "
+  spaces=428
+  espace=12
   factor=8
 # assume laptop
 else
-  spaces="                                                                                                                                                                                                                                            "
-  espace="           "
+  spaces=10
+  espace=3
   factor=8
 fi
+gap="$(get_spaces $espace)"
 
 # read in the states from right to left
 read -r state1<$YABAI_SCRIPTS/caffine.state
@@ -34,15 +41,22 @@ read -r state2<$YABAI_SCRIPTS/flux.state
 read -r state3<$YABAI_SCRIPTS/zap.state
 read -r state4<$YABAI_SCRIPTS/anime.state
 
-num="$(yabai -m query --spaces | jq length)"
-nums="|||||6|7|8|9|10"
+nums="678910"
+cmus_status="$($HOME/Programs/bin/cmus-status)"
+icons="$cmus_status$gap$(get_icon $state2  )$gap$(get_icon $state1  )"
+
 # add spacing factor in order to prevent icons from shifting left
-icons="${spaces}$(printf '%0.s ' $(seq 1 $(( $factor*(10 - num) ))))$(get_icon $state4  )${espace}$(get_icon $state3  )${espace}$(get_icon $state2  )${espace}$(get_icon $state1  )"
+# compute spacing based off number of spaces and length of icon bar
+num="$(yabai -m query --spaces | jq length)"
+len="${#icons}"
+spaces="$(get_spaces $(echo "$spaces - $factor*$num - $espace - (4/3)*$len" | bc -l))"
+icons="$spaces$icons"
 
 # replace last desktop with icons
 comb="${nums//$num/$icons}"
 
-# split | seperated string into an array
-IFS='|' read -r -a array <<< "$comb"
+# split escape seperated string into an array
+IFS='' read -r -a array <<< "$comb"
 # unpack array into arguments
 spacebar -m config space_icon_strip "${array[@]}"
+
