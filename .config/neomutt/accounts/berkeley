@@ -1,0 +1,10 @@
+set from      = "shuan@berkeley.edu"
+# can't send email from berkeley 
+set sendmail  = ""
+set mbox      = "+berkeley/archive"
+# set record    = "+berkeley/sent"
+unset record  # prevent duplication
+set postponed = "+berkeley/drafts"
+set trash     = "+berkeley/trash"
+
+# vim:ft=neomuttrc

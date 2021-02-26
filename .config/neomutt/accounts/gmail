@@ -1,0 +1,9 @@
+set from      = "stephen03.huan@gmail.com"
+set sendmail  = "$my_sendmail_program -a gmail"
+set mbox      = "+gmail/archive"
+# set record    = "+gmail/sent"
+unset record  # prevent duplication
+set postponed = "+gmail/drafts"
+set trash     = "+gmail/trash"
+
+# vim:ft=neomuttrc

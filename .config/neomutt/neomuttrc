@@ -1,0 +1,235 @@
+# options {{{1
+# paths {{{2
+set my_cfg           = ~/.config/neomutt    # configuration location
+set my_cache         = ~/.cache/neomutt     # cache location
+set folder           = ~/.mail              # mailbox location
+set signature        = $my_cfg/signature    # signature file
+set alias_file       = $my_cfg/alias        # where to store aliases
+set mailcap_path     = $my_cfg/mailcap      # entries for filetypes
+set history_file     = $my_cfg/history      # history file
+set certificate_file = $my_cfg/certificates # where to store certs
+set header_cache     = $my_cache            # where to store headers
+set message_cachedir = $my_cache            # where to store bodies
+
+# general {{{2
+set wait_key = no       # don't ask for a key to continue
+set beep = no           # don't beep
+set quit = yes          # don't ask for confirmation
+set timeout = 30        # wait at most 30 seconds
+set thorough_search     # search through decoded messages
+# not quite sure what the menu is to be honest
+set menu_context = 0
+set menu_move_off = yes
+set menu_scroll = yes
+# history
+set save_history = 50   # amount of history remembered 
+set history_remove_dups # remove duplicate entries
+# header
+# my neomutt doesn't support kyotocabinet or cache compression for some reason
+# lmdb seems to be the best: https://neomutt.org/contrib/hcache-bench 
+set header_cache_backend         = "lmdb"       # which database
+# https://gregoryszorc.com/blog/2017/03/07/better-compression-with-zstandard/
+# set header_cache_compress_level  = 1            # level of compression
+# set header_cache_compress_method = "zstd"       # compression algorithm
+
+# email settings {{{2
+set mbox_type = Maildir # type of mailbox when creating folders
+set mark_old = no       # don't distinguish between old and new
+set sort = threads      # sort by threads
+# sort threads by the most recent message recieved
+set sort_aux = last-date-received
+set move = no           # don't automatically archive read messages
+set delete = yes        # don't prompt on delete since we have a trash anyways
+set confirmappend = no  # don't prompt on copy
+set pipe_decode = yes   # pipe decoded messages
+
+# editing settings {{{2
+set fast_reply = yes    # don't ask for email or subject
+set include = ask-no    # prompt for including original mail
+set edit_headers = yes  # edit headers
+set autoedit = yes      # since we edit headers, might as well start editing
+# don't ever use iso-8859-1, utf-8 supersets ascii so use ascii if possible
+set send_charset = "us-ascii:utf-8"
+# hide hostname by setting it to localhost --- this is used in message-id:
+set hostname = "localhost"
+set sig_dashes = yes    # add "-- " before signature, helps with autodetection
+set abort_noattach = ask-yes # check whether we left out an attachment
+# default doesn't work, see https://github.com/neomutt/neomutt/issues/1858
+set abort_noattach_regex = "(^|[^[:alnum:]_])(attach(ed|ments?)?)($|[^[:alnum:]_])" 
+
+# pager {{{2
+set prompt_after = no      # don't prompt after external pager
+set pager_index_lines = 30 # number of emails in index while pager is open
+set pager_context = 0      # number of lines overlapping after new page 
+set pager_stop = yes       # don't automatically continue
+set markers = no           # don't show line wraps
+set tilde = yes            # pad empty lines with tilde like vim
+
+# pgp {{{2
+# pgp key with full fingerprint to avoid collision attacks
+set pgp_default_key = "0xEA6E27948C7DBF5D0DF085A10FBC2E3BA99DD60E" 
+set crypt_use_gpgme = yes          # use gpgme as recommended for MUAs
+# load gpg classic mode as opposed to gpgme
+# source /usr/local/share/doc/neomutt/samples/gpg.rc
+set pgp_self_encrypt = yes         # encrypt messages to myself
+set postpone_encrypt = yes         # encrypt postponed emails
+set crypt_timestamp = yes          # include timestamp in pgp lines
+set crypt_autopgp = yes            # allow automatic operations
+set crypt_autoencrypt = no         # don't autoencrypt
+set crypt_autosign = yes           # autosign messages
+set crypt_replyencrypt = yes       # if message encrypted, reply encrypted
+set crypt_replysign = yes          # if message signed, reply signed
+set crypt_replysignencrypted = yes # can't tell if an ecrypted email is signed
+# don't use headers protected by encryption in the body
+# not sure how popular this protocol is...?
+set crypt_protected_headers_write = no
+set crypt_protected_headers_read = yes # display protected headers and cache 
+set crypt_protected_headers_save = no  # don't save to plaintext headers
+set crypt_protected_headers_subject = "..." # updated subject if protected
+
+# notmuch {{{2
+set nm_db_limit = 0          # no limit for queries
+set nm_query_type = messages # query messages (as opposed to threads)
+set nm_record = yes          # index sent emails
+set nm_unread_tag = unread   # unread is unread
+# set vfolder_format = ""
+# address book: use notmuch to query an address
+set query_command = "notmuch address from:%s* | pypy3 ~/.config/notmuch/address.py"
+# set hidden_tags += "inbox"
+
+# appearance {{{1
+set help = yes                 # don't display help bar
+set header_color_partial = yes # match headers with regex 
+source $my_cfg/color_scheme    # color scheme
+
+# index {{{2
+# see https://neomutt.org/guide/configuration#30-1-%C2%A0basic-usage
+set index_format = "%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s %g"
+# https://neomutt.org/feature/custom-tags
+
+# sidebar {{{2
+set sidebar_visible = yes          # enable sidebar
+set sidebar_width = 40             # width of sidebar
+set mail_check_stats = yes         # generate statistics
+# see https://neomutt.org/guide/reference#3-349-%C2%A0sidebar_format
+set sidebar_format = "%D%?F? [%F]?%*  %?N?%N/?%S"
+set sidebar_short_path = yes       # shorten names
+set sidebar_component_depth = 1    # number of parent directories to remove
+set sidebar_delim_chars = "/."     # tree seperator
+set sidebar_folder_indent = yes    # indent folders
+set sidebar_indent_string = "    " # 4 spaces
+set sidebar_sort_method = unsorted # do not sort, keep original order
+
+# header {{{2
+# ignore all headers then add common headers
+ignore * 
+unignore from to cc date subject 
+unignore reply-to
+unhdr_order *
+hdr_order from to cc reply-to date subject 
+
+# keybindings {{{1
+# sidebar {{{2
+bind index,pager <up>    sidebar-prev
+bind index,pager <down>  sidebar-next
+bind index,pager <right> sidebar-open
+# }}}2
+set abort_key = "<esc>" # abort using escape instead of ctrl-G
+
+# vim movements
+bind index,pager g    noop
+bind index       gg   first-entry
+bind index       G    last-entry
+bind pager       gg   top
+bind pager       G    bottom
+bind pager       j    next-line
+bind pager       k    previous-line
+bind index,pager \Cu  half-up
+bind index,pager \Cd  half-down
+bind index,pager \Cb  previous-page
+bind index,pager \Cf  next-page
+bind index,pager N    search-opposite # n search foward, N search reverse
+# cmus collapse
+bind index <space>    collapse-thread
+bind pager <return>   exit
+bind pager q          quit
+# undo overwrites
+bind index       \CN  toggle-new
+bind index,pager R    group-reply
+bind index,pager E    recall-message
+bind index,pager \CS  sync-mailbox
+bind index,pager c    copy-message
+# don't automatically fill in
+bind editor  <space>  noop
+# remove from inbox (since a copy is stored in all mail)
+bind index,pager I    purge-message
+# notmuch
+bind index,pager A    vfolder-from-query # virtual folder from notmuch query
+bind index,pager \`   modify-labels      # edit tags
+
+# macros {{{2
+# need to set system version of python for python2
+set my_get_mail = "PYENV_VERSION=system offlineimap"
+macro index,pager o   "<shell-escape>$my_get_mail -qf INBOX<enter>" "run offlineimap to sync inbox"
+macro index,pager O   "<shell-escape>$my_get_mail<enter>"           "run offlineimap to sync all mail"
+macro index,pager \Co <pipe-message>urlview<enter>                  "call urlview to extract URLs out of a message"
+# use neovim as an alternative pager 
+set my_pager = "/usr/local/bin/nvim -u ~/.config/nvim/init-pager.vim -M"
+macro index V "<enter-command> set pager=\"$my_pager\"<enter><display-message><enter-command> set pager=builtin<enter>" "open message in neovim"
+# need to exit then rejoin, can use V since we enter index mode
+macro pager V "<exit>V" "open message in neovim"
+macro compose     \Ck <attach-key>$pgp_default_key<enter><enter>    "attach gpg key --- for some reason attach-key doesn't use $pgp_default_key"
+# get around with fzf
+# use <fN> and x as temp keys for "helper methods" for the other macros
+set my_fzf = "fzf --tiebreak=index --preview '_preview_path $folder/{}/cur'"
+set my_tmp = "$my_cfg/temp"
+set my_ranger = "ranger --choosefile $my_tmp"
+# don't actually need to backslash escape spaces if using <attach-file>
+set my_ranger_fmt = "test -f $my_tmp && cat $my_tmp && rm $my_tmp"
+
+set my_possible_modes = "index,pager,compose"
+macro $my_possible_modes <f1> "<enter-command> macro $my__modes x \"$my__command$my__arg\"<enter>" "compile into macro"
+macro $my_possible_modes <f2> "<enter-command> bind  $my__modes x noop<enter>"                     "undo side effects of compiling"
+macro index,pager <f3>   "<enter-command> set my__arg = \"\`cat $my_cfg/mailboxes | $my_fzf\`\"<enter>\Cl"            "helper method to get a mailbox name"
+macro compose     <f4>   "<shell-escape>$my_ranger<enter><enter-command> set my__arg = \"\`$my_ranger_fmt\`\"<enter>" "helper method to get a file    name"
+macro index,pager <left> "<enter-command> set my__modes=index,pager<enter><enter-command> set my__command=<change-folder><enter><f3><f1>x<enter><f2>" "jump to a mailbox"
+macro index,pager C      "<enter-command> set my__modes=index,pager<enter><enter-command> set my__command=<copy-message><enter><f3><f1>x<enter><f2>"  "copy to a mailbox"
+macro index,pager S      "<enter-command> set my__modes=index,pager<enter><enter-command> set my__command=<save-message><enter><f3><f1>x<enter><f2>"  "save to a mailbox"
+macro compose     \Ca    "<enter-command> set my__modes=compose<enter><enter-command> set my__command=<attach-file><enter><f4><f1>x<enter><f2>"       "attach file with ranger"
+
+# account settings {{{1
+set realname = "Stephen Huan"  # real name
+# email accounts
+alternates "^stephen03.huan@gmail.com" "^2021shuan@tjhsst.edu$" "^shuan@berkeley.edu$"
+set my_sendmail_program = "/usr/local/bin/msmtp"
+set sendmail_wait = 0          # wait for sendmail to finish
+source $my_cfg/accounts/gmail  # default account
+set spoolfile = "+gmail/inbox" # default inbox
+folder-hook gmail/*    source $my_cfg/accounts/gmail
+folder-hook tjhsst/*   source $my_cfg/accounts/tjhsst
+folder-hook berkeley/* source $my_cfg/accounts/berkeley
+
+# mailboxes to show in sidebar / to refresh if using builtin IMAP
+named-mailboxes "------- stephen03.huan@gmail.com -----------" +gmail
+# virtual-mailboxes "inbox" "notmuch://?query=tag:inbox"
+mailboxes +gmail/inbox            \
+          +gmail/archive          \
+          +gmail/sent             \
+          +gmail/drafts           \
+          +gmail/spam             \
+          +gmail/trash
+named-mailboxes "--------- 2021shuan@tjhsst.edu -----------"   +tjhsst
+mailboxes +tjhsst/inbox           \
+          +tjhsst/archive         \
+          +tjhsst/sent            \
+          +tjhsst/drafts          \
+          +tjhsst/spam            \
+          +tjhsst/trash
+named-mailboxes "---------- shuan@berkeley.edu -----------"    +berkeley
+mailboxes +berkeley/inbox         \
+          +berkeley/archive       \
+          +berkeley/sent          \
+          +berkeley/trash
+
+# }}}1
+# vim:foldmethod=marker:foldlevel=0

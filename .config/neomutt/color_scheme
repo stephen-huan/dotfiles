@@ -1,0 +1,144 @@
+# variables {{{1
+# theme colors
+set my_fg    = default     # foreground
+set my_bg    = default     # background
+set my_theme = blue        # theme color
+set my_text  = black       # text
+set my_alt   = brightwhite # alt text
+set my_light = color246    # comments
+set my_hl    = yellow      # emphasis elements
+set my_num   = color130    # numbers
+set my_grey  = color252    # greyed out
+# palette
+set my_red   = red         # red
+set my_green = green       # green
+set my_blue  = blue        # blue
+set my_cyan  = cyan        # cyan
+set my_mag   = color127    # magenta
+set my_yel   = yellow      # yellow
+set my_gld   = color136    # gold
+# email
+set my_new   = $my_cyan    # unread mail 
+set my_flag  = $my_gld     # flagged mail
+set my_del   = $my_red     # deleted mail
+
+set my_url   = color69     # url color 
+set my_email = color71     # email color 
+
+set my_key   = color93     # contains pgp key
+set my_crypt = $my_green   # pgp encrypted
+set my_sign  = $my_blue    # pgp signed
+set my_both  = $my_cyan    # both encypted and signed
+
+# general {{{1
+color normal            $my_text      $my_bg    # all text
+color tree              $my_hl        $my_bg    # thread tree
+color status            $my_alt       $my_theme # status bar
+color indicator         $my_alt       $my_theme # current item
+
+color prompt            $my_text      $my_bg    # question
+color message           $my_text      $my_bg    # informational message
+color warning           $my_red       $my_bg    # warning message
+color error             bold $my_red  $my_bg    # error message
+color options           bold $my_yel  $my_bg    # multiple choice options
+# color progress # progress bar
+
+# index {{{1
+color index_collapsed   $my_mag       $my_bg    # number of messages in thread
+color index_date        $my_mag       $my_bg    # date
+color index_label       $my_red       $my_bg    # X-label header
+color index_number      $my_num       $my_bg    # number
+color index_size        $my_light     $my_bg    # size (disk space taken up
+color index_tags        $my_light     $my_bg    # tags (e.g. notmuch/IMAP)
+
+# sidebar {{{1
+color sidebar_divider   $my_theme     $my_bg    # dividing line
+color sidebar_indicator $my_text      $my_grey  # current item --- mailbox open
+color sidebar_highlight $my_alt       $my_theme # cursor position
+color sidebar_spoolfile bold $my_hl   $my_bg    # inbox
+color sidebar_new       bold $my_new  $my_bg    # mailboxes with new mail
+color sidebar_unread    bold $my_new  $my_bg    # mailboxes with unread mail
+color sidebar_flagged   bold $my_flag $my_bg    # mailboxes with flagged mail
+color sidebar_ordinary  $my_fg        $my_bg    # default
+
+# pager {{{1
+color hdrdefault        $my_yel       $my_bg    # pager header
+color attachment        $my_mag       $my_bg    # attachment headers
+color signature         $my_yel       $my_bg    # signature
+color tilde             $my_light     $my_bg    # padding tilde
+color markers           $my_light     $my_bg    # linewrap markers
+color quoted            $my_light     $my_bg    # quotes
+color search            standout $my_gld $my_bg # search
+color bold              bold $my_fg   $my_bg    # bold in messages
+color underline         underline $my_fg $my_bg # underline in messages
+
+# composing emails {{{1
+color compose header           $my_yel   $my_bg # header labels e.g. From:
+color compose security_encrypt $my_crypt $my_bg # encrypted
+color compose security_sign    $my_sign  $my_bg # signed
+color compose security_both    $my_both  $my_bg # both encrypted and signed
+color compose security_none    $my_red   $my_bg # neither encrypted nor signed
+
+# regex/pattern-based colors {{{1
+# index: pattern-based {{{2
+# entire line, using simple search keywords
+color index bold $my_new  $my_bg "unread" # new messages
+color index bold $my_flag $my_bg "flag"   # flagged
+color index bold $my_del  $my_bg "del"    # marked for deletion
+color index bold $my_hl   $my_bg "tag"    # tagged
+# color index_author # author
+# color index_subject # subject
+# flags (e.g. nNoOr/dDPsSK/*!)
+color index_flags      $my_key   $my_bg "~k" # contains pgp key
+color index_flags      $my_sign  $my_bg "~g" # signed
+color index_flags bold $my_sign  $my_bg "~V" # signature verified
+# mutt can't tell if an email is both signed and encrypted, so color index
+# clicking on an email with both will color index blue and flags green
+color index       bold $my_crypt $my_bg "~G" # encrypted
+# tags (e.g. notmuch/IMAP)
+# color index_tag
+
+# look into index-format-hook for gpg or something 
+# https://neomutt.org/guide/configuration#22-%C2%A0dynamically-changing-index_format-using-patterns
+
+# status {{{2
+# color status # status bar
+
+# headers {{{2
+# bold subject, including "subject:"
+color header  bold $my_text $my_bg "^Subject: .*"
+# color date, excluding "date:" --- okay, I can't quite figure that out
+color header       $my_mag  $my_bg "^date: .*"
+# email and url regexes taken from:
+# https://github.com/altercation/mutt-colors-solarized
+set my_url_regex = "([a-z][a-z0-9+-]*://(((([a-z0-9_.!~*'();:&=+$,-]|%[0-9a-f][0-9a-f])*@)?((([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?|[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)(:[0-9]+)?)|([a-z0-9_.!~*'()$,;:@&=+-]|%[0-9a-f][0-9a-f])+)(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?(#([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?|(www|ftp)\\.(([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?(:[0-9]+)?(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?(#([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?)[^].,:;!)? \t\r\n<>\"]" 
+set my_email_regex = "((@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\]),)*@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\]):)?[0-9a-z_.+%$-]+@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\])" 
+color header $my_url   $my_bg $my_url_regex
+color header $my_email $my_bg $my_email_regex 
+
+# attachment headers
+# pgp key
+color attach_headers      $my_key   $my_bg "(BEGIN|END) PGP PUBLIC KEY BLOCK"
+# encrypted
+color attach_headers bold $my_crypt $my_bg "The following data is PGP/MIME encrypted"
+color attach_headers bold $my_crypt $my_bg "End of PGP/MIME encrypted data"
+# signed
+color attach_headers      $my_sign  $my_bg "(Begin|End) signature information"
+color attach_headers bold $my_sign  $my_bg "The following data is signed"
+color attach_headers bold $my_sign  $my_bg "End of signed data"
+# both
+color attach_headers bold $my_both  $my_bg "The following data is PGP/MIME signed and encrypted"
+color attach_headers bold $my_both  $my_bg "End of PGP/MIME signed and encrypted data"
+
+# body {{{2
+color body   $my_url   $my_bg $my_url_regex
+color body   $my_email $my_bg $my_email_regex
+# pgp {{{3
+color body  $my_light      $my_bg "^gpg:" 
+color body  bold $my_red   $my_bg "^BAD signature"
+color body  bold $my_green $my_bg "^Good signature"
+# }}}3
+# }}}2
+# }}}1
+
+# vim:foldmethod=marker:foldlevel=0:ft=neomuttrc

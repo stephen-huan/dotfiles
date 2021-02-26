@@ -1,0 +1,34 @@
+# Set default values for all following accounts.
+defaults
+# pick authentication method automatically
+auth           on
+# use tls
+tls            on
+tls_trust_file /usr/local/etc/openssl/cert.pem
+# logfile	~/.config/msmtp/msmtp.log
+
+# gmail {{{1
+account gmail
+auth    oauthbearer
+host    smtp.gmail.com
+port    587
+from    stephen03.huan@gmail.com
+user    stephen03.huan@gmail.com
+passwordeval ~/.config/offlineimap/offlineimap.py stephen03.huan@gmail.com  
+
+# tjhsst {{{1
+account tjhsst
+# turn off starttls or else it won't connect
+tls_starttls off
+host    smtp.tjhsst.edu
+port    465
+from    2021shuan@tjhsst.edu
+user    2021shuan@tjhsst.edu
+passwordeval pass school/tjhsst/tjhsst.edu | head -n 1 
+
+# }}}1
+
+# default account
+account default: gmail
+
+# vim:foldmethod=marker:foldlevel=0:ft=config

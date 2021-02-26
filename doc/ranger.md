@@ -4,7 +4,7 @@ Getting ranger to do image previews via kitty:
 
 1. `brew install ranger` (this installs it with Python 2.7)
 2. `pip2 install Pillow`
-3. `ranger --copy-config rc` to copy the default config file to ~/.config/ranger/rc.conf
+3. `ranger --copy-config rc` to copy the default config file to `~/.config/ranger/rc.conf`
 4. `export RANGER_LOAD_DEFAULT_RC=false` to prevent double loading
 5. `set preview_images true` and `set preview_images_method kitty`
 
@@ -16,9 +16,9 @@ Alternatively, as Python 2.7 is depreciating in 2020:
 ## Image Preview
 
 Set the variable `preview_images` to true and `preview_images_method` to kitty.
-Note that it leaves a black rectangle in some cases if you quit ranger 
-while on an image (most notably, vim).
-To fix this, press the left arrow before exiting ranger to unload the image.
+Note that it leaves a black rectangle in some cases if you quit ranger while on
+an image (most notably, vim). To fix this, press the left arrow before exiting
+ranger to unload the image.
 
 ## Syntax Highlighting
 

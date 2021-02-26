@@ -308,6 +308,28 @@ map ]h <Plug>Markdown_MoveToCurHeader
 " markdown-preview.nvim {{{2
 nmap <leader>m <Plug>MarkdownPreview
 
+" mail {{{2
+function s:select_file()
+  let temp = '/Users/stephenhuan/.vim/temp'
+  execute 'silent !ranger --choosefile='. temp
+  redraw!
+  " file name saved to file above, escape spaces 
+  if filereadable(temp)
+    let path = readfile(temp)[0]
+    let out = system("rm " . temp)
+    return 'Attach: ' . substitute(path, ' ', '\\ ', 'g')
+  endif
+  return ' '
+endfunction
+
+" select file with ranger for attachments
+nnoremap <c-h>a "=<sid>select_file()<c-m>p
+inoremap <c-h>a <esc>"=<sid>select_file()<c-m>p
+" complete emails
+inoremap <expr> <c-h>e fzf#vim#complete(fzf#wrap({
+\ 'source': 'cat ~/.config/notmuch/emails.txt',
+\ 'options': ['--tiebreak=index']}))
+
 " variable-based shortcuts {{{2
 " YouCompleteMe
 " fix YCM overwriting tab expansion for snippets

@@ -26,13 +26,14 @@ repositories more systematic that you might want to look into.
     - [karabiner](./doc/karabiner.md),
 kernel extension for input device manipulation (keyboard, mouse)
     - [skhd](./doc/skhd.md), hotkey manipulation, works well with Yabai 
-- Terminal command line interfaces
+- Command line interfaces (terminal programs)
     - [kitty](./doc/kitty.md), terminal emulator
     - [fish](./doc/fish.md), shell
     - [ranger](./doc/ranger.md), file manager
     - [tmux](./doc/tmux.md), terminal multiplexer
     - [vim](./doc/vim.md), text editor
     - [cmus](./doc/cmus.md), music player
+    - [mutt](./doc/mutt.md), mail user agent
 - DNS/internet
     - [stubby](./doc/stubby.md), stubby (i.e. non-recursive) DNS resolver 
     - [unbound](./doc/unbound.md), general DNS resolver with caching

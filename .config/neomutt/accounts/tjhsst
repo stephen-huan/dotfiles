@@ -1,0 +1,9 @@
+set from      = "2021shuan@tjhsst.edu"
+set sendmail  = "$my_sendmail_program -a tjhsst"
+set mbox      = "+tjhsst/archive"
+# unlike gmail, webmail doesn't automatically copy to sent folder
+set record    = "+tjhsst/sent"
+set postponed = "+tjhsst/drafts"
+set trash     = "+tjhsst/trash"
+
+# vim:ft=neomuttrc
