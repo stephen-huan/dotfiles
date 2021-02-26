@@ -3,6 +3,8 @@ call plug#begin(stdpath('data') . '/plugged') " Plugins will be downloaded under
 Plug 'rakr/vim-one'               " Atom's One theme
 Plug 'itchyny/lightline.vim'      " line
 Plug 'easymotion/vim-easymotion'  " move around easily
+Plug 'junegunn/goyo.vim'          " distraction free writing
+Plug 'neomutt/neomutt.vim'        " email
 call plug#end()                   " List ends here. Plugins become visible to Vim after this call.
 
 " default options {{{1
@@ -10,7 +12,6 @@ call plug#end()                   " List ends here. Plugins become visible to Vi
 " editing {{{2
 set nocompatible                  " turn off vi compatibility mode
 set encoding=utf-8                " utf-8 encoding
-set fileformat=unix               " UNIX file format
 set shell=/usr/local/bin/fish     " shell
 
 " appearance {{{2
@@ -21,8 +22,6 @@ set laststatus=2                  " draw status bar for each window
 set showcmd                       " show an incomplete command
 set noshowmode                    " don't show mode, shown in bar already
 set wildmenu                      " visual autocomplete for command menu
-set number                        " line numbers
-set relativenumber                " numbers relative to cursor line
 set cursorline                    " highlight current line
 " set cursorlineopt=screenline,number                " screenline vs file line
 set noshowmatch                   " disable matching [{()}]
@@ -31,7 +30,6 @@ set wrap                          " wrap if longer than window size
 set nolinebreak                   " disable break on specific characters
 let &showbreak='↪ '               " show when the lines are wrapped
 set breakindent                   " match indentation on wrapping
-set colorcolumn=80                " display bar at 80 characters
 set signcolumn=yes                " always draw signcolumn
 set display=truncate,uhex         " truncate last line, display unicode as hex
 
@@ -92,6 +90,8 @@ nnoremap <leader>C :set spell! spell?<cr>
 nnoremap <leader>v :source ~/.config/nvim/init.vim<cr>
 " reset syntax
 nnoremap <leader>e :syntax off <bar> syntax on<cr>
+" goyo
+nnoremap <leader>y :Goyo<cr>
 
 " vim-easymotion {{{2
 map s <Plug>(easymotion-jumptoanywhere)

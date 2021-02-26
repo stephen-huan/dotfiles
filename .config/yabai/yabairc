@@ -54,15 +54,9 @@ yabai -m signal --add event=application_terminated action="env HOME=/tmp fish $Y
 # switch focus on a closed window
 yabai -m signal --add event=window_destroyed action="env HOME=/tmp fish $YABAI_SCRIPTS/focus_yabai"
 
-# update icons
-yabai -m signal --add event=space_changed action="$YABAI_SCRIPTS/toggle"
-
 ### EXCEPTIONS
 # tiling affects window size, which gives information
 yabai -m rule --add app="^Tor Browser" manage=off
-
-# maintain state while updating icons
-$YABAI_SCRIPTS/toggle
 
 # auto-update from https://git.io/update-yabai
 # YABAI_CERT=yabai-cert sh -c "$YABAI_SCRIPTS/yabai_update" &

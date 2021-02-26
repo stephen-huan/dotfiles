@@ -24,7 +24,7 @@ function get_spaces
 # change spacing based off monitor resolution
 # desktop width
 if [ "$(env HOME=/tmp fish $YABAI_SCRIPTS/resolution.fish)" -eq 1920 ]; then
-  spaces=428
+  spaces=420
   espace=12
   factor=8
 # assume laptop
@@ -48,8 +48,9 @@ icons="$cmus_status$gap$(get_icon $state2  )$gap$(get_icon $state1  
 # add spacing factor in order to prevent icons from shifting left
 # compute spacing based off number of spaces and length of icon bar
 num="$(yabai -m query --spaces | jq length)"
-len="${#icons}"
-spaces="$(get_spaces $(echo "$spaces - $factor*$num - $espace - (4/3)*$len" | bc -l))"
+len1="$(echo $icons | LANG=en_US.UTF-8 wc -m)" # bytes
+len2="$(echo $icons | LANG=en_US.UTF-8 wc -c)" # characters
+spaces="$(get_spaces $(echo "$spaces - $factor*$num - $espace - 0.9*($len1 + $len2)" | bc -l))"
 icons="$spaces$icons"
 
 # replace last desktop with icons

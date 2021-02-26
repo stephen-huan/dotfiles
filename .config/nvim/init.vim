@@ -26,7 +26,8 @@ Plug 'easymotion/vim-easymotion'  " move around easily
 Plug 'tpope/vim-repeat'           " allow plugins to . repeat
 Plug 'svermeulen/vim-yoink'       " maintain a yank history
 Plug 'farmergreg/vim-lastplace'   " go to the last position when loading a file
-Plug 'chrisbra/Colorizer', {'on': 'ColorHighlight', 'for': 'startify'}  " colors
+Plug 'chrisbra/Colorizer'         " colors
+Plug 'powerman/vim-plugin-AnsiEsc'                  " ANSI colors
 Plug 'airblade/vim-gitgutter'     " show git in the gutter
 Plug 'dstein64/vim-startuptime'   " measure startup time
 Plug 'voldikss/vim-floaterm'      " floating terminal
@@ -35,6 +36,7 @@ Plug 'voldikss/vim-floaterm'      " floating terminal
 Plug 'vim-python/python-syntax'   " python
 Plug 'Vimjas/vim-python-pep8-indent'                " python indent
 Plug 'lervag/vimtex'              " LaTeX
+Plug 'neomutt/neomutt.vim'        " email
 Plug 'dag/vim-fish'               " fish shell
 Plug 'tpope/vim-git'              " git
 Plug 'octol/vim-cpp-enhanced-highlight'            " c++
@@ -195,7 +197,7 @@ imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " thesaurus support with mythes (hunspell library)
-function! s:get_words(e)
+function s:get_words(e)
   let lines=system("fish -c \"_mythes '" . a:e . "' | _parse_mythes \"")
   return split(lines, '\n')
 endfunction
@@ -245,11 +247,11 @@ nnoremap <leader>W :Windows<cr>
 nnoremap <leader>H :Helptags<cr>
 
 " use fzf to select a entry from the yank stack
-function! s:yank_list()
+function s:yank_list()
   return split(execute("Yanks"), '\n')[1:]
 endfunction
 
-function! s:buf_copy(e)
+function s:buf_copy(e)
   let s = substitute(a:e, '\', '\\\\\\\\', 'g')
   let s = escape(s, '''"\')
   echo system("fish -c \"echo -ne (string sub -s 3 (string replace -a '^M' '\\n' (_parse_token -p '" . s . "'))) | pbcopy\"")
@@ -309,16 +311,16 @@ nmap <leader>m <Plug>MarkdownPreview
 " variable-based shortcuts {{{2
 " YouCompleteMe
 " fix YCM overwriting tab expansion for snippets
-let g:ycm_key_list_select_completion=['<Down>']
-let g:ycm_key_list_previous_completion=['<Up>']
+let g:ycm_key_list_select_completion=['<down>']
+let g:ycm_key_list_previous_completion=['<up>']
 " ultisnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpForwardTrigger='<tab>'
+let g:UltiSnipsJumpBackwardTrigger='<c-b>'
 
 " plugins {{{1
 " one {{{2
-function! s:set_colors()                                     " overwrite default colors
+function s:set_colors()                                     " overwrite default colors
     highlight Normal                   guibg=#ffffff
     " error highlight from https://github.com/habamax/vim-polar
     highlight Error      guifg=#ffffff guibg=#e07070
@@ -339,7 +341,7 @@ endfunction
 
 augroup colors
     autocmd!
-    autocmd ColorScheme * call <SID>set_colors() 
+    autocmd ColorScheme * call <sid>set_colors() 
 augroup END
 
 let g:one_allow_italics = 1       " support italics
@@ -387,9 +389,6 @@ let g:yoinkMaxItems=100          " history size
 let g:yoinkIncludeDeleteOperations=1                         " include delete
 let g:yoinkShowYanksWidth=1000   " number of characters stored
 
-" Colorizer {{{2
-let g:colorizer_auto_filetype='startify'                     " start on startify
-
 " python-syntax {{{2
 let g:python_highlight_all = 1    " highlight python
 
@@ -410,7 +409,7 @@ let g:vimtex_compiler_latexmk = {
 
 " start server on first BufWrite, always call VimtexView
 let g:latex_started = 0
-function! s:start_server()
+function s:start_server()
     if !g:latex_started
         VimtexCompile
         let g:latex_started = 1
@@ -426,7 +425,6 @@ let g:vim_markdown_math = 1                                  " LaTeX
 " markdown-preview.nvim {{{2
 let g:mkdp_browser = 'Google Chrome'                         " browser
 
-" }}}1
 " autocmds {{{1
 augroup vimrc
   autocmd!
@@ -434,10 +432,11 @@ augroup vimrc
   " only load custom header when startify starts
   autocmd VimEnter *
     \ if !argc()
-    \ |   let g:startify_custom_header = startify#pad(split(system('cat ~/logo.txt'), '\n'))
+    \ |   let g:startify_custom_header = startify#pad(split(system('cat ~/.vim/logo/logo.txt'), '\n'))
     \ |  endif
+  autocmd User Startified setlocal nowrap | ColorHighlight
 
-  autocmd BufWritePost *.tex call <SID>start_server()
+  autocmd BufWritePost *.tex call <sid>start_server()
 
   autocmd FileType markdown,text,tex setlocal spell spelllang=en_us
   autocmd FileType c,cpp,python let b:ycm_hover = {
@@ -450,4 +449,4 @@ augroup vimrc
 augroup END
 
 " }}}1
-" vim:foldmethod=marker:foldlevel=0:textwidth=0
+" vim:foldmethod=marker:foldlevel=0

@@ -2,7 +2,7 @@
 
 # bar settings
 spacebar -m config text_font         "Helvetica Neue:Bold:12.0"
-spacebar -m config icon_font         "feather:Regular:12.0"#
+spacebar -m config icon_font         "feather:Regular:12.0"
 spacebar -m config background_color  0xff202020
 spacebar -m config foreground_color  0xffa8a8a8
 spacebar -m config space_icon_strip       6 7 8 9 10
@@ -11,4 +11,15 @@ spacebar -m config space_icon        
 spacebar -m config clock_icon        
 spacebar -m config clock_format       "%R %m/%d/%y"
 # spacebar -m config clock_format       "AD %Y.%m.%d %H:%M:%S"
+
+echo "spacebar configuration loaded.."
+
+function icons --description "refresh status bar"
+  while true
+    $YABAI_SCRIPTS/toggle
+    sleep 10
+  end
+end
+
+icons
 

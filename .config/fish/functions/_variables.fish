@@ -6,7 +6,7 @@ function _variables --description "set variables"
   set -Ux MANPAGER "/usr/local/bin/nvim -u ~/.config/nvim/init-pager.vim +Man!"
   set -Ux HOMEBREW_EDITOR "/usr/local/bin/vim"
 
-  set -Ux YABAI_SCRIPTS "/Users/stephenhuan/Programs/bin/yabai"
+  set -Ux YABAI_SCRIPTS "$HOME/Programs/bin/yabai"
   set -Ux STOCKFISH_EXECUTABLE "/usr/local/bin/stockfish"
   # pyenv compile options
   set -Ux PYTHON_CONFIGURE_OPTS "--enable-framework"
@@ -17,6 +17,9 @@ function _variables --description "set variables"
   # par
   set -Ux PARINIT "rTbgqR B=.,?'_A_a_@ Q=_s>|"
 
+  # notmuch configuration file location 
+  set -Ux NOTMUCH_CONFIG "$HOME/.config/notmuch/config"
+
   ### fzf
   set -Ux FZF_DEFAULT_OPTS "--height 40% --reverse --color light --border"
   set -Ux FZF_LEGACY_KEYBINDINGS 0
@@ -26,7 +29,7 @@ function _variables --description "set variables"
   set -Ux PASSWORD_STORE_ENABLE_EXTENSIONS "true"
 
   ### z
-  set -Ux Z_EXCLUDE "^/Users/stephenhuan\$" "^/Users/stephenhuan/Programs\$"
+  set -Ux Z_EXCLUDE "^$HOME\$" "^$HOME/Programs\$"
   set -Ux Z_DECAY 0.99
   set -Ux Z_MAX_SCORE 9000
 
