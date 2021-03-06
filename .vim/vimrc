@@ -504,7 +504,7 @@ augroup vimrc
 
   autocmd BufWritePost *.tex call <sid>start_server()
 
-  autocmd FileType markdown,text,tex setlocal spell spelllang=en_us
+  autocmd FileType markdown,text,tex,mail setlocal spell spelllang=en_us
   autocmd FileType c,cpp,python let b:ycm_hover = {
     \ 'command': 'GetDoc',
     \ 'syntax': &filetype

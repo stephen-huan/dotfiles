@@ -20,11 +20,12 @@ playlist with `D`. Playlists are sorted alphabetically but this can probably
 be configured somewhere. The asterisk "*" indicates which playlist new songs
 will be added to. To change what the active playlist is, press `<space>` (this
 was the confusing part which I could not find documentation on). Finally, to
-add songs press `y` on a song. To remove the song from the playlist, go to
-the playlist view and press `D` on the song. To change the order, press `p`
-to move a song down and `P` to move a song up. Finally, to play the playlist
-press `<enter>` and the same controls as usual can be used (`x` to play, `v`
-to stop, `c` for play/pause toggle, `z` previous song and `b` next song).
+add songs press `y` on a song (you can also press `y` on albums and artists,
+which is very useful). To remove the song from the playlist, go to the playlist
+view and press `D` on the song. To change the order, press `p` to move a song
+down and `P` to move a song up. Finally, to play the playlist press `<enter>`
+and the same controls as usual can be used (`x` to play, `v` to stop, `c` for
+play/pause toggle, `z` previous song and `b` next song).
 
 Note that playing from a playlist switches the mode to "playlist mode"
 (this means that there can be two highlights at the same time, one in

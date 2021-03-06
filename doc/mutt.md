@@ -68,6 +68,16 @@ but for integration with `msmtp` and caching we might as well use our own
 program: [offlineimap.py](../.config/offlineimap/offlineimap.py) along with the
 [gmail-oauth2-tools](https://github.com/google/gmail-oauth2-tools) repository.
 
+Note: if you're getting something along the lines of `KeyError:
+'access_token'` it's because the refresh token is invalid. This can
+occur if more than 50 refresh tokens are created, in which case
+the first refresh token is invalidated. Why should this happen if
+you only created 1 token? Even if we set `oauth2_access_token`,
+passing `oauth2_client_id` and `oauth2_client_secret_eval` likely
+has offlineimap attempt to generate a refresh token (since we don't
+pass in a refresh token). If we're using an access token, offlinemap
+doesn't need client_id and client_secret so don't have them set.
+
 ## [msmtp](https://marlam.de/msmtp/)
 
 With offlineimap configured, `msmtp` works similarly. Set the authentication

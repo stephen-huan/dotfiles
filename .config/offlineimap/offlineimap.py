@@ -1,16 +1,19 @@
 #!/usr/bin/env python2
-import sys, subprocess, imp, os.path, time
+import sys, subprocess, imp, os, time
 # import gmail-oauth2-tools
 path = "~/.config/offlineimap/gmail-oauth2-tools/python/oauth2.py"
 oauth2 = imp.load_source("oauth2", os.path.expanduser(path))
 
 ### password and oauth functions
 
+NULL = open(os.devnull, "w")
+
 def get_pass(path, first_line=True):
     """ Returns a password from calling pass.
     https://wiki.archlinux.org/index.php/OfflineIMAP#Using_pass """
     try:
-        lines = subprocess.check_output(["pass", path]).splitlines()
+        out = subprocess.check_output(["pass", path], stderr=NULL)
+        lines = out.splitlines()
     except subprocess.CalledProcessError:
         return
     else:
@@ -18,7 +21,8 @@ def get_pass(path, first_line=True):
 
 def set_pass(path, value):
     """ Inserts a value into the password store. """
-    p = subprocess.Popen(["pass", "insert", "-e", path], stdin=subprocess.PIPE)
+    p = subprocess.Popen(["pass", "insert", "-e", path], stdin=subprocess.PIPE,
+                         stdout=NULL, stderr=NULL)
     p.communicate(input=value)
 
 if __name__ != "__main__":
@@ -79,6 +83,20 @@ def gmail_folderfilter(folder):
     return folder not in folderfilter_blacklist
 
 if __name__ == "__main__":
+    # get initial refresh token
+    if sys.argv[1] == "get_refresh":
+        LINES = get_pass("email/accounts.google.com/oauth2", False)
+        email = sys.argv[2]
+        cid, secret = get_oauth2("id", email), get_oauth2("secret", email)
+        scope = "https://mail.google.com/"
+        print("To authorize token, visit this url and follow the directions:")
+        print("  %s" % oauth2.GeneratePermissionUrl(cid, scope))
+        code = raw_input("Enter verification code: ")
+        response = oauth2.AuthorizeTokens(cid, secret, code)
+        print("Refresh Token: %s" % response["refresh_token"])
+        print("Access Token: %s" % response["access_token"])
+        print("Access Token Expiration Seconds: %s" % response["expires_in"])
+        sys.exit()
     # get oauth2 access token for msmtp, based off oauth2token:
     # https://github.com/tenllado/dotfiles/tree/master/config/msmtp
     email = sys.argv[1]
@@ -98,6 +116,7 @@ if __name__ == "__main__":
     # otherwise, generate token and update
     LINES = get_pass("email/accounts.google.com/oauth2", False)
     token, expire = get_access_token(email)
+    print(token)
     set_pass(token_path, token)
     set_pass(expire_path, str(now + expire))
 
