@@ -498,9 +498,10 @@ augroup vimrc
   " only load custom header when startify starts
   autocmd VimEnter *
     \ if !argc()
-    \ |   let g:startify_custom_header = startify#pad(split(system('cat ~/.vim/logo/azusa.txt'), '\n'))
+    \ |   let g:startify_custom_header = startify#pad(split(system('cat ~/.vim/logo/logo.txt'), '\n'))
     \ |  endif
-  autocmd User Startified setlocal nowrap | execute "normal! gg" | AnsiEsc
+  autocmd User Startified ColorHighlight
+  " autocmd User Startified setlocal nowrap | execute "normal! gg" | AnsiEsc
 
   autocmd BufWritePost *.tex call <sid>start_server()
 

@@ -3,14 +3,14 @@ function yubi_2fa --description "finds a 2fa code from a yubikey"
     # rather than generating all of the codes at once
 
     # get a service from ykman (yubikey) with fzf
-    # set name (ykman oath list | fzf --preview '')
+    # set name (ykman oath accounts list | fzf --preview '')
     # set l (string split " "  $name)
-    # set code (ykman oath code $l[-1])
+    # set code (ykman oath accounts code $l[-1])
     # set l (string split " " $code)
     # set code $l[-1]
 
     # get a code from ykman (yubikey) with fzf
-    set code (ykman oath code | fzf)
+    set code (ykman oath accounts code | fzf)
     set l (string split " " $code)
     set code $l[-1]
     
