@@ -210,7 +210,7 @@ folder-hook tjhsst/*   source $my_cfg/accounts/tjhsst
 folder-hook berkeley/* source $my_cfg/accounts/berkeley
 
 # mailboxes to show in sidebar / to refresh if using builtin IMAP
-named-mailboxes "------- stephen03.huan@gmail.com -----------" +gmail
+named-mailboxes "------- stephen03.huan@gmail.com -------" +gmail
 # virtual-mailboxes "inbox" "notmuch://?query=tag:inbox"
 mailboxes +gmail/inbox            \
           +gmail/archive          \
@@ -218,14 +218,14 @@ mailboxes +gmail/inbox            \
           +gmail/drafts           \
           +gmail/spam             \
           +gmail/trash
-named-mailboxes "--------- 2021shuan@tjhsst.edu -----------"   +tjhsst
+named-mailboxes "--------- 2021shuan@tjhsst.edu ---------" +tjhsst
 mailboxes +tjhsst/inbox           \
           +tjhsst/archive         \
           +tjhsst/sent            \
           +tjhsst/drafts          \
           +tjhsst/spam            \
           +tjhsst/trash
-named-mailboxes "---------- shuan@berkeley.edu -----------"    +berkeley
+named-mailboxes "---------- shuan@berkeley.edu ----------" +berkeley
 mailboxes +berkeley/inbox         \
           +berkeley/archive       \
           +berkeley/sent          \

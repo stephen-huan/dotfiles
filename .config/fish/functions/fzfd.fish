@@ -2,7 +2,7 @@ function fzfd --description "uses fzf to get a path"
   # get the current token on the command line
   set t (commandline -t)
   # use fzf to get a path
-  set result (_z | fzf --preview '_preview_path {}')
+  set result (_z | fzf --preview '_preview_path {}' --tiebreak=index)
 
   # if not a path, return
   if not test -d "$result"; or test -z "$result"

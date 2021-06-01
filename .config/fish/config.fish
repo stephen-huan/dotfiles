@@ -10,6 +10,7 @@ _add_path "$HOME/Programs/bin"                            # user created shell f
 _add_path "$HOME/Programs/bin/yabai"                      # convert to fish later
 _add_path "/usr/local/opt/llvm/bin"                       # llvm
 _add_path "/usr/local/opt/gettext/bin" "$HOME/.cargo/bin" # fix weird git thing
+_add_path "/Users/stephenhuan/Programs/bin/torch/install/bin/"
 
 ### ENVIRONMENT
 

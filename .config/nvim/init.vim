@@ -55,6 +55,7 @@ Plug 'tpope/vim-dadbod'           " databases
 Plug 'vim-scripts/dbext.vim'      " original database plugin
 Plug 'mityu/vim-applescript'      " applescript
 Plug 'sudar/vim-arduino-syntax'   " arduino
+Plug 'sirtaj/vim-openscad'        " openscad
 call plug#end()                   " List ends here. Plugins become visible to Vim after this call.
 
 " default options {{{1
