@@ -233,9 +233,9 @@ nnoremap <leader>r :Ranger<cr>
 " fzf {{{2
 " directory jumping with z
 nnoremap <leader>g :call fzf#run(fzf#wrap({
-\ 'source': 'TMPFILE=`mktemp -t vim_fzf_z` \|\| exit 1; fish -c "_z" > $TMPFILE; cat $TMPFILE', 
+\ 'source': 'fish -c "_z"', 
 \ 'sink': 'cd', 
-\ 'options': ['--preview', '_preview_path {}', '--tiebreak=index']}))<cr><cr>
+\ 'options': ['--preview', '_preview_path {}', '--tiebreak=index']}))<cr>
 " files with fzf
 nnoremap <leader>o :Files<cr>
 " ag searcher
