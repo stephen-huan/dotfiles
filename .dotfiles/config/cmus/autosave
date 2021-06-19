@@ -47,6 +47,7 @@ set color_win_title_bg=blue
 set color_win_title_fg=white
 set confirm_run=true
 set continue=true
+set continue_album=true
 set device=/dev/cdrom
 set display_artist_sort_name=false
 set dsp.coreaudio.device=
@@ -81,7 +82,7 @@ set mpris=true
 set output_plugin=coreaudio
 set passwd=
 set pl_sort=
-set play_library=true
+set play_library=false
 set play_sorted=false
 set repeat=false
 set repeat_current=false
@@ -104,7 +105,10 @@ set softvol=false
 set softvol_state=0 0
 set start_view=tree
 set status_display_program=
+set stop_after_queue=false
 set time_show_leading_zero=true
+set tree_width_max=0
+set tree_width_percent=33
 set wrap_search=true
 bind browser backspace browser-up
 bind browser i toggle show_hidden

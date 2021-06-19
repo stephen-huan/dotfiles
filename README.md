@@ -13,9 +13,15 @@ btw (it's a huge pain to setup on Macbooks).
 
 [[Yabai Demonstration Video]](https://www.youtube.com/watch?v=AdwhjIg_Xe4)
 
-This isn't a systematic layout so I can replicate my setup on another computer; 
-this is an ad-hoc file sharing protocol. There are ways to make dotfiles
-repositories more systematic that you might want to look into.
+Files are managed with [rcm](https://github.com/thoughtbot/rcm), see 
+[dotfiles](./doc/meta.md) for other solutions and how to use rcm. 
+
+Quickstart:
+```bash
+git clone https://github.com/stephen-huan/macos-dotfiles 
+# make sure rcm is installed 
+rcup -v 
+```
 
 ## Configuration
 
