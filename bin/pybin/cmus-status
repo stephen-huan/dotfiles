@@ -28,7 +28,8 @@ if __name__ == "__main__":
         if info["status"] == "stopped":
             print("cmus stopped")
         else:
-            print(f"{info['artist']} - {info['album']} - \
+            print(f"{info.get('artist', info['albumartist'])} - \
+{info['album']} - \
 {info['tracknumber'].lstrip('0')}. {info['title']}        \
 {'>' if info['status'] == 'playing' else '|'} \
 {fmt_time(info['position'])} / {fmt_time(info['duration'])}")
