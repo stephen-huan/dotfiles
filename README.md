@@ -18,9 +18,10 @@ Files are managed with [rcm](https://github.com/thoughtbot/rcm), see
 
 Quickstart:
 ```bash
-git clone https://github.com/stephen-huan/macos-dotfiles 
+cd ~
+git clone https://github.com/stephen-huan/dotfiles 
 # make sure rcm is installed 
-rcup -v 
+rcup -d "~/dotfiles/.dotfiles" -v
 ```
 
 ## Configuration
