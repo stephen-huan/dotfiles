@@ -21,7 +21,7 @@ Quickstart:
 cd ~
 git clone https://github.com/stephen-huan/dotfiles 
 # make sure rcm is installed 
-rcup -d "~/dotfiles/.dotfiles" -v
+rcup -d ~/dotfiles/.dotfiles -v
 ```
 
 ## Configuration

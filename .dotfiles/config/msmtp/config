@@ -26,6 +26,15 @@ from    2021shuan@tjhsst.edu
 user    2021shuan@tjhsst.edu
 passwordeval pass school/tjhsst/tjhsst.edu | head -n 1 
 
+# gatech {{{1
+account gatech
+tls_starttls on
+auth    xoauth2
+host    smtp.office365.com
+port    587
+from    shuan@gatech.edu 
+user    shuan7@gatech.edu 
+passwordeval ~/.config/offlineimap/offlineimap.py shuan7@gatech.edu
 # }}}1
 
 # default account

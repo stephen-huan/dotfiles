@@ -14,6 +14,8 @@ function _variables --description "set variables"
   set -Ux MACOSX_DEPLOYMENT_TARGET "10.15"
   set -Ux SDKROOT "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
 
+  set -Ux SSH_AUTH_SOCK ~/.ssh/agent
+
   # par
   set -Ux PARINIT "rTbgqR B=.,?'_A_a_@ Q=_s>|"
 

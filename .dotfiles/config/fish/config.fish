@@ -14,6 +14,10 @@ _add_path "/Users/stephenhuan/Programs/bin/torch/install/bin/"
 
 ### ENVIRONMENT
 
+# overwrite ssh-agent
+set -e SSH_AUTH_SOCK
+set -Ux SSH_AUTH_SOCK ~/.ssh/agent
+
 # handled by plugin(s)
 # status --is-interactive; and source (jenv init -|psub)  # java
 # status --is-interactive; and source (pyenv init -|psub) # python
