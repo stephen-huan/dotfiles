@@ -33,8 +33,8 @@ def get_pass(path, first_line=True):
 
 def set_pass(path, value):
     """ Inserts a value into the password store. """
-    p = subprocess.Popen(["pass", "insert", "-e", path], stdin=subprocess.PIPE,
-                         stdout=NULL, stderr=NULL)
+    p = subprocess.Popen(["pass", "insert", "--multiline", path],
+                         stdin=subprocess.PIPE, stdout=NULL, stderr=NULL)
     p.communicate(input=value)
 
 def get_oauth2(cred, email=""):
@@ -93,22 +93,19 @@ def ms_access_token(email):
 def get_access_token(email):
     """ Gets an access token, using the cache if it is valid.
     based on oauth2token: https://github.com/tenllado/dotfiles/tree/master/config/msmtp """
-    token_path  = "email/oauth/%s/token"        % email
-    expire_path = "email/oauth/%s/token-expire" % email
+    token_path = "email/oauth/%s" % email
+    lines = get_pass(token_path, first_line=False)
     now = int(time.time())
     # if cached, use cached access token
-    expire_time = get_pass(expire_path)
-    if expire_time is not None:
-        expire_time = int(expire_time)
+    if lines is not None:
+        token, expire = lines
+        expire_time = int(expire.split(":")[1].strip())
         # more than 60 seconds from expiring 
         if expire_time - now >= 60:
-            token = get_pass(token_path)
-            if token is not None:
-                return token
+            return token
     # otherwise, generate token and update
     token, expire = query(email, "access_token")
-    set_pass(token_path, token)
-    set_pass(expire_path, str(now + expire))
+    set_pass(token_path, "%s\nexpire: %i" % (token, now + expire))
     return token
 
 PROVIDER_DATA = {
@@ -144,8 +141,8 @@ nametrans_dict = {
     "[Gmail]/Trash": "trash",
     "INBOX": "inbox",
 }
-nametrans_reverse = {v: k for k, v in nametrans_dict.items()}
-assert len(nametrans_dict) == len(nametrans_reverse), "duplicate entries"
+nametrans_reverse_dict = {v: k for k, v in nametrans_dict.items()}
+assert len(nametrans_dict) == len(nametrans_reverse_dict), "duplicate entries"
 
 def nametrans(folder, d):
     """ Rename a remote folder to a local folder.
@@ -153,7 +150,7 @@ def nametrans(folder, d):
     return d.get(folder, folder)
 
 gmail_nametrans = lambda folder: nametrans(folder, nametrans_dict)
-gmail_nametrans_reverse = lambda folder: nametrans(folder, nametrans_reverse)
+gmail_nametrans_reverse = lambda folder: nametrans(folder, nametrans_reverse_dict)
 
 folderfilter_blacklist = [
     # helpful to parse spam messages manually
@@ -163,13 +160,42 @@ folderfilter_blacklist = [
     "[Gmail]/Starred",
     # thunderbird folders, doesn't save to special [Gmail] folder 
     "Drafts",
-    "Trash"
+    "Trash",
 ]
 
 def gmail_folderfilter(folder):
     """ Returns True if the folder should be synced, otherwise False.
     https://www.offlineimap.org/doc/nametrans.html#folderfilter """
     return folder not in folderfilter_blacklist
+
+# microsoft equivalents
+
+ms_nametrans_dict = {
+    "Archive": "archive",
+    "Drafts": "drafts",
+    "Sent Items": "sent",
+    "Junk Email": "spam",
+    "Deleted Items": "trash",
+    "INBOX": "inbox",
+}
+ms_nametrans_reverse_dict = {v: k for k, v in ms_nametrans_dict.items()}
+assert len(ms_nametrans_dict) == len(ms_nametrans_reverse_dict), "duplicate entries"
+
+ms_nametrans = lambda folder: nametrans(folder, ms_nametrans_dict)
+ms_nametrans_reverse = lambda folder: nametrans(folder, ms_nametrans_reverse_dict)
+
+ms_folderfilter_blacklist = [
+    # check whether messages end up in sent
+    "Outbox",
+    "Contacts",
+    "Conversation History",
+    "Journal",
+    "Notes",
+    "Tasks"
+]
+
+ms_folderfilter = lambda folder: folder not in ms_folderfilter_blacklist and \
+    "Calendar" not in folder
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="oauth2 token management")

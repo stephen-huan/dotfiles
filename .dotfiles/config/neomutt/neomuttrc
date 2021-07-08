@@ -161,8 +161,7 @@ bind index,pager \CS  sync-mailbox
 bind index,pager c    copy-message
 # don't automatically fill in
 bind editor  <space>  noop
-# remove from inbox (since a copy is stored in all mail)
-bind index,pager I    purge-message
+bind index,pager p    purge-message
 # notmuch
 bind index,pager A    vfolder-from-query # virtual folder from notmuch query
 bind index,pager \`   modify-labels      # edit tags
@@ -206,8 +205,9 @@ set sendmail_wait = 0          # wait for sendmail to finish
 source $my_cfg/accounts/gmail  # default account
 set spoolfile = "+gmail/inbox" # default inbox
 folder-hook gmail/*    source $my_cfg/accounts/gmail
-folder-hook tjhsst/*   source $my_cfg/accounts/tjhsst
-folder-hook berkeley/* source $my_cfg/accounts/berkeley
+# folder-hook tjhsst/*   source $my_cfg/accounts/tjhsst
+# folder-hook berkeley/* source $my_cfg/accounts/berkeley
+folder-hook gatech/* source $my_cfg/accounts/gatech
 
 # mailboxes to show in sidebar / to refresh if using builtin IMAP
 named-mailboxes "------- stephen03.huan@gmail.com -------" +gmail
@@ -218,18 +218,24 @@ mailboxes +gmail/inbox            \
           +gmail/drafts           \
           +gmail/spam             \
           +gmail/trash
-named-mailboxes "--------- 2021shuan@tjhsst.edu ---------" +tjhsst
-mailboxes +tjhsst/inbox           \
-          +tjhsst/archive         \
-          +tjhsst/sent            \
-          +tjhsst/drafts          \
-          +tjhsst/spam            \
-          +tjhsst/trash
-named-mailboxes "---------- shuan@berkeley.edu ----------" +berkeley
-mailboxes +berkeley/inbox         \
-          +berkeley/archive       \
-          +berkeley/sent          \
-          +berkeley/trash
-
+# named-mailboxes "--------- 2021shuan@tjhsst.edu ---------" +tjhsst
+# mailboxes +tjhsst/inbox           \
+#           +tjhsst/archive         \
+#           +tjhsst/sent            \
+#           +tjhsst/drafts          \
+#           +tjhsst/spam            \
+#           +tjhsst/trash
+# named-mailboxes "---------- shuan@berkeley.edu ----------" +berkeley
+# mailboxes +berkeley/inbox         \
+#           +berkeley/archive       \
+#           +berkeley/sent          \
+#           +berkeley/trash
+named-mailboxes "----------- shuan@gatech.edu -----------" +gatech
+mailboxes +gatech/inbox           \
+          +gatech/archive         \
+          +gatech/sent            \
+          +gatech/drafts          \
+          +gatech/spam            \
+          +gatech/trash
 # }}}1
 # vim:foldmethod=marker:foldlevel=0

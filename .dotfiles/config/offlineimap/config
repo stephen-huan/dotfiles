@@ -62,7 +62,7 @@ postsynchook = ~/.config/notmuch/notmuch-new-hook.fish gatech
 type = Maildir
 localfolders = ~/.mail/gatech
 sync_deletes = yes
-nametrans = lambda folder: folder.capitalize() if folder != "inbox" else folder.upper()
+nametrans = ms_nametrans_reverse
 
 [Repository remote_gatech]
 maxconnections = 1
@@ -71,7 +71,8 @@ remotehost = outlook.office365.com
 remoteuser = shuan7@gatech.edu
 oauth2_access_token_eval = get_access_token("%(remoteuser)s")
 sslcacertfile = /usr/local/etc/openssl/cert.pem
-nametrans = lambda folder: folder.lower()
+nametrans = ms_nametrans
+folderfilter = ms_folderfilter
 # }}}1
 
 # vim:foldmethod=marker:foldlevel=0:ft=config

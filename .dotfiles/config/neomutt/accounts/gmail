@@ -4,6 +4,8 @@ set mbox      = "+gmail/archive"
 # set record    = "+gmail/sent"
 unset record  # prevent duplication
 set postponed = "+gmail/drafts"
+# remove from inbox (since a copy is stored in all mail)
+bind index,pager I purge-message
 set trash     = "+gmail/trash"
 
 # vim:ft=neomuttrc

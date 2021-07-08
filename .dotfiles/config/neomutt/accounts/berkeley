@@ -5,6 +5,8 @@ set mbox      = "+berkeley/archive"
 # set record    = "+berkeley/sent"
 unset record  # prevent duplication
 set postponed = "+berkeley/drafts"
+# remove from inbox (since a copy is stored in all mail)
+bind index,pager I purge-message
 set trash     = "+berkeley/trash"
 
 # vim:ft=neomuttrc
