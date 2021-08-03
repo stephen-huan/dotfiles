@@ -1,8 +1,7 @@
 [general]
 metadata = ~/.offlineimap
 ui = TTYUI 
-# accounts = gmail, gatech
-accounts = gatech
+accounts = gmail, gatech
 pythonfile = ~/.config/offlineimap/offlineimap.py
 maxsyncaccounts = 1
 fsync = false
