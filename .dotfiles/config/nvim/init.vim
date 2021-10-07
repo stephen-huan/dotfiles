@@ -11,7 +11,7 @@ Plug 'francoiscabrol/ranger.vim'  " ranger integration
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " cutting-edge fzf version
 Plug 'junegunn/fzf.vim'           " fzf + vim integration
 " Plug 'ycm-core/YouCompleteMe'                     " autocomplete
-Plug stdpath('data') .  '/plugged/YouCompleteMe'    " load YCM without updating
+Plug stdpath('data') . '/plugged/YouCompleteMe'    " load YCM without updating
 Plug 'ncm2/float-preview.nvim'    " open previews in a floating window
 Plug 'SirVer/ultisnips'           " snippets engine
 Plug 'honza/vim-snippets'         " community snippets

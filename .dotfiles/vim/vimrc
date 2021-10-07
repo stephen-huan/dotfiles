@@ -1,6 +1,9 @@
+let g:polyglot_disabled = ['sensible', 'autoindent'] " needs to be before
 " vim-plug plugins {{{1
 call plug#begin('~/.vim/plugged') " Plugins will be downloaded under the specified directory.
 Plug 'rakr/vim-one'               " Atom's One theme
+Plug 'stephen-huan/vim-polar'     " fork of habamax/vim-polar
+Plug 'lifepillar/vim-colortemplate'                 " color scheme editing 
 Plug 'itchyny/lightline.vim'      " line
 Plug 'mhinz/vim-startify'         " start manager
 Plug 'mbbill/undotree'            " visualize undo tree
@@ -31,29 +34,17 @@ Plug 'airblade/vim-gitgutter'     " show git in the gutter
 Plug 'dstein64/vim-startuptime'   " measure startup time
 " Plug 'mattn/emmet-vim'            " fancy web development plugin
 " Plugins for specific languages
-Plug 'vim-python/python-syntax'   " python
-Plug 'Vimjas/vim-python-pep8-indent'                " python indent
+Plug 'sheerun/vim-polyglot'       " language pack
 Plug 'lervag/vimtex'              " LaTeX
 Plug 'neomutt/neomutt.vim'        " email
 Plug 'dag/vim-fish'               " fish shell
 Plug 'tpope/vim-git'              " git
-Plug 'octol/vim-cpp-enhanced-highlight'            " c++
 " would be nice if there was a good java syntax plugin
-Plug 'fatih/vim-go'               " go
-Plug 'plasticboy/vim-markdown'    " markdown
 " markdown preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-Plug 'chrisbra/csv.vim'           " CSVs
-Plug 'stephpy/vim-yaml'           " yaml
 Plug 'Glench/Vim-Jinja2-Syntax'   " jinja, setting up matchup
-Plug 'pangloss/vim-javascript'    " javascript
-Plug 'hail2u/vim-css3-syntax'     " css
-Plug 'cakebaker/scss-syntax.vim'  " sass 
 Plug 'tpope/vim-dadbod'           " databases
 Plug 'vim-scripts/dbext.vim'      " original database plugin
-Plug 'mityu/vim-applescript'      " applescript
-Plug 'sudar/vim-arduino-syntax'   " arduino
-Plug 'sirtaj/vim-openscad'        " openscad
 call plug#end()                   " List ends here. Plugins become visible to Vim after this call.
 
 " default options {{{1
@@ -80,6 +71,7 @@ set formatprg=far                 " (f)ast rewrite of p(ar)
 set termguicolors                 " 24 bit colors
 set background=light              " light background
 syntax on                         " syntax highlighting
+colorscheme polar                 " colorscheme
 set laststatus=2                  " draw status bar for each window
 set showcmd                       " show an incomplete command
 set noshowmode                    " don't show mode, shown in bar already
@@ -137,7 +129,7 @@ set foldlevelstart=0              " don't open folds by default
 set sessionoptions-=blank         " remove blank files from sessions
 
 " miscellaneous {{{2
-set clipboard=unnamed             " system clipboard
+set clipboard=unnamed,unnamedplus " system clipboard
 set mouse=a                       " mouse support
 set mousemodel=popup              " right clicking opens a menu
 set notildeop                     " ~ not an operator
@@ -234,7 +226,9 @@ nnoremap <leader>y :Goyo<cr>
 
 " ranger {{{3
 let g:ranger_map_keys = 0
-nnoremap <leader>r :Ranger<cr>
+" I would enable this if it worked
+" let g:ranger_replace_netrw = 1
+nnoremap <leader>r :RangerCurrentDirectoryNewTab<cr>
 
 " fzf {{{2
 " directory jumping with z
@@ -261,7 +255,7 @@ endfunction
 function s:buf_copy(e)
   let s = substitute(a:e, '\', '\\\\\\\\', 'g')
   let s = escape(s, '''"\')
-  echo system("fish -c \"echo -ne (string sub -s 3 (string replace -a '^M' '\\n' (_parse_token -p '" . s . "'))) | pbcopy\"")
+  echo system("fish -c \"echo -ne (string sub -s 3 (string replace -a '^M' '\\n' (_parse_token -p '" . s . "'))) | copy\"")
 endfunction
 
 nnoremap <leader>p :call fzf#run(fzf#wrap({
@@ -314,8 +308,8 @@ nmap <leader>m <Plug>MarkdownPreview
 
 " mail {{{2
 function s:select_file()
-  let temp = '/Users/stephenhuan/.vim/temp'
-  execute 'silent !ranger --choosefile='. temp
+  let temp = $HOME . '/.vim/temp.txt'
+  execute 'silent !ranger --choosefile=' . temp
   redraw!
   " file name saved to file above, escape spaces 
   if filereadable(temp)
@@ -323,7 +317,7 @@ function s:select_file()
     let out = system("rm " . temp)
     return 'Attach: ' . substitute(path, ' ', '\\ ', 'g')
   endif
-  return ' '
+  return ''
 endfunction
 
 " select file with ranger for attachments
@@ -345,34 +339,6 @@ let g:UltiSnipsJumpForwardTrigger='<tab>'
 let g:UltiSnipsJumpBackwardTrigger='<c-b>'
 
 " plugins {{{1
-" one {{{2
-function s:set_colors()                                     " overwrite default colors
-    highlight Normal                   guibg=#ffffff
-    " error highlight from https://github.com/habamax/vim-polar
-    highlight Error      guifg=#ffffff guibg=#e07070
- 
-    " spell highlight
-    highlight SpellBad   guifg=#e45649 guibg=NONE    " red
-    highlight SpellCap   guifg=#4078f2 guibg=NONE    " blue
-    highlight SpellRare  guifg=#a626a4 guibg=NONE    " magenta
-    highlight SpellLocal guifg=#0184bc guibg=NONE    " cyan
-    " diff taken from https://github.com/endel/vim-github-colorscheme
-    highlight DiffAdd    guifg=#494b53 guibg=#ddffdd " green
-    highlight DiffChange               guibg=#f0f0f0 " grey
-    highlight DiffText   guifg=#494b53 guibg=#ddddff " blue
-    highlight DiffDelete guifg=#ffdddd guibg=#ffdddd " red
-    " hide things
-    highlight Hide       guifg=#ffffff guibg=NONE 
-endfunction
-
-augroup colors
-    autocmd!
-    autocmd ColorScheme * call <sid>set_colors() 
-augroup END
-
-let g:one_allow_italics = 1       " support italics
-colorscheme one                   " colorscheme
-
 " lightline {{{2
 let g:lightline = {
 \   'colorscheme': 'mono', 
@@ -506,7 +472,7 @@ augroup vimrc
 
   autocmd BufWritePost *.tex call <sid>start_server()
 
-  autocmd FileType markdown,text,tex,mail setlocal spell spelllang=en_us
+  autocmd FileType markdown,text,tex,mail,gitcommit setlocal spell spelllang=en_us
   autocmd FileType c,cpp,python let b:ycm_hover = {
     \ 'command': 'GetDoc',
     \ 'syntax': &filetype
