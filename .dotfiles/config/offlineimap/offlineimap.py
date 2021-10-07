@@ -45,6 +45,11 @@ def get_oauth2(cred, email=""):
             break
     line_index = {"id": 1, "secret": 0, "refresh": i}
     line = lines[line_index[cred]].decode()
+    # for microsoft oauth, refresh token is perodically updated
+    # https://docs.microsoft.com/en-us/azure/active-directory/develop/refresh-tokens
+    if cred == "refresh":
+        refresh = get_pass("email/oauth/%s_refresh" % email)
+        line = refresh if refresh is not None else line
     return (line if ":" not in line else line.split(":")[-1]).strip().encode()
 
 def make_ms_client(email):
@@ -88,6 +93,8 @@ def ms_access_token(email):
     """ Gets an access token using MSAL. """
     app, refresh = make_ms_client(email), get_oauth2("refresh", email)
     response = app.acquire_token_by_refresh_token(refresh, MS_SCOPES)
+    # save new refresh token, which is generated after every access token
+    set_pass("email/oauth/%s_refresh" % email, response["refresh_token"])
     return response["access_token"], response["expires_in"]
 
 def get_access_token(email):
