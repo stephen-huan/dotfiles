@@ -16,7 +16,8 @@ _add_path "/Users/stephenhuan/Programs/bin/torch/install/bin/"
 
 # overwrite ssh-agent
 set -e SSH_AUTH_SOCK
-set -Ux SSH_AUTH_SOCK ~/.ssh/agent
+# set -Ux SSH_AUTH_SOCK ~/.ssh/agent
+set -Ux SSH_AUTH_SOCK ~/.gnupg/S.gpg-agent.ssh
 
 # handled by plugin(s)
 # status --is-interactive; and source (jenv init -|psub)  # java

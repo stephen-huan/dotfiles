@@ -22,26 +22,26 @@ function _variables --description "set variables"
   # notmuch configuration file location 
   set -Ux NOTMUCH_CONFIG "$HOME/.config/notmuch/config"
 
-  ### fzf
+  # fzf
   set -Ux FZF_DEFAULT_OPTS "--height 40% --reverse --color light --border"
   set -Ux FZF_LEGACY_KEYBINDINGS 0
   set -Ux FZF_TMUX_HEIGHT "40%"
 
-  ### pass
+  # pass
   set -Ux PASSWORD_STORE_ENABLE_EXTENSIONS "true"
 
-  ### z
+  # z
   set -Ux Z_EXCLUDE "^$HOME\$" "^$HOME/Programs\$"
   set -Ux Z_DECAY 0.99
   set -Ux Z_MAX_SCORE 9000
 
-  ### Clang
+  # clang
   # https://clang.llvm.org/docs/AddressSanitizer.html
   set -Ux ASAN_SYMBOLIZER_PATH "/usr/local/opt/llvm/bin/llvm-symbolizer"
   set -Ux UBSAN_OPTIONS "print_stacktrace=1"
   set -Ux PPROF_BINARY_PATH "a.out"
 
-  ### less
+  # less
   # https://askubuntu.com/questions/522599/how-to-get-color-man-pages-under-fish-shell
   set -Ux LESS "R"
   set -Ux LESSCHARSET "utf-8"
@@ -53,11 +53,17 @@ function _variables --description "set variables"
   set -Ux LESS_TERMCAP_ue (set_color normal)
   set -Ux LESS_TERMCAP_us (set_color brgreen)
 
-  ### Timer
+  ### fish stuff
+  # prompt
+  set -U fish_color_user brgreen
+  set -U fish_color_host brred
+  set -U fish_color_cwd cyan
+
+  # timer
   set -Ux fish_command_timer_enabled 0                  # disable timer
   set -Ux fish_command_timer_export_cmd_duration_str 1  # enable variable exports
 
-  ### Git prompt
+  # git prompt
   # documented in /usr/local/Cellar/fish/3.1.0_1/share/fish/functions/fish_git_prompt.fish
   # also here: https://fishshell.com/docs/current/cmds/fish_git_prompt.html
 

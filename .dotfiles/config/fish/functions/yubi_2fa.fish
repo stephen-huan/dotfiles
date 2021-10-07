@@ -16,7 +16,7 @@ function yubi_2fa --description "finds a 2fa code from a yubikey"
     
     # copy the code into the clipboard if not empty
     if not test -z "$code" 
-        echo -n $code | pbcopy 
+        echo -n $code | copy 
     end
 
     commandline -f repaint
