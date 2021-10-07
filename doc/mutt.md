@@ -62,7 +62,7 @@ which is what we actually use to authenticate. I store these credentials in the
 lightweight PGP-based password manager [pass](./pass.md). To generate an access
 token, we could use offlineimap's built-in `oauth2_refresh_token_eval` option
 but for integration with `msmtp` and caching we might as well use our own
-program: [offlineimap.py](../.config/offlineimap/offlineimap.py). 
+program: [offlineimap.py](../.dotfiles/config/offlineimap/offlineimap.py).
 
 Google and Microsoft cover all my email accounts, including those which
 that are not necessarily `@gmail.com` or `@hotmail.com`. For example,

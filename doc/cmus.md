@@ -6,8 +6,8 @@ playing so it's useful to put it in a `tmux` server (this has the added
 benefit of being able to open multiple cmus windows at a time, because
 each is a view into the same running process).
 
-The best praise I can give cmus is that I have not touched the configuration at
-all (I don't even know what the config file is called) but I use it very often.
+The highest praise I can give cmus is that I have not
+touched the configuration at all, but I use it very often.
 
 ## Playlists
 
@@ -55,17 +55,18 @@ queue is permuted. Thus, it is helpful to think of the modes and toggles
 and manipulating an implicit queue (the modes determine which songs go
 into the queue and the toggles determine how that queue behaves).
 
-To go back to the "real" queue, it behaves similarity to a playlist. One adds
-songs with `e` instead of `y`, and the same playlist manipulation can be done
-(`D` to remove, `p`/`P` to move around). When cmus determines which song to
-play after the current song finishes, it first tries to deque a song from the
-"real" queue. If the real queue is empty, it deques a song from the implicit
-queue described above. Thus, if you're listening to an artist but want to play
-another song one-off, then you can add that song to the queue with `e`. When
-the song ends, you'll be back to listening to that artist in the same position
-in the implicit queue you were in.
+To go back to the "real" queue, it behaves similarity to a playlist. One
+adds songs with `e` instead of `y`, and the same playlist manipulation can
+be done (`D` to remove, `p`/`P` to move around). When cmus determines which
+song to play after the current song finishes, it first tries to dequeue a
+song from the "real" queue. If the real queue is empty, it dequeues a song
+from the implicit queue described above. Thus, if you're listening to an
+artist but want to play another song one-off, then you can add that song
+to the queue with `e`. When the song ends, you'll be back to listening to
+that artist in the same position in the implicit queue you were in.
 
 ## `cmus-remote`
+
 `cmus-remote` can be used to control cmus from the command-line, e.g. to
 generate a status text based on the current song (which I do for `spacebar`) or
 to integrate into `ranger`, e.g. when selecting an audio file to add the file

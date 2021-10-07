@@ -32,9 +32,9 @@ spacebar -m config power_icon_strip             
 
 spacebar -m config dnd                         off 
 
-# spacebar -m config right_shell                 on
-# spacebar -m config right_shell_icon            " "
-# spacebar -m config right_shell_command         "cmus-status"
+spacebar -m config right_shell                 on
+spacebar -m config right_shell_icon            " "
+spacebar -m config right_shell_command         "$HOME/Programs/bin/cmus-status &"
 
 echo "spacebar configuration loaded.."
 

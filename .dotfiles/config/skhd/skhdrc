@@ -17,7 +17,7 @@ hyper - m : ~/Programs/bin/yabai/caffine
 0x41: ~/Programs/bin/yabai/flux
 
 # authy-like 2fa code 
-hyper - g : kitty --single-instance fish -c 'yubi_2fa' 
+hyper - g : kitty --single-instance /usr/local/bin/fish -c 'yubi_2fa' 
 
 # zap
 # hyper - 0x29 : ~/Programs/bin/yabai/zap
@@ -34,7 +34,7 @@ hyper - return: kitty --single-instance
 # hyper - t : killall kitty
 
 # open music player
-hyper - t : kitty --single-instance fish -c "tmux attach -t cmus"
+hyper - t : kitty --single-instance /usr/local/bin/fish -c "tmux attach -t cmus"
 
 ### yabai
 
