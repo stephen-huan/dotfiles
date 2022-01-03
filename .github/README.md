@@ -13,15 +13,16 @@ btw (it's a huge pain to setup on Macbooks).
 
 [[Yabai Demonstration Video]](https://www.youtube.com/watch?v=AdwhjIg_Xe4)
 
-Files are managed with [rcm](https://github.com/thoughtbot/rcm), see 
-[dotfiles](./doc/meta.md) for other solutions and how to use rcm. 
+Files are managed with [yadm](https://yadm.io/), see [dotfiles](./doc/meta.md)
+for other dotfile systems and how to use `yadm`.
 
 Quickstart:
 ```bash
 cd ~
-git clone https://github.com/stephen-huan/dotfiles 
-# make sure rcm is installed 
-rcup -d ~/dotfiles/.dotfiles -v
+# make sure yadm is installed 
+yay -S yadm-git
+yadm clone https://github.com/stephen-huan/dotfiles
+yadm status
 ```
 
 ## Configuration

@@ -1,13 +1,25 @@
 # dotfiles management
 
-Check out [dotfiles.github.io](https://dotfiles.github.io/)
-and [yet another dotfiles manager (yadm)](https://yadm.io/#).
+Check out [dotfiles.github.io](https://dotfiles.github.io/).
 
-I can't really figure out yadm (it's just a git repo?) so I ended
-up using [rcm](https://github.com/thoughtbot/rcm). It's simple,
-it works, but the documentation is pretty hard to figure out.
+## [yadm](https://yadm.io/)
+
+`yadm` uses `git` to avoid symlinking. You edit files in `$HOME` as usual and
+use `yadm add` to add them to tracking. yadm stores its git repository in
+`~/.local/share/yadm/repo.git`, so if you have an existing dotfiles repository
+you can copy its `.git` to that path. Because yadm restricts itself to `$HOME`,
+file paths are simple --- they just mirror your actual `$HOME`. `yadm` itself
+is just as thin wrapper over `git` with some extra features.
+
+Finally, `yadm bootstrap` allows `~/.config/yadm/bootstrap`
+to be executed after install.
+```bash
+yadm bootstrap
+```
 
 ## [rcm](https://github.com/thoughtbot/rcm)
+
+It's simple, it works, but the documentation is pretty hard to figure out.
 
 `rcm` is a dotfiles manager. Basically you put all your dotfiles in one place
 (`~/.dotfiles` by default) and it symlinks everything to its proper place.
