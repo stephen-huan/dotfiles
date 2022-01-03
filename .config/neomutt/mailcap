@@ -1,0 +1,16 @@
+# see https://neomutt.org/guide/mimesupport#3-%C2%A0mime-viewer-configuration-with-mailcap
+
+# use w3m for html
+text/html; w3m -I %{charset} -T text/html;
+
+# use ranger for everything else
+text/*; /usr/local/Cellar/ranger/1.9.3_2/libexec/ranger/ext/rifle.py %s;
+application/*; /usr/local/Cellar/ranger/1.9.3_2/libexec/ranger/ext/rifle.py %s;
+audio/*; /usr/local/Cellar/ranger/1.9.3_2/libexec/ranger/ext/rifle.py %s;
+image/*; /usr/local/Cellar/ranger/1.9.3_2/libexec/ranger/ext/rifle.py %s;
+message/*; /usr/local/Cellar/ranger/1.9.3_2/libexec/ranger/ext/rifle.py %s;
+model/*; /usr/local/Cellar/ranger/1.9.3_2/libexec/ranger/ext/rifle.py %s;
+multipart/*; /usr/local/Cellar/ranger/1.9.3_2/libexec/ranger/ext/rifle.py %s;
+video/*; /usr/local/Cellar/ranger/1.9.3_2/libexec/ranger/ext/rifle.py %s;
+chemical/*; /usr/local/Cellar/ranger/1.9.3_2/libexec/ranger/ext/rifle.py %s;
+

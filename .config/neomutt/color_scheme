@@ -55,7 +55,7 @@ color index_tags        $my_light     $my_bg    # tags (e.g. notmuch/IMAP)
 color sidebar_divider   $my_theme     $my_bg    # dividing line
 color sidebar_indicator $my_text      $my_grey  # current item --- mailbox open
 color sidebar_highlight $my_alt       $my_theme # cursor position
-color sidebar_spoolfile bold $my_hl   $my_bg    # inbox
+# color sidebar_spoolfile bold $my_hl   $my_bg    # inbox
 color sidebar_new       bold $my_new  $my_bg    # mailboxes with new mail
 color sidebar_unread    bold $my_new  $my_bg    # mailboxes with unread mail
 color sidebar_flagged   bold $my_flag $my_bg    # mailboxes with flagged mail

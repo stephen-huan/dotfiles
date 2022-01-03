@@ -18,7 +18,7 @@ Plug '~/.vim/plugged/YouCompleteMe'                 " load YCM without updating
 Plug 'SirVer/ultisnips'           " snippets engine
 Plug 'honza/vim-snippets'         " community snippets
 Plug 'dense-analysis/ale'         " syntax checking
-Plug 'tpope/vim-commentary'       " comment
+Plug 'tomtom/tcomment_vim'        " comment
 Plug 'tpope/vim-sleuth'           " detect indent and adjust indent options 
 Plug 'tpope/vim-surround'         " editing character pairs
 Plug 'godlygeek/tabular'          " misc. text operations
@@ -161,7 +161,7 @@ noremap! <c-j> <esc>:qa!<cr>
 nnoremap <c-n> :tabnew<cr>
 
 " comments
-vmap <c-_> gc 
+" vmap <c-_> gc 
 
 " show highlight under cursor
 noremap <c-h>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
@@ -261,6 +261,11 @@ endfunction
 nnoremap <leader>p :call fzf#run(fzf#wrap({
 \ 'source': <sid>yank_list(),
 \ 'sink': function('<sid>buf_copy')}))<cr>
+
+" tcomment_vim {{{2
+let g:tcomment_mapleader1 = '<c-.>' 
+noremap  <c-_> :TComment<cr>
+noremap  <leader>/ :TCommentBlock<cr>
 
 " vim-easymotion {{{2
 map s <Plug>(easymotion-jumptoanywhere)

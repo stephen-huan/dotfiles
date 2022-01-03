@@ -29,6 +29,7 @@ hyper - g : kitty --single-instance /usr/local/bin/fish -c 'yubi_2fa'
 # hyper - return : open -a Terminal --new
 # hyper - return: open -a iTerm --new
 hyper - return: kitty --single-instance
+hyper - return: alacritty
 
 # close all open terminals
 # hyper - t : killall kitty
