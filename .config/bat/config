@@ -1,0 +1,3 @@
+--theme="Monokai Extended Light"
+--italic-text=always
+--pager "less -RF" #enable mouse support

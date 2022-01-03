@@ -22,6 +22,8 @@ cd ~
 # make sure yadm is installed 
 yay -S yadm-git
 yadm clone https://github.com/stephen-huan/dotfiles
+# if yadm does not prompt automatically
+yadm bootstrap
 yadm status
 ```
 
