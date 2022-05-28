@@ -172,7 +172,7 @@ set my_get_mail = "PYENV_VERSION=system offlineimap"
 macro index,pager o   "<shell-escape>$my_get_mail -qf INBOX<enter>" "run offlineimap to sync inbox"
 macro index,pager O   "<shell-escape>$my_get_mail<enter>"           "run offlineimap to sync all mail"
 macro index,pager \Co <pipe-message>urlview<enter>                  "call urlview to extract URLs out of a message"
-# use neovim as an alternative pager 
+# use neovim as an alternative pager
 set my_pager = "/usr/local/bin/nvim -u ~/.config/nvim/init-pager.vim -M"
 macro index V "<enter-command> set pager=\"$my_pager\"<enter><display-message><enter-command> set pager=builtin<enter>" "open message in neovim"
 # need to exit then rejoin, can use V since we enter index mode

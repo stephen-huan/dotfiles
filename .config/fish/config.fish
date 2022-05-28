@@ -11,6 +11,7 @@ _add_path "$HOME/Programs/bin/yabai"                      # convert to fish late
 _add_path "/usr/local/opt/llvm/bin"                       # llvm
 _add_path "/usr/local/opt/gettext/bin" "$HOME/.cargo/bin" # fix weird git thing
 _add_path "/Users/stephenhuan/Programs/bin/torch/install/bin/"
+_add_path "/Users/stephenhuan/Library/Python/3.8/bin"
 
 ### ENVIRONMENT
 

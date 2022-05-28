@@ -3,7 +3,7 @@ let g:polyglot_disabled = ['sensible', 'autoindent'] " needs to be before
 call plug#begin('~/.vim/plugged') " Plugins will be downloaded under the specified directory.
 Plug 'rakr/vim-one'               " Atom's One theme
 Plug 'stephen-huan/vim-polar'     " fork of habamax/vim-polar
-Plug 'lifepillar/vim-colortemplate'                 " color scheme editing 
+Plug 'lifepillar/vim-colortemplate'                 " color scheme editing
 Plug 'itchyny/lightline.vim'      " line
 Plug 'mhinz/vim-startify'         " start manager
 Plug 'mbbill/undotree'            " visualize undo tree
@@ -19,11 +19,11 @@ Plug 'SirVer/ultisnips'           " snippets engine
 Plug 'honza/vim-snippets'         " community snippets
 Plug 'dense-analysis/ale'         " syntax checking
 Plug 'tomtom/tcomment_vim'        " comment
-Plug 'tpope/vim-sleuth'           " detect indent and adjust indent options 
+Plug 'tpope/vim-sleuth'           " detect indent and adjust indent options
 Plug 'tpope/vim-surround'         " editing character pairs
 Plug 'godlygeek/tabular'          " misc. text operations
 Plug 'andymass/vim-matchup'       " matching
-Plug 'vim-scripts/auto-pairs-gentle'                " insert pairs automatically               
+Plug 'vim-scripts/auto-pairs-gentle'                " insert pairs automatically
 Plug 'easymotion/vim-easymotion'  " move around easily
 Plug 'tpope/vim-repeat'           " allow plugins to . repeat
 Plug 'svermeulen/vim-yoink'       " maintain a yank history
@@ -39,9 +39,11 @@ Plug 'lervag/vimtex'              " LaTeX
 Plug 'neomutt/neomutt.vim'        " email
 Plug 'dag/vim-fish'               " fish shell
 Plug 'tpope/vim-git'              " git
+" Plug 'lambdalisue/vim-cython-syntax'                " cython
+Plug 'stephen-huan/vim-cython-syntax'               " cython
 " would be nice if there was a good java syntax plugin
 " markdown preview
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 Plug 'Glench/Vim-Jinja2-Syntax'   " jinja, setting up matchup
 Plug 'tpope/vim-dadbod'           " databases
 Plug 'vim-scripts/dbext.vim'      " original database plugin
@@ -71,7 +73,6 @@ set formatprg=far                 " (f)ast rewrite of p(ar)
 set termguicolors                 " 24 bit colors
 set background=light              " light background
 syntax on                         " syntax highlighting
-colorscheme polar                 " colorscheme
 set laststatus=2                  " draw status bar for each window
 set showcmd                       " show an incomplete command
 set noshowmode                    " don't show mode, shown in bar already
@@ -81,6 +82,7 @@ set relativenumber                " numbers relative to cursor line
 set cursorline                    " highlight current line
 set cursorlineopt=screenline,number                " screenline vs file line
 set noshowmatch                   " disable matching [{()}]
+" TODO: configure
 set nolist                        " disable show whitespace with characters
 set wrap                          " wrap if longer than window size
 set nolinebreak                   " disable break on specific characters
@@ -92,7 +94,7 @@ set display=truncate,uhex         " truncate last line, display unicode as hex
 
 " search {{{2
 set ignorecase                    " ignore upper/lower case when searching
-set smartcase                     " case sensitive if upper case 
+set smartcase                     " case sensitive if upper case
 set incsearch                     " show partial matches for a search phrase
 set hlsearch                      " highlight all matching phrases
 set wrapscan                      " wrap search
@@ -100,7 +102,7 @@ set wrapscan                      " wrap search
 " backup/undo {{{2
 set backup                        " store backups
 " store file at .vim, defaulting to . if not found
-set backupdir=~/.vim/backupdir//,. 
+set backupdir=~/.vim/backupdir//,.
 " set patchmode=.orig               " store original files (doesn't store to backupdir)
 set undofile                      " store undo information to a file
 set undodir=~/.vim/undodir,.
@@ -113,12 +115,12 @@ set thesaurus+=~/.vim/thesaurus/english.txt  " add thesaurus
 set dictionary+=/usr/share/dict/words        " add dictionary
 
 " insert completions {{{2
-set completeopt=menuone,popup     " open extra information in a popup window 
+set completeopt=menuone,popup     " open extra information in a popup window
 set complete+=kspell              " spelling in autocomplete
 set infercase                     " smartcase but for completions
 
 " windows {{{2
-set nosplitbelow                  " split windows above
+set splitbelow                    " split windows below
 set splitright                    " split windows right
 
 " folding {{{2
@@ -132,13 +134,13 @@ set sessionoptions-=blank         " remove blank files from sessions
 set clipboard=unnamed,unnamedplus " system clipboard
 set mouse=a                       " mouse support
 set mousemodel=popup              " right clicking opens a menu
-set notildeop                     " ~ not an operator
+set tildeop                       " ~ operator
 
 " keybindings {{{1
 " timing {{{2
-set timeout                       " wait for mappings, if they are a prefix 
+set timeout                       " wait for mappings, if they are a prefix
 set ttimeout                      " timeout for key codes
-set timeoutlen=1000               " delay for mappings until timeout 
+set timeoutlen=1000               " delay for mappings until timeout
 set ttimeoutlen=10                " delay for key codes
 
 " }}}2
@@ -161,7 +163,7 @@ noremap! <c-j> <esc>:qa!<cr>
 nnoremap <c-n> :tabnew<cr>
 
 " comments
-" vmap <c-_> gc 
+" vmap <c-_> gc
 
 " show highlight under cursor
 noremap <c-h>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
@@ -175,7 +177,7 @@ imap <c-p> <plug>(fzf-maps-i)
 xmap <c-p> <plug>(fzf-maps-x)
 omap <c-p> <plug>(fzf-maps-o)
 
-" completions 
+" completions
 " replace the default dictionary completion with fzf-based fuzzy completion
 inoremap <expr> <c-x><c-k> fzf#vim#complete('cat /usr/share/dict/words')
 " path
@@ -190,7 +192,7 @@ function s:get_words(e)
 endfunction
 
 inoremap <expr> <c-x><c-t> fzf#vim#complete(fzf#wrap({
-\ 'source': function('<sid>get_words'), 
+\ 'source': function('<sid>get_words'),
 \ 'options': '--query ""'}))
 
 " leader shortcuts {{{2
@@ -207,8 +209,8 @@ function s:make_term()
 	let buf = term_start('fish', #{hidden: 1, term_finish: 'close'})
 	let winid = popup_create(buf, #{
                 \ minwidth : float2nr(round(0.6*winwidth(0))),
-                \ minheight: float2nr(round(0.6*winheight(0))), 
-                \ border: [], borderhighlight: ['Normal'], 
+                \ minheight: float2nr(round(0.6*winheight(0))),
+                \ border: [], borderhighlight: ['Normal'],
                 \ borderchars: ['-', '|', '-', '|', '┌', '┐', '┘', '└'],
                 \ title: ' terminal '})
 endfunction
@@ -233,8 +235,8 @@ nnoremap <leader>r :RangerCurrentDirectoryNewTab<cr>
 " fzf {{{2
 " directory jumping with z
 nnoremap <leader>g :call fzf#run(fzf#wrap({
-\ 'source': 'fish -c "_z"', 
-\ 'sink': 'cd', 
+\ 'source': 'fish -c "_z"',
+\ 'sink': 'cd',
 \ 'options': ['--preview', '_preview_path {}', '--tiebreak=index']}))<cr>
 " files with fzf
 nnoremap <leader>o :Files<cr>
@@ -263,7 +265,7 @@ nnoremap <leader>p :call fzf#run(fzf#wrap({
 \ 'sink': function('<sid>buf_copy')}))<cr>
 
 " tcomment_vim {{{2
-let g:tcomment_mapleader1 = '<c-.>' 
+let g:tcomment_mapleader1 = '<c-.>'
 noremap  <c-_> :TComment<cr>
 noremap  <leader>/ :TCommentBlock<cr>
 
@@ -316,7 +318,7 @@ function s:select_file()
   let temp = $HOME . '/.vim/temp.txt'
   execute 'silent !ranger --choosefile=' . temp
   redraw!
-  " file name saved to file above, escape spaces 
+  " file name saved to file above, escape spaces
   if filereadable(temp)
     let path = readfile(temp)[0]
     let out = system("rm " . temp)
@@ -346,7 +348,7 @@ let g:UltiSnipsJumpBackwardTrigger='<c-b>'
 " plugins {{{1
 " lightline {{{2
 let g:lightline = {
-\   'colorscheme': 'mono', 
+\   'colorscheme': 'mono',
 \ }
 
 " vim-startify {{{2
@@ -360,9 +362,9 @@ let g:goyo_width=81              " weirdly, goyo character width changes by two
 
 " fzf {{{2
 " start in new window
-let g:fzf_layout = {'window': 
+let g:fzf_layout = {'window':
 \   { 'width': 0.9, 'height': 0.6, 'border': 'rounded'
-\   } 
+\   }
 \ }
 
 " YouCompleteMe {{{2
@@ -432,7 +434,8 @@ let g:python_highlight_all = 1    " highlight python
 
 " vimtex {{{2
 let g:tex_flavor='latex'          " don't use plain TeX
-let g:vimtex_view_method='skim'   " set viewer
+let g:vimtex_view_method='sioyek' " set viewer
+let g:vimtex_view_sioyek_exe='/Applications/sioyek.app/Contents/MacOS/sioyek'
 let g:vimtex_quickfix_autoclose_after_keystrokes=3           " close quickfix
 let g:vimtex_compiler_latexmk = {
 \   'executable' : 'latexmk',
@@ -457,13 +460,30 @@ endfunction
 
 " vim-markdown {{{2
 let g:vim_markdown_folding_disabled = 1                      " disable autofold
-let g:vim_markdown_strikethrough = 1                         " ~~strikethrough~~  
+let g:vim_markdown_strikethrough = 1                         " ~~strikethrough~~
 let g:vim_markdown_math = 1                                  " LaTeX
 
 " markdown-preview.nvim {{{2
 let g:mkdp_browser = 'Google Chrome'                         " browser
 
 " autocmds {{{1
+function s:set_colors()
+endfunction
+
+augroup colors
+    autocmd!
+    autocmd ColorScheme * call <sid>set_colors()
+    " https://vim.fandom.com/wiki/Highlight_unwanted_spaces
+    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+    autocmd InsertEnter * call clearmatches()
+    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+    autocmd BufWinLeave * call clearmatches()
+    " https://vim.fandom.com/wiki/Remove_unwanted_spaces
+    " remove trailing whitespace: %s/\s\+$//e
+augroup END
+
+colorscheme polar                 " colorscheme
+
 augroup vimrc
   autocmd!
 
@@ -482,6 +502,9 @@ augroup vimrc
     \ 'command': 'GetDoc',
     \ 'syntax': &filetype
     \ }
+
+  " set Cython comment style to Python instead of C
+  " autocmd FileType cython call tcomment#type#Define('cython', tcomment#type#GetDefinition('python'))
 
   " disable file reloading
   " autocmd VimEnter * WatchForChangesAllFile
