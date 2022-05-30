@@ -3,18 +3,17 @@ let g:polyglot_disabled = ['sensible', 'autoindent'] " needs to be before
 call plug#begin('~/.vim/plugged') " Plugins will be downloaded under the specified directory.
 Plug 'rakr/vim-one'               " Atom's One theme
 Plug 'stephen-huan/vim-polar'     " fork of habamax/vim-polar
-Plug 'lifepillar/vim-colortemplate'                 " color scheme editing
+" color scheme editing
+Plug 'lifepillar/vim-colortemplate'
 Plug 'itchyny/lightline.vim'      " line
 Plug 'mhinz/vim-startify'         " start manager
 Plug 'mbbill/undotree'            " visualize undo tree
 Plug 'djoshea/vim-autoread'       " automatically load changed files
 Plug 'junegunn/goyo.vim'          " distraction free writing
 Plug 'francoiscabrol/ranger.vim'  " ranger integration
-" Plug '/usr/local/opt/fzf'       " homebrew path to fzf
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " cutting-edge fzf version
+Plug 'junegunn/fzf'               " fzf
 Plug 'junegunn/fzf.vim'           " fzf + vim integration
-" Plug 'ycm-core/YouCompleteMe'   " autocomplete
-Plug '~/.vim/plugged/YouCompleteMe'                 " load YCM without updating
+Plug 'ycm-core/YouCompleteMe'     " autocomplete
 Plug 'SirVer/ultisnips'           " snippets engine
 Plug 'honza/vim-snippets'         " community snippets
 Plug 'dense-analysis/ale'         " syntax checking
@@ -23,24 +22,26 @@ Plug 'tpope/vim-sleuth'           " detect indent and adjust indent options
 Plug 'tpope/vim-surround'         " editing character pairs
 Plug 'godlygeek/tabular'          " misc. text operations
 Plug 'andymass/vim-matchup'       " matching
-Plug 'vim-scripts/auto-pairs-gentle'                " insert pairs automatically
+" insert pairs automatically
+Plug 'vim-scripts/auto-pairs-gentle'
 Plug 'easymotion/vim-easymotion'  " move around easily
 Plug 'tpope/vim-repeat'           " allow plugins to . repeat
 Plug 'svermeulen/vim-yoink'       " maintain a yank history
 Plug 'farmergreg/vim-lastplace'   " go to the last position when loading a file
 Plug 'chrisbra/Colorizer'         " colors
-Plug 'powerman/vim-plugin-AnsiEsc'                  " ANSI colors
+" ANSI colors
+Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'airblade/vim-gitgutter'     " show git in the gutter
 Plug 'dstein64/vim-startuptime'   " measure startup time
-" Plug 'mattn/emmet-vim'            " fancy web development plugin
 " Plugins for specific languages
 Plug 'sheerun/vim-polyglot'       " language pack
 Plug 'lervag/vimtex'              " LaTeX
 Plug 'neomutt/neomutt.vim'        " email
 Plug 'dag/vim-fish'               " fish shell
 Plug 'tpope/vim-git'              " git
-" Plug 'lambdalisue/vim-cython-syntax'                " cython
-Plug 'stephen-huan/vim-cython-syntax'               " cython
+" cython
+" Plug 'lambdalisue/vim-cython-syntax'
+Plug 'stephen-huan/vim-cython-syntax'
 " would be nice if there was a good java syntax plugin
 " markdown preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
@@ -57,7 +58,7 @@ filetype plugin indent on         " autoindent based on filetype
 set encoding=utf-8                " utf-8 encoding
 set noarabicshape                 " disable arabic
 set fileformat=unix               " UNIX file format
-set shell=/usr/local/bin/fish     " shell
+set shell=/usr/bin/fish           " shell
 set backspace=indent,eol,start    " make backspace always work
 set tabstop=4                     " number of visual spaces per tab
 set expandtab                     " change tab into spaces
@@ -70,6 +71,9 @@ set nrformats=alpha,hex,bin       " number formats for ctrl-a and ctrl-x
 set formatprg=far                 " (f)ast rewrite of p(ar)
 
 " appearance {{{2
+" if TERM is not xterm, set these manually to be safe
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors                 " 24 bit colors
 set background=light              " light background
 syntax on                         " syntax highlighting
@@ -80,7 +84,8 @@ set wildmenu                      " visual autocomplete for command menu
 set number                        " line numbers
 set relativenumber                " numbers relative to cursor line
 set cursorline                    " highlight current line
-set cursorlineopt=screenline,number                " screenline vs file line
+" screenline vs file line
+set cursorlineopt=screenline,number
 set noshowmatch                   " disable matching [{()}]
 " TODO: configure
 set nolist                        " disable show whitespace with characters
@@ -102,12 +107,12 @@ set wrapscan                      " wrap search
 " backup/undo {{{2
 set backup                        " store backups
 " store file at .vim, defaulting to . if not found
-set backupdir=~/.vim/backupdir//,.
+set backupdir=~/.cache/vim/backup,.
 " set patchmode=.orig               " store original files (doesn't store to backupdir)
 set undofile                      " store undo information to a file
-set undodir=~/.vim/undodir,.
-set directory=~/.vim/swapdir//,.
-set updatetime=100                " swapfile write frequency, also cursor update
+set undodir=~/.cache/vim/undo,.
+set directory=~/.cache/vim/swap,.
+set updatetime=100                " swapfile write and cursor update frequency
 
 " spellcheck {{{2
 " enable spellcheck locally for certain file types
@@ -347,18 +352,28 @@ let g:UltiSnipsJumpBackwardTrigger='<c-b>'
 
 " plugins {{{1
 " lightline {{{2
+" set lightline colorscheme
 let g:lightline = {
-\   'colorscheme': 'mono',
+\   'colorscheme': 'polar',
 \ }
+" remove 'fileformat' and 'fileencoding' from the default bar
+let g:lightline.active = {
+    \ 'right': [ [ 'lineinfo' ],
+    \            [ 'percent' ],
+    \            [ 'filetype' ] ]
+    \ }
 
 " vim-startify {{{2
-let g:startify_session_persistence = 0                       " update sessions
+" update sessions
+let g:startify_session_persistence = 0
 
 " undotree {{{2
-let g:undotree_WindowLayout=3    " open on right side
+" open on right side
+let g:undotree_WindowLayout=3
 
 " goyo.vim {{{2
-let g:goyo_width=81              " weirdly, goyo character width changes by two
+" weirdly, goyo character width changes by two
+let g:goyo_width=81
 
 " fzf {{{2
 " start in new window
@@ -368,16 +383,20 @@ let g:fzf_layout = {'window':
 \ }
 
 " YouCompleteMe {{{2
-let g:ycm_complete_in_comments = 1                           " run in comments
+" run in comments
+let g:ycm_complete_in_comments = 1
 
 "ultisnips {{{2
-let g:UltiSnipsSnippetDirectories=['UltiSnips', 'snipps']    " directories
+" directories
+let g:UltiSnipsSnippetDirectories=['UltiSnips', 'snipps']
 
 " ale {{{2
-let g:ale_enabled = 0            " disable ale
+" disable ale
+let g:ale_enabled = 0
 
 " autopair {{{2
-let g:AutoPairsUseInsertedCount = 1                          "'gentle' algorithm
+" 'gentle' algorithm
+let g:AutoPairsUseInsertedCount = 1
 
 " default pairs base on filetype
 func! AutoPairsDefaultPairs()
@@ -426,7 +445,8 @@ let g:EasyMotion_startofline = 0 " don't change cursor position
 
 " vim-yoink {{{2
 let g:yoinkMaxItems=100          " history size
-let g:yoinkIncludeDeleteOperations=1                         " include delete
+" include delete
+let g:yoinkIncludeDeleteOperations=1
 let g:yoinkShowYanksWidth=1000   " number of characters stored
 
 " python-syntax {{{2
@@ -436,7 +456,8 @@ let g:python_highlight_all = 1    " highlight python
 let g:tex_flavor='latex'          " don't use plain TeX
 let g:vimtex_view_method='sioyek' " set viewer
 let g:vimtex_view_sioyek_exe='/Applications/sioyek.app/Contents/MacOS/sioyek'
-let g:vimtex_quickfix_autoclose_after_keystrokes=3           " close quickfix
+" close quickfix
+let g:vimtex_quickfix_autoclose_after_keystrokes=3
 let g:vimtex_compiler_latexmk = {
 \   'executable' : 'latexmk',
 \   'options' : [
@@ -459,12 +480,13 @@ function s:start_server()
 endfunction
 
 " vim-markdown {{{2
-let g:vim_markdown_folding_disabled = 1                      " disable autofold
-let g:vim_markdown_strikethrough = 1                         " ~~strikethrough~~
-let g:vim_markdown_math = 1                                  " LaTeX
+let g:vim_markdown_folding_disabled = 1 " disable autofold
+let g:vim_markdown_strikethrough = 1    " ~~strikethrough~~
+let g:vim_markdown_math = 1             " LaTeX
 
 " markdown-preview.nvim {{{2
-let g:mkdp_browser = 'Google Chrome'                         " browser
+" browser
+let g:mkdp_browser = 'google-chrome-stable'
 
 " autocmds {{{1
 function s:set_colors()
@@ -482,7 +504,8 @@ augroup colors
     " remove trailing whitespace: %s/\s\+$//e
 augroup END
 
-colorscheme polar                 " colorscheme
+" colorscheme
+colorscheme polar
 
 augroup vimrc
   autocmd!
@@ -502,9 +525,6 @@ augroup vimrc
     \ 'command': 'GetDoc',
     \ 'syntax': &filetype
     \ }
-
-  " set Cython comment style to Python instead of C
-  " autocmd FileType cython call tcomment#type#Define('cython', tcomment#type#GetDefinition('python'))
 
   " disable file reloading
   " autocmd VimEnter * WatchForChangesAllFile

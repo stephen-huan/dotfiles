@@ -1,29 +1,33 @@
 " vim-plug plugins {{{1
-call plug#begin(stdpath('data') . '/plugged') " Plugins will be downloaded under the specified directory.
-Plug 'rakr/vim-one'               " Atom's One theme
-Plug 'itchyny/lightline.vim'      " line
-Plug 'easymotion/vim-easymotion'  " move around easily
-Plug 'junegunn/goyo.vim'          " distraction free writing
-Plug 'neomutt/neomutt.vim'        " email
-call plug#end()                   " List ends here. Plugins become visible to Vim after this call.
+" Plugins will be downloaded under the specified directory.
+call plug#begin(stdpath('data') . '/plugged')
+Plug 'stephen-huan/vim-polar'    " fork of habamax/vim-polar
+Plug 'itchyny/lightline.vim'     " line
+Plug 'easymotion/vim-easymotion' " move around easily
+Plug 'junegunn/goyo.vim'         " distraction free writing
+Plug 'neomutt/neomutt.vim'       " email
+" List ends here. Plugins become visible to Vim after this call.
+call plug#end()
 
 " default options {{{1
 " list of options ':options'
 " editing {{{2
 set nocompatible                  " turn off vi compatibility mode
 set encoding=utf-8                " utf-8 encoding
-set shell=/usr/local/bin/fish     " shell
+set shell=/usr/bin/fish           " shell
 
 " appearance {{{2
 set termguicolors                 " 24 bit colors
 set background=light              " light background
 syntax on                         " syntax highlighting
+colorscheme polar                 " colorscheme
 set laststatus=2                  " draw status bar for each window
 set showcmd                       " show an incomplete command
 set noshowmode                    " don't show mode, shown in bar already
 set wildmenu                      " visual autocomplete for command menu
 set cursorline                    " highlight current line
-" set cursorlineopt=screenline,number                " screenline vs file line
+" screenline vs file line
+" set cursorlineopt=screenline,number
 set noshowmatch                   " disable matching [{()}]
 set nolist                        " disable show whitespace with characters
 set wrap                          " wrap if longer than window size
@@ -35,26 +39,26 @@ set display=truncate,uhex         " truncate last line, display unicode as hex
 
 " search {{{2
 set ignorecase                    " ignore upper/lower case when searching
-set smartcase                     " case sensitive if upper case 
+set smartcase                     " case sensitive if upper case
 set incsearch                     " show partial matches for a search phrase
 set hlsearch                      " highlight all matching phrases
 set wrapscan                      " wrap search
 
 " windows {{{2
-set nosplitbelow                  " split windows above
+set splitbelow                    " split windows below
 set splitright                    " split windows right
 
 " miscellaneous {{{2
 set clipboard=unnamedplus         " system clipboard
 set mouse=a                       " mouse support
 set mousemodel=popup              " right clicking opens a menu
-set updatetime=100                " swapfile write frequency, also cursor update
+set updatetime=100                " swapfile write and cursor update frequency
 
 " keybindings {{{1
 " timing {{{2
-set timeout                       " wait for mappings, if they are a prefix 
+set timeout                       " wait for mappings, if they are a prefix
 set ttimeout                      " timeout for key codes
-set timeoutlen=1000               " delay for mappings until timeout 
+set timeoutlen=1000               " delay for mappings until timeout
 set ttimeoutlen=10                " delay for key codes
 
 " }}}2
@@ -87,7 +91,7 @@ nnoremap <leader>c :set hlsearch! hlsearch?<cr>
 " toggle spell check
 nnoremap <leader>C :set spell! spell?<cr>
 " source vimrc
-nnoremap <leader>v :source ~/.config/nvim/init.vim<cr>
+nnoremap <leader>v :source ~/.config/nvim/init-pager.vim<cr>
 " reset syntax
 nnoremap <leader>e :syntax off <bar> syntax on<cr>
 " goyo
@@ -110,39 +114,17 @@ map <leader>n <Plug>(easymotion-n)
 map <leader>N <Plug>(easymotion-N)
 
 " plugins {{{1
-" one {{{2
-function! s:set_colors()                                     " overwrite default colors
-    highlight Normal                   guibg=#ffffff
-    " error highlight from https://github.com/habamax/vim-polar
-    highlight Error      guifg=#ffffff guibg=#e07070
- 
-    " spell highlight
-    highlight SpellBad   guifg=#e45649 guibg=NONE    " red
-    highlight SpellCap   guifg=#4078f2 guibg=NONE    " blue
-    highlight SpellRare  guifg=#a626a4 guibg=NONE    " magenta
-    highlight SpellLocal guifg=#0184bc guibg=NONE    " cyan
-    " diff taken from https://github.com/endel/vim-github-colorscheme
-    highlight DiffAdd    guifg=#494b53 guibg=#ddffdd " green
-    highlight DiffChange               guibg=#f0f0f0 " grey
-    highlight DiffText   guifg=#494b53 guibg=#ddddff " blue
-    highlight DiffDelete guifg=#ffdddd guibg=#ffdddd " red
-    " hide things
-    highlight Hide       guifg=#ffffff guibg=NONE 
-endfunction
-
-augroup colors
-    autocmd!
-    autocmd ColorScheme * call <SID>set_colors() 
-augroup END
-
-let g:one_allow_italics = 1       " support italics
-colorscheme one                   " colorscheme
-
 " lightline {{{2
+" set lightline colorscheme
 let g:lightline = {
-\   'colorscheme': 'mono', 
+\   'colorscheme': 'polar',
 \ }
-
+" remove 'fileformat' and 'fileencoding' from the default bar
+let g:lightline.active = {
+    \ 'right': [ [ 'lineinfo' ],
+    \            [ 'percent' ],
+    \            [ 'filetype' ] ]
+    \ }
 " easymotion {{{2
 let g:EasyMotion_smartcase = 1   " equivalent to vim's smartcase
 let g:EasyMotion_startofline = 0 " don't change cursor position
