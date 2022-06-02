@@ -13,7 +13,7 @@ is just as thin wrapper over `git` with some extra features.
 
 Finally, `yadm bootstrap` allows `~/.config/yadm/bootstrap`
 to be executed after install.
-```bash
+```console
 yadm bootstrap
 ```
 
@@ -38,9 +38,10 @@ For all the commands, add `-v` to see what's going on.
 
 - `mkrc`: move a file to `~/.dotfiles` and symlink.
 
-`mkrc ~/.vimrc` would move `~/.vimrc` to `~/.dotfiles/vimrc` and link. 
+`mkrc ~/.vimrc` would move `~/.vimrc` to `~/.dotfiles/vimrc` and link.
 
-`mkrc ~/.config/fish/config.fish` would move `config.fish` to `~/.dotfiles/config/fish/config.fish` 
+`mkrc ~/.config/fish/config.fish` would move `config.fish`
+to `~/.dotfiles/config/fish/config.fish`
 
 You can move files by hand and symlink later with the next command.
 

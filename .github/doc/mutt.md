@@ -6,7 +6,7 @@ mutt natively, but I prefer external programs for those functions.
 
 A quick overview:
 - downloading mail: [offlineimap](#offlineimap)
-- reading mail: mutt + [neovim](./vim.md) (occasional full-screen reading) + 
+- reading mail: mutt + [neovim](./vim.md) (occasional full-screen reading) +
 [w3m](http://w3m.sourceforge.net/) (for html emails)
 - editing mail: [vim](./vim.md)
 - sending mail: [msmtp](#msmtp)
@@ -100,28 +100,29 @@ asking the user whether they trust the developer while getting a refresh token.
 We'll be using the
 [msal](https://msal-python.readthedocs.io/en/latest/) client library.
 
-Follow the instructions to [create a new application](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app) 
-and [add IMAP and SMTP permissions](https://docs.microsoft.com/en-us/exchange/client-developer/legacy-protocols/how-to-authenticate-an-imap-pop-smtp-application-by-using-oauth).
+Follow the instructions to [create a new application](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app)
+and [add IMAP and SMTP permissions](
+https://docs.microsoft.com/en-us/exchange/client-developer/legacy-protocols/how-to-authenticate-an-imap-pop-smtp-application-by-using-oauth).
 These instructions are a bit verbose, so I'll condense them here:
 1. Navigate to the [Azure portal](https://portal.azure.com/)
-2. Go to "Azure Active Directory", either by searching or clicking on the icon 
+2. Go to "Azure Active Directory", either by searching or clicking on the icon
 3. Find "App registrations" in the side bar
-under "Manage" and press "New registration"
-5. Under "Manage", select "Authentication". Use the "Web"
-platform with a redirect URI of "http://localhost".
-6. Select "Certificates & secrets" and press "New
-client secret". Record the client id and secret.
-7. Select "API Permissions". Press "Add a permission" and use "Microsoft Graph"
-with "Delegated permissions". The permissions we need are `offline_access`
-(under OpenId permissions), `User.Read` (under User), `IMAP.AccessAsUser.all`
-(under IMAP) and `SMTP.Send` (under SMTP).
-8. Depending on the situation, we might need a tenant. For Georgia Tech,
-this is `gtvault.onmicrosoft.com`. This value can be found by going to the
-"Azure Active Directory" page and looking at the value of "Primary domain".
-Otherwise, this can be set to `common`.
+   under "Manage" and press "New registration"
+4. Under "Manage", select "Authentication". Use the "Web"
+   platform with a redirect URI of "http://localhost".
+5. Select "Certificates & secrets" and press "New
+   client secret". Record the client id and secret.
+6. Select "API Permissions". Press "Add a permission" and use "Microsoft
+   Graph" with "Delegated permissions". The permissions we need are
+   `offline_access` (under OpenId permissions), `User.Read` (under User),
+   `IMAP.AccessAsUser.all` (under IMAP) and `SMTP.Send` (under SMTP).
+7. Depending on the situation, we might need a tenant. For Georgia Tech,
+   this is `gtvault.onmicrosoft.com`. This value can be found by going to
+   the "Azure Active Directory" page and looking at the value of "Primary
+   domain". Otherwise, this can be set to `common`.
 
-Something strange Microsoft does is their
-[refresh tokens](https://docs.microsoft.com/en-us/azure/active-directory/develop/refresh-tokens):
+Something strange Microsoft does is their [refresh tokens](
+https://docs.microsoft.com/en-us/azure/active-directory/develop/refresh-tokens):
 they give a new refresh token back after every access token request, and
 refresh tokens expire after 90 days. If you were authenticating through
 offlineimap, you might be passing `oauth2_refresh_token` so offlineimap can

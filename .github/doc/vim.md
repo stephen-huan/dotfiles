@@ -1,7 +1,7 @@
 # [vim](https://www.vim.org/)
 
 First, install [vim-plug](https://github.com/junegunn/vim-plug) with:
-```bash
+```console
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 ```
@@ -14,7 +14,7 @@ Then, run `:PlugInstall` to install the various plugins.
 usability. It's an almost drop-in replacement for vim, although there are
 minor differences (you can't literally copy your vimrc into a init.vim).
 Although it's nice for a few specific things, e.g. as a man page parser:
-```shell
+```fish
 set MANPAGER /usr/local/bin/nvim -u ~/.config/nvim/init-pager.vim +Man!
 ```
 there's not really a "killer feature" that would make me prefer it over
@@ -37,7 +37,7 @@ and will load modelines which have had and continue to have [security
 vulnerabilities](https://lwn.net/Vulnerabilities/20249/). See my
 hardened vimrc at [~/.vim/vimrc-private](./.vim/vimrc-private), and
 vim itself can be started with:
-```shell
+```console
 /usr/local/bin/rvim --clean --noplugin -nu ~/.vim/vimrc-private
 ```
 

@@ -1,4 +1,4 @@
-# dotfiles 
+# dotfiles
 
 ![yabai](./doc/img/yabai.png "Screenshot of environment")
 ![vim_tmux](./doc/img/vim_tmux.png "vim + tmux")
@@ -13,13 +13,14 @@ btw (it's a huge pain to setup on Macbooks).
 
 [[Yabai Demonstration Video]](https://www.youtube.com/watch?v=AdwhjIg_Xe4)
 
-Files are managed with [yadm](https://yadm.io/), see [dotfiles](./doc/meta.md)
-for other dotfile systems and how to use `yadm`.
+Files are managed with [yadm](https://yadm.io/),
+see [dotfiles.md](./doc/dotfiles.md) for
+other dotfile systems and how to use `yadm`.
 
 Quickstart:
 ```bash
 cd ~
-# make sure yadm is installed 
+# make sure yadm is installed
 yay -S yadm-git
 yadm clone https://github.com/stephen-huan/dotfiles
 # if yadm does not prompt automatically
@@ -35,7 +36,7 @@ yadm status
 - Keyboard shortcuts
     - [karabiner](./doc/karabiner.md),
 kernel extension for input device manipulation (keyboard, mouse)
-    - [skhd](./doc/skhd.md), hotkey manipulation, works well with Yabai 
+    - [skhd](./doc/skhd.md), hotkey manipulation, works well with Yabai
 - Command line interfaces (terminal programs)
     - [kitty](./doc/kitty.md), terminal emulator
     - [fish](./doc/fish.md), shell
@@ -45,7 +46,7 @@ kernel extension for input device manipulation (keyboard, mouse)
     - [cmus](./doc/cmus.md), music player
     - [mutt](./doc/mutt.md), mail user agent
 - DNS/internet
-    - [stubby](./doc/stubby.md), stubby (i.e. non-recursive) DNS resolver 
+    - [stubby](./doc/stubby.md), stubby (i.e. non-recursive) DNS resolver
     - [unbound](./doc/unbound.md), general DNS resolver with caching
 
 [MacOS-specific tips](./doc/macos.md)
