@@ -1,0 +1,5 @@
+#!/usr/bin/env fish
+
+# clean version of vim for private editing
+/usr/bin/rvim --clean --noplugin -nu ~/.vim/vimrc-private $argv
+
