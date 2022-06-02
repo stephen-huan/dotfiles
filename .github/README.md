@@ -18,7 +18,7 @@ see [dotfiles.md](./doc/dotfiles.md) for
 other dotfile systems and how to use `yadm`.
 
 Quickstart:
-```bash
+```shell
 cd ~
 # make sure yadm is installed
 yay -S yadm-git

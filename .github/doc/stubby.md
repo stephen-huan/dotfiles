@@ -8,6 +8,6 @@ seems to do a well enough job on its own.
 
 In order to get [Cloudflare DNS](https://1.1.1.1/) to work with Stubby,
 it's necessary to generate TLS pinsets which can be done with the following:
-```console
+```shell
 echo | openssl s_client -connect 1.1.1.1:853 2>/dev/null | openssl x509 -pubkey -noout | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64
 ```

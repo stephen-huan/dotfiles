@@ -16,7 +16,7 @@ desktops, disable application focus switching with System Preferences
 -> Mission Control -> When switching to an application, switch to a
 Space with open windows for the application. Note that this prevents
 switching for something like Spotlight. Also, run:
-```console
+```shell
 defaults write com.apple.Dock workspaces-auto-swoosh -bool no
 ```
 
@@ -29,7 +29,7 @@ to temporary storage then move it back to reactivate.
 
 How do you move Finder when Catalina now loads
 macOS system files on a read only boot partition?
-```console
+```shell
 sudo mount -uw /
 ```
 System Integrity Protection (SIP) needs to be
@@ -44,7 +44,7 @@ file explorer, which I've replaced with ranger.
 
 There's no point to disable the Dock if Yabai
 breaks so the next best thing is to hide the dock.
-```console
+```shell
 # Hide Dock
 defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock autohide-delay -float 1000

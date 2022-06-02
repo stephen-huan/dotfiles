@@ -1,7 +1,7 @@
 # [vim](https://www.vim.org/)
 
 First, install [vim-plug](https://github.com/junegunn/vim-plug) with:
-```console
+```shell
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 ```
@@ -37,7 +37,7 @@ and will load modelines which have had and continue to have [security
 vulnerabilities](https://lwn.net/Vulnerabilities/20249/). See my
 hardened vimrc at [~/.vim/vimrc-private](./.vim/vimrc-private), and
 vim itself can be started with:
-```console
+```shell
 /usr/local/bin/rvim --clean --noplugin -nu ~/.vim/vimrc-private
 ```
 

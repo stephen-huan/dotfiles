@@ -19,7 +19,7 @@ I stick to v0.5.0 as it has all the features I need while keeping the
 underline which indicates the currently active space. The simplest way
 to install a specific version used to be to `brew install` a raw URL
 pointing to the Formula, e.g.
-```console
+```shell
 brew install "https://raw.githubusercontent.com/cmacrae/homebrew-formulae/6db39a0f2ce45efbe5189bde4a43258781f5a416/spacebar.rb"
 ```
 
@@ -29,14 +29,14 @@ this case `cmacrae/formulae/spacebar`. The second argument is a tap, which is
 just a collection of `*.rb` formulas. We can make a tap without needing to
 make a GitHub repository by using `brew tap-new` (note that you can name the
 tap whatever you want, I just call mine `stephen-huan/local-formulae`).
-```console
+```shell
 brew tap-new stephen-huan/local-formulae
 brew extract --version=0.5.0 cmacrae/formulae/spacebar stephen-huan/local-formulae
 brew install stephen-huan/local-formulae/spacebar@0.5.0
 ```
 
 The formula must be referred to as `spacebar@0.5.0` e.g.
-```console
+```shell
 brew services start spacebar@0.5.0
 ```
 
