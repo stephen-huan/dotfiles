@@ -1,9 +1,0 @@
-#!/bin/bash
-temp=$PWD
-proj=/Users/stephenhuan/Programs/bin/pybin
-cd "$proj"
-venv=$(pipenv --venv)
-cd "$temp"
-source $venv"/bin/activate"
-export PYTHONPATH=$temp
-python "$proj""/karabiner.py" "$@"

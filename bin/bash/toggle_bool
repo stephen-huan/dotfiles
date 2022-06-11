@@ -1,9 +1,0 @@
-#!/bin/bash
-
-# switches between two booleans
-
-if [ "$1" = "true" ]; then
-  echo false
-else
-  echo true
-fi
