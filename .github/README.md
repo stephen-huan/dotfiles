@@ -24,10 +24,10 @@ yadm status
     - i3bar, top bar with icons
     - i3status, status line
 - keyboard
-    - [tmk/qmk](https://github.com/stephen-huan/qmk_firmware),
+    - [tmk/qmk](https://github.com/stephen-huan/qmk_firmware/tree/vusb-nkro),
       open-source firmware for mechanical keyboards
 - command line interfaces (terminal programs)
-    - alacritty, terminal emulator
+    - [alacritty](./doc/alacritty.md), terminal emulator
     - [fish](./doc/fish.md), shell
     - [ranger](./doc/ranger.md), file manager
     - [tmux](./doc/tmux.md), terminal multiplexer
