@@ -1,10 +1,20 @@
 # [cmus](https://cmus.github.io/)
 
-`cmus` is a terminal based music player. Lightweight and fast, I can't
-complain. The only issue is that if you close the window, the music stops
-playing so it's useful to put it in a `tmux` server (this has the added
-benefit of being able to open multiple cmus windows at a time, because
-each is a view into the same running process).
+`cmus` is a terminal based music player. It's lightweight and fast; what more
+could you ask for? My only complaint is that if you close the window, the music
+stops playing. One solution is to put it in a [tmux](./tmux.md) server (this
+has the added benefit of being able to open multiple cmus windows at the same
+time, because each is a view into the same running process). These days I'm too
+lazy to start tmux, so I just put a cmus window in a high-number workspace and
+switch to that workspace when I need to.
+
+My friend swears by [mpd](https://www.musicpd.org/) because of its
+client-server architecture: that gives the ability to use any client,
+from curses-based terminal interfaces to integration in emacs. It also
+makes it easy to do cool things like fancy frequency visualizations and
+sharing what music you're listening to on a webserver. I don't have
+these use cases, so I stick to cmus. And when I tried to setup mpd a
+long time ago, I found it hard to do and never got it working.
 
 The highest praise I can give cmus is that I have not
 touched the configuration at all, but I use it very often.
@@ -68,7 +78,7 @@ that artist in the same position in the implicit queue you were in.
 ## `cmus-remote`
 
 `cmus-remote` can be used to control cmus from the command-line, e.g. to
-generate a status text based on the current song (which I do for `spacebar`) or
-to integrate into `ranger`, e.g. when selecting an audio file to add the file
+generate a status text based on the current song (which I do for `i3status`)
+or to integrate into `ranger`, e.g. when selecting an audio file, add the file
 to the queue and play it. See the man page `cmus-remote` for more details.
 

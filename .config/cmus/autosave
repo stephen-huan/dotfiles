@@ -50,9 +50,15 @@ set continue=true
 set continue_album=true
 set device=/dev/cdrom
 set display_artist_sort_name=false
-set dsp.coreaudio.device=
-set dsp.coreaudio.enable_hog_mode=false
-set dsp.coreaudio.sync_sample_rate=false
+set dsp.alsa.device=
+set dsp.ao.buffer_size=16384
+set dsp.ao.device_interface=
+set dsp.ao.driver=
+set dsp.ao.wav_counter=1
+set dsp.ao.wav_dir=/home/stephenhuan
+set dsp.jack.resampling_quality=2
+set dsp.jack.server_name=
+set dsp.oss.device=
 set follow=false
 set format_current= %a - %l -%3n. %t%= %y 
 set format_playlist= %-21%a %3n. %t%= %y %d %{?X!=0?%3X ?    }
@@ -66,23 +72,29 @@ set format_treewin=  %l
 set format_treewin_artist=%a
 set icecast_default_charset=ISO-8859-1
 set id3_default_charset=ISO-8859-1
-set input.aac.priority=50
+set input.cdio.cddb_url=freedb.freedb.org:8880
+set input.cdio.priority=50
 set input.cue.priority=50
 set input.ffmpeg.priority=30
 set input.flac.priority=50
 set input.mad.priority=55
-set input.mp4.priority=50
-set input.opus.priority=50
+set input.modplug.priority=50
 set input.vorbis.priority=50
 set input.wav.priority=50
+set input.wavpack.priority=50
 set lib_add_filter=
 set lib_sort=albumartist date album discnumber tracknumber title filename play_count
+set mixer.alsa.channel=
+set mixer.alsa.device=
+set mixer.oss.channel=PCM
+set mixer.oss.device=
+set mixer.pulse.restore_volume=1
 set mouse=false
 set mpris=true
-set output_plugin=coreaudio
+set output_plugin=pulse
 set passwd=
 set pl_sort=
-set play_library=false
+set play_library=true
 set play_sorted=false
 set repeat=false
 set repeat_current=false
@@ -169,9 +181,14 @@ bind common k win-up
 bind common l seek +5
 bind common left seek -5
 bind common m toggle aaa_mode
+bind common mlb_click_bar player-pause
 bind common mlb_click_selected win-activate
 bind common mouse_scroll_down win-down
+bind common mouse_scroll_down_bar seek -5
+bind common mouse_scroll_down_title right-view
 bind common mouse_scroll_up win-up
+bind common mouse_scroll_up_bar seek +5
+bind common mouse_scroll_up_title left-view
 bind common n search-next
 bind common o toggle play_sorted
 bind common p win-mv-after
