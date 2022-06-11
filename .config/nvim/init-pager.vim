@@ -14,7 +14,7 @@ call plug#end()
 " editing {{{2
 set nocompatible                  " turn off vi compatibility mode
 set encoding=utf-8                " utf-8 encoding
-set shell=/usr/bin/fish           " shell
+set shell=/usr/local/bin/fish     " shell
 
 " appearance {{{2
 set termguicolors                 " 24 bit colors

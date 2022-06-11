@@ -58,7 +58,7 @@ filetype plugin indent on         " autoindent based on filetype
 set encoding=utf-8                " utf-8 encoding
 set noarabicshape                 " disable arabic
 set fileformat=unix               " UNIX file format
-set shell=/usr/bin/fish           " shell
+set shell=/usr/local/bin/fish     " shell
 set backspace=indent,eol,start    " make backspace always work
 set tabstop=4                     " number of visual spaces per tab
 set expandtab                     " change tab into spaces
@@ -486,7 +486,7 @@ let g:vim_markdown_math = 1             " LaTeX
 
 " markdown-preview.nvim {{{2
 " browser
-let g:mkdp_browser = 'google-chrome-stable'
+let g:mkdp_browser = 'Google Chrome'
 
 " autocmds {{{1
 function s:set_colors()
@@ -515,7 +515,7 @@ augroup vimrc
     \ if !argc()
     \ |   let g:startify_custom_header = startify#pad(split(system('cat ~/.vim/logo/logo.txt'), '\n'))
     \ |  endif
-  autocmd User Startified ColorHighlight
+  " autocmd User Startified ColorHighlight
   " autocmd User Startified setlocal nowrap | execute "normal! gg" | AnsiEsc
 
   autocmd BufWritePost *.tex call <sid>start_server()

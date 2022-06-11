@@ -3,15 +3,26 @@
 ![yabai](./doc/img/yabai.png "Screenshot of environment")
 ![vim_tmux](./doc/img/vim_tmux.png "vim + tmux")
 
-Collection of configuration files ("dotfiles") primarily meant for yabai
-configuration on MacOS (although the CLIs are generally pretty OS-agnostic).
-I would, however recommend moving away from MacOS.
-Their [track record](https://sneak.berlin/20201112/your-computer-isnt-yours/)
-isn't the best and I (should) use
-[arch](https://gist.github.com/stephen-huan/dfec407ea31707f1ef43c1c7e1d10733)
-btw (it's a huge pain to setup on Macbooks).
 
 [[Yabai Demonstration Video]](https://www.youtube.com/watch?v=AdwhjIg_Xe4)
+
+Collection of configuration files ("dotfiles") primarily meant for
+yabai configuration on MacOS (although the CLIs are generally pretty
+OS-agnostic). I would, however recommend moving away from MacOS.
+
+Their [track record](https://sneak.berlin/20201112/your-computer-isnt-yours/)
+with respect to security, privacy, and respecting user's freedoms in general
+isn't the best. As the M1 Macs are replacing Intel CPUs, Apple is increasingly
+restricting the ability for one to use one's own computer as one wishes.
+
+Instead, I would recommend a Linux distribution like
+[archlinux](https://www.archlinux.org/), [debian](https://debian.org/),
+or [gentoo](https://www.gentoo.org/). It's a bit of a pain to
+setup any Linux distribution on Macbooks but the folks at [t2linux
+wiki](https://wiki.t2linux.org/) have done great work towards this front. It's
+also possible to buy hardware explicitly designed for Linux compatibility
+from companies like [tuxedo computers](https://www.tuxedocomputers.com/en)
+and [system76](https://system76.com/).
 
 Files are managed with [yadm](https://yadm.io/),
 see [dotfiles.md](./doc/dotfiles.md) for
