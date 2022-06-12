@@ -1,0 +1,22 @@
+[user]
+	name = Stephen Huan
+	email = stephen03.huan@gmail.com
+[core]
+	excludesfile = ~/.config/git/gitignore
+[credential]
+	helper = /usr/share/git-credential-manager-core/git-credential-manager-core
+	credentialStore = gpg
+[pull]
+	rebase = true
+[init]
+	defaultBranch = master
+[alias]
+	a = add --all
+	cs = commit -S
+	cm = commit -S -m
+	tree = log --graph --decorate --pretty=oneline --abbrev-commit
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

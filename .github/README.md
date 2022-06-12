@@ -23,18 +23,21 @@ yadm status
     - i3-gaps, tiling window manager
     - i3bar, top bar with icons
     - i3status, status line
+- programming tools
+    - [alacritty](./doc/alacritty.md), terminal emulator
+    - [fish](./doc/fish.md), shell
+    - [vim](./doc/vim.md), text editor
+    - [git](./doc/git.md), version control
+- command line interfaces (terminal programs)
+    - [tmux](./doc/tmux.md), terminal multiplexer
+    - [ranger](./doc/ranger.md), file manager
+    - [pass](./doc/pass.md), password manager
+    - [neomutt](./doc/neomutt.md), mail user agent
+    - [cmus](./doc/cmus.md), music player
 - keyboard
     - [tmk/qmk](https://github.com/stephen-huan/qmk_firmware/tree/vusb-nkro),
       open-source firmware for mechanical keyboards
     - [clipster](./doc/clipster.md), clipboard manager
-- command line interfaces (terminal programs)
-    - [alacritty](./doc/alacritty.md), terminal emulator
-    - [fish](./doc/fish.md), shell
-    - [ranger](./doc/ranger.md), file manager
-    - [tmux](./doc/tmux.md), terminal multiplexer
-    - [vim](./doc/vim.md), text editor
-    - [cmus](./doc/cmus.md), music player
-    - [neomutt](./doc/neomutt.md), mail user agent
 - internet
     - DNS: [unbound](./doc/unbound.md), recursive DNS resolver with caching
 
