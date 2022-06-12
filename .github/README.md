@@ -37,7 +37,7 @@ yadm status
 - keyboard
     - [tmk/qmk](https://github.com/stephen-huan/qmk_firmware/tree/vusb-nkro),
       open-source firmware for mechanical keyboards
-    - [clipster](./doc/clipster.md), clipboard manager
+    - [clipster](./doc/clipboard.md), clipboard manager
 - internet
     - DNS: [unbound](./doc/unbound.md), recursive DNS resolver with caching
 
