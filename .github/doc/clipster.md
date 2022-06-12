@@ -32,11 +32,10 @@ the terminal window, you can no longer paste the text --- it is lost. This is
 because X only stores _references_ to the data, not copies. See the [Ubuntu
 wiki - ClipboardPersistence](https://wiki.ubuntu.com/ClipboardPersistence)
 for more information as well as this this [reddit post](
-https://www.reddit.com/r/archlinux/comments/9tkvsl/persistent_clipboard/).
-The Ubuntu article recommends Parcellite while
-the Reddit post recommends `clipmenu`. The [Arch
-wiki](https://wiki.archlinux.org/title/Clipboard#Managers) also has a list of
-clipboard managers. I tried a lot of these, and here's my commentary.
+https://www.reddit.com/r/archlinux/comments/9tkvsl/persistent_clipboard/). The
+Ubuntu article recommends Parcellite while the Reddit post recommends clipmenu.
+The [Arch wiki](https://wiki.archlinux.org/title/Clipboard#Managers) also has
+a list of clipboard managers. I tried a lot of these, and here's my commentary.
 
 For most clipboard managers, they don't solve the aforementioned persistence
 issue. Instead, they maintain a history of everything that is copied, and

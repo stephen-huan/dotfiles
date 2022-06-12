@@ -34,7 +34,7 @@ yadm status
     - [tmux](./doc/tmux.md), terminal multiplexer
     - [vim](./doc/vim.md), text editor
     - [cmus](./doc/cmus.md), music player
-    - [mutt](./doc/mutt.md), mail user agent
+    - [neomutt](./doc/neomutt.md), mail user agent
 - internet
     - DNS: [unbound](./doc/unbound.md), recursive DNS resolver with caching
 
