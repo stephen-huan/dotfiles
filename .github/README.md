@@ -10,7 +10,7 @@ Quickstart:
 ```shell
 cd ~
 # make sure yadm is installed
-yay -S yadm-git
+sudo pacman -S yadm
 yadm clone https://github.com/stephen-huan/dotfiles
 # if yadm does not prompt automatically
 yadm bootstrap
@@ -26,6 +26,7 @@ yadm status
 - keyboard
     - [tmk/qmk](https://github.com/stephen-huan/qmk_firmware/tree/vusb-nkro),
       open-source firmware for mechanical keyboards
+    - [clipster](./doc/clipster.md), clipboard manager
 - command line interfaces (terminal programs)
     - [alacritty](./doc/alacritty.md), terminal emulator
     - [fish](./doc/fish.md), shell
