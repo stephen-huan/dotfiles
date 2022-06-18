@@ -110,3 +110,23 @@ Note that the cursor can be fixed immediately by restarting i3.
 i3 restart
 ```
 
+### Improper Spacing on Certain Characters
+
+The characters "★" (Unicode codepoint `0x2605`) and "☆" (`0x2606`)
+are displayed improperly for "most" monospace fonts. This is because
+the Unicode specification considers them single-width characters but
+they but are rendered as double-width, causing them to clip into
+their neighbors. See the issue I filed, [alacritty/alacritty/#6144](
+https://github.com/alacritty/alacritty/issues/6144). I've tested:
+- Noto Sans Mono (`noto-fonts`)
+- IPAGothic (`otf-ipafont`)
+- Source Code Pro (`adobe-source-code-pro-fonts`)
+
+The fonts which I've found to work has been:
+- DejaVu Sans Mono (`ttf-dejavu`)
+
+It's a bit misleading to call this a "bug" since it's pretty much impossible to
+determine the _display_ width of Unicode characters (it's font specific). That
+being said, "GUI" programs like Firefox, Signal, and Emacs (but not gvim) seem
+to have figured it out, so there's no real reason a terminal emulator couldn't.
+
