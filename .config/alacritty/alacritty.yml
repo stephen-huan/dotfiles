@@ -45,7 +45,23 @@ colors:
     text: '#ffffff'
     cursor: '#000000'
 
+  # Vi mode cursor colors
+  #
+  # Colors for the cursor when the vi mode is active.
+  #
+  # Allowed values are CellForeground/CellBackground, which reference the
+  # affected cell, or hexadecimal colors like #ff00ff.
+  vi_mode_cursor:
+   text: '#ffffff'
+   cursor: '#000000'
+
 key_bindings:
   # Vi Mode
-  - { key: Space, mods: Alt, mode: ~Search, action: ToggleViMode}
+  - { key: Space, mods: Alt,   mode: ~Search,    action: ToggleViMode  }
+  # specify scancode to get around invalid virtual keycode provided by winit
+  # https://github.com/alacritty/alacritty/issues/3460
+  - { key: 5,     mods: Shift, mode: Vi|~Search, action: Last          }
+  - { key: 7,     mods: Shift, mode: Vi|~Search, action: FirstOccupied }
+  - { key: 6,     mods: Shift, mode: Vi|~Search, action: Bracket       }
+  - { key: 53,    mods: Shift, mode: Vi|~Search, action: SearchBackward}
 
