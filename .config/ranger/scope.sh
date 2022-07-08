@@ -303,10 +303,10 @@ handle_mime() {
                 local highlight_format='ansi'
             fi
             env HIGHLIGHT_OPTIONS="${HIGHLIGHT_OPTIONS}" highlight \
-                --base16=one-light 
+                --base16=one-light
                 --out-format="${highlight_format}" \
                 --force -- "${FILE_PATH}" && exit 5
-            env COLORTERM=8bit bat --color=always --style="plain" --line-range :80 \
+            env COLORTERM=8bit bat --color=always --style="plain" \
                 -- "${FILE_PATH}" && exit 5
             pygmentize -f "${pygmentize_format}" -O "style=${PYGMENTIZE_STYLE}"\
                 -- "${FILE_PATH}" && exit 5

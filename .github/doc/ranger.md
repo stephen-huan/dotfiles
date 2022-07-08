@@ -1,35 +1,43 @@
 # [ranger](https://ranger.github.io/)
 
-Getting ranger to do image previews via kitty:
+ranger is a terminal file manager. Moving around and manipulating files with
+ranger tends to be faster than the equivalent `cd`/`ls`/`mv`/`cp`/`rm`/etc.
+shell commands. For exploring a file system, ranger is much faster than
+`cd` and `ls` since one just presses `h` and `l` to go up and down the
+file hierarchy and always can see the current files. The operations on
+files `mv`/`cp`/`rm`/etc. require typing the paths of both the source and
+destination, while in ranger one simply acts on the file currently under the
+cursor. In general, operations in ranger are faster since the path does not
+need to be explicitly specified unlike shell commands in the terminal.
 
-1. `brew install ranger` (this installs it with Python 2.7)
-2. `pip2 install Pillow`
-3. `ranger --copy-config rc` to copy the default config file
-    to `~/.config/ranger/rc.conf`
-4. `export RANGER_LOAD_DEFAULT_RC=false` to prevent double loading
-5. `set preview_images true` and `set preview_images_method kitty`
+## Previews
 
-Alternatively, as Python 2.7 is depreciating in 2020:
-1. `pip install ranger-fm Pillow` with a Python 3 pip
-2. Follow the same instructions as before
-3. Alias ranger to the actual path of the
-   ranger executable if you're using pyenv.
+- Image previews
 
-## Image Preview
+Edit `rc.conf`:
+```config
+set preview_images true
+set preview_images_method ueberzug
+```
+`preview_images_method` can also be set to `w3m` for general terminals.
 
-Set the variable `preview_images` to true and `preview_images_method` to kitty.
-Note that it leaves a black rectangle in some cases if you quit ranger while on
-an image (most notably, vim). To fix this, press the left arrow before exiting
-ranger to unload the image.
+For the rest of the previews, edit `scope.sh`
 
-## Syntax Highlighting
+- Videos
 
-`brew install highlight`. To pick a theme, copy the scope via `ranger
+Package is `ffmpegthumbnailer`.
+
+- PDF
+
+Package is `pdftoppm`.
+
+- Syntax highlighting (without `bat`)
+
+Use the package `highlight`. To pick a theme, copy the scope via `ranger
 --copy-config=scope` and edit the variable `HIGHLIGHT_STYLE` near the top.
 To use a base16 theme, replace the highlight command near the bottom.
 
-You can also enable video preview via thumbnails by uncommenting the block
-and installing the right package (`brew install ffmpegthumbnailer`). PDF
-image previews are also possible with `pip install pdftoppm` (install the
-dependencies via `brew install pkg-config poppler`).
+- Syntax highlighting (with `bat`)
+
+Package is `bat`.
 
