@@ -60,6 +60,7 @@ set dsp.jack.resampling_quality=2
 set dsp.jack.server_name=
 set dsp.oss.device=
 set follow=false
+set format_clipped_text=…
 set format_current= %a - %l -%3n. %t%= %y 
 set format_playlist= %-21%a %3n. %t%= %y %d %{?X!=0?%3X ?    }
 set format_playlist_va= %-21%A %3n. %t (%a)%= %y %d %{?X!=0?%3X ?    }
@@ -93,6 +94,7 @@ set mouse=false
 set mpris=true
 set output_plugin=pulse
 set passwd=
+set pause_on_output_change=false
 set pl_sort=
 set play_library=true
 set play_sorted=false
@@ -110,7 +112,7 @@ set show_current_bitrate=false
 set show_hidden=false
 set show_playback_position=true
 set show_remaining_time=false
-set shuffle=false
+set shuffle=off
 set skip_track_info=false
 set smart_artist_sort=true
 set softvol=false
