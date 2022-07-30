@@ -1,9 +1,9 @@
-function fish_user_key_bindings --description "defines user keybindings"  
+function fish_user_key_bindings --description "defines user keybindings"
   # ctrl shortcuts
   # binding \cj interferes with auto pipenv
   bind \co fzff
   bind \cg fzfz
-  bind \ch fzfd 
+  bind \ch fzfd
   bind \cf yubi_2fa
   bind \cp fzfkill
   # alt shortcuts
