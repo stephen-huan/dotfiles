@@ -25,7 +25,6 @@ set -gx TERMINFO /usr/share/terminfo
 set -gx OMP_NUM_THREADS 4
 
 # most visual novels need 32-bit wine instead of 64-bit wine
-# beacuse most Japanese software development is in the stone ages
 set -gx WINEARCH win32
 
 # https://docs.microsoft.com/en-us/dotnet/core/tools/telemetry
@@ -69,7 +68,7 @@ set -gx PPROF_BINARY_PATH "a.out"
 
 # less
 # https://askubuntu.com/questions/522599/how-to-get-color-man-pages-under-fish-shell
-set -gx LESS "R"
+set -gx LESS "RF"
 set -gx LESSCHARSET "utf-8"
 set -gx LESS_TERMCAP_mb (set_color brred)
 set -gx LESS_TERMCAP_md (set_color brred)
