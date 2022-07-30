@@ -75,7 +75,7 @@ pacman -S browserpass-firefox
 Or the [Chrome
 extension](https://github.com/browserpass/browserpass-extension) (AUR) with
 ```shell
-yay -S browserpass-chrome
+paru -S browserpass-chrome
 ```
 Remember to quit and re-open the browser after installing the extension.
 

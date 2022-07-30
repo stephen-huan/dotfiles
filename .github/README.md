@@ -23,7 +23,10 @@ yadm status
     - i3-gaps, tiling window manager
     - i3bar, top bar with icons
     - i3status, status line
+    - dmenu, application launcher
+    - picom, compositor
 - programming tools
+    - paru, AUR helper
     - [alacritty](./doc/alacritty.md), terminal emulator
     - [fish](./doc/fish.md), shell
     - [vim](./doc/vim.md), text editor
@@ -34,6 +37,10 @@ yadm status
     - [pass](./doc/pass.md), password manager
     - [neomutt](./doc/neomutt.md), mail user agent
     - [cmus](./doc/cmus.md), music player
+- graphical user interfaces (graphical programs)
+    - firefox, web browser
+    - sioyek, PDF viewer
+    - zotero, research collection, organization, and citation
 - keyboard
     - [tmk/qmk](https://github.com/stephen-huan/qmk_firmware/tree/vusb-nkro),
       open-source firmware for mechanical keyboards

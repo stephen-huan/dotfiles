@@ -1,15 +1,15 @@
-# [mutt](https://neomutt.org/)
+# [neomutt](https://neomutt.org/)
 
-`mutt` is a mail user agent (MUA). More specifically, it lets you read
-email from the terminal. It is possible to download and send mail from
-mutt natively, but I prefer external programs for those functions.
+`neomutt` is a mail user agent (MUA). More specifically, it lets you
+read email from the terminal. It is possible to download and send mail
+from mutt natively, but I prefer external programs for those functions.
 
 A quick overview:
 - downloading mail: [offlineimap](#offlineimap)
-- reading mail: mutt + [neovim](./vim.md) (occasional full-screen reading) +
-[w3m](http://w3m.sourceforge.net/) (for html emails)
-- editing mail: [vim](./vim.md)
 - sending mail: [msmtp](#msmtp)
+- reading mail: neomutt + [neovim](./vim.md) (occasional full-screen reading) +
+  [w3m](http://w3m.sourceforge.net/) (for html emails)
+- editing mail: [vim](./vim.md)
 - indexing mail: [notmuch](#notmuch)
 - encrypting mail: [gpg](https://gnupg.org/software/gpgme/index.html)
 - adding attachments: [ranger](./ranger.md)
@@ -18,11 +18,10 @@ A quick overview:
 
 ### neomutt
 
-Whenever I say "mutt" I really mean "neomutt". It's not like [vim](./vim.md)
-where neovim isn't _quite_ identical to vim. neomutt is essentially a superset
-of regular [mutt](https://gitlab.com/muttmua/mutt/-/wikis/home) aiming to fix
-bugs, collect patches, and in general incite development of mutt. It therefore
-makes sense to use neomutt rather than mutt.
+[neomutt](https://neomutt.org/) is essentially a superset of regular
+[mutt](https://gitlab.com/muttmua/mutt/-/wikis/home) aiming to fix
+bugs, collect patches, and in general incite development of mutt. It
+therefore makes sense to use neomutt rather than mutt.
 
 ### General Notes
 

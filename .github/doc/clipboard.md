@@ -64,7 +64,7 @@ storing data in memory and not disk. I settled on Clipster.
 
 Clipster is a Python clipboard manager that can be installed from the AUR:
 ```shell
-yay -S clipster
+paru -S clipster
 ```
 In order to start it, add the command to your `~/.xprofile`
 or however you want to run a command on startup.
