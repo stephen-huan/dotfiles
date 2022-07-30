@@ -2,30 +2,8 @@
 # ran after yadm clone repo
 # run with  yadm bootstrap
 
-### miscellaneous
-
-pacman -S htop ncdu fzf bat neofetch
-yay -S plymouth-git
-
-### fish
-
-pacman -S fish fisher
-# install packages with fisher
-fisher install
-
-### vim
-
-pacman -S vim
-
-# install vim-plug: https://github.com/junegunn/vim-plug
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-### neovim
-
-pacman -S neovim python-pynvim
-
-# install vim-plug
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+# compile executables
+cd ~/bin
+clang++ -O3 far.cpp -o far
+clang++ -O3 nodup.cpp -o nodup
 
