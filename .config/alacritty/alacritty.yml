@@ -55,6 +55,26 @@ colors:
    text: '#ffffff'
    cursor: '#000000'
 
+# Bell
+#
+# The bell is rung every time the BEL control character is received.
+bell:
+  # Bell Command
+  #
+  # This program is executed whenever the bell is rung.
+  #
+  # When set to `command: None`, no command will be executed.
+  #
+  # Example:
+  #   command:
+  #     program: notify-send
+  #     args: ["Hello, World!"]
+  #
+  command:
+    None
+    # program: canberra-gtk-play
+    # args: ["-i", "bell"]
+
 key_bindings:
   # Vi Mode
   - { key: Space, mods: Alt,   mode: ~Search,    action: ToggleViMode  }
