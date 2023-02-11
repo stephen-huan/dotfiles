@@ -105,12 +105,12 @@ set wrapscan                      " wrap search
 
 " backup/undo {{{2
 set backup                        " store backups
-" store file at .vim, defaulting to . if not found
-set backupdir=~/.cache/vim/backup,.
+" store file at ~/.cache, defaulting to . if not found
+set backupdir=~/.cache/vim/backup//,.
 " set patchmode=.orig               " store original files (doesn't store to backupdir)
 set undofile                      " store undo information to a file
 set undodir=~/.cache/vim/undo,.
-set directory=~/.cache/vim/swap,.
+set directory=~/.cache/vim/swap//,.
 set updatetime=100                " swapfile write and cursor update frequency
 
 " spellcheck {{{2
@@ -440,6 +440,7 @@ let g:python_highlight_all = 1    " highlight python
 " vimtex {{{2
 let g:tex_flavor = 'latex'          " don't use plain TeX
 let g:vimtex_view_method = 'sioyek' " set viewer
+" let g:vimtex_view_sioyek_exe = 'sioyek'
 " close quickfix
 let g:vimtex_quickfix_autoclose_after_keystrokes=3
 let g:vimtex_compiler_latexmk = {
