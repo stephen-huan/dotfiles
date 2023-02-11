@@ -35,6 +35,7 @@ set -gx VISUAL "vim"
 set -gx EDITOR "vim"
 # use neovim to read man pages
 set -gx MANPAGER "/usr/bin/nvim -u ~/.config/nvim/init-pager.vim +Man!"
+set -gx MANWIDTH 80
 
 set -gx BROWSER "firefox"
 
@@ -77,4 +78,10 @@ set -gx LESS_TERMCAP_se (set_color normal)
 set -gx LESS_TERMCAP_so (set_color -b blue bryellow)
 set -gx LESS_TERMCAP_ue (set_color normal)
 set -gx LESS_TERMCAP_us (set_color brgreen)
+
+# ruby
+set -gx GEM_HOME ~/.local/share/gem/ruby/current
+
+# https://github.com/python-poetry/poetry/issues/1917
+set -gx PYTHON_KEYRING_BACKEND keyring.backends.null.Keyring
 
