@@ -1,68 +1,58 @@
 " vim-plug plugins {{{1
 call plug#begin(stdpath('data') . '/plugged') " Plugins will be downloaded under the specified directory.
-Plug 'rakr/vim-one'               " Atom's One theme
+Plug 'stephen-huan/vim-polar'     " fork of habamax/vim-polar
+" color scheme editing
+Plug 'lifepillar/vim-colortemplate'
 Plug 'itchyny/lightline.vim'      " line
 Plug 'mhinz/vim-startify'         " start manager
 Plug 'mbbill/undotree'            " visualize undo tree
 Plug 'djoshea/vim-autoread'       " automatically load changed files
 Plug 'junegunn/goyo.vim'          " distraction free writing
 Plug 'francoiscabrol/ranger.vim'  " ranger integration
-" Plug '/usr/local/opt/fzf'       " homebrew path to fzf
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " cutting-edge fzf version
+Plug 'junegunn/fzf'               " fzf
 Plug 'junegunn/fzf.vim'           " fzf + vim integration
-" Plug 'ycm-core/YouCompleteMe'                     " autocomplete
-Plug stdpath('data') . '/plugged/YouCompleteMe'    " load YCM without updating
+Plug 'ycm-core/YouCompleteMe'     " autocomplete
 Plug 'ncm2/float-preview.nvim'    " open previews in a floating window
 Plug 'SirVer/ultisnips'           " snippets engine
 Plug 'honza/vim-snippets'         " community snippets
-Plug 'dense-analysis/ale'         " syntax checking
-Plug 'tpope/vim-commentary'       " comment
-Plug 'tpope/vim-sleuth'           " detect indent and adjust indent options 
+" Plug 'dense-analysis/ale'         " syntax checking
+Plug 'tomtom/tcomment_vim'        " comment
+Plug 'tpope/vim-sleuth'           " detect indent and adjust indent options
 Plug 'tpope/vim-surround'         " editing character pairs
 Plug 'godlygeek/tabular'          " misc. text operations
 Plug 'andymass/vim-matchup'       " matching
-Plug 'vim-scripts/auto-pairs-gentle'                " insert pairs automatically               
+" insert pairs automatically
+Plug 'vim-scripts/auto-pairs-gentle'
+" highlight extra whitespace
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'easymotion/vim-easymotion'  " move around easily
 Plug 'tpope/vim-repeat'           " allow plugins to . repeat
-Plug 'svermeulen/vim-yoink'       " maintain a yank history
 Plug 'farmergreg/vim-lastplace'   " go to the last position when loading a file
-Plug 'chrisbra/Colorizer'         " colors
-Plug 'powerman/vim-plugin-AnsiEsc'                  " ANSI colors
 Plug 'airblade/vim-gitgutter'     " show git in the gutter
 Plug 'dstein64/vim-startuptime'   " measure startup time
-Plug 'voldikss/vim-floaterm'      " floating terminal
-" Plug 'mattn/emmet-vim'            " fancy web development plugin
-" Plugins for specific languages
-Plug 'vim-python/python-syntax'   " python
-Plug 'Vimjas/vim-python-pep8-indent'                " python indent
+" plugins for specific languages
+Plug 'sheerun/vim-polyglot'       " language pack
 Plug 'lervag/vimtex'              " LaTeX
 Plug 'neomutt/neomutt.vim'        " email
 Plug 'dag/vim-fish'               " fish shell
 Plug 'tpope/vim-git'              " git
-Plug 'octol/vim-cpp-enhanced-highlight'            " c++
+" cython
+" Plug 'lambdalisue/vim-cython-syntax'
+Plug 'stephen-huan/vim-cython-syntax'
+" julia
+Plug 'JuliaEditorSupport/julia-vim'
 " would be nice if there was a good java syntax plugin
-Plug 'fatih/vim-go'               " go
-Plug 'plasticboy/vim-markdown'    " markdown
 " markdown preview
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-Plug 'chrisbra/csv.vim'           " CSVs
-Plug 'stephpy/vim-yaml'           " yaml
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 Plug 'Glench/Vim-Jinja2-Syntax'   " jinja, setting up matchup
-Plug 'pangloss/vim-javascript'    " javascript
-Plug 'hail2u/vim-css3-syntax'     " css
-Plug 'cakebaker/scss-syntax.vim'  " sass 
-Plug 'tpope/vim-dadbod'           " databases
-Plug 'vim-scripts/dbext.vim'      " original database plugin
-Plug 'mityu/vim-applescript'      " applescript
-Plug 'sudar/vim-arduino-syntax'   " arduino
-Plug 'sirtaj/vim-openscad'        " openscad
-call plug#end()                   " List ends here. Plugins become visible to Vim after this call.
+" List ends here. Plugins become visible to Vim after this call.
+call plug#end()
 
 " default options {{{1
 " list of options ':options'
 " providers {{{2
 let g:python_host_prog   = '/usr/bin/python'
-let g:python3_host_prog  = '/Users/stephenhuan/.pyenv/versions/3.8.5/bin/python'
+let g:python3_host_prog  = '/usr/bin/python'
 
 " editing {{{2
 set nocompatible                  " turn off vi compatibility mode
@@ -70,7 +60,7 @@ filetype plugin indent on         " autoindent based on filetype
 set encoding=utf-8                " utf-8 encoding
 set noarabicshape                 " disable arabic
 set fileformat=unix               " UNIX file format
-set shell=/usr/local/bin/fish     " shell
+set shell=/usr/bin/fish           " shell
 set backspace=indent,eol,start    " make backspace always work
 set tabstop=4                     " number of visual spaces per tab
 set expandtab                     " change tab into spaces
@@ -93,8 +83,10 @@ set wildmenu                      " visual autocomplete for command menu
 set number                        " line numbers
 set relativenumber                " numbers relative to cursor line
 set cursorline                    " highlight current line
+" screenline vs file line
 " set cursorlineopt=screenline,number                " screenline vs file line
 set noshowmatch                   " disable matching [{()}]
+" TODO: configure
 set nolist                        " disable show whitespace with characters
 set wrap                          " wrap if longer than window size
 set nolinebreak                   " disable break on specific characters
@@ -106,20 +98,20 @@ set display=truncate,uhex         " truncate last line, display unicode as hex
 
 " search {{{2
 set ignorecase                    " ignore upper/lower case when searching
-set smartcase                     " case sensitive if upper case 
+set smartcase                     " case sensitive if upper case
 set incsearch                     " show partial matches for a search phrase
 set hlsearch                      " highlight all matching phrases
 set wrapscan                      " wrap search
 
 " backup/undo {{{2
 set backup                        " store backups
-" store file at nvim, defaulting to . if not found
-set backupdir=~/.config/nvim/backupdir//,. 
+" store file at ~/.cache, defaulting to . if not found
+set backupdir=~/.cache/nvim/backup//,.
 " set patchmode=.orig               " store original files (doesn't store to backupdir)
 set undofile                      " store undo information to a file
-set undodir=~/.config/nvim/undodir,.
-set directory=~/.config/nvim/swapdir//,. 
-set updatetime=100                " swapfile write frequency, also cursor update
+set undodir=~/.cache/nvim/undo,.
+set directory=~/.cache/nvim/swap//,.
+set updatetime=100                " swapfile write and cursor update frequency
 
 " spellcheck {{{2
 " enable spellcheck locally for certain file types
@@ -127,12 +119,12 @@ set thesaurus+=~/.vim/thesaurus/english.txt  " add thesaurus
 set dictionary+=/usr/share/dict/words        " add dictionary
 
 " insert completions {{{2
-" set completeopt=menuone,popup     " open extra information in a popup window 
+" set completeopt=menuone,popup     " open extra information in a popup window
 set complete+=kspell              " spelling in autocomplete
 set infercase                     " smartcase but for completions
 
 " windows {{{2
-set nosplitbelow                  " split windows above
+set splitbelow                    " split windows below
 set splitright                    " split windows right
 
 " folding {{{2
@@ -143,16 +135,16 @@ set foldlevelstart=0              " don't open folds by default
 set sessionoptions-=blank         " remove blank files from sessions
 
 " miscellaneous {{{2
-set clipboard=unnamedplus         " system clipboard
+set clipboard=unnamed,unnamedplus " system clipboard
 set mouse=a                       " mouse support
 set mousemodel=popup              " right clicking opens a menu
-set notildeop                     " ~ not an operator
+set tildeop                       " ~ operator
 
 " keybindings {{{1
 " timing {{{2
-set timeout                       " wait for mappings, if they are a prefix 
+set timeout                       " wait for mappings, if they are a prefix
 set ttimeout                      " timeout for key codes
-set timeoutlen=1000               " delay for mappings until timeout 
+set timeoutlen=1000               " delay for mappings until timeout
 set ttimeoutlen=10                " delay for key codes
 
 " }}}2
@@ -174,11 +166,8 @@ noremap! <c-j> <esc>:qa!<cr>
 " new tab
 nnoremap <c-n> :tabnew<cr>
 
-" comments
-vmap <c-_> gc 
-
 " show highlight under cursor
-noremap <c-h> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+noremap <c-h>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<cr>
 
@@ -189,7 +178,7 @@ imap <c-p> <plug>(fzf-maps-i)
 xmap <c-p> <plug>(fzf-maps-x)
 omap <c-p> <plug>(fzf-maps-o)
 
-" completions 
+" completions
 " replace the default dictionary completion with fzf-based fuzzy completion
 inoremap <expr> <c-x><c-k> fzf#vim#complete('cat /usr/share/dict/words')
 " path
@@ -204,7 +193,7 @@ function s:get_words(e)
 endfunction
 
 inoremap <expr> <c-x><c-t> fzf#vim#complete(fzf#wrap({
-\ 'source': function('<sid>get_words'), 
+\ 'source': function('<sid>get_words'),
 \ 'options': '--query ""'}))
 
 " leader shortcuts {{{2
@@ -228,13 +217,15 @@ nnoremap <leader>y :Goyo<cr>
 
 " ranger {{{3
 let g:ranger_map_keys = 0
-nnoremap <leader>r :Ranger<cr>
+" I would enable this if it worked
+" let g:ranger_replace_netrw = 1
+nnoremap <leader>r :RangerCurrentDirectoryNewTab<cr>
 
 " fzf {{{2
 " directory jumping with z
 nnoremap <leader>g :call fzf#run(fzf#wrap({
-\ 'source': 'fish -c "_z"', 
-\ 'sink': 'cd', 
+\ 'source': 'fish -c "_z"',
+\ 'sink': 'cd',
 \ 'options': ['--preview', '_preview_path {}', '--tiebreak=index']}))<cr>
 " files with fzf
 nnoremap <leader>o :Files<cr>
@@ -247,20 +238,10 @@ nnoremap <leader>W :Windows<cr>
 " help
 nnoremap <leader>H :Helptags<cr>
 
-" use fzf to select a entry from the yank stack
-function s:yank_list()
-  return split(execute("Yanks"), '\n')[1:]
-endfunction
-
-function s:buf_copy(e)
-  let s = substitute(a:e, '\', '\\\\\\\\', 'g')
-  let s = escape(s, '''"\')
-  echo system("fish -c \"echo -ne (string sub -s 3 (string replace -a '^M' '\\n' (_parse_token -p '" . s . "'))) | pbcopy\"")
-endfunction
-
-nnoremap <leader>p :call fzf#run(fzf#wrap({
-\ 'source': <sid>yank_list(),
-\ 'sink': function('<sid>buf_copy')}))<cr>
+" tcomment_vim {{{2
+let g:tcomment_mapleader1 = '<c-.>'
+noremap  <c-_> :TComment<cr>
+noremap  <leader>/ :TCommentBlock<cr>
 
 " vim-easymotion {{{2
 map s <Plug>(easymotion-jumptoanywhere)
@@ -278,13 +259,6 @@ map <leader>, <Plug>(easymotion-prev)
 map <leader>n <Plug>(easymotion-n)
 map <leader>N <Plug>(easymotion-N)
 
-" vim-yoink {{{2
-" nmap <leader>p <plug>(YoinkPostPasteSwapBack)
-" nmap <leader>P <plug>(YoinkPostPasteSwapForward)
-
-nmap p <plug>(YoinkPaste_p)
-nmap P <plug>(YoinkPaste_P)
-
 " vim-gitgutter {{{2
 let g:gitgutter_map_keys = 0
 nmap ghp <Plug>(GitGutterPreviewHunk)
@@ -299,9 +273,6 @@ omap ac <Plug>(GitGutterTextObjectOuterPending)
 xmap ic <Plug>(GitGutterTextObjectInnerVisual)
 xmap ac <Plug>(GitGutterTextObjectOuterVisual)
 
-" vim-floaterm
-nnoremap <leader>t :FloatermNew<CR>
-
 " vim-markdown {{{2
 map <Plug> <Plug>Markdown_MoveToCurHeader
 map ]h <Plug>Markdown_MoveToCurHeader
@@ -311,16 +282,16 @@ nmap <leader>m <Plug>MarkdownPreview
 
 " mail {{{2
 function s:select_file()
-  let temp = '/Users/stephenhuan/.vim/temp'
-  execute 'silent !ranger --choosefile='. temp
+  let temp = $HOME . '/.vim/temp.txt'
+  execute 'silent !ranger --choosefile=' . temp
   redraw!
-  " file name saved to file above, escape spaces 
+  " file name saved to file above, escape spaces
   if filereadable(temp)
     let path = readfile(temp)[0]
     let out = system("rm " . temp)
     return 'Attach: ' . substitute(path, ' ', '\\ ', 'g')
   endif
-  return ' '
+  return ''
 endfunction
 
 " select file with ranger for attachments
@@ -342,83 +313,79 @@ let g:UltiSnipsJumpForwardTrigger='<tab>'
 let g:UltiSnipsJumpBackwardTrigger='<c-b>'
 
 " plugins {{{1
-" one {{{2
-function s:set_colors()                                     " overwrite default colors
-    highlight Normal                   guibg=#ffffff
-    " error highlight from https://github.com/habamax/vim-polar
-    highlight Error      guifg=#ffffff guibg=#e07070
- 
-    " spell highlight
-    highlight SpellBad   guifg=#e45649 guibg=NONE    " red
-    highlight SpellCap   guifg=#4078f2 guibg=NONE    " blue
-    highlight SpellRare  guifg=#a626a4 guibg=NONE    " magenta
-    highlight SpellLocal guifg=#0184bc guibg=NONE    " cyan
-    " diff taken from https://github.com/endel/vim-github-colorscheme
-    highlight DiffAdd    guifg=#494b53 guibg=#ddffdd " green
-    highlight DiffChange               guibg=#f0f0f0 " grey
-    highlight DiffText   guifg=#494b53 guibg=#ddddff " blue
-    highlight DiffDelete guifg=#ffdddd guibg=#ffdddd " red
-    " hide things
-    highlight Hide       guifg=#ffffff guibg=NONE 
-endfunction
-
-augroup colors
-    autocmd!
-    autocmd ColorScheme * call <sid>set_colors() 
-augroup END
-
-let g:one_allow_italics = 1       " support italics
-colorscheme one                   " colorscheme
-
 " lightline {{{2
+" set lightline colorscheme
 let g:lightline = {
-\   'colorscheme': 'mono', 
+\   'colorscheme': 'polar',
 \ }
+" remove 'fileformat' and 'fileencoding' from the default bar
+let g:lightline.active = {
+    \ 'right': [ [ 'lineinfo' ],
+    \            [ 'percent' ],
+    \            [ 'filetype' ] ]
+    \ }
 
 " vim-startify {{{2
-let g:startify_session_persistence = 0                       " update sessions
+" custom header
+let g:startify_image_header = 1
+if g:startify_image_header
+  let logo_path = $HOME . '/.vim/header.txt'
+else
+  let logo_path = $HOME . '/.vim/header-box.txt'
+end
+let g:startify_custom_header = startify#pad(readfile(logo_path))
+" update sessions
+let g:startify_session_persistence = 0
 
 " undotree {{{2
-let g:undotree_WindowLayout=3    " open on right side
+" open on right side
+let g:undotree_WindowLayout=3
 
 " goyo.vim {{{2
-let g:goyo_width=81              " weirdly, goyo character width changes by two
+" weirdly, goyo character width changes by two
+let g:goyo_width=81
 
 " fzf {{{2
 " start in new window
-let g:fzf_layout = {'window': 
+let g:fzf_layout = {'window':
 \   { 'width': 0.9, 'height': 0.6, 'border': 'rounded'
-\   } 
+\   }
 \ }
 
 " YouCompleteMe {{{2
-let g:ycm_complete_in_comments = 1                           " run in comments
+" run in comments
+let g:ycm_complete_in_comments = 1
 
 "ultisnips {{{2
-let g:UltiSnipsSnippetDirectories=['UltiSnips', 'snipps']    " directories
+" directories
+let g:UltiSnipsSnippetDirectories=['UltiSnips', 'snipps']
 
 " ale {{{2
-let g:ale_enabled = 0            " disable ale
+" disable ale
+let g:ale_enabled = 0
 
 " autopair {{{2
-let g:AutoPairsUseInsertedCount = 1                          "'gentle' algorithm
+" 'gentle' algorithm
+let g:AutoPairsUseInsertedCount = 1
+
+" vim-better-whitespace {{{2
+" TODO: set 'listchars'
+" disable highlighting on these filetypes
+let g:better_whitespace_filetypes_blacklist = ['startify']
 
 " easymotion {{{2
 let g:EasyMotion_smartcase = 1   " equivalent to vim's smartcase
 let g:EasyMotion_startofline = 0 " don't change cursor position
 
-" vim-yoink {{{2
-let g:yoinkMaxItems=100          " history size
-let g:yoinkIncludeDeleteOperations=1                         " include delete
-let g:yoinkShowYanksWidth=1000   " number of characters stored
-
 " python-syntax {{{2
 let g:python_highlight_all = 1    " highlight python
 
 " vimtex {{{2
-let g:tex_flavor='latex'          " don't use plain TeX
-let g:vimtex_view_method='skim'   " set viewer
-let g:vimtex_quickfix_autoclose_after_keystrokes=3           " close quickfix
+let g:tex_flavor = 'latex'          " don't use plain TeX
+let g:vimtex_view_method = 'sioyek' " set viewer
+" let g:vimtex_view_sioyek_exe = 'sioyek'
+" close quickfix
+let g:vimtex_quickfix_autoclose_after_keystrokes=3
 let g:vimtex_compiler_latexmk = {
 \   'executable' : 'latexmk',
 \   'options' : [
@@ -441,27 +408,39 @@ function s:start_server()
 endfunction
 
 " vim-markdown {{{2
-let g:vim_markdown_folding_disabled = 1                      " disable autofold
-let g:vim_markdown_strikethrough = 1                         " ~~strikethrough~~  
-let g:vim_markdown_math = 1                                  " LaTeX
+let g:vim_markdown_folding_disabled = 1 " disable autofold
+let g:vim_markdown_strikethrough = 1    " ~~strikethrough~~
+let g:vim_markdown_math = 1             " LaTeX
 
 " markdown-preview.nvim {{{2
-let g:mkdp_browser = 'Google Chrome'                         " browser
+" browser
+let g:mkdp_browser = 'firefox'
 
 " autocmds {{{1
+function s:set_colors()
+endfunction
+
+augroup colors
+    autocmd!
+    autocmd ColorScheme * call <sid>set_colors()
+    " https://vim.fandom.com/wiki/Highlight_unwanted_spaces
+    " autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+    " autocmd InsertEnter * call clearmatches()
+    " autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+    " autocmd BufWinLeave * call clearmatches()
+    " https://vim.fandom.com/wiki/Remove_unwanted_spaces
+    " remove trailing whitespace: %s/\s\+$//e
+augroup END
+
+" colorscheme
+colorscheme polar
+
 augroup vimrc
   autocmd!
 
-  " only load custom header when startify starts
-  autocmd VimEnter *
-    \ if !argc()
-    \ |   let g:startify_custom_header = startify#pad(split(system('cat ~/.vim/logo/logo.txt'), '\n'))
-    \ |  endif
-  autocmd User Startified setlocal nowrap | ColorHighlight
-
   autocmd BufWritePost *.tex call <sid>start_server()
 
-  autocmd FileType markdown,text,tex,mail setlocal spell spelllang=en_us
+  autocmd FileType markdown,text,tex,mail,gitcommit setlocal spell spelllang=en_us
   autocmd FileType c,cpp,python let b:ycm_hover = {
     \ 'command': 'GetDoc',
     \ 'syntax': &filetype

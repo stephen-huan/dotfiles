@@ -1,5 +1,5 @@
-#!/usr/bin/env fish
+#!/usr/bin/env bash
 
-# clean version of vim for private editing
-/usr/bin/rvim --clean --noplugin -nu ~/.vim/vimrc-private $argv
+# clean version of neovim for private editing
+/usr/bin/nvim --clean --noplugin -nu ~/.config/nvim/init-private.vim "$@"
 
