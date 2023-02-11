@@ -22,19 +22,19 @@ https://github.com/GitCredentialManager/git-credential-manager)
 which is developed by [GitHub](
 https://github.blog/2022-04-07-git-credential-manager-authentication-for-everyone/).
 ```shell
-yay -S git-credential-manager-core
+paru -S git-credential-manager-core
 ```
 
 It's possible to configure git-credential-manger to
 use the GPG-based password manger [pass](./pass.md).
 ```shell
-git-credential-manager-core configure
+git-credential-manager configure
 git config --global credential.credentialStore gpg
 ```
 or just edit `~/.config/git/config` directly
 ```ini
 [credential]
-	helper = /usr/share/git-credential-manager-core/git-credential-manager-core
+	helper = /usr/bin/git-credential-manager
 	credentialStore = gpg
 ```
 

@@ -14,7 +14,7 @@ passmenu
 In order to set a signing key, use the
 environmental variable `PASSWORD_STORE_SIGNING_KEY`
 ```fish
-set -Ux PASSWORD_STORE_SIGNING_KEY "EA6E27948C7DBF5D0DF085A10FBC2E3BA99DD60E"
+set -gx PASSWORD_STORE_SIGNING_KEY "EA6E27948C7DBF5D0DF085A10FBC2E3BA99DD60E"
 ```
 Setting this is in order to require a signature on `.gpg-id` and non-system
 extensions. For example, if you are using a remote git server to track your
@@ -32,7 +32,7 @@ to install extensions with your system's package manager, since these packages
 will be automatically updated and also signed by the package maintainer. If an
 extension isn't packaged, you can enable non-system extensions with
 ```fish
-set -Ux PASSWORD_STORE_ENABLE_EXTENSIONS "true"
+set -gx PASSWORD_STORE_ENABLE_EXTENSIONS "true"
 ```
 
 ## TOTP 2fa (pass-otp)
