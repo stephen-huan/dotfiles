@@ -4,7 +4,7 @@
 [core]
 	excludesfile = ~/.config/git/gitignore
 [credential]
-	helper = /usr/share/git-credential-manager-core/git-credential-manager-core
+	helper = /usr/bin/git-credential-manager
 	credentialStore = gpg
 [pull]
 	rebase = true
@@ -20,3 +20,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[credential "https://git.overleaf.com"]
+	provider = generic
