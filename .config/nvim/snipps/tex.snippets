@@ -1,0 +1,482 @@
+snippet header "header"
+\documentclass[11pt, oneside]{article}
+\usepackage[utf8]{inputenc}                        % utf8
+\usepackage[T1]{fontenc}                           % fix font encoding
+\usepackage[english]{babel}                        % language
+\usepackage{titling, geometry, hyperref, fancyhdr, algorithm}
+\usepackage{amsmath, amssymb, amsthm}              % ams mathematical packages
+\usepackage{physics, mathtools, bm}                % extra math packages
+\usepackage{graphicx, subcaption, wrapfig}         % images
+\usepackage{fvextra, textcomp, CJKutf8}            % misc. text formatting
+\usepackage[autostyle, english=american]{csquotes} % quotes
+\usepackage[shortlabels]{enumitem}                 % lists
+\usepackage{tikz, pgfplots}                        % plots and graphs
+\usepackage[noend]{algpseudocode}                  % algorithm psuedocode
+\usepackage[cache=true]{minted}                    % source code
+\usepackage[style=ieee]{biblatex}                  % bibliography
+\geometry{a4paper}
+
+\usetikzlibrary{positioning}                       % advanced positioning
+\pgfplotsset{compat=newest}                        % version of pgfplots
+
+\hypersetup{
+  colorlinks=true,
+  urlcolor=cyan,
+  linkcolor=magenta
+}
+
+\setminted[]{
+  linenos=false,
+  breaklines=true,
+  encoding=utf8,
+  fontsize=\normalsize,
+  frame=lines,
+  framesep=2mm
+}
+
+% https://tex.stackexchange.com/questions/343494/minted-red-box-around-greek-characters
+\makeatletter
+\AtBeginEnvironment{minted}{\dontdofcolorbox}
+\def\dontdofcolorbox{\renewcommand\fcolorbox[4][]{##4}}
+\makeatother
+
+\graphicspath{{./images/}}
+\addbibresource{ref.bib}
+
+\title{${0:title}}
+\author{Stephen Huan}
+\date{\today}
+
+\begin{document}
+\maketitle
+% {\hypersetup{linkcolor=black}
+% \tableofcontents
+% }
+
+% \printbibliography
+\end{document}
+endsnippet
+
+snippet image "image"
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\textwidth]{$1}
+  \caption{$2}
+\end{figure}
+endsnippet
+
+snippet subimage "multiple images"
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[h]{0.4 \textwidth}
+      \includegraphics[width=\textwidth]{$1}
+      \caption{$2}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[h]{0.4 \textwidth}
+      \includegraphics[width=\textwidth]{$3}
+      \caption{$4}
+    \end{subfigure}
+    \caption{$5}
+\end{figure}
+endsnippet
+
+snippet tikzimage "tikz image"
+\uncover<handout:0>{
+  \begin{tikzpicture}[overlay,remember picture]
+  \node[above left=0.1cm and 0cm] at (current page.south east) {
+      \includegraphics[width=2.5cm]{$1}
+  };
+  \end{tikzpicture}
+}
+endsnippet
+
+snippet box "box"
+\fbox{$0} \newline
+endsnippet
+
+snippet pbox "box but creates line breaks"
+\fbox{\parbox{\textwidth}{$0}} \newline
+endsnippet
+
+snippet q "quote" i
+\enquote{$0}
+endsnippet
+
+snippet it "italic" i
+\textit{$0}
+endsnippet
+
+snippet bf "boldface" i
+\textbf{$0}
+endsnippet
+
+snippet tt "monospace" i
+\texttt{$0}
+endsnippet
+
+# don't add i, itEM has a problem
+snippet em "emphasis"
+\emph{$0}
+endsnippet
+
+snippet ~ "tilde" i
+\textasciitilde
+endsnippet
+
+snippet ... "ellipsis" i
+\ldots
+endsnippet
+
+snippet & "ampersand" i
+\&
+endsnippet
+
+### environments
+
+snippet enumn "enumerate environment with numbers"
+\begin{enumerate}[1.]
+    \item $0
+\end{enumerate}
+endsnippet
+
+snippet alg "algorithm with minted"
+\begin{algorithm}[H]
+  \caption{$1}
+  \setlength{\partopsep}{-\topsep} % remove gap between top and bottom
+  \begin{minted}[frame=none]{python}
+  $2
+  \end{minted}
+\end{algorithm}
+endsnippet
+
+snippet minted "minted python"
+\begin{minted}{python}
+$0
+\end{minted}
+endsnippet
+
+snippet mint "minted inline python"
+\mintinline{python}{$0}
+endsnippet
+
+snippet cjk "cjk"
+\begin{CJK}{UTF8}{min}
+$0
+\end{CJK}
+endsnippet
+
+# mathematics
+
+snippet prove "prove"
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\renewcommand\qedsymbol{$\square$}
+endsnippet
+
+snippet lemma "lemma"
+\begin{lemma}
+$0
+\end{lemma}
+\begin{proof}
+\end{proof}
+endsnippet
+
+snippet theorem "theorem"
+\begin{theorem}
+$0
+\end{theorem}
+\begin{proof}
+\end{proof}
+endsnippet
+
+### math mode
+
+snippet vec "vector"
+\renewcommand{\vec}[1]{\bm{#1}}
+endsnippet
+
+snippet v "vector" i
+\vec{$0}
+endsnippet
+
+snippet bm "math boldface" i
+\bm{$0}
+endsnippet
+
+snippet bb "math blackboard" i
+\mathbb{$0}
+endsnippet
+
+snippet mc "mathcal" i
+\mathcal{$0}
+endsnippet
+
+snippet d "derivative"
+\text{d}
+endsnippet
+
+snippet T "transpose" i
+^{\top}
+endsnippet
+
+snippet argmin "argmin"
+\DeclareMathOperator*{\argmin}{argmin}
+endsnippet
+
+snippet prob "probability operators"
+\DeclareMathOperator{\E}{E}
+\DeclareMathOperator{\Var}{Var}
+endsnippet
+
+snippet linalg "linear algebra operators"
+\DeclareMathOperator{\diag}{diag}
+\let\trace\relax
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\logdet}{logdet}
+endsnippet
+
+snippet matrix "matrix"
+\begin{bmatrix}
+  a & b & c \\\
+  d & e & f \\\
+  g & h & i
+\end{bmatrix}
+endsnippet
+
+# https://tex.stackexchange.com/questions/3145/formatting-arrows-between-rows-of-corresponding-matrices
+snippet arrows "arrows"
+\newcount\arrowcount
+\newcommand\arrows[1]{
+        \global\arrowcount#1
+        \ifnum\arrowcount>0
+                \begin{matrix}
+                \expandafter\nextarrow
+        \fi
+}
+
+\newcommand\nextarrow[1]{
+        \global\advance\arrowcount-1
+        \ifx\relax#1\relax\else \xrightarrow{#1}\fi
+        \ifnum\arrowcount=0
+                \end{matrix}
+        \else
+                \\
+                \expandafter\nextarrow
+        \fi
+}
+endsnippet
+
+snippet set "set" i
+\\{ $0 \\}
+endsnippet
+
+#### math homework
+
+snippet answer "proof environment"
+\begin{proof}[Answer]
+  $0
+  \renewcommand\qedsymbol{}
+\end{proof}
+endsnippet
+
+### presentations
+
+snippet present "presentation header"
+\documentclass{beamer}                             % presentation
+% \documentclass[draft]{beamer}                    % improves compile time
+% \documentclass[11pt, handout]{beamer}            % handout
+\usepackage[utf8]{inputenc}                        % utf8
+\usepackage[T1]{fontenc}                           % fix font encoding
+\usepackage[english]{babel}                        % language
+\usepackage{geometry, hyperref, fancyhdr, algorithm}
+\usepackage{amsmath, amssymb, amsthm}              % ams mathematical packages
+\usepackage{physics, mathtools, bm}                % extra math packages
+\usepackage{graphicx, subcaption, wrapfig}         % images
+\usepackage{fvextra, textcomp, CJKutf8}            % misc. text formatting
+\usepackage[autostyle, english=american]{csquotes} % quotes
+\usepackage{tikz, pgfplots}                        % plots and graphs
+\usepackage[noend]{algpseudocode}                  % algorithm psuedocode
+\usepackage[cache=true]{minted}                    % source code
+\usepackage[style=ieee]{biblatex}                  % bibliography
+
+\usetikzlibrary{positioning}                       % advanced positioning
+\pgfplotsset{compat=newest}                        % version of pgfplots
+
+\hypersetup{
+  colorlinks=true,
+  urlcolor=cyan,
+  linkcolor=magenta
+}
+
+\setminted[]{
+  linenos=false,
+  breaklines=true,
+  encoding=utf8,
+  fontsize=\normalsize,
+  frame=lines,
+  framesep=2mm
+}
+
+% https://tex.stackexchange.com/questions/343494/minted-red-box-around-greek-characters
+\makeatletter
+\AtBeginEnvironment{minted}{\dontdofcolorbox}
+\def\dontdofcolorbox{\renewcommand\fcolorbox[4][]{##4}}
+\makeatother
+
+\graphicspath{{./images/}}
+\addbibresource{ref.bib}
+
+\usetheme{Berkeley}
+\usecolortheme{dolphin}
+% hide navigation buttons
+\setbeamertemplate{navigation symbols}{}
+
+% title page
+\title[]{${0:title}}
+\subtitle{}
+\author[Huan]{Stephen Huan\inst{1}}
+\institute[Georgia Institute of Technology]
+{
+  \inst{1}
+  Georgia Institute of Technology
+}
+\date[]{\today}
+\subject{Computer Science}
+
+\begin{document}
+\frame{\titlepage}
+
+% \printbibliography
+\end{document}
+endsnippet
+
+snippet poster "poster"
+\documentclass{beamer}                             % presentation
+% \documentclass[draft]{beamer}                    % improves compile time
+\usepackage[orientation=landscape,size=a1,scale=1,debug]{beamerposter}
+\usepackage[utf8]{inputenc}                        % utf8
+\usepackage[T1]{fontenc}                           % fix font encoding
+\usepackage[english]{babel}                        % language
+\usepackage{geometry, hyperref, fancyhdr, algorithm}
+\usepackage{amsmath, amssymb, amsthm}              % ams mathematical packages
+\usepackage{physics, mathtools, bm}                % extra math packages
+\usepackage{graphicx, subcaption, wrapfig}         % images
+\usepackage{fvextra, textcomp, CJKutf8}            % misc. text formatting
+\usepackage[autostyle, english=american]{csquotes} % quotes
+\usepackage{tikz, pgfplots}                        % plots and graphs
+\usepackage[noend]{algpseudocode}                  % algorithm psuedocode
+\usepackage[cache=true]{minted}                    % source code
+\usepackage[style=ieee]{biblatex}                  % bibliography
+
+\usetikzlibrary{positioning}                       % advanced positioning
+\pgfplotsset{compat=newest}                        % version of pgfplots
+
+\hypersetup{
+  colorlinks=true,
+  urlcolor=cyan,
+  linkcolor=magenta
+}
+
+\setminted[]{
+  linenos=false,
+  breaklines=true,
+  encoding=utf8,
+  fontsize=\normalsize,
+  frame=lines,
+  framesep=2mm
+}
+
+% https://tex.stackexchange.com/questions/343494/minted-red-box-around-greek-characters
+\makeatletter
+\AtBeginEnvironment{minted}{\dontdofcolorbox}
+\def\dontdofcolorbox{\renewcommand\fcolorbox[4][]{##4}}
+\makeatother
+
+\graphicspath{{./images/}}
+\addbibresource{ref.bib}
+
+\usetheme{Pittsburgh}
+\usecolortheme{whale}
+% hide navigation buttons
+\setbeamertemplate{navigation symbols}{}
+% number figures
+\setbeamertemplate{caption}[numbered]
+
+% title page
+\title[]{${0:title}}
+\subtitle{}
+\author[Huan]{Stephen Huan\inst{1}}
+\institute[Georgia Institute of Technology]
+{
+  \inst{1}
+  Georgia Institute of Technology
+}
+\date[]{\today}
+\subject{Computer Science}
+
+\begin{document}
+\frame{\titlepage}
+
+% \printbibliography
+\end{document}
+endsnippet
+
+snippet toc "table of contents"
+\begin{frame}
+\frametitle{Table of Contents}
+\tableofcontents[${1:currentsection}]
+\end{frame}
+endsnippet
+
+snippet tocsec "table of contents based off section"
+\AtBeginSection[]
+{
+    \begin{frame}
+        \frametitle{Table of Contents}
+        \tableofcontents[currentsection]
+    \end{frame}
+}
+endsnippet
+
+snippet tocsub "table of contents based off subsection"
+\AtBeginSubsection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection, currentsubsection]
+  \end{frame}
+}
+endsnippet
+
+snippet notes "slide notes"
+% show notes
+\setbeameroption{show notes on second screen=right}
+\setbeamertemplate{note page}{\pagecolor{yellow!5}\insertnote}
+endsnippet
+
+snippet note "slide note"
+\note{
+  \begin{itemize}
+    \item $1
+  \end{itemize}
+}
+endsnippet
+
+snippet frame "frame"
+\begin{frame}
+\frametitle{$1}
+\framesubtitle{$2}
+$3
+\end{frame}
+endsnippet
+
+snippet sectionpage "section page"
+\frame{\sectionpage}
+endsnippet
+
