@@ -41,14 +41,41 @@ information, it's best to have a different configuration so that you
 sandbox vim. By default, vim generates swap files, backup files, etc.
 and will load modelines which have had and continue to have [security
 vulnerabilities](https://lwn.net/Vulnerabilities/20249/). See my hardened
-[init.vim](../../.config/nvim/init-private.vim) which can be used with:
+[init.lua](../../.config/nvim/init-private.lua) which can be used with:
 ```shell
-/usr/bin/nvim --clean --noplugin -nu ~/.config/nvim/init-private.vim "$@"
+/usr/bin/nvim --clean --noplugin -nu ~/.config/nvim/init-private.lua "$@"
 ```
 
 Alias this to `vim-private`, which you can then use as an value
-for `EDITOR`. The commands in `init.vim` were taken from this
-[Stack Exchange](https://vi.stackexchange.com/questions/6177/).
+for `EDITOR`. The commands in `init.lua` were based on this [Stack
+Exchange](https://vi.stackexchange.com/questions/6177/); here is
+a vim-compatible version.
+```vimscript
+" pass will automatically do some of this, even with no configuration
+" https://git.zx2c4.com/password-store/tree/contrib/vim/redact_pass.vim
+
+set viminfo=
+set history=0
+set noswapfile
+set nobackup
+set nowritebackup
+set noundofile
+set secure
+set nomodeline
+set noshelltemp
+
+set nocompatible               " turn off vi compatibility mode
+set backspace=indent,eol,start " make backspace always work
+set showcmd                    " show an incomplete command
+set showmode                   " show mode
+
+" save file for all modes
+noremap  <c-s> :w<CR>
+noremap! <c-s> <esc>:w<CR>li
+" exit file for all modes
+noremap  <c-q> <esc>:q!<CR>
+noremap! <c-q> <esc>:q!<CR>
+```
 
 ### Reflowing text paragraphs
 
