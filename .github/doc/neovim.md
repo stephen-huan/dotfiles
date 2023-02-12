@@ -47,10 +47,10 @@ vulnerabilities](https://lwn.net/Vulnerabilities/20249/). See my hardened
 ```
 
 Alias this to `vim-private`, which you can then use as an value
-for `EDITOR`. The commands in `init.lua` were based on this [Stack
-Exchange](https://vi.stackexchange.com/questions/6177/); here is
-a vim-compatible version.
-```vimscript
+for `EDITOR`. The commands in `init.lua` were based on this
+[Stack Exchange](https://vi.stackexchange.com/questions/6177/).
+For posterity, here is a vim-compatible version.
+```vim script
 " pass will automatically do some of this, even with no configuration
 " https://git.zx2c4.com/password-store/tree/contrib/vim/redact_pass.vim
 
