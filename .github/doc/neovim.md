@@ -1,11 +1,11 @@
 # [neovim](https://neovim.io/)
 
-First, install [vim-plug](https://github.com/junegunn/vim-plug) with:
+First, install [packer.nvim](https://github.com/wbthomason/packer.nvim) with:
 ```shell
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
-Then, run `:PlugInstall` to install the various plugins.
+Then, run `:PackerSync` to install the various plugins.
 
 ## neovim
 
@@ -41,7 +41,7 @@ information, it's best to have a different configuration so that you
 sandbox vim. By default, vim generates swap files, backup files, etc.
 and will load modelines which have had and continue to have [security
 vulnerabilities](https://lwn.net/Vulnerabilities/20249/). See my hardened
-[init.vim](./.config/nvim/init-private.vim) which can be used with:
+[init.vim](../../.config/nvim/init-private.vim) which can be used with:
 ```shell
 /usr/bin/nvim --clean --noplugin -nu ~/.config/nvim/init-private.vim "$@"
 ```

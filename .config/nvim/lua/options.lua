@@ -1,12 +1,12 @@
 -- helper function to set options
 function set_options(options, scope)
     scope = scope or "glocal"
-    lookup = {
+    local lookup = {
        ["glocal"] = vim.opt,
        ["global"] = vim.opt_global,
        [ "local"] = vim.opt_local,
     }
-    dictionary = lookup[scope]
+    local dictionary = lookup[scope]
     for key, value in pairs(options) do
         dictionary[key] = value
     end
@@ -16,21 +16,17 @@ end
 local options = {
     -- miscellaneous
 
-    -- UNIX file format
-    fileformat = "unix",
     -- shell
-    shell = "/usr/bin/fish",
+    shell = "/bin/fish",
     -- use system clipboard
     clipboard = { "unnamed", "unnamedplus" },
-    -- mouse support
-    mouse = 'a',
-    -- right clicking opens a menu
-    mousemodel = 'popup',
-    -- disable arabic
-    arabicshape = false,
+    -- disable mouse support
+    mouse = "",
 
     -- editing
 
+    -- force unix line endings
+    fileformats = { "unix" },
     -- make backspace always work
     backspace = { "indent", "eol", "start" },
     -- number of visual spaces per tab
@@ -78,8 +74,8 @@ local options = {
     cursorlineopt = { "screenline", "number" },
     -- disable matching [{()}]
     showmatch = false,
-    -- disable show whitespace with characters. TODO: configure
-    list = false,
+    -- show whitespace with characters
+    list = true,
     -- wrap if longer than window size
     wrap = true,
     -- disable break on specific characters
@@ -102,7 +98,7 @@ local options = {
     -- case sensitive if upper case
     smartcase = true,
     -- show partial matches for a search phrase
-    incsearch= true,
+    incsearch = true,
     -- highlight all matching phrases
     hlsearch = true,
     -- wrap search
@@ -124,7 +120,7 @@ local options = {
     -- insert completions
 
     -- open extra information in a popup window
-    -- completeopt = { "menuone", "popup"},
+    completeopt = { "menuone", "preview" },
     -- smartcase but for completions
     infercase = true,
 
@@ -134,13 +130,6 @@ local options = {
     splitbelow = true,
     -- split windows right
     splitright = true,
-
-    -- folding
-
-    -- enable folding
-    foldenable = true,
-    -- don't open folds by default
-    foldlevelstart = 0,
 
     -- keybindings
 

@@ -1,55 +1,3 @@
-let g:polyglot_disabled = ['autoindent', 'sensible'] " needs to be before
-" vim-plug plugins {{{1
-call plug#begin(stdpath('data') . '/plugged') " Plugins will be downloaded under the specified directory.
-Plug 'stephen-huan/vim-polar'     " fork of habamax/vim-polar
-" color scheme editing
-Plug 'lifepillar/vim-colortemplate'
-Plug 'itchyny/lightline.vim'      " line
-Plug 'mhinz/vim-startify'         " start manager
-Plug 'mbbill/undotree'            " visualize undo tree
-Plug 'djoshea/vim-autoread'       " automatically load changed files
-Plug 'junegunn/goyo.vim'          " distraction free writing
-Plug 'francoiscabrol/ranger.vim'  " ranger integration
-Plug 'rbgrouleff/bclose.vim'      " dependency of ranger.vim
-Plug 'junegunn/fzf'               " fzf
-Plug 'junegunn/fzf.vim'           " fzf + vim integration
-Plug 'ycm-core/YouCompleteMe'     " autocomplete
-" Plug 'ncm2/float-preview.nvim'    " open previews in a floating window
-Plug 'SirVer/ultisnips'           " snippets engine
-Plug 'honza/vim-snippets'         " community snippets
-" Plug 'dense-analysis/ale'         " syntax checking
-Plug 'tomtom/tcomment_vim'        " comment
-Plug 'tpope/vim-sleuth'           " detect indent and adjust indent options
-Plug 'tpope/vim-surround'         " editing character pairs
-Plug 'godlygeek/tabular'          " misc. text operations
-Plug 'andymass/vim-matchup'       " matching
-" insert pairs automatically
-Plug 'vim-scripts/auto-pairs-gentle'
-" highlight extra whitespace
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'easymotion/vim-easymotion'  " move around easily
-Plug 'tpope/vim-repeat'           " allow plugins to . repeat
-Plug 'farmergreg/vim-lastplace'   " go to the last position when loading a file
-Plug 'airblade/vim-gitgutter'     " show git in the gutter
-Plug 'dstein64/vim-startuptime'   " measure startup time
-" plugins for specific languages
-Plug 'sheerun/vim-polyglot'       " language pack
-Plug 'lervag/vimtex'              " LaTeX
-Plug 'neomutt/neomutt.vim'        " email
-Plug 'dag/vim-fish'               " fish shell
-Plug 'tpope/vim-git'              " git
-" cython
-" Plug 'lambdalisue/vim-cython-syntax'
-Plug 'stephen-huan/vim-cython-syntax'
-" julia
-Plug 'JuliaEditorSupport/julia-vim'
-" would be nice if there was a good java syntax plugin
-" markdown preview
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
-Plug 'Glench/Vim-Jinja2-Syntax'   " jinja, setting up matchup
-" List ends here. Plugins become visible to Vim after this call.
-call plug#end()
-
 " keybindings {{{1
 
 " move visually
@@ -105,7 +53,7 @@ nnoremap <leader>c :set hlsearch! hlsearch?<cr>
 " toggle spell check
 nnoremap <leader>C :set spell! spell?<cr>
 " source vimrc
-nnoremap <leader>v :source ~/.config/nvim/init.vim<cr>
+nnoremap <leader>v :source ~/.config/nvim/init.lua<cr>
 " reset syntax
 nnoremap <leader>e :syntax off <bar> syntax on<cr>
 
@@ -205,103 +153,7 @@ inoremap <expr> <c-h>e fzf#vim#complete(fzf#wrap({
 \ 'source': 'cat ~/.config/notmuch/emails.txt',
 \ 'options': ['--tiebreak=index']}))
 
-" variable-based shortcuts {{{2
-" YouCompleteMe
-" fix YCM overwriting tab expansion for snippets
-let g:ycm_key_list_select_completion=['<down>']
-let g:ycm_key_list_previous_completion=['<up>']
-" ultisnips
-let g:UltiSnipsExpandTrigger='<tab>'
-let g:UltiSnipsJumpForwardTrigger='<tab>'
-let g:UltiSnipsJumpBackwardTrigger='<c-b>'
-
-" plugins {{{1
-" lightline {{{2
-" set lightline colorscheme
-let g:lightline = {
-\   'colorscheme': 'polar',
-\ }
-" remove 'fileformat' and 'fileencoding' from the default bar
-let g:lightline.active = {
-    \ 'right': [ [ 'lineinfo' ],
-    \            [ 'percent' ],
-    \            [ 'filetype' ] ]
-    \ }
-
-" vim-startify {{{2
-" custom header
-let g:startify_image_header = 1
-if g:startify_image_header
-  let logo_path = $HOME . '/.config/nvim/header.txt'
-else
-  let logo_path = $HOME . '/.config/nvim/header-box.txt'
-end
-let g:startify_custom_header = startify#pad(readfile(logo_path))
-" update sessions
-let g:startify_session_persistence = 0
-
-" undotree {{{2
-" open on right side
-let g:undotree_WindowLayout=3
-
-" goyo.vim {{{2
-" weirdly, goyo character width changes by two
-let g:goyo_width=81
-
-" fzf {{{2
-" start in new window
-let g:fzf_layout = {'window':
-\   { 'width': 0.9, 'height': 0.6, 'border': 'rounded'
-\   }
-\ }
-
-" YouCompleteMe {{{2
-" run in comments
-let g:ycm_complete_in_comments = 1
-
-"ultisnips {{{2
-" directories
-let g:UltiSnipsSnippetDirectories=['UltiSnips', 'snipps']
-
-" ale {{{2
-" disable ale
-let g:ale_enabled = 0
-
-" autopair {{{2
-" 'gentle' algorithm
-let g:AutoPairsUseInsertedCount = 1
-
-" vim-better-whitespace {{{2
-" TODO: set 'listchars'
-" disable highlighting on these filetypes
-let g:better_whitespace_filetypes_blacklist = ['startify']
-
-" easymotion {{{2
-let g:EasyMotion_smartcase = 1   " equivalent to vim's smartcase
-let g:EasyMotion_startofline = 0 " don't change cursor position
-
-" python-syntax {{{2
-let g:python_highlight_all = 1    " highlight python
-
-" vimtex {{{2
-let g:tex_flavor = 'latex'          " don't use plain TeX
-let g:vimtex_view_method = 'sioyek' " set viewer
-" let g:vimtex_view_sioyek_exe = 'sioyek'
-" close quickfix
-let g:vimtex_quickfix_autoclose_after_keystrokes=3
-let g:vimtex_compiler_latexmk = {
-\   'executable' : 'latexmk',
-\   'options' : [
-\     '-verbose',
-\     '-file-line-error',
-\     '-synctex=1',
-\     '-interaction=nonstopmode',
-\     '-shell-escape'
-\   ],
-\}
-
 " start server on first BufWrite, always call VimtexView
-let g:latex_started = 0
 function s:start_server()
     if !g:latex_started
         VimtexCompile
@@ -310,22 +162,10 @@ function s:start_server()
     VimtexView
 endfunction
 
-" vim-markdown {{{2
-let g:vim_markdown_folding_disabled = 1 " disable autofold
-let g:vim_markdown_strikethrough = 1    " ~~strikethrough~~
-let g:vim_markdown_math = 1             " LaTeX
-
-" markdown-preview.nvim {{{2
-" browser
-let g:mkdp_browser = 'firefox'
-
 " autocmds {{{1
-function s:set_colors()
-endfunction
 
 augroup colors
     autocmd!
-    autocmd ColorScheme * call <sid>set_colors()
     " https://vim.fandom.com/wiki/Highlight_unwanted_spaces
     " autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
     " autocmd InsertEnter * call clearmatches()
