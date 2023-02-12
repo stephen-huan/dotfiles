@@ -31,13 +31,13 @@ set -gx WINEARCH win32
 set -gx DOTNET_CLI_TELEMETRY_OPTOUT 1
 
 # editors
-set -gx VISUAL "vim"
-set -gx EDITOR "vim"
+set -gx VISUAL /usr/bin/nvim
+set -gx EDITOR /usr/bin/nvim
 # use neovim to read man pages
 set -gx MANPAGER "/usr/bin/nvim -u ~/.config/nvim/init-pager.vim +Man!"
 set -gx MANWIDTH 80
 
-set -gx BROWSER "firefox"
+set -gx BROWSER /usr/bin/firefox
 
 # par
 set -gx PARINIT "rTbgqR B=.,?'_A_a_@ Q=_s>|"

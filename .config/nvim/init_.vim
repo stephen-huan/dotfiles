@@ -1,7 +1,6 @@
-let g:polyglot_disabled = ['sensible', 'autoindent'] " needs to be before
+let g:polyglot_disabled = ['autoindent', 'sensible'] " needs to be before
 " vim-plug plugins {{{1
-" Plugins will be downloaded under the specified directory.
-call plug#begin('~/.vim/plugged')
+call plug#begin(stdpath('data') . '/plugged') " Plugins will be downloaded under the specified directory.
 Plug 'stephen-huan/vim-polar'     " fork of habamax/vim-polar
 " color scheme editing
 Plug 'lifepillar/vim-colortemplate'
@@ -11,12 +10,14 @@ Plug 'mbbill/undotree'            " visualize undo tree
 Plug 'djoshea/vim-autoread'       " automatically load changed files
 Plug 'junegunn/goyo.vim'          " distraction free writing
 Plug 'francoiscabrol/ranger.vim'  " ranger integration
+Plug 'rbgrouleff/bclose.vim'      " dependency of ranger.vim
 Plug 'junegunn/fzf'               " fzf
 Plug 'junegunn/fzf.vim'           " fzf + vim integration
 Plug 'ycm-core/YouCompleteMe'     " autocomplete
+" Plug 'ncm2/float-preview.nvim'    " open previews in a floating window
 Plug 'SirVer/ultisnips'           " snippets engine
 Plug 'honza/vim-snippets'         " community snippets
-Plug 'dense-analysis/ale'         " syntax checking
+" Plug 'dense-analysis/ale'         " syntax checking
 Plug 'tomtom/tcomment_vim'        " comment
 Plug 'tpope/vim-sleuth'           " detect indent and adjust indent options
 Plug 'tpope/vim-surround'         " editing character pairs
@@ -49,113 +50,11 @@ Plug 'Glench/Vim-Jinja2-Syntax'   " jinja, setting up matchup
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
-" default options {{{1
-" list of options ':options'
-" editing {{{2
-set nocompatible                  " turn off vi compatibility mode
-filetype plugin indent on         " autoindent based on filetype
-set encoding=utf-8                " utf-8 encoding
-set noarabicshape                 " disable arabic
-set fileformat=unix               " UNIX file format
-set shell=/usr/bin/fish           " shell
-set backspace=indent,eol,start    " make backspace always work
-set tabstop=4                     " number of visual spaces per tab
-set expandtab                     " change tab into spaces
-set softtabstop=0                 " since tab = spaces, tabs don't exist
-set shiftwidth=4                  " number of spaces for shifting
-set shiftround                    " round shifts to the nearest multiple
-set autoindent                    " autoindent based on current line
-set copyindent                    " get autoindent from other lines
-set nrformats=alpha,hex,bin       " number formats for ctrl-a and ctrl-x
-set formatprg=far                 " (f)ast rewrite of p(ar)
-
-" appearance {{{2
-" if TERM is not xterm, set these manually to be safe
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-set termguicolors                 " 24 bit colors
-set background=light              " light background
-syntax on                         " syntax highlighting
-set laststatus=2                  " draw status bar for each window
-set showcmd                       " show an incomplete command
-set noshowmode                    " don't show mode, shown in bar already
-set wildmenu                      " visual autocomplete for command menu
-set number                        " line numbers
-set relativenumber                " numbers relative to cursor line
-set cursorline                    " highlight current line
-" screenline vs file line
-set cursorlineopt=screenline,number
-set noshowmatch                   " disable matching [{()}]
-" TODO: configure
-set nolist                        " disable show whitespace with characters
-set wrap                          " wrap if longer than window size
-set nolinebreak                   " disable break on specific characters
-let &showbreak='↪ '               " show when the lines are wrapped
-set breakindent                   " match indentation on wrapping
-set colorcolumn=80                " display bar at 80 characters
-set signcolumn=yes                " always draw signcolumn
-set display=truncate,uhex         " truncate last line, display unicode as hex
-
-" search {{{2
-set ignorecase                    " ignore upper/lower case when searching
-set smartcase                     " case sensitive if upper case
-set incsearch                     " show partial matches for a search phrase
-set hlsearch                      " highlight all matching phrases
-set wrapscan                      " wrap search
-
-" backup/undo {{{2
-set backup                        " store backups
-" store file at ~/.cache, defaulting to . if not found
-set backupdir=~/.cache/vim/backup//,.
-" set patchmode=.orig               " store original files (doesn't store to backupdir)
-set undofile                      " store undo information to a file
-set undodir=~/.cache/vim/undo,.
-set directory=~/.cache/vim/swap//,.
-set updatetime=100                " swapfile write and cursor update frequency
-
-" spellcheck {{{2
-" enable spellcheck locally for certain file types
-set thesaurus+=~/.vim/thesaurus/english.txt  " add thesaurus
-set dictionary+=/usr/share/dict/words        " add dictionary
-
-" insert completions {{{2
-set completeopt=menuone,popup     " open extra information in a popup window
-set complete+=kspell              " spelling in autocomplete
-set infercase                     " smartcase but for completions
-
-" windows {{{2
-set splitbelow                    " split windows below
-set splitright                    " split windows right
-
-" folding {{{2
-set foldenable                    " enable folding
-set foldlevelstart=0              " don't open folds by default
-
-" sessions {{{2
-set sessionoptions-=blank         " remove blank files from sessions
-
-" miscellaneous {{{2
-set clipboard=unnamed,unnamedplus " system clipboard
-set mouse=a                       " mouse support
-set mousemodel=popup              " right clicking opens a menu
-set tildeop                       " ~ operator
-
 " keybindings {{{1
-" timing {{{2
-set timeout                       " wait for mappings, if they are a prefix
-set ttimeout                      " timeout for key codes
-set timeoutlen=1000               " delay for mappings until timeout
-set ttimeoutlen=10                " delay for key codes
 
-" }}}2
-let mapleader = "\<space>"        " leader prefix
 " move visually
 noremap <down> gj
 noremap <up> gk
-
-" fix up and down arrow bindings (insert mode + ctrl-v to get bindings)
-map [1;2A <s-up>
-map [1;2B <s-down>
 
 " ctrl shortcuts {{{2
 " save file for all modes
@@ -206,21 +105,9 @@ nnoremap <leader>c :set hlsearch! hlsearch?<cr>
 " toggle spell check
 nnoremap <leader>C :set spell! spell?<cr>
 " source vimrc
-nnoremap <leader>v :source ~/.vim/vimrc<cr>
+nnoremap <leader>v :source ~/.config/nvim/init.vim<cr>
 " reset syntax
 nnoremap <leader>e :syntax off <bar> syntax on<cr>
-
-function s:make_term()
-	let buf = term_start('fish', #{hidden: 1, term_finish: 'close'})
-	let winid = popup_create(buf, #{
-                \ minwidth : float2nr(round(0.6*winwidth(0))),
-                \ minheight: float2nr(round(0.6*winheight(0))),
-                \ border: [], borderhighlight: ['Normal'],
-                \ borderchars: ['-', '|', '-', '|', '┌', '┐', '┘', '└'],
-                \ title: ' terminal '})
-endfunction
-
-nnoremap <leader>t :call <sid>make_term()<cr>
 
 " startify {{{2
 nnoremap <leader>s :execute 'SSave!' . fnamemodify(v:this_session, ':t')<cr>
@@ -345,9 +232,9 @@ let g:lightline.active = {
 " custom header
 let g:startify_image_header = 1
 if g:startify_image_header
-  let logo_path = $HOME . '/.vim/header.txt'
+  let logo_path = $HOME . '/.config/nvim/header.txt'
 else
-  let logo_path = $HOME . '/.vim/header-box.txt'
+  let logo_path = $HOME . '/.config/nvim/header-box.txt'
 end
 let g:startify_custom_header = startify#pad(readfile(logo_path))
 " update sessions
@@ -383,47 +270,6 @@ let g:ale_enabled = 0
 " autopair {{{2
 " 'gentle' algorithm
 let g:AutoPairsUseInsertedCount = 1
-
-" default pairs base on filetype
-func! AutoPairsDefaultPairs()
-  if exists('b:autopairs_defaultpairs')
-    return b:autopairs_defaultpairs
-  end
-  let r = copy(g:AutoPairs)
-  let allPairs = {
-        \ 'vim': {'\v^\s*\zs"': ''},
-        \ 'rust': {'\w\zs<': '>', '&\zs''': ''},
-        \ 'php': {'<?': '?>//k]', '<?php': '?>//k]'}
-        \ }
-  for [filetype, pairs] in items(allPairs)
-    if &filetype == filetype
-      for [open, close] in items(pairs)
-        let r[open] = close
-      endfor
-    end
-  endfor
-  let b:autopairs_defaultpairs = r
-  return r
-endf
-
-" add or delete pairs base on g:AutoPairs
-" AutoPairsDefine(addPairs:dict[, removeOpenPairList:list])
-"
-" eg:
-"   au FileType html let b:AutoPairs = AutoPairsDefine({'<!--' : '-->'}, ['{'])
-"   add <!-- --> pair and remove '{' for html file
-func! AutoPairsDefine(pairs, ...)
-  let r = AutoPairsDefaultPairs()
-  if a:0 > 0
-    for open in a:1
-      unlet r[open]
-    endfor
-  end
-  for [open, close] in items(a:pairs)
-    let r[open] = close
-  endfor
-  return r
-endf
 
 " vim-better-whitespace {{{2
 " TODO: set 'listchars'
@@ -502,6 +348,9 @@ augroup vimrc
     \ 'command': 'GetDoc',
     \ 'syntax': &filetype
     \ }
+
+  autocmd TermOpen * setlocal nonumber norelativenumber signcolumn=no
+  autocmd TermOpen * DisableWhitespace
 
   " disable file reloading
   " autocmd VimEnter * WatchForChangesAllFile
