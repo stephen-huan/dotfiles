@@ -29,7 +29,7 @@ yadm status
     - paru, AUR helper
     - [alacritty](./doc/alacritty.md), terminal emulator
     - [fish](./doc/fish.md), shell
-    - [vim](./doc/vim.md), text editor
+    - [neovim](./doc/neovim.md), text editor
     - [git](./doc/git.md), version control
 - command line interfaces (terminal programs)
     - [tmux](./doc/tmux.md), terminal multiplexer
