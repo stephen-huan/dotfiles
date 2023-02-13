@@ -27,6 +27,8 @@ end)
 
 -- leader shortcuts
 
+vim.g.mapleader = " "
+
 -- toggle search highlight
 vim.keymap.set("n", "<leader>c", "<cmd>set hlsearch! hlsearch?<cr>")
 -- toggle spellcheck

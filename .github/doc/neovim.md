@@ -30,7 +30,7 @@ for inspiration.
 
 Neovim can be used to read man pages more easily.
 ```fish
-set -gx MANPAGER "/usr/bin/nvim -u ~/.config/nvim/init-pager.vim +Man!"
+set -gx MANPAGER "/usr/bin/nvim +Man!"
 set -gx MANWIDTH 80
 ```
 

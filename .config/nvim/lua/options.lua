@@ -108,8 +108,8 @@ local options = {
 
     -- store backups
     backup = true,
-    -- store file at ~/.local/state, defaulting to . if not found
-    backupdir = { vim.fn.expand("~/.local/state/nvim/backup//"), "." },
+    -- store file at ~/.local/state/nvim/backup, defaulting to . if not found
+    backupdir = { vim.fn.stdpath("state") .. "/backup//", "." },
     -- store original files (doesn't store to backupdir)
     -- patchmode = ".orig"
     -- store undo information to a file
@@ -147,12 +147,12 @@ set_options(options)
 
 -- options that can't be set with set_options
 
-vim.g.mapleader = " "
-
 -- providers
 
-vim.g.python_host_prog   = "/usr/bin/python"
-vim.g.python3_host_prog  = "/usr/bin/python"
+vim.g.python3_host_prog = "/usr/bin/python"
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_node_provider = 0
 
 -- spellcheck
 

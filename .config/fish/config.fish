@@ -34,7 +34,7 @@ set -gx DOTNET_CLI_TELEMETRY_OPTOUT 1
 set -gx VISUAL /usr/bin/nvim
 set -gx EDITOR /usr/bin/nvim
 # use neovim to read man pages
-set -gx MANPAGER "/usr/bin/nvim -u ~/.config/nvim/init-pager.vim +Man!"
+set -gx MANPAGER "/usr/bin/nvim +Man!"
 set -gx MANWIDTH 80
 
 set -gx BROWSER /usr/bin/firefox
