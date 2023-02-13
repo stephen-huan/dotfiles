@@ -12,9 +12,7 @@ vim.opt.modeline = false
 vim.opt.shelltemp = false
 
 -- save file for all modes
-vim.keymap.set( "", "<c-s>", "<cmd>:w<cr>")
-vim.keymap.set("!", "<c-s>", "<esc><cmd>:w<cr>li")
+vim.keymap.set({ "", "!" }, "<c-s>", "<cmd>w<cr>")
 -- exit file for all modes
-vim.keymap.set( "", "<c-q>", "<esc>:q!<CR>")
-vim.keymap.set("!", "<c-q>", "<esc>:q!<CR>")
+vim.keymap.set({ "", "!" }, "<c-q>", "<cmd>q!<cr>")
 

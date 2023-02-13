@@ -70,11 +70,11 @@ set showcmd                    " show an incomplete command
 set showmode                   " show mode
 
 " save file for all modes
-noremap  <c-s> :w<CR>
-noremap! <c-s> <esc>:w<CR>li
+noremap  <c-s> <cmd>w<cr>
+noremap! <c-s> <cmd>w<cr>
 " exit file for all modes
-noremap  <c-q> <esc>:q!<CR>
-noremap! <c-q> <esc>:q!<CR>
+noremap  <c-q> <cmd>q!<cr>
+noremap! <c-q> <cmd>q!<cr>
 ```
 
 ### Reflowing text paragraphs

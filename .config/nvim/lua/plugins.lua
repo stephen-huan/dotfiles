@@ -3,7 +3,13 @@ return require("packer").startup(function(use)
     use "wbthomason/packer.nvim"
 
     -- colorscheme, fork of habamax/vim-polar
-    use "stephen-huan/vim-polar"
+    use {
+        "stephen-huan/vim-polar",
+        config = function()
+            -- set colorscheme
+            vim.cmd.colorscheme "polar"
+        end,
+    }
     -- statusline
     use {
         "itchyny/lightline.vim",
@@ -30,6 +36,10 @@ return require("packer").startup(function(use)
             vim.g.startify_custom_header = ""
             -- update sessions
             vim.g.startify_session_persistence = 0
+            -- keybindings
+            vim.keymap.set("n", "<leader>s",
+                "<cmd>execute 'SSave!' . fnamemodify(v:this_session, ':t')<cr>"
+            )
         end,
     }
 
@@ -39,6 +49,8 @@ return require("packer").startup(function(use)
         config = function()
             -- weirdly, goyo character width changes by two
             vim.g.goyo_width = 81
+            -- keybindings
+            vim.keymap.set("n", "<leader>y", "<cmd>Goyo<cr>")
         end,
     }
     -- visualize undo tree
@@ -47,6 +59,8 @@ return require("packer").startup(function(use)
         config = function()
             -- open on right side
             vim.g.undotree_WindowLayout = 3
+            -- keybindings
+            vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>")
         end,
     }
     -- automatically load changed files
@@ -54,7 +68,27 @@ return require("packer").startup(function(use)
     -- go to the last position when loading a file
     use "farmergreg/vim-lastplace"
     -- show git in the gutter
-    use "airblade/vim-gitgutter"
+    use {
+        "airblade/vim-gitgutter",
+        config = function()
+            vim.g.gitgutter_map_keys = 0
+            -- keybindings
+            for pair, cmd in pairs({
+                [{ "n", "ghp" }] = "PreviewHunk",
+                [{ "n", "ghs" }] = "StageHunk",
+                [{ "n", "ghu" }] = "UndoHunk",
+                [{ "n", "[c"  }] = "PrevHunk",
+                [{ "n", "]c"  }] = "NextHunk",
+                [{ "o", "ic"  }] = "TextObjectInnerPending",
+                [{ "o", "ac"  }] = "TextObjectOuterPending",
+                [{ "x", "ic"  }] = "TextObjectInnerVisual",
+                [{ "x", "ac"  }] = "TextObjectOuterVisual",
+            }) do
+                local mode, key = unpack(pair)
+                vim.keymap.set(mode, key, "<plug>(GitGutter" .. cmd ..  ")")
+            end
+        end,
+    }
     -- allow plugins to . repeat
     use "tpope/vim-repeat"
     -- measure startup time
@@ -64,6 +98,14 @@ return require("packer").startup(function(use)
     use {
         "francoiscabrol/ranger.vim",
         requires = { "rbgrouleff/bclose.vim" },
+        config = function()
+            vim.g.ranger_replace_netrw = 1
+            vim.g.ranger_map_keys = 0
+            -- keybindings
+            vim.keymap.set("n", "<leader>r",
+                "<cmd>RangerCurrentDirectoryNewTab<cr>"
+            )
+        end,
     }
     -- fzf
     use {
@@ -77,6 +119,39 @@ return require("packer").startup(function(use)
                     border = "rounded",
                 },
             }
+            -- keybindings
+            for i, mode in pairs({ "n", "i", "x", "o" }) do
+                vim.keymap.set(mode, "<c-p>",
+                    "<plug>(fzf-maps-" .. mode .. ")"
+                )
+            end
+            -- complete path
+            vim.keymap.set("i", "<c-x><c-f>", "<plug>(fzf-complete-path)")
+            -- lines from any buffer
+            vim.keymap.set("i", "<c-x><c-l>", "<plug>(fzf-complete-line)")
+            --  directory jumping with z
+            vim.keymap.set("n", "<leader>g", function()
+                vim.fn["fzf#run"](vim.fn["fzf#wrap"]({
+                    source = "fish -c '_z'",
+                    sink = "cd",
+                    options = {
+                        "--preview", "_preview_path {}",
+                        "--tiebreak=index",
+                    },
+                }))
+            end)
+            -- leader shortcuts
+            for key, cmd in pairs({
+                o = "Files",    -- files with fzf
+                a = "Ag",       -- ag searcher
+                L = "BLines",   -- lines in current buffer
+                W = "Windows",  -- windows
+                H = "Helptags", -- help
+            }) do
+                vim.keymap.set("n", "<leader>" .. key,
+                    "<cmd>" .. cmd .. "<cr>"
+                )
+            end
         end,
     }
     -- fzf + vim integration
@@ -112,7 +187,15 @@ return require("packer").startup(function(use)
     use "honza/vim-snippets"
 
     -- comment
-    use "tomtom/tcomment_vim"
+    use {
+        "tomtom/tcomment_vim",
+        config = function()
+            vim.g.tcomment_mapleader1 = "<c-.>"
+            -- <c-_> is ctrl + /
+            vim.keymap.set("", "<c-_>", ":TComment<cr>")
+            vim.keymap.set("", "<leader>/", ":TCommentBlock<cr>")
+        end,
+    }
     -- detect indent and adjust indent options
     use "tpope/vim-sleuth"
     -- editing character pairs
@@ -147,6 +230,22 @@ return require("packer").startup(function(use)
             vim.g.EasyMotion_smartcase = 1
             -- don't change cursor position
             vim.g.EasyMotion_startofline = 0
+            -- keybindings
+            for key, cmd in pairs({
+                s = "jumptoanywhere",
+                ["<leader>w"] = "w",
+                ["<leader>f"] = "f",
+                ["<s-right>"] = "lineforward",
+                ["<s-left>"] = "linebackward",
+                ["<s-down>"] = "j",
+                ["<s-up>"] = "k",
+                [";"] = "next",
+                [","] = "prev",
+                ["<leader>n"] = "n",
+                ["<leader>N"] = "N",
+            }) do
+                vim.keymap.set("", key, "<plug>(easymotion-" .. cmd .. ")")
+            end
         end,
     }
 
@@ -165,6 +264,8 @@ return require("packer").startup(function(use)
             vim.g.vim_markdown_strikethrough = 1
             -- LaTeX
             vim.g.vim_markdown_math = 1
+            -- keybindings
+            vim.keymap.set("", "]h", "<plug>Markdown_MoveToCurHeader")
         end,
     }
     -- LaTeX
@@ -211,6 +312,8 @@ return require("packer").startup(function(use)
         config = function()
             -- browser
             vim.g.mkdp_browser = "firefox"
+            -- keybindings
+            vim.keymap.set("n", "<leader>m", "<plug>MarkdownPreview")
         end,
     }
     -- jinja, setting up matchup
