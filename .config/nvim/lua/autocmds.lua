@@ -43,10 +43,7 @@ vim.api.nvim_create_autocmd("Filetype", {
 vim.api.nvim_create_autocmd("TermOpen", {
     group = "vimrc",
     callback = function()
-        vim.cmd([[
-            setlocal nonumber norelativenumber signcolumn=no
-            DisableWhitespace
-        ]])
+        vim.cmd("setlocal nonumber norelativenumber signcolumn=no")
     end,
 })
 -- disable file reloading

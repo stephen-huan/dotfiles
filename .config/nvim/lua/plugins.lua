@@ -63,8 +63,6 @@ return require("packer").startup(function(use)
             vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>")
         end,
     }
-    -- automatically load changed files
-    use "djoshea/vim-autoread"
     -- go to the last position when loading a file
     use "farmergreg/vim-lastplace"
     -- show git in the gutter
@@ -91,8 +89,6 @@ return require("packer").startup(function(use)
     }
     -- allow plugins to . repeat
     use "tpope/vim-repeat"
-    -- measure startup time
-    use "dstein64/vim-startuptime"
 
     -- ranger integration
     use {
@@ -119,17 +115,7 @@ return require("packer").startup(function(use)
                     border = "rounded",
                 },
             }
-            -- keybindings
-            for i, mode in pairs({ "n", "i", "x", "o" }) do
-                vim.keymap.set(mode, "<c-p>",
-                    "<plug>(fzf-maps-" .. mode .. ")"
-                )
-            end
-            -- complete path
-            vim.keymap.set("i", "<c-x><c-f>", "<plug>(fzf-complete-path)")
-            -- lines from any buffer
-            vim.keymap.set("i", "<c-x><c-l>", "<plug>(fzf-complete-line)")
-            --  directory jumping with z
+            -- directory jumping with z
             vim.keymap.set("n", "<leader>g", function()
                 vim.fn["fzf#run"](vim.fn["fzf#wrap"]({
                     source = "fish -c '_z'",
@@ -140,6 +126,22 @@ return require("packer").startup(function(use)
                     },
                 }))
             end)
+        end,
+    }
+    -- fzf + vim integration
+    use {
+        "junegunn/fzf.vim",
+        config = function()
+            -- keybindings
+            for i, mode in pairs({ "n", "i", "x", "o" }) do
+                vim.keymap.set(mode, "<c-p>",
+                    "<plug>(fzf-maps-" .. mode .. ")"
+                )
+            end
+            -- complete path
+            vim.keymap.set("i", "<c-x><c-f>", "<plug>(fzf-complete-path)")
+            -- lines from any buffer
+            vim.keymap.set("i", "<c-x><c-l>", "<plug>(fzf-complete-line)")
             -- leader shortcuts
             for key, cmd in pairs({
                 o = "Files",    -- files with fzf
@@ -154,8 +156,6 @@ return require("packer").startup(function(use)
             end
         end,
     }
-    -- fzf + vim integration
-    use "junegunn/fzf.vim"
 
     -- autocomplete
     use {
@@ -183,8 +183,6 @@ return require("packer").startup(function(use)
             vim.g.UltiSnipsJumpBackwardTrigger = "<c-b>"
         end,
     }
-    -- community snippets
-    use "honza/vim-snippets"
 
     -- comment
     use {
@@ -196,12 +194,6 @@ return require("packer").startup(function(use)
             vim.keymap.set("", "<leader>/", ":TCommentBlock<cr>")
         end,
     }
-    -- detect indent and adjust indent options
-    use "tpope/vim-sleuth"
-    -- editing character pairs
-    use "tpope/vim-surround"
-    -- miscellaneous text operations
-    use "godlygeek/tabular"
     -- matching
     use "andymass/vim-matchup"
     -- insert pairs automatically
@@ -210,16 +202,6 @@ return require("packer").startup(function(use)
         config = function()
             -- 'gentle' algorithm
             vim.g.AutoPairsUseInsertedCount = 1
-        end,
-    }
-    -- highlight extra whitespace
-    use {
-        "ntpeters/vim-better-whitespace",
-        config = function()
-            -- disable highlighting on these filetypes
-            vim.g.better_whitespace_filetypes_blacklist = {
-                "startify",
-            }
         end,
     }
     -- move around easily
@@ -294,12 +276,6 @@ return require("packer").startup(function(use)
             vim.g.latex_started = 0
         end,
     }
-    -- email
-    use "neomutt/neomutt.vim"
-    -- fish shell
-    use "dag/vim-fish"
-    -- git
-    use "tpope/vim-git"
     -- cython
     -- use "lambdalisue/vim-cython-syntax"
     use "stephen-huan/vim-cython-syntax"
@@ -316,6 +292,4 @@ return require("packer").startup(function(use)
             vim.keymap.set("n", "<leader>m", "<plug>MarkdownPreview")
         end,
     }
-    -- jinja, setting up matchup
-    use "Glench/Vim-Jinja2-Syntax"
 end)

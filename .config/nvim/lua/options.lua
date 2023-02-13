@@ -76,6 +76,8 @@ local options = {
     showmatch = false,
     -- show whitespace with characters
     list = true,
+    -- show tabs, trailing spaces, and non-breakable spaces
+    listchars = "tab:| ,trail:-,nbsp:+",
     -- wrap if longer than window size
     wrap = true,
     -- disable break on specific characters
