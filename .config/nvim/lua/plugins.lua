@@ -230,6 +230,23 @@ return require("packer").startup(function(use)
 
     -- plugins for specific languages
 
+    -- lsp configuration
+    use "neovim/nvim-lspconfig"
+    -- lsp installation
+    use {
+        "williamboman/mason.nvim",
+        config = function()
+            require("mason").setup({
+                ui = {
+                    icons = {
+                        package_installed = "o",
+                        package_pending = "~",
+                        package_uninstalled = "x",
+                    },
+                }
+            })
+        end
+    }
     -- tree-sitter
     use {
         "nvim-treesitter/nvim-treesitter",
