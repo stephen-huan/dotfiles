@@ -221,29 +221,11 @@ return require("packer").startup(function(use)
     }
     -- move around easily
     use {
-        "easymotion/vim-easymotion",
+        "ggandor/leap.nvim",
         config = function()
-            -- equivalent to vim's smartcase
-            vim.g.EasyMotion_smartcase = 1
-            -- don't change cursor position
-            vim.g.EasyMotion_startofline = 0
             -- keybindings
-            for key, cmd in pairs({
-                s = "jumptoanywhere",
-                ["<leader>w"] = "w",
-                ["<leader>f"] = "f",
-                ["<s-right>"] = "lineforward",
-                ["<s-left>"] = "linebackward",
-                ["<s-down>"] = "j",
-                ["<s-up>"] = "k",
-                [";"] = "next",
-                [","] = "prev",
-                ["<leader>n"] = "n",
-                ["<leader>N"] = "N",
-            }) do
-                vim.keymap.set("", key, "<plug>(easymotion-" .. cmd .. ")")
-            end
-        end,
+            require("leap").add_default_mappings()
+        end
     }
 
     -- plugins for specific languages

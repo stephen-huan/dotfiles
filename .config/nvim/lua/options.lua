@@ -56,6 +56,8 @@ local options = {
     termguicolors = true,
     -- light background
     background = "light",
+    -- transparency for popup windows
+    winblend = 10,
     -- draw status bar for each window
     laststatus = 2,
     -- show an incomplete command
