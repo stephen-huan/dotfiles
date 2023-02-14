@@ -146,7 +146,7 @@ return require("packer").startup(function(use)
         "junegunn/fzf.vim",
         config = function()
             -- keybindings
-            for i, mode in pairs({ "n", "i", "x", "o" }) do
+            for _, mode in pairs({ "n", "i", "x", "o" }) do
                 vim.keymap.set(mode, "<c-p>",
                     "<plug>(fzf-maps-" .. mode .. ")"
                 )
@@ -245,6 +245,13 @@ return require("packer").startup(function(use)
                     },
                 }
             })
+        end
+    }
+    -- linting
+    use {
+        "mfussenegger/nvim-lint",
+        config = function()
+            require "config.lint"
         end
     }
     -- tree-sitter
