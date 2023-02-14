@@ -67,24 +67,37 @@ return require("packer").startup(function(use)
     use "farmergreg/vim-lastplace"
     -- show git in the gutter
     use {
-        "airblade/vim-gitgutter",
+        "lewis6991/gitsigns.nvim",
         config = function()
-            vim.g.gitgutter_map_keys = 0
-            -- keybindings
-            for pair, cmd in pairs({
-                [{ "n", "ghp" }] = "PreviewHunk",
-                [{ "n", "ghs" }] = "StageHunk",
-                [{ "n", "ghu" }] = "UndoHunk",
-                [{ "n", "[c"  }] = "PrevHunk",
-                [{ "n", "]c"  }] = "NextHunk",
-                [{ "o", "ic"  }] = "TextObjectInnerPending",
-                [{ "o", "ac"  }] = "TextObjectOuterPending",
-                [{ "x", "ic"  }] = "TextObjectInnerVisual",
-                [{ "x", "ac"  }] = "TextObjectOuterVisual",
-            }) do
-                local mode, key = unpack(pair)
-                vim.keymap.set(mode, key, "<plug>(GitGutter" .. cmd ..  ")")
-            end
+            require("gitsigns").setup({ 
+                current_line_blame_opts = {
+                    delay = 100,
+                },
+                yadm = {
+                    enable = true
+                },
+                -- buffer local keybindings
+                on_attach = function(bufnr)
+                    local gitsigns = package.loaded.gitsigns
+
+                    local function map(mode, l, r, opts)
+                        opts = opts or {}
+                        opts.buffer = bufnr
+                        vim.keymap.set(mode, l, r, opts)
+                    end
+
+                    map("n", "[c", gitsigns.prev_hunk)
+                    map("n", "]c", gitsigns.next_hunk)
+                    map("n", "ghp", gitsigns.preview_hunk)
+                    map("n", "ghb", gitsigns.toggle_current_line_blame)
+                    map("n", "ghd", gitsigns.toggle_deleted)
+                    map("n", "ghu", gitsigns.undo_stage_hunk)
+                    map("n", "ghs", gitsigns.stage_hunk)
+                    map("n", "ghS", gitsigns.stage_buffer)
+                    map("n", "ghr", gitsigns.reset_hunk)
+                    map("n", "ghR", gitsigns.reset_buffer)
+                end,
+            })
         end,
     }
     -- allow plugins to . repeat
@@ -197,10 +210,7 @@ return require("packer").startup(function(use)
         end,
     }
     -- matching
-    use {
-        "andymass/vim-matchup",
-        opt = true,
-    }
+    use "andymass/vim-matchup"
     -- insert pairs automatically
     use {
         "vim-scripts/auto-pairs-gentle",
@@ -249,7 +259,7 @@ return require("packer").startup(function(use)
                     enable = true,
                 },
                 indent = {
-                    enable = true ,
+                    enable = true,
                 },
             })
         end,
