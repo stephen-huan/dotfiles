@@ -183,6 +183,8 @@ return require("packer").startup(function(use)
             vim.g.UltiSnipsJumpBackwardTrigger = "<c-b>"
         end,
     }
+    -- community snippets
+    use "honza/vim-snippets"
 
     -- comment
     use {
@@ -195,7 +197,10 @@ return require("packer").startup(function(use)
         end,
     }
     -- matching
-    use "andymass/vim-matchup"
+    use {
+        "andymass/vim-matchup",
+        opt = true,
+    }
     -- insert pairs automatically
     use {
         "vim-scripts/auto-pairs-gentle",
@@ -233,6 +238,22 @@ return require("packer").startup(function(use)
 
     -- plugins for specific languages
 
+    -- tree-sitter
+    use {
+        "nvim-treesitter/nvim-treesitter",
+        run = ":TSUpdate",
+        config = function()
+            require("nvim-treesitter.configs").setup({
+                ensure_installed = "all",
+                highlight = {
+                    enable = true,
+                },
+                indent = {
+                    enable = true ,
+                },
+            })
+        end,
+    }
     -- language pack
     use {
         "sheerun/vim-polyglot",
