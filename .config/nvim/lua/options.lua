@@ -1,5 +1,5 @@
 -- helper function to set options
-function set_options(options, scope)
+local function set_options(options, scope)
     scope = scope or "glocal"
     local lookup = {
        ["glocal"] = vim.opt,
@@ -172,3 +172,6 @@ vim.opt.complete:append("kspell")
 -- remove blank files from sessions
 vim.opt.sessionoptions:remove("blank")
 
+return {
+    set_options = set_options,
+}

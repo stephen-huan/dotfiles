@@ -1,6 +1,6 @@
-require "options"
+local options = require("options")
 
-set_options({
+options.set_options({
     -- fix indentation
     shiftwidth = 2,
     tabstop = 2,

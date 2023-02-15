@@ -1,6 +1,6 @@
-require "options"
+local options = require("options")
 
-set_options({
+options.set_options({
     -- limit to 72 character width lines
     colorcolumn = "73",
     formatprg = "far 72",
