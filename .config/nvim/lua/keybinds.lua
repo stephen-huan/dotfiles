@@ -36,5 +36,5 @@ vim.keymap.set("n", "<leader>C", "<cmd>set spell! spell?<cr>")
 -- source vimrc
 vim.keymap.set("n", "<leader>v", "<cmd>source ~/.config/nvim/init.lua<cr>")
 -- reset syntax
-vim.keymap.set("n", "<leader>e", "<cmd>syntax off <bar> syntax on<cr>")
+-- vim.keymap.set("n", "<leader>e", "<cmd>syntax off <bar> syntax on<cr>")
 

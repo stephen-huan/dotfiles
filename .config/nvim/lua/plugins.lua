@@ -63,8 +63,6 @@ return require("packer").startup(function(use)
             vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>")
         end,
     }
-    -- go to the last position when loading a file
-    use "farmergreg/vim-lastplace"
     -- show git in the gutter
     use {
         "lewis6991/gitsigns.nvim",
@@ -100,6 +98,8 @@ return require("packer").startup(function(use)
             })
         end,
     }
+    -- go to the last position when loading a file
+    use "farmergreg/vim-lastplace"
     -- allow plugins to . repeat
     use "tpope/vim-repeat"
 
@@ -172,28 +172,26 @@ return require("packer").startup(function(use)
 
     -- autocomplete
     use {
-        "ycm-core/YouCompleteMe",
+        "hrsh7th/nvim-cmp",
         config = function()
-            -- run in comments
-            vim.g.ycm_complete_in_comments = 1
-            -- fix YCM overwriting tab expansion for snippets
-            vim.g.ycm_key_list_select_completion = { "<down>" }
-            vim.g.ycm_key_list_previous_completion = { "<up>" }
+            require "config.autocomplete"
         end,
+    }
+    -- autocomplete source plugins
+    use {
+        "saadparwaiz1/cmp_luasnip",
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-path",
+        "hrsh7th/cmp-cmdline",
     }
     -- snippets engine
     use {
-        "SirVer/ultisnips",
+        "L3MON4D3/LuaSnip",
+        run = "make install_jsregexp",
         config = function()
-            -- directories
-            vim.g.UltiSnipsSnippetDirectories = {
-                "UltiSnips",
-                "snipps",
-            }
-            -- shortcuts
-            vim.g.UltiSnipsExpandTrigger = "<tab>"
-            vim.g.UltiSnipsJumpForwardTrigger = "<tab>"
-            vim.g.UltiSnipsJumpBackwardTrigger = "<c-b>"
+            require("luasnip.loaders.from_vscode").lazy_load()
+            require("luasnip.loaders.from_snipmate").lazy_load()
         end,
     }
     -- community snippets
@@ -230,8 +228,6 @@ return require("packer").startup(function(use)
 
     -- plugins for specific languages
 
-    -- lsp configuration
-    use "neovim/nvim-lspconfig"
     -- lsp installation
     use {
         "williamboman/mason.nvim",
@@ -245,6 +241,13 @@ return require("packer").startup(function(use)
                     },
                 }
             })
+        end
+    }
+    -- lsp configuration
+    use {
+        "neovim/nvim-lspconfig",
+        config = function()
+            require "config.lsp"
         end
     }
     -- linting
@@ -263,6 +266,7 @@ return require("packer").startup(function(use)
                 ensure_installed = "all",
                 highlight = {
                     enable = true,
+                    disable = { "latex" },
                 },
                 indent = {
                     enable = true,
