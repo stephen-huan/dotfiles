@@ -1,9 +1,26 @@
+local mason = require("mason-registry")
 local lspconfig = require("lspconfig")
 -- add additional capabilities supported by nvim-cmp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- installed mason packages
 local packages = {
+    json = {
+        linter = {
+            -- https://github.com/zaach/jsonlint
+            {
+                package = "jsonlint",
+                name = "jsonlint",
+            }
+        },
+        formatter = {
+            -- https://github.com/prettier/prettier
+            {
+                package = "prettier",
+                name = "prettier",
+            }
+        }
+    },
     lua = {
         lsp = {
             -- https://github.com/LuaLS/lua-language-server
@@ -27,7 +44,10 @@ vim.api.nvim_create_user_command("MasonInstallAll", function()
     for _, language in pairs(packages) do
         for _, list in pairs(language) do
             for _, package in pairs(list) do
-                vim.cmd("MasonInstall " .. package.package)
+                local name = package.package
+                if not mason.is_installed(name) then
+                    vim.cmd("MasonInstall " .. name)
+                end
             end
         end
     end
@@ -36,6 +56,18 @@ end, {})
 -- use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(_, bufnr)
+    -- show hover information in popup window
+    --[[
+    vim.api.nvim_create_autocmd("CursorHold", {
+        group = vim.api.nvim_create_augroup(
+            string.format("lsp<buffer=%d>", bufnr), { clear = true }
+        ),
+        buffer = bufnr,
+        callback = function()
+            vim.lsp.buf.hover()
+        end
+    })
+    --]]
     -- enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
     -- extra keybindings: https://github.com/neovim/nvim-lspconfig
@@ -59,7 +91,7 @@ local on_attach = function(_, bufnr)
     map("n", "<leader>rn", vim.lsp.buf.rename)
     map("n", "<leader>ca", vim.lsp.buf.code_action)
     map("n", "gr", vim.lsp.buf.references)
-    map("n", "<leader>f", function()
+    map({ "n", "v" }, "<leader>f", function()
         vim.lsp.buf.format({ async = true })
     end)
 end

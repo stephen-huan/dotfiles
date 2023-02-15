@@ -67,7 +67,7 @@ return require("packer").startup(function(use)
     use {
         "lewis6991/gitsigns.nvim",
         config = function()
-            require("gitsigns").setup({ 
+            require("gitsigns").setup({
                 current_line_blame_opts = {
                     delay = 100,
                 },
@@ -255,6 +255,13 @@ return require("packer").startup(function(use)
         "mfussenegger/nvim-lint",
         config = function()
             require "config.lint"
+        end
+    }
+    -- formatting
+    use {
+        "mhartington/formatter.nvim",
+        config = function()
+            require "config.format"
         end
     }
     -- tree-sitter
