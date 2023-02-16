@@ -5,6 +5,22 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- installed mason packages
 local packages = {
+    bash = {
+        lsp = {
+            -- https://github.com/bash-lsp/bash-language-server
+            {
+                package = "bash-language-server",
+                name = "bashls",
+            }
+        },
+        linter = {
+            -- https://github.com/koalaman/shellcheck
+            {
+                package = "shellcheck",
+                name = "shellcheck",
+            },
+        },
+    },
     json = {
         linter = {
             -- https://github.com/zaach/jsonlint
