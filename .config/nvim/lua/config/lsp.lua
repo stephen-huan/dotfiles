@@ -37,6 +37,15 @@ local packages = {
             }
         }
     },
+    julia = {
+        lsp = {
+            -- https://github.com/julia-vscode/LanguageServer.jl
+            {
+                package = "julia-lsp",
+                name = "julials",
+            },
+        },
+    },
     lua = {
         lsp = {
             -- https://github.com/LuaLS/lua-language-server
