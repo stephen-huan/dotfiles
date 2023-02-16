@@ -101,6 +101,15 @@ local packages = {
             --]]
         },
     },
+    toml = {
+        lsp = {
+            -- https://github.com/tamasfe/taplo
+            {
+                package = "taplo",
+                name = "taplo",
+            },
+        },
+    },
 }
 
 -- command to install specified packages
