@@ -11,7 +11,7 @@ local packages = {
             {
                 package = "bash-language-server",
                 name = "bashls",
-            }
+            },
         },
         linter = {
             -- https://github.com/koalaman/shellcheck
@@ -27,14 +27,14 @@ local packages = {
             {
                 package = "jsonlint",
                 name = "jsonlint",
-            }
+            },
         },
         formatter = {
             -- https://github.com/prettier/prettier
             {
                 package = "prettier",
                 name = "prettier",
-            }
+            },
         }
     },
     julia = {
@@ -52,7 +52,7 @@ local packages = {
             {
                 package = "texlab",
                 name = "texlab",
-            }
+            },
         },
     },
     lua = {
@@ -83,7 +83,7 @@ local packages = {
             {
                 package = "jedi-language-server",
                 name = "jedi_language_server",
-            }
+            },
             --]]
         },
         linter = {

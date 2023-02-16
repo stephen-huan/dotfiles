@@ -24,21 +24,6 @@ vim.api.nvim_create_autocmd("Filetype", {
     },
     command = "setlocal spell spelllang=en_us",
 })
--- YouCompleteMe
-vim.api.nvim_create_autocmd("Filetype", {
-    group = "vimrc",
-    pattern = {
-        "c",
-        "cpp",
-        "python",
-    },
-    callback = function()
-        vim.b.ycm_hover = {
-            command = "GetDoc",
-            syntax = vim.bo.filetype,
-        }
-    end,
-})
 -- terminal settings
 vim.api.nvim_create_autocmd("TermOpen", {
     group = "vimrc",
@@ -46,11 +31,4 @@ vim.api.nvim_create_autocmd("TermOpen", {
         vim.cmd("setlocal nonumber norelativenumber signcolumn=no")
     end,
 })
--- disable file reloading
---[[
-vim.api.nvim_create_autocmd("VimEnter", {
-    group = "vimrc",
-    command = "WatchForChangesAllFile",
-})
---]]
 
