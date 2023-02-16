@@ -319,9 +319,6 @@ return require("packer").startup(function(use)
                     "-shell-escape",
                 },
             }
-
-            -- start server on first BufWrite, always call VimtexView
-            vim.g.latex_started = 0
         end,
     }
     -- cython

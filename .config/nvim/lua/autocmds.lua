@@ -1,15 +1,23 @@
 vim.api.nvim_create_augroup("vimrc", { clear = true })
 
--- start server on first BufWrite, always call VimtexView
-vim.api.nvim_create_autocmd("BufWritePost", {
+vim.api.nvim_create_autocmd({ "FileType" }, {
     group = "vimrc",
-    pattern = "*.tex",
-    callback = function()
-        if vim.g.latex_started == 0 then
-            vim.cmd("VimtexCompile")
-            vim.g.latex_started = 1
-        end
-        vim.cmd("VimtexView")
+    pattern = "tex",
+    callback = function(args)
+        -- start server on first BufWrite, always call VimtexView
+        vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+            group = vim.api.nvim_create_augroup(
+                string.format("latex<buffer=%d>", args.buf), { clear = true }
+            ),
+            buffer = args.buf,
+            callback = function()
+                if not vim.b.latex_started then
+                    vim.cmd("VimtexCompile")
+                    vim.b.latex_started = true
+                end
+                vim.cmd("VimtexView")
+            end,
+        })
     end,
 })
 -- enable spellcheck for text files
