@@ -46,6 +46,15 @@ local packages = {
             },
         },
     },
+    latex = {
+        lsp = {
+            -- https://github.com/latex-lsp/texlab
+            {
+                package = "texlab",
+                name = "texlab",
+            }
+        },
+    },
     lua = {
         lsp = {
             -- https://github.com/LuaLS/lua-language-server
