@@ -71,6 +71,36 @@ local packages = {
             },
         },
     },
+    python = {
+        lsp = {
+            -- https://github.com/microsoft/pyright
+            {
+                package = "pyright",
+                name = "pyright",
+            },
+            -- https://github.com/pappasam/jedi-language-server
+            --[[
+            {
+                package = "jedi-language-server",
+                name = "jedi_language_server",
+            }
+            --]]
+        },
+        linter = {
+            -- https://github.com/charliermarsh/ruff
+            {
+                package = "ruff",
+                name = "ruff",
+            },
+            -- https://github.com/python/mypy
+            --[[
+            {
+                package = "mypy",
+                name = "mypy",
+            },
+            --]]
+        },
+    },
 }
 
 -- command to install specified packages
