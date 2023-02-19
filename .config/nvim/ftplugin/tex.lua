@@ -8,6 +8,3 @@ options.set_options({
     -- cursorline = false,
 }, "local")
 
--- save ` for vimtex, add math mode pairs
--- let b:AutoPairs = AutoPairsDefine({'\(' : ' \)', '\[': '\]'}, ['`'])
-

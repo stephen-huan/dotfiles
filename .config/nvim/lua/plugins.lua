@@ -211,10 +211,12 @@ return require("packer").startup(function(use)
     use "andymass/vim-matchup"
     -- insert pairs automatically
     use {
-        "vim-scripts/auto-pairs-gentle",
+        "windwp/nvim-autopairs",
         config = function()
-            -- 'gentle' algorithm
-            vim.g.AutoPairsUseInsertedCount = 1
+            require("nvim-autopairs").setup({
+                check_ts = true,
+            })
+            require("config.autopairs")
         end,
     }
     -- move around easily
