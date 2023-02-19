@@ -4,7 +4,7 @@ return require("packer").startup(function(use)
 
     -- colorscheme, fork of habamax/vim-polar
     use {
-        "stephen-huan/vim-polar",
+        "stephen-huan/polar.nvim",
         config = function()
             -- set colorscheme
             vim.cmd.colorscheme "polar"
@@ -207,6 +207,8 @@ return require("packer").startup(function(use)
             vim.keymap.set("", "<leader>/", ":TCommentBlock<cr>")
         end,
     }
+     -- detect indent and adjust indent options
+    use "tpope/vim-sleuth"
     -- matching
     use "andymass/vim-matchup"
     -- insert pairs automatically

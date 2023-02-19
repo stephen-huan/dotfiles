@@ -22,7 +22,11 @@ vim.keymap.set("", "<c-h>h", function()
     local hi = vim.fn.synIDattr(colorID, "name")
     local trans = vim.fn.synIDattr(transID, "name")
     local lo = vim.fn.synIDattr(vim.fn.synIDtrans(colorID), "name")
-    print(string.format("hi<%s> trans<%s> lo<%s>", hi, trans, lo))
+    local result = vim.treesitter.get_captures_at_cursor(0)
+    print(string.format(
+        "hi<%s> trans<%s> lo<%s> tree-sitter: %s",
+        hi, trans, lo, vim.inspect(result))
+    )
 end)
 
 -- leader shortcuts
