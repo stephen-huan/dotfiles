@@ -273,9 +273,13 @@ return require("packer").startup(function(use)
                 ensure_installed = "all",
                 highlight = {
                     enable = true,
-                    disable = { "latex" },
+                    disable = { "latex", "gitcommit" },
                 },
                 indent = {
+                    enable = true,
+                    disable = { "python" },
+                },
+                matchup = {
                     enable = true,
                 },
             })
