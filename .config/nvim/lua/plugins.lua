@@ -192,6 +192,14 @@ return require("packer").startup(function(use)
         config = function()
             require("luasnip.loaders.from_vscode").lazy_load()
             require("luasnip.loaders.from_snipmate").lazy_load()
+            vim.keymap.set("i", "<s-cr>", function()
+                local luasnip = require("luasnip")
+                if luasnip.expand_or_jumpable() then
+                    return "<plug>luasnip-expand-or-jump"
+                else
+                    return "<s-cr>"
+                end
+            end, { expr = true, silent = true })
         end,
     }
     -- community snippets
@@ -277,7 +285,7 @@ return require("packer").startup(function(use)
                 ensure_installed = "all",
                 highlight = {
                     enable = true,
-                    disable = { "latex", "gitcommit" },
+                    disable = { "latex", "gitcommit", "julia" },
                 },
                 indent = {
                     enable = true,
