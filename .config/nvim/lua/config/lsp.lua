@@ -99,6 +99,11 @@ local packages = {
                 name = "mypy",
             },
             --]]
+            -- https://github.com/PyCQA/flake8
+            -- {
+            --     package = "flake8",
+            --     name = "flake8",
+            -- },
         },
     },
     toml = {
@@ -210,4 +215,5 @@ lspconfig.lua_ls.setup({
 
 return {
     packages = packages,
+    on_attach = on_attach,
 }

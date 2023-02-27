@@ -32,6 +32,7 @@ end)
 -- leader shortcuts
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = "  "
 
 -- toggle search highlight
 vim.keymap.set("n", "<leader>c", "<cmd>set hlsearch! hlsearch?<cr>")
