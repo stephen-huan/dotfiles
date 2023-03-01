@@ -1,7 +1,27 @@
 snippet shebang shebang
 	#!/usr/bin/env python3
 
+# https://black.readthedocs.io/en/stable/the_black_code_style/
+# https://beta.ruff.rs/docs/configuration/#error-suppression
+# https://pycqa.github.io/isort/docs/configuration/action_comments.html
+snippet soul file-level comment directives
+	# fmt: off
+	# ruff: noqa
+	# isort: skip_file
+	# flake8: noqa
+
+# https://github.com/microsoft/pyright/blob/main/docs/comments.md
+snippet lsp ignore lsp violation
+	# pyright: ignore
+
+snippet type ignore type violation
+	# type: ignore
+
+snippet lint ignore linter violation
+	# noqa: ${0:code}
+
 # generally helpful for competitive programming
+
 snippet cin fast cin
 	import sys
 	input = sys.stdin.readline # fast cin

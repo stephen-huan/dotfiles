@@ -35,7 +35,7 @@ local packages = {
                 package = "prettier",
                 name = "prettier",
             },
-        }
+        },
     },
     julia = {
         lsp = {
@@ -104,6 +104,18 @@ local packages = {
             --     package = "flake8",
             --     name = "flake8",
             -- },
+        },
+        formatter = {
+            -- https://github.com/PyCQA/isort
+            {
+                package = "isort",
+                name = "isort",
+            },
+            -- https://github.com/psf/black
+            {
+                package = "black",
+                name = "black",
+            },
         },
     },
     toml = {
