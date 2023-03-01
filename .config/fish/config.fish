@@ -5,6 +5,7 @@ fish_add_path ~/bin
 fish_add_path ~/.local/bin
 # fish_add_path (string split ":" -- (gem environment gempath))
 fish_add_path ~/.local/share/gem/ruby/3.0.0/bin
+fish_add_path ~/.local/share/nvim/mason/bin
 
 ### ENVIRONMENT
 
@@ -68,7 +69,7 @@ set -gx UBSAN_OPTIONS "print_stacktrace=1"
 set -gx PPROF_BINARY_PATH "a.out"
 
 # less
-# https://askubuntu.com/questions/522599/how-to-get-color-man-pages-under-fish-shell
+# https://askubuntu.com/questions/522599/
 set -gx LESS "RF"
 set -gx LESSCHARSET "utf-8"
 set -gx LESS_TERMCAP_mb (set_color brred)
