@@ -26,7 +26,8 @@ local options = {
     -- editing
 
     -- force unix line endings
-    fileformats = { "unix" },
+    fileformat = "unix",
+    fileformats = { "unix", "dos" },
     -- make backspace always work
     backspace = { "indent", "eol", "start" },
     -- number of visual spaces per tab
