@@ -24,7 +24,7 @@
                 "memento"
             ],
             "term": {
-                "deck": "mining",
+                "deck": "japanese::mining",
                 "fields": {
                     "Expression": "{expression}",
                     "audio": "{audio-media}",
