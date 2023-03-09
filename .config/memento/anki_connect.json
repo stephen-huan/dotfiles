@@ -32,7 +32,7 @@
                     "cloze_prefix": "{cloze-prefix}",
                     "cloze_suffix": "{cloze-suffix}",
                     "frequencies": "{frequencies}",
-                    "furigana": "{furigana}",
+                    "furigana": "<ruby>{expression}<rt>{reading}</rt></ruby>",
                     "image": "{screenshot-video}",
                     "meaning": "{glossary}",
                     "pitch": "{pitch}",
