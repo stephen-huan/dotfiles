@@ -61,7 +61,7 @@ set dsp.jack.server_name=
 set dsp.oss.device=
 set follow=false
 set format_clipped_text=…
-set format_current= %a - %l -%3n. %t%= %y 
+set format_current= %a - %l%! - %n. %t%= %y 
 set format_playlist= %-21%a %3n. %t%= %y %d %{?X!=0?%3X ?    }
 set format_playlist_va= %-21%A %3n. %t (%a)%= %y %d %{?X!=0?%3X ?    }
 set format_statusline= %{status} %{?show_playback_position?%{position} %{?duration?/ %{duration} }?%{?duration?%{duration} }}- %{total} %{?bpm>0?at %{bpm} BPM }%{?volume>=0?vol: %{?lvolume!=rvolume?%{lvolume},%{rvolume} ?%{volume} }}%{?stream?buf: %{buffer} }%{?show_current_bitrate & bitrate>=0? %{bitrate} kbps }%=%{?repeat_current?repeat current?%{?play_library?%{playlist_mode} from %{?play_sorted?sorted }library?playlist}} | %1{continue}%1{follow}%1{repeat}%1{shuffle} 
@@ -73,7 +73,6 @@ set format_treewin=  %l
 set format_treewin_artist=%a
 set icecast_default_charset=ISO-8859-1
 set id3_default_charset=ISO-8859-1
-set input.cdio.cddb_url=freedb.freedb.org:8880
 set input.cdio.priority=50
 set input.cue.priority=50
 set input.ffmpeg.priority=30
@@ -143,6 +142,7 @@ bind common 6 view filters
 bind common 7 view settings
 bind common = vol +10%
 bind common ? search-b-start
+bind common B player-next-album
 bind common C toggle continue
 bind common D win-remove
 bind common E win-add-Q
@@ -154,6 +154,7 @@ bind common M toggle play_library
 bind common N search-prev
 bind common P win-mv-before
 bind common U win-update-cache
+bind common Z player-prev-album
 bind common [ vol +1% +0
 bind common ] vol +0 +1%
 bind common ^B win-page-up
