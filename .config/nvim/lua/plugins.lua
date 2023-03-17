@@ -289,7 +289,6 @@ return require("packer").startup(function(use)
                 },
                 indent = {
                     enable = true,
-                    disable = { "python" },
                 },
                 matchup = {
                     enable = true,
