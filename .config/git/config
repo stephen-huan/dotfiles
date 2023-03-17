@@ -12,8 +12,7 @@
 	defaultBranch = master
 [alias]
 	a = add --all
-	cs = commit -S
-	cm = commit -S -m
+	cs = commit --gpg-sign
 	tree = log --graph --decorate --pretty=oneline --abbrev-commit
 [filter "lfs"]
 	clean = git-lfs clean -- %f
