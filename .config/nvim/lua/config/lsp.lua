@@ -159,10 +159,10 @@ local on_attach = function(_, bufnr)
     })
     --]]
     -- enable completion triggered by <c-x><c-o>
-    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+    vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
     -- extra keybindings: https://github.com/neovim/nvim-lspconfig
     local function map(mode, l, r, opts)
-        opts = opts or { noremap = true, silent = true }
+        opts = opts or {}
         opts.buffer = bufnr
         vim.keymap.set(mode, l, r, opts)
     end
