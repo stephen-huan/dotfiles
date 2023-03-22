@@ -217,6 +217,8 @@ return require("packer").startup(function(use)
     }
      -- detect indent and adjust indent options
     use "tpope/vim-sleuth"
+    -- misc. text operations
+    use "godlygeek/tabular"
     -- matching
     use "andymass/vim-matchup"
     -- insert pairs automatically
@@ -296,6 +298,8 @@ return require("packer").startup(function(use)
             })
         end,
     }
+    -- tree-sitter utilities
+    use "nvim-treesitter/playground"
     -- language pack
     use {
         "sheerun/vim-polyglot",
