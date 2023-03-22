@@ -21,6 +21,38 @@ local packages = {
             },
         },
     },
+    css = {
+        lsp = {
+            -- https://github.com/microsoft/vscode-css-languageservice
+            {
+                package = "css-lsp",
+                name = "cssls",
+            },
+        },
+        formatter = {
+            -- https://github.com/prettier/prettier
+            {
+                package = "prettier",
+                name = "prettier",
+            },
+        },
+    },
+    html = {
+        lsp = {
+            -- https://github.com/microsoft/vscode-html-languageservice
+            {
+                package = "html-lsp",
+                name = "html",
+            },
+        },
+        formatter = {
+            -- https://github.com/prettier/prettier
+            {
+                package = "prettier",
+                name = "prettier",
+            },
+        },
+    },
     json = {
         linter = {
             -- https://github.com/zaach/jsonlint
