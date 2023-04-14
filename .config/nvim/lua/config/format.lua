@@ -42,6 +42,17 @@ formatters_by_ft.json = {
     end,
 }
 
+-- https://pycqa.github.io/isort/docs/major_releases/introducing_isort_5.html
+formatters_by_ft.cython = {
+    function()
+        return {
+            exe = "isort",
+            args = { "-q", "-" },
+            stdin = true,
+        }
+    end,
+}
+
 require("formatter").setup({
     filetype = formatters_by_ft,
 })
