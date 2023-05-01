@@ -110,6 +110,13 @@ local packages = {
                 package = "pyright",
                 name = "pyright",
             },
+            -- https://github.com/facebook/pyre-check
+            --[[
+            {
+                package = "pyre",
+                name = "pyre",
+            },
+            --]]
             -- https://github.com/pappasam/jedi-language-server
             --[[
             {
@@ -131,11 +138,6 @@ local packages = {
                 name = "mypy",
             },
             --]]
-            -- https://github.com/PyCQA/flake8
-            -- {
-            --     package = "flake8",
-            --     name = "flake8",
-            -- },
         },
         formatter = {
             -- https://github.com/PyCQA/isort
