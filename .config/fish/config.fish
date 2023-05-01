@@ -10,12 +10,12 @@ fish_add_path ~/.local/share/nvim/mason/bin
 
 ### ENVIRONMENT
 
-set -gx CONDA_LOADED 0
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-# eval /opt/miniconda3/bin/conda "shell.fish" "hook" $argv | source
-# <<< conda initialize <<<
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'mamba init' !!
+set -gx MAMBA_EXE "/usr/bin/micromamba"
+set -gx MAMBA_ROOT_PREFIX "$HOME/micromamba"
+$MAMBA_EXE shell hook --shell fish --prefix $MAMBA_ROOT_PREFIX | source
+# <<< mamba initialize <<<
 
 ### VARIABLES
 
