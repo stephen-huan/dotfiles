@@ -3,6 +3,7 @@
 # add user bin to PATH
 fish_add_path ~/bin
 fish_add_path ~/.local/bin
+fish_add_path /usr/lib/rustup/bin
 fish_add_path ~/.cargo/bin
 # fish_add_path (string split ":" -- (gem environment gempath))
 fish_add_path ~/.local/share/gem/ruby/3.0.0/bin
