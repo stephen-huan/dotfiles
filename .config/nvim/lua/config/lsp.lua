@@ -103,6 +103,14 @@ local packages = {
             },
         },
     },
+    markdown = {
+        formatter = {
+            {
+                package = "prettier",
+                name = "prettier",
+            },
+        },
+    },
     python = {
         lsp = {
             -- https://github.com/microsoft/pyright
