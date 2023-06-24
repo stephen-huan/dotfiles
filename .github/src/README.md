@@ -3,7 +3,7 @@
 Collection of configuration files ("dotfiles") on archlinux.
 
 Files are managed with [yadm](https://yadm.io/),
-see [dotfiles.md](./doc/dotfiles.md) for
+see [dotfiles.md](dotfiles.md) for
 other dotfile systems and how to use `yadm`.
 
 Quickstart:
@@ -17,34 +17,3 @@ yadm clone https://github.com/stephen-huan/dotfiles
 yadm bootstrap
 yadm status
 ```
-
-## Configuration
-
-- desktop environment
-  - i3-gaps, tiling window manager
-  - i3bar, top bar with icons
-  - i3status, status line
-  - dmenu, application launcher
-  - picom, compositor
-- programming tools
-  - paru, AUR helper
-  - [alacritty](./doc/alacritty.md), terminal emulator
-  - [fish](./doc/fish.md), shell
-  - [neovim](./doc/neovim.md), text editor
-  - [git](./doc/git.md), version control
-- command line interfaces (terminal programs)
-  - [tmux](./doc/tmux.md), terminal multiplexer
-  - [ranger](./doc/ranger.md), file manager
-  - [pass](./doc/pass.md), password manager
-  - [neomutt](./doc/neomutt.md), mail user agent
-  - [cmus](./doc/cmus.md), music player
-- graphical user interfaces (graphical programs)
-  - firefox, web browser
-  - sioyek, PDF viewer
-  - zotero, research collection, organization, and citation
-- keyboard
-  - [tmk/qmk](https://github.com/stephen-huan/qmk_firmware/tree/vusb-nkro),
-    open-source firmware for mechanical keyboards
-  - [clipster](./doc/clipboard.md), clipboard manager
-- internet
-  - DNS: [unbound](./doc/unbound.md), recursive DNS resolver with caching

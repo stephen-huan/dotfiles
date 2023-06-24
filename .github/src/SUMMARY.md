@@ -1,3 +1,35 @@
 # Summary
 
-[Home](README.md)
+[home](README.md)
+
+- [dotfiles management](dotfiles.md)
+
+# packages
+
+- [desktop environment]()
+  - [i3-gaps]()
+  - [i3bar]()
+  - [i3status]()
+  - [dmenu]()
+  - [picom]()
+- [programming tools]()
+  - [paru]()
+  - [alacritty](alacritty.md)
+  - [fish](fish.md)
+  - [neovim](neovim.md)
+  - [git](git.md)
+- [command line interfaces]()
+  - [tmux](tmux.md)
+  - [ranger](ranger.md)
+  - [pass](pass.md)
+  - [neomutt](neomutt.md)
+  - [cmus](cmus.md)
+- [graphical user interfaces]()
+  - [firefox]()
+  - [sioyek]()
+  - [zotero]()
+- [keyboard]()
+  - [tmk/qmk]()
+  - [clipster](clipboard.md)
+- [internet]()
+  - [unbound](unbound.md)
