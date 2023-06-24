@@ -3,6 +3,7 @@
 [home](README.md)
 
 - [dotfiles management](dotfiles.md)
+- [arch install](arch.md)
 
 # packages
 
