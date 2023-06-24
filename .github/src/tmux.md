@@ -12,4 +12,3 @@ manager, terminal emulator, or text editor.
 
 tmux is probably most helpful for remote connections with ssh, so
 your commands keep running even after you close the connection.
-

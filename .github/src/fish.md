@@ -7,4 +7,3 @@ Package manager is [fisher](https://github.com/jorgebucaran/fisher)
 although it has its quirks (can only update all packages).
 
 Theme is "Tomorrow", run `fish_config` to select it.
-

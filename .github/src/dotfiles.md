@@ -13,6 +13,7 @@ is just as thin wrapper over `git` with some extra features.
 
 Finally, `yadm bootstrap` allows `~/.config/yadm/bootstrap`
 to be executed after install.
+
 ```shell
 yadm bootstrap
 ```
@@ -48,4 +49,3 @@ You can move files by hand and symlink later with the next command.
 - `rcup`: symlink everything.
 
 - `rcdn`: remove symlinks.
-

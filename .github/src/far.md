@@ -14,6 +14,7 @@ possible, so it doesn't generate really short lines. Finally, it ignores
 the last line when minimizing variance and tries to make the last line
 shorter than average, because a typical paragraph usually looks better
 if the last line is shorter. To summarize,
+
 1. Minimize the variance of the lengths of each line ...
 2. ... subject to the constraint that the number of lines is smallest
 3. Ignore the last line, while making sure it's shorter than average
@@ -21,9 +22,11 @@ if the last line is shorter. To summarize,
 `far` uses dynamic programming to minimize variance. It
 tokenizes the paragraph by splitting on whitespace, and each
 subproblem in the dynamic program is a suffix of this token list.
+
 ```python
 Var[X] = E[X]^2 - E[X]^2 = sum(x^2 for x in X)/len(X) - (sum(X)/len(X))^2
 ```
+
 The length `len(X)` is constant because of the smallest number of lines
 constraint, and so is the sum because the sum of the line lengths is
 determined by two things: the characters in the tokens and the number of
@@ -39,16 +42,20 @@ Thus, minimizing `Var[X]` is equivalent to minimizing the sum of squares
 are trying to minimize variance over the entire paragraph. The overall
 paragraph has some mean value u. Each line will contribute `(x - u)^2`
 to the overall paragraph's variance. So we want to minimize:
+
 ```
 (x1 - u)^2 + (x2 - u)^2 + ... + (xn - u)^2
 ```
+
 where xi is the length of a line and we know that `x1 + x2 + ... + xn` is
 constant because of the above logic (`sum(X)` is constant). Expanding,
+
 ```
 [x1^2 - 2u x1 + u^2] + [x2^2 - 2u x2 + u^2] + ... + [xn^2 - 2u xn + u^2]
 u^2 is a constant, so we can discard those terms and reorganize into
-[x1^2 + x2^2 + ... + xn^2] - 2u[x1 + x2 + ... + xn]. 
+[x1^2 + x2^2 + ... + xn^2] - 2u[x1 + x2 + ... + xn].
 ```
+
 The last term is a constant, so minimizing the variance of the overall
 paragraph is equivalent to minimizing the variance for a suffix of the
 paragraph (both are minimizing the sum of squares). This is just the variance
@@ -71,6 +78,7 @@ into a file rather than displayed to terminal.
 ## Examples
 
 original paragraph:
+
 ```
 xxxxx xxx xxx xxxx xxxxxxxxx xx x xxxxxxxxx x xxxx xxxx xxxxxxx xxxxxxxx xxx
 xxxxxxxxx xxxxxxxx xx xx xxxxx xxxxx xxxx xx x xxxx xx xxxxxxxx xxxxxxxx xxxx
@@ -81,6 +89,7 @@ x xxxxx xxxxxxx xxxxxxx xx xx xxxxxx xx xxxxx
 ```
 
 `fmt -w 72` (greedy algorithm):
+
 ```
 xxxxx xxx xxx xxxx xxxxxxxxx xx x xxxxxxxxx x xxxx xxxx xxxxxxx xxxxxxxx
 xxx xxxxxxxxx xxxxxxxx xx xx xxxxx xxxxx xxxx xx x xxxx xx xxxxxxxx
@@ -92,6 +101,7 @@ xxxxxx xx xxxxx
 ```
 
 `par 72` (with `PARINIT` set to `rTbgqR B=.,?'_A_a_@ Q=_s>|`):
+
 ```
 xxxxx xxx xxx xxxx xxxxxxxxx xx x xxxxxxxxx x xxxx xxxx xxxxxxx xxxxxxxx
 xxx xxxxxxxxx xxxxxxxx xx xx xxxxx xxxxx xxxx xx x xxxx xx xxxxxxxx
@@ -103,6 +113,7 @@ xxxxxx xx xxxxx
 ```
 
 `far 72`:
+
 ```
 xxxxx xxx xxx xxxx xxxxxxxxx xx x xxxxxxxxx x xxxx xxxx xxxxxxx
 xxxxxxxx xxx xxxxxxxxx xxxxxxxx xx xx xxxxx xxxxx xxxx xx x xxxx
@@ -134,4 +145,3 @@ This program is pretty useful whenever writing plaintext in a monospace text
 editor, e.g. when editing LaTeX, markdown files, college essays, and emails.
 It's especially useful in `vim`, which lets you set the option `'formatprg'`
 so the operator `gq` formats using the external program.
-

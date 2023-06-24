@@ -27,7 +27,7 @@ playlist view, by default this will have only a single playlist called
 "default". Create a new playlist with `:pl-create playlist-name` (by default
 this is not bound to any key so you have to use the command) and delete a
 playlist with `D`. Playlists are sorted alphabetically but this can probably
-be configured somewhere. The asterisk "*" indicates which playlist new songs
+be configured somewhere. The asterisk "\*" indicates which playlist new songs
 will be added to. To change what the active playlist is, press `<space>` (this
 was the confusing part which I could not find documentation on). Finally, to
 add songs press `y` on a song (you can also press `y` on albums and artists,
@@ -81,4 +81,3 @@ that artist in the same position in the implicit queue you were in.
 generate a status text based on the current song (which I do for `i3status`)
 or to integrate into `ranger`, e.g. when selecting an audio file, add the file
 to the queue and play it. See the man page `cmus-remote` for more details.
-

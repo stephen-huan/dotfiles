@@ -15,28 +15,36 @@ need to be explicitly specified unlike shell commands in the terminal.
 - Image previews
 
 Edit `rc.conf`:
+
 ```config
 set preview_images true
 set preview_images_method ueberzug
 ```
+
 `preview_images_method` can also be set to `w3m` for general terminals.
 
 For the rest of the previews, edit `scope.sh`:
+
 - Videos
+
 ```shell
 pacman -S ffmpegthumbnailer
 ```
+
 - PDF
+
 ```shell
 pacman -S pdftoppm
 ```
+
 - Syntax highlighting (without `bat`)
 
 Use the package `highlight`. To pick a theme, copy the scope via `ranger
 --copy-config=scope` and edit the variable `HIGHLIGHT_STYLE` near the top.
 To use a base16 theme, replace the highlight command near the bottom.
+
 - Syntax highlighting (with `bat`)
+
 ```shell
 pacman -S bat
 ```
-

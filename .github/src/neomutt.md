@@ -5,6 +5,7 @@ read email from the terminal. It is possible to download and send mail
 from mutt natively, but I prefer external programs for those functions.
 
 A quick overview:
+
 - downloading mail: [offlineimap](#offlineimap)
 - sending mail: [msmtp](#msmtp)
 - reading mail: neomutt + [neovim](./vim.md) (occasional full-screen reading) +
@@ -13,7 +14,7 @@ A quick overview:
 - indexing mail: [notmuch](#notmuch)
 - encrypting mail: [gpg](https://gnupg.org/software/gpgme/index.html)
 - adding attachments: [ranger](./ranger.md)
-    - determining what program to use to open attachments: [rifle](./ranger.md)
+  - determining what program to use to open attachments: [rifle](./ranger.md)
 - general selector: [fzf](https://github.com/junegunn/fzf)
 
 ### neomutt
@@ -100,9 +101,9 @@ We'll be using the
 [msal](https://msal-python.readthedocs.io/en/latest/) client library.
 
 Follow the instructions to [create a new application](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app)
-and [add IMAP and SMTP permissions](
-https://docs.microsoft.com/en-us/exchange/client-developer/legacy-protocols/how-to-authenticate-an-imap-pop-smtp-application-by-using-oauth).
+and [add IMAP and SMTP permissions](https://docs.microsoft.com/en-us/exchange/client-developer/legacy-protocols/how-to-authenticate-an-imap-pop-smtp-application-by-using-oauth).
 These instructions are a bit verbose, so I'll condense them here:
+
 1. Navigate to the [Azure portal](https://portal.azure.com/)
 2. Go to "Azure Active Directory", either by searching or clicking on the icon
 3. Find "App registrations" in the side bar
@@ -120,8 +121,7 @@ These instructions are a bit verbose, so I'll condense them here:
    the "Azure Active Directory" page and looking at the value of "Primary
    domain". Otherwise, this can be set to `common`.
 
-Something strange Microsoft does is their [refresh tokens](
-https://docs.microsoft.com/en-us/azure/active-directory/develop/refresh-tokens):
+Something strange Microsoft does is their [refresh tokens](https://docs.microsoft.com/en-us/azure/active-directory/develop/refresh-tokens):
 they give a new refresh token back after every access token request, and
 refresh tokens expire after 90 days. If you were authenticating through
 offlineimap, you might be passing `oauth2_refresh_token` so offlineimap can
@@ -143,4 +143,3 @@ same cached access token.
 `notmuch` is an email indexer, tagger, and searcher. Add a postsync hook to
 `offlineimap` so tagging happens on new mail. We can also use notmuch as
 an address book by searching the addresses of the emails you've received.
-
