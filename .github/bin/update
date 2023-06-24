@@ -1,0 +1,6 @@
+#!/bin/bash
+# script to update dependencies
+
+cargo install mdbook
+npm update
+

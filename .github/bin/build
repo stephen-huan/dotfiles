@@ -1,0 +1,9 @@
+#!/bin/bash
+# script to build the site locally
+
+site_dir="book"
+
+# build site
+mdbook build --dest-dir "$site_dir" &&
+npx prettier --write "$site_dir"
+

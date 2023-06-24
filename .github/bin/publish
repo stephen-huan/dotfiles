@@ -1,0 +1,30 @@
+#!/bin/bash
+# script to deploy the site to Cloudflare pages
+
+site_dir="book"
+git="yadm"
+remote="origin"
+main_branch="master"
+build_branch="build"
+push_branch="cloudflare-pages"
+commit="$(git rev-parse --short HEAD)"
+
+build="$(dirname "$0")/build"
+
+"$git" checkout -B "$build_branch" "$main_branch" &&
+# sync changes: https://stackoverflow.com/q/12858199
+rm --recursive --force "$site_dir" &&
+"$git" subtree add --prefix "$site_dir" "$push_branch" &&
+
+# build site
+"$build" &&
+
+# publish
+"$git" add --force "$site_dir" &&
+"$git" commit --message "Deploying to $push_branch from @ $commit" &&
+# https://gist.github.com/cobyism/4730490
+"$git" subtree split --prefix "$site_dir" --branch="$push_branch" &&
+"$git" push "$remote" "$push_branch:$push_branch" &&
+
+"$git" checkout "$main_branch"
+

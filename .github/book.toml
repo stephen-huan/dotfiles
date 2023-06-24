@@ -1,0 +1,11 @@
+[book]
+authors = ["Stephen Huan"]
+language = "en"
+multilingual = false
+src = "src"
+title = "dotfiles"
+
+[output.html]
+git-repository-url = "https://github.com/stephen-huan/dotfiles"
+git-repository-icon = "fa-code-fork"
+edit-url-template = "https://github.com/stephen-huan/dotfiles/edit/master/{path}"
