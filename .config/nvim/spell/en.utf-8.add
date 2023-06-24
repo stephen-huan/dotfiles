@@ -1,4 +1,6 @@
+bilinearly
 BLAS
+cgdct
 Chebyshev
 Cholesky
 codomain
@@ -26,11 +28,13 @@ incentivizes
 infima
 infimum
 informativity
+Kaggle
 Kaporin
 Knothe
 Krylov
 Kullback
 Lanczos
+leaderboard
 Leibler
 matplotlib
 matvec
@@ -50,6 +54,7 @@ Rosenblatt
 Schur
 scikit
 scipy
+stochasticity
 subdiagonal
 submatrices
 submatrix
