@@ -288,6 +288,19 @@ lspconfig.lua_ls.setup {
     },
 }
 
+-- https://github.com/oxalica/nil/blob/main/dev/nvim-lsp.nix
+require("lspconfig").nil_ls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        ["nil"] = {
+            formatting = {
+                command = { "nixpkgs-fmt" },
+            },
+        },
+    },
+}
+
 return {
     packages = packages,
     on_attach = on_attach,
