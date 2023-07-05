@@ -1,5 +1,5 @@
-local mason = require("mason-registry")
-local lspconfig = require("lspconfig")
+local mason = require "mason-registry"
+local lspconfig = require "lspconfig"
 -- add additional capabilities supported by nvim-cmp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
@@ -118,6 +118,15 @@ local packages = {
             },
         },
     },
+    nix = {
+        lsp = {
+            {
+                -- https://github.com/oxalica/nil
+                package = "nil",
+                name = "nil_ls",
+            },
+        },
+    },
     python = {
         lsp = {
             -- https://github.com/microsoft/pyright
@@ -231,7 +240,7 @@ local on_attach = function(_, bufnr)
     map("n", "<leader>ca", vim.lsp.buf.code_action)
     map("n", "gr", vim.lsp.buf.references)
     map({ "n", "v" }, "<leader>f", function()
-        vim.lsp.buf.format({ async = true })
+        vim.lsp.buf.format { async = true }
     end)
 end
 
@@ -239,16 +248,16 @@ end
 for _, language in pairs(packages) do
     if language.lsp then
         for _, lsp in pairs(language.lsp) do
-            lspconfig[lsp.name].setup({
+            lspconfig[lsp.name].setup {
                 on_attach = on_attach,
                 capabilities = capabilities,
-            })
+            }
         end
     end
 end
 
 -- adjust lsp configuration: https://github.com/neovim/nvim-lspconfig/
-lspconfig.lua_ls.setup({
+lspconfig.lua_ls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
@@ -272,7 +281,7 @@ lspconfig.lua_ls.setup({
             },
         },
     },
-})
+}
 
 return {
     packages = packages,

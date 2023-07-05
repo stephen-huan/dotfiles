@@ -1,5 +1,5 @@
 -- utilities for creating configurations
-local util = require("formatter.util")
+local util = require "formatter.util"
 local packages = require("config.lsp").packages
 
 -- register formatters for each filetype
@@ -34,7 +34,7 @@ formatters_by_ft.json = {
                 "--stdin-filepath",
                 util.escape_path(util.get_current_buffer_file_path()),
                 "--config",
-                vim.fn.stdpath("config") .. "/lsp/prettier/prettierrc.json",
+                vim.fn.stdpath "config" .. "/lsp/prettier/prettierrc.json",
             },
             stdin = true,
             try_node_modules = true,
@@ -53,7 +53,6 @@ formatters_by_ft.cython = {
     end,
 }
 
-require("formatter").setup({
+require("formatter").setup {
     filetype = formatters_by_ft,
-})
-
+}

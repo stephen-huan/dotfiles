@@ -15,4 +15,3 @@ vim.opt.shelltemp = false
 vim.keymap.set({ "", "!" }, "<c-s>", "<cmd>w<cr>")
 -- exit file for all modes
 vim.keymap.set({ "", "!" }, "<c-q>", "<cmd>q!<cr>")
-

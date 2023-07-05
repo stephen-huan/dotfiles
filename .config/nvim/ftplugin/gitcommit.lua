@@ -1,4 +1,4 @@
-local options = require("options")
+local options = require "options"
 
 options.set_options({
     -- limit to 72 character width lines
@@ -8,4 +8,3 @@ options.set_options({
 
 -- remap goyo to 72 characters
 vim.keymap.set("n", "<leader>y", "<cmd>Goyo 73<cr>")
-

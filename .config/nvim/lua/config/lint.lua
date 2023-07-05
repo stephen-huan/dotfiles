@@ -1,4 +1,4 @@
-local lint = require("lint")
+local lint = require "lint"
 local packages = require("config.lsp").packages
 
 -- register linters for each filetype
@@ -22,7 +22,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
         local events = { "BufEnter", "BufWritePost", "InsertLeave" }
         vim.api.nvim_create_autocmd(events, {
             group = vim.api.nvim_create_augroup(
-                string.format("lint<buffer=%d>", args.buf), { clear = true }
+                string.format("lint<buffer=%d>", args.buf),
+                { clear = true }
             ),
             buffer = args.buf,
             callback = function()
@@ -51,7 +52,8 @@ end)
 
 -- add neovim environment
 lint.linters.selene.args = {
-    "--display-style", "json",
-    "--config", vim.fn.stdpath("config") .. "/lsp/selene/selene.toml",
+    "--display-style",
+    "json",
+    "--config",
+    vim.fn.stdpath "config" .. "/lsp/selene/selene.toml",
 }
-

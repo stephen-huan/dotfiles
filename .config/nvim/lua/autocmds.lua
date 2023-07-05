@@ -7,15 +7,16 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
         -- start server on first BufWrite, always call VimtexView
         vim.api.nvim_create_autocmd({ "BufWritePost" }, {
             group = vim.api.nvim_create_augroup(
-                string.format("latex<buffer=%d>", args.buf), { clear = true }
+                string.format("latex<buffer=%d>", args.buf),
+                { clear = true }
             ),
             buffer = args.buf,
             callback = function()
                 if not vim.b.latex_started then
-                    vim.cmd("VimtexCompile")
+                    vim.cmd "VimtexCompile"
                     vim.b.latex_started = true
                 end
-                vim.cmd("VimtexView")
+                vim.cmd "VimtexView"
             end,
         })
     end,
@@ -36,7 +37,6 @@ vim.api.nvim_create_autocmd("Filetype", {
 vim.api.nvim_create_autocmd("TermOpen", {
     group = "vimrc",
     callback = function()
-        vim.cmd("setlocal nonumber norelativenumber signcolumn=no")
+        vim.cmd "setlocal nonumber norelativenumber signcolumn=no"
     end,
 })
-

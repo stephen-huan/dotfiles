@@ -1,4 +1,4 @@
-local options = require("options")
+local options = require "options"
 
 options.set_options({
     -- limit to 72 character width lines
@@ -17,4 +17,3 @@ vim.keymap.set("n", "<leader>y", "<cmd>Goyo 73<cr>")
 
 -- vim-sleuth takes a long time
 vim.b.sleuth_automatic = 0
-

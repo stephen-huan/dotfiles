@@ -21,7 +21,7 @@ return require("packer").startup(function(use)
                 active = {
                     right = {
                         { "lineinfo" },
-                        { "percent"  },
+                        { "percent" },
                         { "filetype" },
                     },
                 },
@@ -37,7 +37,9 @@ return require("packer").startup(function(use)
             -- update sessions
             vim.g.startify_session_persistence = 0
             -- keybindings
-            vim.keymap.set("n", "<leader>s",
+            vim.keymap.set(
+                "n",
+                "<leader>s",
                 "<cmd>execute 'SSave!' . fnamemodify(v:this_session, ':t')<cr>"
             )
         end,
@@ -67,12 +69,12 @@ return require("packer").startup(function(use)
     use {
         "lewis6991/gitsigns.nvim",
         config = function()
-            require("gitsigns").setup({
+            require("gitsigns").setup {
                 current_line_blame_opts = {
                     delay = 100,
                 },
                 yadm = {
-                    enable = true
+                    enable = true,
                 },
                 -- buffer local keybindings
                 on_attach = function(bufnr)
@@ -95,7 +97,7 @@ return require("packer").startup(function(use)
                     map("n", "ghr", gitsigns.reset_hunk)
                     map("n", "ghR", gitsigns.reset_buffer)
                 end,
-            })
+            }
         end,
     }
     -- go to the last position when loading a file
@@ -111,7 +113,9 @@ return require("packer").startup(function(use)
             vim.g.ranger_replace_netrw = 1
             vim.g.ranger_map_keys = 0
             -- keybindings
-            vim.keymap.set("n", "<leader>r",
+            vim.keymap.set(
+                "n",
+                "<leader>r",
                 "<cmd>RangerCurrentDirectoryNewTab<cr>"
             )
         end,
@@ -130,14 +134,15 @@ return require("packer").startup(function(use)
             }
             -- directory jumping with z
             vim.keymap.set("n", "<leader>g", function()
-                vim.fn["fzf#run"](vim.fn["fzf#wrap"]({
+                vim.fn["fzf#run"](vim.fn["fzf#wrap"] {
                     source = "fish -c '_z'",
                     sink = "cd",
                     options = {
-                        "--preview", "_preview_path {}",
+                        "--preview",
+                        "_preview_path {}",
                         "--tiebreak=index",
                     },
-                }))
+                })
             end)
         end,
     }
@@ -146,8 +151,10 @@ return require("packer").startup(function(use)
         "junegunn/fzf.vim",
         config = function()
             -- keybindings
-            for _, mode in pairs({ "n", "i", "x", "o" }) do
-                vim.keymap.set(mode, "<c-p>",
+            for _, mode in pairs { "n", "i", "x", "o" } do
+                vim.keymap.set(
+                    mode,
+                    "<c-p>",
                     "<plug>(fzf-maps-" .. mode .. ")"
                 )
             end
@@ -156,14 +163,16 @@ return require("packer").startup(function(use)
             -- lines from any buffer
             vim.keymap.set("i", "<c-x><c-l>", "<plug>(fzf-complete-line)")
             -- leader shortcuts
-            for key, cmd in pairs({
-                o = "Files",    -- files with fzf
-                a = "Ag",       -- ag searcher
-                L = "BLines",   -- lines in current buffer
-                W = "Windows",  -- windows
+            for key, cmd in pairs {
+                o = "Files", -- files with fzf
+                a = "Ag", -- ag searcher
+                L = "BLines", -- lines in current buffer
+                W = "Windows", -- windows
                 H = "Helptags", -- help
-            }) do
-                vim.keymap.set("n", "<leader>" .. key,
+            } do
+                vim.keymap.set(
+                    "n",
+                    "<leader>" .. key,
                     "<cmd>" .. cmd .. "<cr>"
                 )
             end
@@ -190,12 +199,12 @@ return require("packer").startup(function(use)
         "L3MON4D3/LuaSnip",
         run = "make install_jsregexp",
         config = function()
-            local luasnip = require("luasnip")
+            local luasnip = require "luasnip"
             -- https://github.com/L3MON4D3/LuaSnip/issues/525
-            luasnip.setup({
+            luasnip.setup {
                 region_check_events = { "CursorHold", "InsertLeave" },
                 delete_check_events = { "TextChanged", "InsertLeave" },
-            })
+            }
             -- load snippets
             require("luasnip.loaders.from_vscode").lazy_load()
             require("luasnip.loaders.from_snipmate").lazy_load()
@@ -222,7 +231,7 @@ return require("packer").startup(function(use)
             vim.keymap.set("", "<leader>/", ":TCommentBlock<cr>")
         end,
     }
-     -- detect indent and adjust indent options
+    -- detect indent and adjust indent options
     use "tpope/vim-sleuth"
     -- misc. text operations
     use "godlygeek/tabular"
@@ -232,10 +241,10 @@ return require("packer").startup(function(use)
     use {
         "windwp/nvim-autopairs",
         config = function()
-            require("nvim-autopairs").setup({
+            require("nvim-autopairs").setup {
                 check_ts = true,
-            })
-            require("config.autopairs")
+            }
+            require "config.autopairs"
         end,
     }
     -- move around easily
@@ -244,7 +253,7 @@ return require("packer").startup(function(use)
         config = function()
             -- keybindings
             require("leap").add_default_mappings()
-        end
+        end,
     }
 
     -- plugins for specific languages
@@ -253,44 +262,44 @@ return require("packer").startup(function(use)
     use {
         "williamboman/mason.nvim",
         config = function()
-            require("mason").setup({
+            require("mason").setup {
                 ui = {
                     icons = {
                         package_installed = "o",
                         package_pending = "~",
                         package_uninstalled = "x",
                     },
-                }
-            })
-        end
+                },
+            }
+        end,
     }
     -- lsp configuration
     use {
         "neovim/nvim-lspconfig",
         config = function()
             require "config.lsp"
-        end
+        end,
     }
     -- linting
     use {
         "mfussenegger/nvim-lint",
         config = function()
             require "config.lint"
-        end
+        end,
     }
     -- formatting
     use {
         "mhartington/formatter.nvim",
         config = function()
             require "config.format"
-        end
+        end,
     }
     -- tree-sitter
     use {
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
         config = function()
-            require("nvim-treesitter.configs").setup({
+            require("nvim-treesitter.configs").setup {
                 ensure_installed = "all",
                 highlight = {
                     enable = true,
@@ -303,7 +312,7 @@ return require("packer").startup(function(use)
                 matchup = {
                     enable = true,
                 },
-            })
+            }
         end,
     }
     -- tree-sitter utilities
@@ -359,12 +368,12 @@ return require("packer").startup(function(use)
         requires = { "nvim-lua/plenary.nvim" },
         config = function()
             local on_attach = require("config.lsp").on_attach
-            require("lean").setup({
+            require("lean").setup {
                 abbreviations = { builtin = true },
                 lsp = { on_attach = on_attach },
                 -- lsp3 = { on_attach = on_attach },
                 mappings = true,
-            })
+            }
         end,
     }
     -- markdown preview

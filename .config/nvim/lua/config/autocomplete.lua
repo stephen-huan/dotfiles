@@ -2,7 +2,7 @@ local cmp = require "cmp"
 local luasnip = require "luasnip"
 
 -- https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion#nvim-cmp
-cmp.setup({
+cmp.setup {
     snippet = {
         expand = function(args)
             luasnip.lsp_expand(args.body)
@@ -12,12 +12,12 @@ cmp.setup({
     mapping = {
         -- save c-b (back) c-f (forward) for snippet placeholder navigation
         ["<c-u>"] = cmp.mapping.scroll_docs(-4), -- up
-        ["<c-d>"] = cmp.mapping.scroll_docs(4),  -- down
+        ["<c-d>"] = cmp.mapping.scroll_docs(4), -- down
         ["<c-e>"] = cmp.mapping.abort(),
-        ["<cr>"] = cmp.mapping.confirm({
+        ["<cr>"] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
             select = false,
-        }),
+        },
         --[[
         ["<up>"] = cmp.mapping.select_prev_item(),
         ["<down>"] = cmp.mapping.select_next_item(),
@@ -48,7 +48,7 @@ cmp.setup({
         { name = "buffer" },
         { name = "path" },
     },
-})
+}
 -- use buffer source for `/` and `?`
 cmp.setup.cmdline({ "/", "?" }, {
     mapping = cmp.mapping.preset.cmdline(),
@@ -59,9 +59,8 @@ cmp.setup.cmdline({ "/", "?" }, {
 --  use cmdline and path source for `:`
 cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
+    sources = cmp.config.sources {
         { name = "path" },
         { name = "cmdline" },
-    }),
+    },
 })
-

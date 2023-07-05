@@ -2,9 +2,9 @@
 local function set_options(options, scope)
     scope = scope or "glocal"
     local lookup = {
-       ["glocal"] = vim.opt,
-       ["global"] = vim.opt_global,
-       [ "local"] = vim.opt_local,
+        ["glocal"] = vim.opt,
+        ["global"] = vim.opt_global,
+        ["local"] = vim.opt_local,
     }
     local dictionary = lookup[scope]
     for key, value in pairs(options) do
@@ -114,7 +114,7 @@ local options = {
     -- store backups
     backup = true,
     -- store file at ~/.local/state/nvim/backup, defaulting to . if not found
-    backupdir = { vim.fn.stdpath("state") .. "/backup//", "." },
+    backupdir = { vim.fn.stdpath "state" .. "/backup//", "." },
     -- store original files (doesn't store to backupdir)
     -- patchmode = ".orig"
     -- store undo information to a file
@@ -166,12 +166,12 @@ vim.g.loaded_node_provider = 0
 -- add dictionary
 -- vim.opt.dictionary:append("/usr/share/dict/words")
 -- spelling in autocomplete
-vim.opt.complete:append("kspell")
+vim.opt.complete:append "kspell"
 
 -- sessions
 
 -- remove blank files from sessions
-vim.opt.sessionoptions:remove("blank")
+vim.opt.sessionoptions:remove "blank"
 
 return {
     set_options = set_options,
