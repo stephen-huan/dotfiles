@@ -102,6 +102,13 @@ local packages = {
                 name = "selene",
             },
         },
+        formatter = {
+            -- https://github.com/JohnnyMorganz/StyLua
+            {
+                package = "stylua",
+                name = "stylua",
+            },
+        },
     },
     markdown = {
         formatter = {
