@@ -20,6 +20,13 @@ local packages = {
                 name = "shellcheck",
             },
         },
+        formatter = {
+            -- https://github.com/mvdan/sh
+            {
+                package = "shfmt",
+                name = "shfmt",
+            },
+        },
     },
     css = {
         lsp = {
