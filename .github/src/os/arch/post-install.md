@@ -69,7 +69,7 @@ pacman -S yadm
 yadm clone https://github.com/stephen-huan/dotfiles
 ```
 
-- Install display manager
+- Install [display manager](/pkgs/applications/display-managers/sddm.md)
 
 ```shell
 sudo pacman -S sddm
@@ -81,13 +81,13 @@ sudo pacman -S sddm
 sudo systemctl enable sddm.service
 ```
 
-- Install window manager (i3-gaps)
+- Install window manager ([i3](/pkgs/applications/window-managers/i3.md))
 
 ```shell
 sudo pacman -S i3
 ```
 
-- Install terminal emulator (alacritty)
+- Install terminal emulator ([alacritty](/pkgs/applications/terminal-emulators/alacritty.md))
 
 ```shell
 sudo pacman -S alacritty

@@ -8,13 +8,15 @@ A quick overview:
 
 - downloading mail: [offlineimap](#offlineimap)
 - sending mail: [msmtp](#msmtp)
-- reading mail: neomutt + [neovim](./vim.md) (occasional full-screen reading) +
+- reading mail: neomutt + [neovim](/pkgs/applications/editors/neovim.md)
+  (occasional full-screen reading) +
   [w3m](http://w3m.sourceforge.net/) (for html emails)
-- editing mail: [vim](./vim.md)
+- editing mail: [neovim](/pkgs/applications/editors/neovim.md)
 - indexing mail: [notmuch](#notmuch)
 - encrypting mail: [gpg](https://gnupg.org/software/gpgme/index.html)
-- adding attachments: [ranger](./ranger.md)
-  - determining what program to use to open attachments: [rifle](./ranger.md)
+- adding attachments: [ranger](/pkgs/applications/file-managers/ranger.md)
+  - determining what program to use to open attachments:
+    [rifle](/pkgs/applications/file-managers/ranger.md)
 - general selector: [fzf](https://github.com/junegunn/fzf)
 
 ### neomutt

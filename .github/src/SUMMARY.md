@@ -26,7 +26,7 @@
   - [display-managers]()
     - [sddm](./pkgs/applications/display-managers/sddm.md)
   - [editors]()
-    - [neovim.md](./pkgs/applications/editors/neovim.md)
+    - [neovim](./pkgs/applications/editors/neovim.md)
   - [emulators]()
     - [wine](./pkgs/applications/emulators/wine.md)
   - [file-managers]()

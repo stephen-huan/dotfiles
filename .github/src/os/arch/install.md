@@ -249,7 +249,7 @@ mkinitcpio -P
 
 - [arch wiki - GRUB](https://wiki.archlinux.org/title/GRUB)
 - EFI system partition already mounted to `/boot`
-- Install GRUB
+- Install [GRUB](/pkgs/tools/misc/grub.md)
 
 ```shell
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
