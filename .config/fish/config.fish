@@ -90,3 +90,6 @@ set -gx GEM_HOME ~/.local/share/gem/ruby/current
 # https://github.com/python-poetry/poetry/issues/1917
 set -gx PYTHON_KEYRING_BACKEND keyring.backends.null.Keyring
 
+direnv hook fish | source
+
+set -gx LOCALE_ARCHIVE /nix/store/nl5hws8pbqjjw0wzn2g3z8v1lxh8d42l-glibc-locales-2.37-8/lib/locale/locale-archive
