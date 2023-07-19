@@ -1,4 +1,4 @@
-# arch on a tuxedo pulse
+# archlinux on a tuxedo pulse
 
 - CPU: AMD Ryzen 7 4800H with Radeon graphics
 - [wikipedia - radeon](https://en.wikipedia.org/wiki/Radeon_RX_Vega_series)
@@ -994,6 +994,99 @@ reflector --latest 20 --protocol https --country us --sort rate --save /etc/pacm
 ```shell
 paru --gendb
 ```
+
+### nix
+
+```shell
+pacman -S nix
+```
+
+```shell
+sudo systemctl enable nix-daemon.service
+sudo systemctl start  nix-daemon.service
+```
+
+```shell
+sudo gpasswd -a stephenhuan nix-users
+```
+
+don't do this
+
+```shell
+nix-channel --add https://nixos.org/channels/nixpkgs-unstable
+nix-channel --update
+```
+
+[nixos - garbage collection](https://nixos.org/manual/nix/stable/package-management/garbage-collection.html)
+
+```shell
+nix-collect-garbage
+```
+
+`~/.config/nix/nix.conf`
+
+```text
+experimental-features = nix-command flakes
+```
+
+[home-manager](https://nix-community.github.io/home-manager/)
+
+```shell
+nix run home-manager/master -- init --switch
+```
+
+- problem:
+
+```shell
+home-manager switch
+nix-store --gc
+home-manager switch
+```
+
+- keeps clearing/re-downloading
+- looking at the stores: nixpkgs and home-manager, precisely input to flake
+- solution: use nix-direnv to register flake inputs as gc root
+
+- [nixos manual](https://nixos.org/manual/nixos/stable/index.html#sec-installing-from-other-distro)
+
+```shell
+sudo `which nixos-generate-config` --root /mnt
+```
+
+- not risking normal build, try `kexec` to prototype
+
+```shell
+pacman -S kexec-tools
+```
+
+- [arguments](https://discourse.nixos.org/t/what-are-the-arguments-available-to-a-given-module/11838)
+- flake template for `configuration.nix`
+
+```shell
+nix flake new /etc/nixos -t github:nix-community/home-manager#nixos
+```
+
+```shell
+nix-build '<nixpkgs/nixos>' \
+    -I /nix/store/{hash}-nixpkgs \
+    --arg configuration ./configuration.nix \
+    --attr config.system.build.kexecTree
+```
+
+- turn off `amdgpu` and [kernel mode setting](https://wiki.archlinux.org/title/Kernel_mode_setting)
+- `/etc/default/grub`
+
+```text
+GRUB_CMDLINE_LINUX_DEFAULT="... quiet loglevel=3 ... nomodeset"
+```
+
+- `/etc/mkinitcpio.conf`
+
+```text
+MODULES=()
+```
+
+- reload grub/initramfs, reboot, go into vt, run `sudo ./result/kexec-boot`
 
 ## internet/networking
 
