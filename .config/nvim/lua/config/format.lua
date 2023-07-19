@@ -24,24 +24,6 @@ vim.keymap.set({ "n", "v" }, "<leader>F", ":Format<cr>", opts)
 
 -- adjust formatter configuration
 
--- https://prettier.io/docs/en/configuration.html
--- https://prettier.io/docs/en/options.html
-formatters_by_ft.json = {
-    function()
-        return {
-            exe = "prettier",
-            args = {
-                "--stdin-filepath",
-                util.escape_path(util.get_current_buffer_file_path()),
-                "--config",
-                vim.fn.stdpath "config" .. "/lsp/prettier/prettierrc.json",
-            },
-            stdin = true,
-            try_node_modules = true,
-        }
-    end,
-}
-
 -- https://pycqa.github.io/isort/docs/major_releases/introducing_isort_5.html
 formatters_by_ft.cython = {
     function()
