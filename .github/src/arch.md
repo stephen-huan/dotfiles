@@ -2504,34 +2504,32 @@ fc-match --verbose sans
 - edit `~/.config/fontconfig/fonts.conf`
 
 ```xml
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
 <fontconfig>
+  <alias>
+    <family>serif</family>
+    <prefer>
+      <family>Noto Serif</family>
+      <family>IPAMincho</family>
+    </prefer>
+  </alias>
 
-    <alias>
-        <family>serif</family>
-        <prefer>
-            <family>Noto Serif</family>
-            <family>IPAMincho</family>
-        </prefer>
-    </alias>
+  <alias>
+    <family>sans-serif</family>
+    <prefer>
+      <family>Noto Sans</family>
+      <family>IPAGothic</family>
+    </prefer>
+  </alias>
 
-    <alias>
-        <family>sans-serif</family>
-        <prefer>
-            <family>Noto Sans</family>
-            <family>IPAGothic</family>
-        </prefer>
-    </alias>
-
-    <alias>
-        <family>monospace</family>
-        <prefer>
-            <family>Noto Sans Mono</family>
-            <family>IPAGothic</family>
-        </prefer>
-    </alias>
-
+  <alias>
+    <family>monospace</family>
+    <prefer>
+      <family>Noto Sans Mono</family>
+      <family>IPAGothic</family>
+    </prefer>
+  </alias>
 </fontconfig>
 ```
 
