@@ -3,7 +3,17 @@
 [home](README.md)
 
 - [dotfiles management](dotfiles.md)
-- [arch install](arch.md)
+
+# operating systems
+
+- [NixOS](nixos.md)
+- [Arch Linux](arch.md)
+
+# nix
+
+- [Nix expression language]()
+- [nixpkgs]()
+- [NixOS]()
 
 # packages
 

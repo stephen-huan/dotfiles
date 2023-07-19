@@ -1,6 +1,6 @@
 # dotfiles
 
-Collection of configuration files ("dotfiles") on archlinux.
+Collection of configuration files ("dotfiles") on [archlinux](./arch.md).
 
 Files are managed with [yadm](https://yadm.io/),
 see [dotfiles.md](dotfiles.md) for
