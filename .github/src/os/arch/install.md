@@ -18,11 +18,11 @@ gpg --keyserver-options auto-key-retrieve --verify archlinux-version-x86_64.iso.
 cp path/to/archlinux-version-x86_64.iso /dev/sdx
 ```
 
-- boot from USB (make sure to set correct [UEFI](#uefi) order)
+- boot from USB (make sure to set correct [UEFI](/os/arch/#uefi) order)
 
 ## in live environment
 
-- Connect to WiFi
+- Connect to WiFi ([iwd](/pkgs/os-specific/linux/iwd.md))
 
 ```shell
 iwctl
@@ -157,6 +157,8 @@ swapon /dev/VolumeGroup/swap
 mount /dev/VolumeGroup/root /mnt
 ```
 
+- (n.b. the above steps also work for external storage, e.g. a backup drive)
+
 - Prepare boot partition
 
 ```shell
@@ -187,16 +189,16 @@ genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 ```
 
-- Install useful packages
-
-```shell
-pacman -S man-db man-pages vim fish
-```
-
 - Install necessary packages
 
 ```shell
 pacman -S lvm2 grub efibootmgr iwd
+```
+
+- Install useful packages
+
+```shell
+pacman -S man-db man-pages neovim fish
 ```
 
 - Set timezone

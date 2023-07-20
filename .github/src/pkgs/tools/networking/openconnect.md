@@ -18,7 +18,7 @@ sudo openconnect --protocol=gp vpn.gatech.edu
 ```
 
 - have to paste in password with ctrl-shift-V
-- make sure [mullvad](#mullvad-vpn) is disconnected before
+- make sure [mullvad](/pkgs/tools/networking/mullvad.md) is disconnected before
 - automate login with fish script
 
 ```fish

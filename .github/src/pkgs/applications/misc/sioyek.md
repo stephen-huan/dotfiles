@@ -1,7 +1,8 @@
 # sioyek
 
-- relatively new viewer [sioyek](https://sioyek.info/) explicitly
-  designed for scientific use (research papers, technical books)
+- [sioyek](https://sioyek.info/)
+- relatively new viewer explicitly designed for
+  scientific use (research papers, technical books)
 
 ```shell
 paru -S sioyek

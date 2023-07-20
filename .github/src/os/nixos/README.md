@@ -7,4 +7,4 @@ when that happens, the canonical source of truth will be the Nix code.
 The structure of this book follows [nixpkgs](https://github.com/NixOS/nixpkgs/)
 (you can search for packages [here](https://search.nixos.org/packages)).
 
-I still have some notes on [Arch Linux](./arch.md).
+I still have some notes on [Arch Linux](/os/arch).

@@ -14,7 +14,7 @@ pacman -S iwd
 EnableNetworkConfiguration=true
 ```
 
-- add DNS with openresolv (see [DNS](#dns))
+- add DNS with openresolv (see [DNS](/os/arch/post-install/internet.md#dns))
 
 ```conf
 [Network]

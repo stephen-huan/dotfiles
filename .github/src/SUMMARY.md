@@ -7,15 +7,22 @@
 # os
 
 - [NixOS](./os/nixos/README.md)
+  - [Nix expression language]()
+  - [nixpkgs]()
+  - [NixOS]()
+    - [home-manager]()
 - [Arch Linux](./os/arch/README.md)
   - [install](./os/arch/install.md)
-  - [post-install](./os/arch/post-install.md)
+  - [post-install](./os/arch/post-install/README.md)
+    - [audio](./os/arch/post-install/audio.md)
+    - [clipboard](./os/arch/post-install/clipboard.md)
+    - [gpu](./os/arch/post-install/gpu.md)
+    - [internet](./os/arch/post-install/internet.md)
+    - [input](./os/arch/post-install/input.md)
+    - [screen capture](./os/arch/post-install/screen-capture.md)
+    - [security](./os/arch/post-install/security.md)
 
-# nix
-
-- [Nix expression language]()
-- [nixpkgs]()
-- [NixOS]()
+---
 
 # pkgs
 
@@ -44,7 +51,6 @@
   - [version-management]()
     - [git](./pkgs/applications/version-management/git.md)
     - [git-credential-manager](./pkgs/applications/version-management/git-credential-manager.md)
-    - [pass-git-helper](./pkgs/applications/version-management/pass-git-helper.md)
   - [window-managers]()
     - [i3](./pkgs/applications/window-managers/i3.md)
     - [picom](./pkgs/applications/window-managers/picom.md)
@@ -79,6 +85,7 @@
     - [ibus-engines]()
       - [ibus-mozc](./pkgs/tools/inputmethods/ibus-engines/ibus-mozc.md)
   - [misc]()
+    - [android-tools](./pkgs/tools/misc/android-tools.md)
     - [clipster](./pkgs/tools/misc/clipster.md)
     - [grub](./pkgs/tools/misc/grub.md)
     - [qmk](./pkgs/tools/misc/qmk.md)
@@ -107,6 +114,9 @@
   - [typesetting]()
     - [tectonic](./pkgs/tools/typesetting/tectonic.md)
 
+---
+
 # misc
 
 - [pace](./misc/pace.md)
+- [far](./misc/far.md)

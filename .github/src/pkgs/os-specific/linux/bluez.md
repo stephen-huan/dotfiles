@@ -63,6 +63,7 @@ sudo pkill -9 bluetoothd
 - [arch wiki - bluetooth](https://wiki.archlinux.org/title/Bluetooth#Device_does_not_show_up_in_scan)
 - certain bluetooth low energy (BLE) devices don't show up in scan
 - set `transport le`
+
 ```shell
 [bluetooth]# menu scan
 [bluetooth]# transport le
@@ -70,6 +71,7 @@ sudo pkill -9 bluetoothd
 [bluetooth]# scan on
 [bluetooth]# devices
 ```
+
 - still doesn't work with
   [MM712 mouse](https://www.coolermaster.com/catalog/peripheral/mice/mm712/),
   TODO

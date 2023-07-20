@@ -1,8 +1,8 @@
-# [neomutt](https://neomutt.org/)
+# neomutt
 
-`neomutt` is a mail user agent (MUA). More specifically, it lets you
-read email from the terminal. It is possible to download and send mail
-from mutt natively, but I prefer external programs for those functions.
+[neomutt](https://neomutt.org/) is a mail user agent (MUA). More specifically,
+it lets you read email from the terminal. It is possible to download and send
+mail from mutt natively, but I prefer external programs for those functions.
 
 A quick overview:
 
@@ -19,14 +19,14 @@ A quick overview:
     [rifle](/pkgs/applications/file-managers/ranger.md)
 - general selector: [fzf](https://github.com/junegunn/fzf)
 
-### neomutt
+## neomutt
 
 [neomutt](https://neomutt.org/) is essentially a superset of regular
 [mutt](https://gitlab.com/muttmua/mutt/-/wikis/home) aiming to fix
 bugs, collect patches, and in general incite development of mutt. It
 therefore makes sense to use neomutt rather than mutt.
 
-### General Notes
+### General notes
 
 My primary email is gmail, which has its quirks. In particular, all emails go
 into "all mail" (including emails sent by you!) and the different "folders" are
@@ -43,14 +43,14 @@ advanced protection on (if you authenticate with OAuth2).
 
 With that in mind, the first step is to get mail.
 
-## [offlineimap](https://www.offlineimap.org/)
+## offlineimap
 
-`offlineimap` is used to download (and sync!) mail. Note that this is a
-two-way operation: it will update the local repository of mail if there
-are changes in the remote and _it will also update the remote if there
-are local changes!_ There is a risk of deleting email permanently if you
-delete locally and have offlineimap sync. Run with the `--dry-run` option
-to see what offlineimap will do while testing.
+[offlineimap](https://www.offlineimap.org/) is used to download (and sync!)
+mail. Note that this is a two-way operation: it will update the local
+repository of mail if there are changes in the remote and _it will also
+update the remote if there are local changes!_ There is a risk of deleting
+email permanently if you delete locally and have offlineimap sync. Run with
+the `--dry-run` option to see what offlineimap will do while testing.
 
 offlineimap is configured with Python, unfortunately Python 2. There's a
 [Python 3 fork](https://github.com/OfflineIMAP/offlineimap3) of offlineimap,
@@ -133,15 +133,16 @@ request access tokens, it might be because of the refresh token expiration.
 you still need to update the client secrets at least every two years (since
 24 months is the longest possible expiration date for client secrets).
 
-## [msmtp](https://marlam.de/msmtp/)
+## msmtp
 
-With offlineimap configured, `msmtp` works similarly. Set the authentication
-protocol to `oauthbearer` and `passwordeval` to run the above `offlineimap.py`
-script, passing in the email. That way both `offlineimap` and `msmtp` use the
-same cached access token.
+With offlineimap configured, [msmtp](https://marlam.de/msmtp/) works similarly.
+Set the authentication protocol to `oauthbearer` and `passwordeval` to run
+the above `offlineimap.py` script, passing in the email. That way both
+`offlineimap` and `msmtp` use the same cached access token.
 
-## [notmuch](https://notmuchmail.org/)
+## notmuch
 
-`notmuch` is an email indexer, tagger, and searcher. Add a postsync hook to
-`offlineimap` so tagging happens on new mail. We can also use notmuch as
-an address book by searching the addresses of the emails you've received.
+[notmuch](https://notmuchmail.org/) is an email indexer, tagger, and
+searcher. Add a postsync hook to `offlineimap` so tagging happens on
+new mail. We can also use notmuch as an address book by searching the
+addresses of the emails you've received.

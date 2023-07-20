@@ -44,11 +44,12 @@ test -f ~/.Xkeymap && xkbcomp ~/.Xkeymap $DISPLAY
 
 ### Super_R as mod3
 
-- use case: qmk ["hyper"](https://docs.qmk.fm/#/mod_tap) (not in
-  the linux modifier sense) is ctrl_L + shift_L + alt_L + super_L
-- use this as i3 mod, need secondary modifier
-  that can't be ctrl/shift/alt/super
-- use super_R as unused mod3 to distinguish
+- use case: [qmk](/pkgs/tools/misc/qmk.md)
+  ["hyper"](https://docs.qmk.fm/#/mod_tap) (not in the linux
+  modifier sense) is `ctrl_L + shift_L + alt_L + super_L`
+- use this as [i3](/pkgs/applications/window-managers/i3.md) mod,
+  need secondary modifier that can't be `ctrl/shift/alt/super`
+- use `super_R` as unused `mod3` to distinguish
 - comment out (not necessary, no clue what this does)
 
 ```config
@@ -72,6 +73,6 @@ test -f ~/.Xkeymap && xkbcomp ~/.Xkeymap $DISPLAY
     modifier_map Mod4 { <RWIN> };
 ```
 
-- n.b.: I no longer use this, it's simpler to make hyper
-  shift_L + alt_L + super_L (still unlikely to conflict with
-  other keybindings) and use ctrl as a secondary modifier
+- n.b.: I no longer use this, it's simpler to make `hyper`
+  `shift_L + alt_L + super_L` (still unlikely to conflict with
+  other keybindings) and use `ctrl` as a secondary modifier

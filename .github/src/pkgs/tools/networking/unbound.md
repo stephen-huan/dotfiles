@@ -67,7 +67,7 @@ server:
         forward-addr: 1.0.0.1
 ```
 
-## unbound
+## detailed notes
 
 To enable DNSSEC for
 [unbound](https://dnsprivacy.org/wiki/display/DP/DNS+Privacy+Clients#DNSPrivacyClients-Unbound),
@@ -80,17 +80,10 @@ Basically, to generate the `root.key` file at `/usr/local/etc/unbound` just run
 sudo unbound-anchor
 ```
 
-and to generate the `root.hints` file (which is not strictly necessary,
-as unbound comes with a default root.hints file, but if your package
+and to generate the `root.hints` file (which is not strictly
+necessary, as unbound comes with a default file, but if your package
 manager doesn't update as often, you can update it yourself) run
 
 ```shell
 curl --output /usr/local/etc/unbound/root.hints https://www.internic.net/domain/named.cache
-```
-
-Unbound must be started with sudo to have permissions
-to bind to its port, so run with the following:
-
-```shell
-sudo brew services start unbound
 ```

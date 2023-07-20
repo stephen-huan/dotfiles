@@ -1,4 +1,4 @@
-# Plymouth
+# plymouth
 
 [arch wiki - plymouth](https://wiki.archlinux.org/title/Plymouth)
 

@@ -1,7 +1,7 @@
 # A (f)ast re-write of p(ar) - far
 
-[[Video Guide]](https://youtu.be/H3Agto3ZSnk)
-[[Source Code (C++)]](./far.cpp) [[Source Code (Python)]](./far.py)
+_This is an old plaintext copy of the post
+on [my blog](https://cgdct.moe/blog/far/)._
 
 [`par`](http://www.nicemice.net/par/) is a formatting tool that inserts line
 breaks to make the length of each line less than a set number of characters,

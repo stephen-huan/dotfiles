@@ -1,15 +1,4 @@
-# [neovim](https://neovim.io/)
-
-First, install [packer.nvim](https://github.com/wbthomason/packer.nvim) with:
-
-```shell
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-```
-
-Then, run `:PackerSync` to install the various plugins.
-
-## neovim
+# neovim
 
 [neovim](https://neovim.io/) is a fork of [vim](https://www.vim.org/) focused
 on extensibility and usability. It's an almost drop-in replacement for vim,
@@ -25,6 +14,17 @@ without much configuration hassle.
 See also Daniel's
 [config](https://github.com/brownie-in-motion/dotfiles/tree/master/.config/nvim)
 for inspiration.
+
+## Quickstart
+
+First, install [packer.nvim](https://github.com/wbthomason/packer.nvim) with:
+
+```shell
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+```
+
+Then, run `:PackerSync` to install the various plugins.
 
 ## Miscellaneous tips
 
@@ -44,7 +44,8 @@ information, it's best to have a different configuration so that you
 sandbox vim. By default, vim generates swap files, backup files, etc.
 and will load modelines which have had and continue to have [security
 vulnerabilities](https://lwn.net/Vulnerabilities/20249/). See my hardened
-[init.lua](../../.config/nvim/init-private.lua) which can be used with:
+[init.lua](https://github.com/stephen-huan/dotfiles/blob/master/.config/nvim/init-private.lua)
+which can be used with:
 
 ```shell
 /usr/bin/nvim --clean --noplugin -nu ~/.config/nvim/init-private.lua "$@"

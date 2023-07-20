@@ -52,7 +52,7 @@ set -gx PASSWORD_STORE_ENABLE_EXTENSIONS "true"
 - see
   [git credential manager](/pkgs/applications/version-management/git-credential-manager.md)
 
-## pass
+## detailed notes
 
 [pass](https://www.passwordstore.org/) is a simple
 GPG-based command-line password manger. To install, run

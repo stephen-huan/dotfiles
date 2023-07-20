@@ -32,24 +32,22 @@ cmus: Error: an error occured while initializing MPRIS: File exists. MPRIS will 
 cmus: Press <enter> to continue.
 ```
 
-- MPRIS is the freedesktop specification for
-  music player control, see [MPRIS](#mpris)
-- seems to be a pipewire issue, see [Delayed exit from paused music in
-  cmus](https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/946)
-- as well as [Quitting while playback is paused takes
-  several seconds](https://github.com/cmus/cmus/issues/1064)
-- brought back up again recently, see [Cmus hangs when paused
-  for a long time](https://github.com/pop-os/pipewire/issues/6)
+- MPRIS is the freedesktop specification for music player
+  control, see [MPRIS](/pkgs/tools/audio/playerctl.md)
+- seems to be a pipewire issue, see [Delayed exit from paused music in cmus](https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/946)
+- as well as [Quitting while playback is paused takes several seconds](https://github.com/cmus/cmus/issues/1064)
+- brought back up again recently, see [Cmus hangs when paused for a long time](https://github.com/pop-os/pipewire/issues/6)
 
-## cmus
+## detailed notes
 
 [cmus](https://cmus.github.io/) is a terminal based music player. It's
-lightweight and fast; what more could you ask for? My only complaint is that
-if you close the window, the music stops playing. One solution is to put it in
-a [tmux](./tmux.md) server (this has the added benefit of being able to open
-multiple cmus windows at the same time, because each is a view into the same
-running process). These days I'm too lazy to start tmux, so I just put a cmus
-window in a high-number workspace and switch to that workspace when I need to.
+lightweight and fast; what more could you ask for? My only complaint is
+that if you close the window, the music stops playing. One solution is
+to put it in a [tmux](/pkgs/tools/misc/tmux.md) server (this has the
+added benefit of being able to open multiple cmus windows at the same
+time, because each is a view into the same running process). These days
+I'm too lazy to start tmux, so I just put a cmus window in a high-number
+workspace and switch to that workspace when I need to.
 
 My friend swears by [mpd](https://www.musicpd.org/) because of its
 client-server architecture: that gives the ability to use any client,

@@ -1,8 +1,9 @@
-# [git](https://git-scm.com/)
+# git
 
-I use git for all of my projects that need version control.
+I use [git](https://git-scm.com/) for all
+of my projects that need version control.
 
-## Git Credential Caching
+## Git credential caching
 
 By default, git will prompt you on every operation that needs authentication to
 provide a username/password. It is possible to use the built-in storage methods

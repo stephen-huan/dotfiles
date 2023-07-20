@@ -18,7 +18,7 @@ passwd username
 - Give `sudo` permission
 
 ```shell
-EDITOR=vim visudo
+EDITOR=nvim visudo
 ```
 
 - Go to "User privilege specification" and add
