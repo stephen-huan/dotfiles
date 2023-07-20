@@ -3,7 +3,7 @@
   <head>
     <!-- Book generated using mdBook -->
     <meta charset="UTF-8" />
-    <title>wine - dotfiles</title>
+    <title>gpu - dotfiles</title>
 
     <!-- Custom HTML head -->
 
@@ -167,7 +167,9 @@
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../os/arch/post-install/gpu.html"
+                      <a
+                        href="../../../os/arch/post-install/gpu.html"
+                        class="active"
                         ><strong aria-hidden="true">3.2.3.</strong> gpu</a
                       >
                     </li>
@@ -255,9 +257,7 @@
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
-                      <a
-                        href="../../../pkgs/applications/emulators/wine.html"
-                        class="active"
+                      <a href="../../../pkgs/applications/emulators/wine.html"
                         ><strong aria-hidden="true">4.4.1.</strong> wine</a
                       >
                     </li>
@@ -892,7 +892,7 @@
                 <i id="git-repository-button" class="fa fa-code-fork"></i>
               </a>
               <a
-                href="https://github.com/stephen-huan/dotfiles/edit/master/src/pkgs/applications/emulators/wine.md"
+                href="https://github.com/stephen-huan/dotfiles/edit/master/src/os/arch/post-install/gpu.md"
                 title="Suggest an edit"
                 aria-label="Suggest an edit"
               >
@@ -935,230 +935,51 @@
 
           <div id="content" class="content">
             <main>
-              <h1 id="wine"><a class="header" href="#wine">wine</a></h1>
+              <h1 id="gpu"><a class="header" href="#gpu">gpu</a></h1>
               <ul>
                 <li>
-                  <a href="https://wiki.archlinux.org/title/Wine"
-                    >arch wiki - wine</a
+                  <a href="https://wiki.archlinux.org/title/AMDGPU"
+                    >arch wiki - AMDGPU</a
                   >
                 </li>
-                <li>
-                  this section will be mainly focused on running visual novels,
-                  see
-                  <a
-                    href="https://gist.github.com/eshrh/5bbf4deab58fefdab9eacf77b450efc0"
-                    >eshrh's gist</a
-                  >
-                </li>
-                <li>
-                  also see
-                  <a href="https://learnjapanese.moe/vn-linux/"
-                    >TheMoeWay - Visual novels on Linux</a
-                  >
-                </li>
-                <li>
-                  need Japanese locale for most games, so generate the locale
-                </li>
-                <li>
-                  edit <code>/etc/locale.gen</code> and uncomment
-                  <code>ja_JP.UTF-8 UTF-8</code>, run <code>locale-gen</code>
-                </li>
+                <li>Install mesa for OpenGL/3D acceleration</li>
               </ul>
-              <pre><code class="language-shell">locale-gen
+              <pre><code class="language-shell">sudo pacman -S mesa
 </code></pre>
               <ul>
-                <li>
-                  enable the
-                  <a
-                    href="https://wiki.archlinux.org/title/Official_repositories#multilib"
-                    >multilib repository</a
-                  >
-                  by uncommenting the right section in
-                  <code>/etc/pacman.conf</code>
-                </li>
+                <li>test mesa support</li>
               </ul>
-              <pre><code class="language-config">[multilib]
-Include = /etc/pacman.d/mirrorlist
+              <pre><code class="language-shell">sudo pacman -S mesa-utils
+glxinfo
 </code></pre>
               <ul>
-                <li>install wine</li>
+                <li>Install DDX driver for 2D acceleration</li>
               </ul>
-              <pre><code class="language-shell">pacman -S wine
+              <pre><code class="language-shell">sudo pacman -S xf86-video-amdgpu
 </code></pre>
               <ul>
-                <li>install optional dependencies</li>
-                <li>
-                  install winetricks (basically a package manger inside wine)
-                </li>
+                <li>Enable vulkan support</li>
               </ul>
-              <pre><code class="language-shell">pacman -S winetricks
+              <pre><code class="language-shell">sudo pacman -S amdvlk
 </code></pre>
               <ul>
-                <li>
-                  install zenity (GUI for winetricks, you could just use the
-                  CLI)
-                </li>
+                <li>test vulkan support</li>
               </ul>
-              <pre><code class="language-shell">pacman -S zenity
+              <pre><code class="language-shell">sudo pacman -S vulkan-tools
+vulkaninfo
 </code></pre>
               <ul>
-                <li><code>wine-mono</code> for .NET</li>
+                <li>Accelerated video decoding</li>
               </ul>
-              <pre><code class="language-shell">pacamn -S wine-mono
+              <pre><code class="language-shell">pacman -S libva-mesa-driver mesa-vdpau
 </code></pre>
-              <ul>
-                <li>
-                  if getting an error about <code>ntlm_auth</code> when
-                  installing things with <code>winetricks</code>, install samba
-                </li>
-              </ul>
-              <pre><code class="language-shell">pacman -S samba
-</code></pre>
-              <ul>
-                <li>
-                  most visual novels are 32-bit, so set <code>WINEARCH</code> to
-                  <code>win32</code>
-                </li>
-              </ul>
-              <pre><code class="language-fish">set -gx WINEARCH win32
-</code></pre>
-              <ul>
-                <li>
-                  opt out of microsoft
-                  <a
-                    href="https://docs.microsoft.com/en-us/dotnet/core/tools/telemetry"
-                    >.NET telemetry</a
-                  >
-                </li>
-              </ul>
-              <pre><code class="language-fish">set -gx DOTNET_CLI_TELEMETRY_OPTOUT 1
-</code></pre>
-              <ul>
-                <li>set windows version to windows XP, sometimes helpful</li>
-              </ul>
-              <pre><code class="language-shell">winecfg
-</code></pre>
-              <ul>
-                <li>
-                  &quot;Applications&quot; -&gt; &quot;Windows Version:&quot;
-                  change to &quot;Windows XP&quot;
-                </li>
-              </ul>
-              <h2 id="extra-packages-and-fonts">
-                <a class="header" href="#extra-packages-and-fonts"
-                  >extra packages and fonts</a
-                >
-              </h2>
-              <ul>
-                <li>if game doesn't work, try installing more libraries</li>
-              </ul>
-              <pre><code class="language-shell">pacman -S giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama ncurses lib32-ncurses libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs lib32-gst-plugins-good vulkan-icd-loader lib32-vulkan-icd-loader
-</code></pre>
-              <ul>
-                <li>
-                  if game doesn't work, try installing more libraries with
-                  winetricks
-                </li>
-              </ul>
-              <pre><code class="language-shell">winetricks d3dx9 dirac dotnet35 dotnet40 dxvk lavfilters vcrun2003 vcrun2005 vcrun2008
-</code></pre>
-              <ul>
-                <li>disable wine DLL overrides</li>
-              </ul>
-              <pre><code class="language-shell">winetricks alldlls=default
-</code></pre>
-              <ul>
-                <li>start winetricks</li>
-              </ul>
-              <pre><code class="language-shell">winetricks
-</code></pre>
-              <ul>
-                <li>
-                  &quot;Select the default wineprefix&quot; -&gt; &quot;Install
-                  a font&quot; -&gt; check <code>cjkfonts</code> and
-                  <code>corefonts</code>
-                </li>
-              </ul>
-              <h2 id="running-a-game">
-                <a class="header" href="#running-a-game">running a game</a>
-              </h2>
-              <ul>
-                <li>mount <code>.iso</code> as usual, unpack</li>
-              </ul>
-              <pre><code class="language-shell">sudo mount game.iso /mnt
-sudo cp -r /mnt/* game/
-</code></pre>
-              <ul>
-                <li>run game</li>
-              </ul>
-              <pre><code class="language-shell">LC_ALL=&quot;ja_JP.UTF-8&quot; TZ=&quot;Asia/Tokyo&quot; wine game.exe
-</code></pre>
-              <ul>
-                <li>kill game</li>
-              </ul>
-              <pre><code class="language-shell">wineserver --kill
-</code></pre>
-              <h2 id="cdemu"><a class="header" href="#cdemu">CDemu</a></h2>
-              <ul>
-                <li>
-                  if error along the lines of &quot;disk not plugged in&quot;
-                </li>
-                <li>try restarting</li>
-                <li>
-                  if that doesn't work, use
-                  <a href="http://www.cdemu.org/">cdemu</a>
-                </li>
-              </ul>
-              <pre><code class="language-shell">sudo pacman -S cdemu-client cdemu-daemon
-</code></pre>
-              <ul>
-                <li>start daemon</li>
-              </ul>
-              <pre><code class="language-shell">cdemu-daemon
-</code></pre>
-              <ul>
-                <li>mount iso</li>
-              </ul>
-              <pre><code class="language-shell">cdemu load 0 game.iso
-</code></pre>
-              <ul>
-                <li>check mount point</li>
-              </ul>
-              <pre><code class="language-shell">lsblk
-</code></pre>
-              <ul>
-                <li>
-                  for me, either <code>/dev/sr0</code> or <code>/dev/sr1</code>,
-                  check by file size / run <code>lsblk</code> before loading and
-                  after
-                </li>
-                <li>mount</li>
-              </ul>
-              <pre><code class="language-shell">mount /dev/sr0 /mnt
-</code></pre>
-              <ul>
-                <li>add mount point to wine</li>
-              </ul>
-              <pre><code class="language-shell">winecfg
-</code></pre>
-              <ul>
-                <li>
-                  &quot;Drives&quot; -&gt; &quot;Add...&quot;, pick arbitrary
-                  letter (&quot;E:&quot; is typical), change &quot;Path:&quot;
-                  or click on &quot;Browse...&quot; to <code>/mnt</code>
-                </li>
-                <li>
-                  <a href="#running-a-game">run game</a> as usual, hopefully
-                  just works
-                </li>
-              </ul>
             </main>
 
             <nav class="nav-wrapper" aria-label="Page navigation">
               <!-- Mobile navigation buttons -->
               <a
                 rel="prev"
-                href="../../../pkgs/applications/editors/neovim.html"
+                href="../../../os/arch/post-install/clipboard.html"
                 class="mobile-nav-chapters previous"
                 title="Previous chapter"
                 aria-label="Previous chapter"
@@ -1169,7 +990,7 @@ sudo cp -r /mnt/* game/
 
               <a
                 rel="next"
-                href="../../../pkgs/applications/file-managers/ranger.html"
+                href="../../../os/arch/post-install/internet.html"
                 class="mobile-nav-chapters next"
                 title="Next chapter"
                 aria-label="Next chapter"
@@ -1186,7 +1007,7 @@ sudo cp -r /mnt/* game/
         <nav class="nav-wide-wrapper" aria-label="Page navigation">
           <a
             rel="prev"
-            href="../../../pkgs/applications/editors/neovim.html"
+            href="../../../os/arch/post-install/clipboard.html"
             class="nav-chapters previous"
             title="Previous chapter"
             aria-label="Previous chapter"
@@ -1197,7 +1018,7 @@ sudo cp -r /mnt/* game/
 
           <a
             rel="next"
-            href="../../../pkgs/applications/file-managers/ranger.html"
+            href="../../../os/arch/post-install/internet.html"
             class="nav-chapters next"
             title="Next chapter"
             aria-label="Next chapter"

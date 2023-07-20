@@ -3,7 +3,7 @@
   <head>
     <!-- Book generated using mdBook -->
     <meta charset="UTF-8" />
-    <title>wine - dotfiles</title>
+    <title>audio - dotfiles</title>
 
     <!-- Custom HTML head -->
 
@@ -157,7 +157,9 @@
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
-                      <a href="../../../os/arch/post-install/audio.html"
+                      <a
+                        href="../../../os/arch/post-install/audio.html"
+                        class="active"
                         ><strong aria-hidden="true">3.2.1.</strong> audio</a
                       >
                     </li>
@@ -255,9 +257,7 @@
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
-                      <a
-                        href="../../../pkgs/applications/emulators/wine.html"
-                        class="active"
+                      <a href="../../../pkgs/applications/emulators/wine.html"
                         ><strong aria-hidden="true">4.4.1.</strong> wine</a
                       >
                     </li>
@@ -892,7 +892,7 @@
                 <i id="git-repository-button" class="fa fa-code-fork"></i>
               </a>
               <a
-                href="https://github.com/stephen-huan/dotfiles/edit/master/src/pkgs/applications/emulators/wine.md"
+                href="https://github.com/stephen-huan/dotfiles/edit/master/src/os/arch/post-install/audio.md"
                 title="Suggest an edit"
                 aria-label="Suggest an edit"
               >
@@ -935,230 +935,184 @@
 
           <div id="content" class="content">
             <main>
-              <h1 id="wine"><a class="header" href="#wine">wine</a></h1>
+              <h1 id="audio"><a class="header" href="#audio">audio</a></h1>
               <ul>
                 <li>
-                  <a href="https://wiki.archlinux.org/title/Wine"
-                    >arch wiki - wine</a
+                  <a href="https://wiki.archlinux.org/title/Sound_system"
+                    >arch wiki - sound system</a
                   >
                 </li>
                 <li>
-                  this section will be mainly focused on running visual novels,
-                  see
-                  <a
-                    href="https://gist.github.com/eshrh/5bbf4deab58fefdab9eacf77b450efc0"
-                    >eshrh's gist</a
-                  >
+                  <a href="/pkgs/os-specific/linux/alsa-project.html">ALSA</a>:
+                  kernel driver
                 </li>
                 <li>
-                  also see
-                  <a href="https://learnjapanese.moe/vn-linux/"
-                    >TheMoeWay - Visual novels on Linux</a
-                  >
+                  <a href="/pkgs/development/libraries/pipewire.html"
+                    >PipeWire</a
+                  >/<a href="/pkgs/servers/pulseaudio.html">PulseAudio</a> on
+                  top
                 </li>
                 <li>
-                  need Japanese locale for most games, so generate the locale
+                  bluetooth:
+                  <a href="/pkgs/os-specific/linux/bluez.html">bluez</a>
                 </li>
                 <li>
-                  edit <code>/etc/locale.gen</code> and uncomment
-                  <code>ja_JP.UTF-8 UTF-8</code>, run <code>locale-gen</code>
+                  mpris:
+                  <a href="/pkgs/tools/audio/playerctl.html">playerctl</a>
                 </li>
               </ul>
-              <pre><code class="language-shell">locale-gen
-</code></pre>
-              <ul>
-                <li>
-                  enable the
-                  <a
-                    href="https://wiki.archlinux.org/title/Official_repositories#multilib"
-                    >multilib repository</a
-                  >
-                  by uncommenting the right section in
-                  <code>/etc/pacman.conf</code>
-                </li>
-              </ul>
-              <pre><code class="language-config">[multilib]
-Include = /etc/pacman.d/mirrorlist
-</code></pre>
-              <ul>
-                <li>install wine</li>
-              </ul>
-              <pre><code class="language-shell">pacman -S wine
-</code></pre>
-              <ul>
-                <li>install optional dependencies</li>
-                <li>
-                  install winetricks (basically a package manger inside wine)
-                </li>
-              </ul>
-              <pre><code class="language-shell">pacman -S winetricks
-</code></pre>
-              <ul>
-                <li>
-                  install zenity (GUI for winetricks, you could just use the
-                  CLI)
-                </li>
-              </ul>
-              <pre><code class="language-shell">pacman -S zenity
-</code></pre>
-              <ul>
-                <li><code>wine-mono</code> for .NET</li>
-              </ul>
-              <pre><code class="language-shell">pacamn -S wine-mono
-</code></pre>
-              <ul>
-                <li>
-                  if getting an error about <code>ntlm_auth</code> when
-                  installing things with <code>winetricks</code>, install samba
-                </li>
-              </ul>
-              <pre><code class="language-shell">pacman -S samba
-</code></pre>
-              <ul>
-                <li>
-                  most visual novels are 32-bit, so set <code>WINEARCH</code> to
-                  <code>win32</code>
-                </li>
-              </ul>
-              <pre><code class="language-fish">set -gx WINEARCH win32
-</code></pre>
-              <ul>
-                <li>
-                  opt out of microsoft
-                  <a
-                    href="https://docs.microsoft.com/en-us/dotnet/core/tools/telemetry"
-                    >.NET telemetry</a
-                  >
-                </li>
-              </ul>
-              <pre><code class="language-fish">set -gx DOTNET_CLI_TELEMETRY_OPTOUT 1
-</code></pre>
-              <ul>
-                <li>set windows version to windows XP, sometimes helpful</li>
-              </ul>
-              <pre><code class="language-shell">winecfg
-</code></pre>
-              <ul>
-                <li>
-                  &quot;Applications&quot; -&gt; &quot;Windows Version:&quot;
-                  change to &quot;Windows XP&quot;
-                </li>
-              </ul>
-              <h2 id="extra-packages-and-fonts">
-                <a class="header" href="#extra-packages-and-fonts"
-                  >extra packages and fonts</a
+              <h2 id="music-applications">
+                <a class="header" href="#music-applications"
+                  >Music applications</a
                 >
               </h2>
               <ul>
-                <li>if game doesn't work, try installing more libraries</li>
+                <li><a href="/pkgs/applications/audio/cmus.html">cmus</a></li>
+                <li><a href="/pkgs/applications/audio/cider.html">cider</a></li>
+                <li><a href="#apple-music">Apple Music</a></li>
+                <li><a href="#itunes">iTunes</a></li>
               </ul>
-              <pre><code class="language-shell">pacman -S giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama ncurses lib32-ncurses libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs lib32-gst-plugins-good vulkan-icd-loader lib32-vulkan-icd-loader
-</code></pre>
+              <h3 id="apple-music">
+                <a class="header" href="#apple-music">Apple Music</a>
+              </h3>
               <ul>
                 <li>
-                  if game doesn't work, try installing more libraries with
-                  winetricks
+                  use web client:
+                  <a href="https://music.apple.com/">music.apple.com</a>
+                </li>
+                <li>pros: no installation/configuration</li>
+                <li>
+                  cons: many
+                  <ul>
+                    <li>
+                      need apple device for 2fa sign in
+                      <ul>
+                        <li>this is not true</li>
+                      </ul>
+                    </li>
+                    <li>feels slow/clunky</li>
+                    <li>randomly breaks</li>
+                    <li>doesn't store place</li>
+                  </ul>
                 </li>
               </ul>
-              <pre><code class="language-shell">winetricks d3dx9 dirac dotnet35 dotnet40 dxvk lavfilters vcrun2003 vcrun2005 vcrun2008
-</code></pre>
-              <ul>
-                <li>disable wine DLL overrides</li>
-              </ul>
-              <pre><code class="language-shell">winetricks alldlls=default
-</code></pre>
-              <ul>
-                <li>start winetricks</li>
-              </ul>
-              <pre><code class="language-shell">winetricks
-</code></pre>
+              <h3 id="itunes"><a class="header" href="#itunes">iTunes</a></h3>
               <ul>
                 <li>
-                  &quot;Select the default wineprefix&quot; -&gt; &quot;Install
-                  a font&quot; -&gt; check <code>cjkfonts</code> and
-                  <code>corefonts</code>
+                  this is possible to
+                  <a href="/pkgs/applications/emulators/wine.html">wine</a> but
+                  is broken on the latest version
+                </li>
+                <li>black screen from some rendering issue</li>
+                <li>
+                  version list:
+                  <a href="https://www.theiphonewiki.com/wiki/ITunes"
+                    >https://www.theiphonewiki.com/wiki/ITunes</a
+                  >
+                </li>
+                <li>
+                  doesn't seem to be able to import many things, randomly
+                  crashes
+                </li>
+                <li>
+                  <a href="https://forums.linuxmint.com/viewtopic.php?t=292556"
+                    >https://forums.linuxmint.com/viewtopic.php?t=292556</a
+                  >
+                </li>
+                <li>
+                  probably not worth the effort, just use
+                  <a href="/pkgs/applications/audio/cider.html">cider</a>, an
+                  open-source electron Apple Music client
                 </li>
               </ul>
-              <h2 id="running-a-game">
-                <a class="header" href="#running-a-game">running a game</a>
+              <h2 id="sync-music">
+                <a class="header" href="#sync-music">Sync music</a>
               </h2>
-              <ul>
-                <li>mount <code>.iso</code> as usual, unpack</li>
-              </ul>
-              <pre><code class="language-shell">sudo mount game.iso /mnt
-sudo cp -r /mnt/* game/
-</code></pre>
-              <ul>
-                <li>run game</li>
-              </ul>
-              <pre><code class="language-shell">LC_ALL=&quot;ja_JP.UTF-8&quot; TZ=&quot;Asia/Tokyo&quot; wine game.exe
-</code></pre>
-              <ul>
-                <li>kill game</li>
-              </ul>
-              <pre><code class="language-shell">wineserver --kill
-</code></pre>
-              <h2 id="cdemu"><a class="header" href="#cdemu">CDemu</a></h2>
+              <h3 id="sync-to-iphone">
+                <a class="header" href="#sync-to-iphone">sync to iphone</a>
+              </h3>
               <ul>
                 <li>
-                  if error along the lines of &quot;disk not plugged in&quot;
+                  to replace sync to iPhone feature see
+                  <a href="https://wiki.archlinux.org/title/IOS"
+                    >arch wiki - ios</a
+                  >
                 </li>
-                <li>try restarting</li>
                 <li>
-                  if that doesn't work, use
-                  <a href="http://www.cdemu.org/">cdemu</a>
+                  install
+                  <a href="https://github.com/libimobiledevice/ifuse">ifuse</a>
+                  to allow access to filesystem from linux (uses
+                  <a href="https://libimobiledevice.org/">libimobiledevice</a>)
                 </li>
               </ul>
-              <pre><code class="language-shell">sudo pacman -S cdemu-client cdemu-daemon
-</code></pre>
-              <ul>
-                <li>start daemon</li>
-              </ul>
-              <pre><code class="language-shell">cdemu-daemon
-</code></pre>
-              <ul>
-                <li>mount iso</li>
-              </ul>
-              <pre><code class="language-shell">cdemu load 0 game.iso
-</code></pre>
-              <ul>
-                <li>check mount point</li>
-              </ul>
-              <pre><code class="language-shell">lsblk
+              <pre><code class="language-shell">pacman -S ifuse
 </code></pre>
               <ul>
                 <li>
-                  for me, either <code>/dev/sr0</code> or <code>/dev/sr1</code>,
-                  check by file size / run <code>lsblk</code> before loading and
-                  after
+                  if freezes on write (see
+                  <a href="https://github.com/libimobiledevice/ifuse/issues/63"
+                    >#63</a
+                  >, probably fixed in newest versions) try aur
                 </li>
-                <li>mount</li>
               </ul>
-              <pre><code class="language-shell">mount /dev/sr0 /mnt
-</code></pre>
-              <ul>
-                <li>add mount point to wine</li>
-              </ul>
-              <pre><code class="language-shell">winecfg
+              <pre><code class="language-shell">paru -S ifuse-git
 </code></pre>
               <ul>
                 <li>
-                  &quot;Drives&quot; -&gt; &quot;Add...&quot;, pick arbitrary
-                  letter (&quot;E:&quot; is typical), change &quot;Path:&quot;
-                  or click on &quot;Browse...&quot; to <code>/mnt</code>
-                </li>
-                <li>
-                  <a href="#running-a-game">run game</a> as usual, hopefully
-                  just works
+                  use vlc on phone since simple copying directly to folder, see
+                  provided fish script
                 </li>
               </ul>
+              <pre><code class="language-fish">function musicsync --description &quot;sync music to phone&quot;
+  # mount vlc media folder to ~/mnt
+  ifuse --documents org.videolan.vlc-ios ~/mnt
+  # see https://superuser.com/questions/1192448/rsync-mkstemp-filename-failed-function-not-implemented-38
+  rsync -av --progress --no-perms --no-owner --no-group --exclude &quot;*.m3u&quot; \
+    ~/Music/personal ~/mnt/
+  # copy playlists from cmus
+  set temp (pwd)
+  cd ~/Music/personal/playlists
+  python cmus_copy.py
+  # generate playlists from artists
+  python artist_playlist.py
+  cd &quot;$temp&quot;
+  rsync -av --progress --no-perms --no-owner --no-group \
+    ~/Music/personal/playlists ~/mnt/personal
+  # done
+  umount ~/mnt
+end
+</code></pre>
+              <h3 id="sync-to-android">
+                <a class="header" href="#sync-to-android">sync to android</a>
+              </h3>
+              <ul>
+                <li>
+                  see
+                  <a href="/pkgs/tools/misc/android-tools.html"
+                    >android-tools</a
+                  >
+                </li>
+                <li>syncing music</li>
+              </ul>
+              <pre><code class="language-fish">function musicsync --description 'sync music to phone'
+    # copy playlists from cmus
+    set temp (pwd)
+    cd ~/Music/personal/playlists
+    python cmus_copy.py
+    # generate playlists from artists
+    python artist_playlist.py
+    cd &quot;$temp&quot;
+    # copy over to phone
+    adb push --sync ~/Music/ /storage/self/primary/
+end
+</code></pre>
             </main>
 
             <nav class="nav-wrapper" aria-label="Page navigation">
               <!-- Mobile navigation buttons -->
               <a
                 rel="prev"
-                href="../../../pkgs/applications/editors/neovim.html"
+                href="../../../os/arch/post-install/index.html"
                 class="mobile-nav-chapters previous"
                 title="Previous chapter"
                 aria-label="Previous chapter"
@@ -1169,7 +1123,7 @@ sudo cp -r /mnt/* game/
 
               <a
                 rel="next"
-                href="../../../pkgs/applications/file-managers/ranger.html"
+                href="../../../os/arch/post-install/clipboard.html"
                 class="mobile-nav-chapters next"
                 title="Next chapter"
                 aria-label="Next chapter"
@@ -1186,7 +1140,7 @@ sudo cp -r /mnt/* game/
         <nav class="nav-wide-wrapper" aria-label="Page navigation">
           <a
             rel="prev"
-            href="../../../pkgs/applications/editors/neovim.html"
+            href="../../../os/arch/post-install/index.html"
             class="nav-chapters previous"
             title="Previous chapter"
             aria-label="Previous chapter"
@@ -1197,7 +1151,7 @@ sudo cp -r /mnt/* game/
 
           <a
             rel="next"
-            href="../../../pkgs/applications/file-managers/ranger.html"
+            href="../../../os/arch/post-install/clipboard.html"
             class="nav-chapters next"
             title="Next chapter"
             aria-label="Next chapter"

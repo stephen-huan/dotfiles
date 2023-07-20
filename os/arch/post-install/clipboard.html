@@ -3,7 +3,7 @@
   <head>
     <!-- Book generated using mdBook -->
     <meta charset="UTF-8" />
-    <title>wine - dotfiles</title>
+    <title>clipboard - dotfiles</title>
 
     <!-- Custom HTML head -->
 
@@ -162,7 +162,9 @@
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../os/arch/post-install/clipboard.html"
+                      <a
+                        href="../../../os/arch/post-install/clipboard.html"
+                        class="active"
                         ><strong aria-hidden="true">3.2.2.</strong> clipboard</a
                       >
                     </li>
@@ -255,9 +257,7 @@
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
-                      <a
-                        href="../../../pkgs/applications/emulators/wine.html"
-                        class="active"
+                      <a href="../../../pkgs/applications/emulators/wine.html"
                         ><strong aria-hidden="true">4.4.1.</strong> wine</a
                       >
                     </li>
@@ -892,7 +892,7 @@
                 <i id="git-repository-button" class="fa fa-code-fork"></i>
               </a>
               <a
-                href="https://github.com/stephen-huan/dotfiles/edit/master/src/pkgs/applications/emulators/wine.md"
+                href="https://github.com/stephen-huan/dotfiles/edit/master/src/os/arch/post-install/clipboard.md"
                 title="Suggest an edit"
                 aria-label="Suggest an edit"
               >
@@ -935,230 +935,207 @@
 
           <div id="content" class="content">
             <main>
-              <h1 id="wine"><a class="header" href="#wine">wine</a></h1>
+              <h1 id="clipboard">
+                <a class="header" href="#clipboard">clipboard</a>
+              </h1>
               <ul>
                 <li>
-                  <a href="https://wiki.archlinux.org/title/Wine"
-                    >arch wiki - wine</a
+                  <a href="https://wiki.archlinux.org/title/Clipboard"
+                    >arch wiki - clipboard</a
                   >
                 </li>
                 <li>
-                  this section will be mainly focused on running visual novels,
+                  managed by X, <code>PRIMARY</code>, <code>CLIPBOARD</code>,
+                  and <code>SECONDARY</code> selections
+                  <ul>
+                    <li>
+                      <code>PRIMARY</code>: selected text, i.e. highlighted by
+                      mouse
+                    </li>
+                    <li>
+                      <code>CLIPBOARD</code>: text that is explicitly copied
+                      (e.g. by <code>ctrl-c</code>)
+                    </li>
+                    <li><code>SECONDARY</code>: no agreed upon purpose</li>
+                  </ul>
+                </li>
+                <li>
+                  install <a href="https://github.com/astrand/xclip">xclip</a>,
+                  command-line interface
+                </li>
+              </ul>
+              <pre><code class="language-shell">pacman -S xclip
+</code></pre>
+              <ul>
+                <li>
+                  by default, clipboard contents lost if application is closed
+                </li>
+                <li>
+                  this is because X only stores references to the data, not
+                  copies
+                </li>
+                <li>
                   see
+                  <a href="https://wiki.ubuntu.com/ClipboardPersistence"
+                    >ubuntu wiki - ClipboardPersistence</a
+                  >
+                </li>
+                <li>
+                  see this
                   <a
-                    href="https://gist.github.com/eshrh/5bbf4deab58fefdab9eacf77b450efc0"
-                    >eshrh's gist</a
-                  >
+                    href="https://www.reddit.com/r/archlinux/comments/9tkvsl/persistent_clipboard/"
+                    >reddit post</a
+                  >, recommends <code>clipmenu</code>.
                 </li>
                 <li>
-                  also see
-                  <a href="https://learnjapanese.moe/vn-linux/"
-                    >TheMoeWay - Visual novels on Linux</a
-                  >
+                  however, I can't get <code>clipmenu</code> to work and there's
+                  a security concern: copying passwords/sensitive information to
+                  clipboard; most clipboard managers (including
+                  <code>clipmenu</code>) store data on disk as plaintext
                 </li>
                 <li>
-                  need Japanese locale for most games, so generate the locale
-                </li>
-                <li>
-                  edit <code>/etc/locale.gen</code> and uncomment
-                  <code>ja_JP.UTF-8 UTF-8</code>, run <code>locale-gen</code>
+                  install
+                  <a href="https://github.com/mrichar1/clipster">clipster</a>
                 </li>
               </ul>
-              <pre><code class="language-shell">locale-gen
+              <pre><code class="language-shell">paru -S clipster
 </code></pre>
               <ul>
+                <li>disable history</li>
                 <li>
-                  enable the
-                  <a
-                    href="https://wiki.archlinux.org/title/Official_repositories#multilib"
-                    >multilib repository</a
-                  >
-                  by uncommenting the right section in
-                  <code>/etc/pacman.conf</code>
+                  edit configuration file
+                  <code>~/.config/clipster/clipster.ini</code>
                 </li>
               </ul>
-              <pre><code class="language-config">[multilib]
-Include = /etc/pacman.d/mirrorlist
+              <pre><code class="language-ini">[clipster]
+
+# Number of items to save in the history file for each selection.
+# 0 - don't save history.
+history_size = 0
 </code></pre>
-              <ul>
-                <li>install wine</li>
-              </ul>
-              <pre><code class="language-shell">pacman -S wine
-</code></pre>
-              <ul>
-                <li>install optional dependencies</li>
-                <li>
-                  install winetricks (basically a package manger inside wine)
-                </li>
-              </ul>
-              <pre><code class="language-shell">pacman -S winetricks
-</code></pre>
+              <h2 id="detailed-notes">
+                <a class="header" href="#detailed-notes">detailed notes</a>
+              </h2>
+              <p>
+                For a general overview of the X window system's approach to the
+                <a href="https://wiki.archlinux.org/title/Clipboard"
+                  >clipboard</a
+                >, see
+                <a href="https://wiki.archlinux.org/title/Clipboard"
+                  >Arch wiki - clipboard</a
+                >. The summary is that the clipboard is managed by X, and has
+                three distinct <em>selections</em>: <code>PRIMARY</code>,
+                <code>CLIPBOARD</code>, and <code>SECONDARY</code> selections:
+              </p>
               <ul>
                 <li>
-                  install zenity (GUI for winetricks, you could just use the
-                  CLI)
+                  <code>PRIMARY</code>: selected text, i.e. highlighted by mouse
                 </li>
-              </ul>
-              <pre><code class="language-shell">pacman -S zenity
-</code></pre>
-              <ul>
-                <li><code>wine-mono</code> for .NET</li>
-              </ul>
-              <pre><code class="language-shell">pacamn -S wine-mono
-</code></pre>
-              <ul>
                 <li>
-                  if getting an error about <code>ntlm_auth</code> when
-                  installing things with <code>winetricks</code>, install samba
+                  <code>CLIPBOARD</code>: text that is explicitly copied (e.g.
+                  by ctrl-c)
                 </li>
+                <li><code>SECONDARY</code>: no agreed upon purpose</li>
               </ul>
-              <pre><code class="language-shell">pacman -S samba
+              <p>
+                In order to manage these selections, install some command-line
+                tools like <a href="https://github.com/astrand/xclip">xclip</a>.
+              </p>
+              <pre><code class="language-shell">pacman -S xclip
 </code></pre>
-              <ul>
-                <li>
-                  most visual novels are 32-bit, so set <code>WINEARCH</code> to
-                  <code>win32</code>
-                </li>
-              </ul>
-              <pre><code class="language-fish">set -gx WINEARCH win32
+              <p>
+                For example, to copy a screenshot (taken with the package
+                <a href="https://github.com/naelstrof/maim">maim</a>) to the
+                clipboard you can use:
+              </p>
+              <pre><code class="language-shell">maim --select --nodrag | xclip -selection clipboard -target image/png
 </code></pre>
-              <ul>
-                <li>
-                  opt out of microsoft
-                  <a
-                    href="https://docs.microsoft.com/en-us/dotnet/core/tools/telemetry"
-                    >.NET telemetry</a
-                  >
-                </li>
-              </ul>
-              <pre><code class="language-fish">set -gx DOTNET_CLI_TELEMETRY_OPTOUT 1
+              <p>
+                Packages will also use
+                <a href="https://vergenet.net/~conrad/software/xsel/">xsel</a>,
+                so you'll probably have both installed even if you don't
+                explicitly install them.
+              </p>
+              <pre><code class="language-shell">pacman -S xsel
 </code></pre>
-              <ul>
-                <li>set windows version to windows XP, sometimes helpful</li>
-              </ul>
-              <pre><code class="language-shell">winecfg
-</code></pre>
-              <ul>
-                <li>
-                  &quot;Applications&quot; -&gt; &quot;Windows Version:&quot;
-                  change to &quot;Windows XP&quot;
-                </li>
-              </ul>
-              <h2 id="extra-packages-and-fonts">
-                <a class="header" href="#extra-packages-and-fonts"
-                  >extra packages and fonts</a
+              <p>
+                By default, the clipboard contents are lost if the application
+                you got the data from is closed. For example, if you open a
+                terminal window, type some text into it, and copy the text, you
+                can paste the text somewhere else. But if you close the terminal
+                window, you can no longer paste the text --- it is lost. This is
+                because X only stores <em>references</em> to the data, not
+                copies. See the
+                <a href="https://wiki.ubuntu.com/ClipboardPersistence"
+                  >Ubuntu wiki - ClipboardPersistence</a
                 >
-              </h2>
-              <ul>
-                <li>if game doesn't work, try installing more libraries</li>
-              </ul>
-              <pre><code class="language-shell">pacman -S giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama ncurses lib32-ncurses libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs lib32-gst-plugins-good vulkan-icd-loader lib32-vulkan-icd-loader
-</code></pre>
-              <ul>
-                <li>
-                  if game doesn't work, try installing more libraries with
-                  winetricks
-                </li>
-              </ul>
-              <pre><code class="language-shell">winetricks d3dx9 dirac dotnet35 dotnet40 dxvk lavfilters vcrun2003 vcrun2005 vcrun2008
-</code></pre>
-              <ul>
-                <li>disable wine DLL overrides</li>
-              </ul>
-              <pre><code class="language-shell">winetricks alldlls=default
-</code></pre>
-              <ul>
-                <li>start winetricks</li>
-              </ul>
-              <pre><code class="language-shell">winetricks
-</code></pre>
-              <ul>
-                <li>
-                  &quot;Select the default wineprefix&quot; -&gt; &quot;Install
-                  a font&quot; -&gt; check <code>cjkfonts</code> and
-                  <code>corefonts</code>
-                </li>
-              </ul>
-              <h2 id="running-a-game">
-                <a class="header" href="#running-a-game">running a game</a>
-              </h2>
-              <ul>
-                <li>mount <code>.iso</code> as usual, unpack</li>
-              </ul>
-              <pre><code class="language-shell">sudo mount game.iso /mnt
-sudo cp -r /mnt/* game/
-</code></pre>
-              <ul>
-                <li>run game</li>
-              </ul>
-              <pre><code class="language-shell">LC_ALL=&quot;ja_JP.UTF-8&quot; TZ=&quot;Asia/Tokyo&quot; wine game.exe
-</code></pre>
-              <ul>
-                <li>kill game</li>
-              </ul>
-              <pre><code class="language-shell">wineserver --kill
-</code></pre>
-              <h2 id="cdemu"><a class="header" href="#cdemu">CDemu</a></h2>
-              <ul>
-                <li>
-                  if error along the lines of &quot;disk not plugged in&quot;
-                </li>
-                <li>try restarting</li>
-                <li>
-                  if that doesn't work, use
-                  <a href="http://www.cdemu.org/">cdemu</a>
-                </li>
-              </ul>
-              <pre><code class="language-shell">sudo pacman -S cdemu-client cdemu-daemon
-</code></pre>
-              <ul>
-                <li>start daemon</li>
-              </ul>
-              <pre><code class="language-shell">cdemu-daemon
-</code></pre>
-              <ul>
-                <li>mount iso</li>
-              </ul>
-              <pre><code class="language-shell">cdemu load 0 game.iso
-</code></pre>
-              <ul>
-                <li>check mount point</li>
-              </ul>
-              <pre><code class="language-shell">lsblk
-</code></pre>
-              <ul>
-                <li>
-                  for me, either <code>/dev/sr0</code> or <code>/dev/sr1</code>,
-                  check by file size / run <code>lsblk</code> before loading and
-                  after
-                </li>
-                <li>mount</li>
-              </ul>
-              <pre><code class="language-shell">mount /dev/sr0 /mnt
-</code></pre>
-              <ul>
-                <li>add mount point to wine</li>
-              </ul>
-              <pre><code class="language-shell">winecfg
-</code></pre>
-              <ul>
-                <li>
-                  &quot;Drives&quot; -&gt; &quot;Add...&quot;, pick arbitrary
-                  letter (&quot;E:&quot; is typical), change &quot;Path:&quot;
-                  or click on &quot;Browse...&quot; to <code>/mnt</code>
-                </li>
-                <li>
-                  <a href="#running-a-game">run game</a> as usual, hopefully
-                  just works
-                </li>
-              </ul>
+                for more information as well as this this
+                <a
+                  href="https://www.reddit.com/r/archlinux/comments/9tkvsl/persistent_clipboard/"
+                  >reddit post</a
+                >. The Ubuntu article recommends Parcellite while the Reddit
+                post recommends clipmenu. The
+                <a href="https://wiki.archlinux.org/title/Clipboard#Managers"
+                  >Arch wiki</a
+                >
+                also has a list of clipboard managers. I tried a lot of these,
+                and here's my commentary.
+              </p>
+              <p>
+                For most clipboard managers, they don't solve the aforementioned
+                persistence issue. Instead, they maintain a history of
+                everything that is copied, and if you lose your selection, you
+                can use a command-line interface or open a GUI to select a
+                previous entry and re-copy it to your clipboard. But I don't
+                want to have to manually re-copy the last thing I copied, I just
+                want to be able to keep the entry in my clipboard if I close the
+                application. I couldn't get
+                <a href="https://github.com/cdown/clipmenu/">clipmenu</a>, the
+                program mentioned in the Reddit post to work like this, and I
+                also couldn't get
+                <a href="https://github.com/xrelkd/clipcat">clipcat</a> to work.
+              </p>
+              <p>
+                <a
+                  href="https://www.x.org/releases/X11R7.5/doc/man/man1/xclipboard.1.html"
+                  >xclipboard</a
+                >, the official X clipboard manager works, but it always
+                launches a GUI window that it seems can't be suppressed.
+                <a href="http://parcellite.sourceforge.net/">Parcellite</a>
+                works but it's a bit old and relies on GTK2. A modern
+                replacement is
+                <a href="https://github.com/CristianHenzel/ClipIt">ClipIt</a>,
+                but when I used it reminded me that there was a security
+                concern: I sometimes copy passwords and other sensitive
+                information to the clipboard, and all of these clipboard
+                managers store data on disk as plaintext in a temporary
+                directory. I wanted to find a clipboard manager that supported
+                clipboard persistence without manual intervention while only
+                storing data in memory and not disk. I settled on Clipster.
+              </p>
+              <h3 id="copypaste">
+                <a class="header" href="#copypaste">copy/paste</a>
+              </h3>
+              <p>
+                Interestingly enough, one can also use the open-source
+                <a href="https://github.com/qmk/qmk_firmware/">qmk</a> firmware
+                to bind physical keys to copy/paste. The relevant
+                <a href="https://docs.qmk.fm/#/keycodes">keycodes</a> are
+                <code>KC_CUT</code>, <code>KC_COPY</code>, and
+                <code>KC_PASTE</code>. The X keyboard event viewer
+                <code>xev</code> (<code>pacman -S xorg-xev</code>) shows that
+                these are mapped to <code>XF86Cut</code> (145)
+                <code>XF86Copy</code> (141), and <code>XF86Paste</code> (143).
+                Support for these keys seems to be built-in to X as well as most
+                GUI applications.
+              </p>
             </main>
 
             <nav class="nav-wrapper" aria-label="Page navigation">
               <!-- Mobile navigation buttons -->
               <a
                 rel="prev"
-                href="../../../pkgs/applications/editors/neovim.html"
+                href="../../../os/arch/post-install/audio.html"
                 class="mobile-nav-chapters previous"
                 title="Previous chapter"
                 aria-label="Previous chapter"
@@ -1169,7 +1146,7 @@ sudo cp -r /mnt/* game/
 
               <a
                 rel="next"
-                href="../../../pkgs/applications/file-managers/ranger.html"
+                href="../../../os/arch/post-install/gpu.html"
                 class="mobile-nav-chapters next"
                 title="Next chapter"
                 aria-label="Next chapter"
@@ -1186,7 +1163,7 @@ sudo cp -r /mnt/* game/
         <nav class="nav-wide-wrapper" aria-label="Page navigation">
           <a
             rel="prev"
-            href="../../../pkgs/applications/editors/neovim.html"
+            href="../../../os/arch/post-install/audio.html"
             class="nav-chapters previous"
             title="Previous chapter"
             aria-label="Previous chapter"
@@ -1197,7 +1174,7 @@ sudo cp -r /mnt/* game/
 
           <a
             rel="next"
-            href="../../../pkgs/applications/file-managers/ranger.html"
+            href="../../../os/arch/post-install/gpu.html"
             class="nav-chapters next"
             title="Next chapter"
             aria-label="Next chapter"
