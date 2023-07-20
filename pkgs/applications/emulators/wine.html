@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en" class="sidebar-visible no-js light">
+  <head>
+    <!-- Book generated using mdBook -->
+    <meta charset="UTF-8" />
+    <title>wine - dotfiles</title>
+
+    <!-- Custom HTML head -->
+
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="icon" href="../../../favicon.svg" />
+    <link rel="shortcut icon" href="../../../favicon.png" />
+    <link rel="stylesheet" href="../../../css/variables.css" />
+    <link rel="stylesheet" href="../../../css/general.css" />
+    <link rel="stylesheet" href="../../../css/chrome.css" />
+    <link rel="stylesheet" href="../../../css/print.css" media="print" />
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../../../FontAwesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="../../../fonts/fonts.css" />
+
+    <!-- Highlight.js Stylesheets -->
+    <link rel="stylesheet" href="../../../highlight.css" />
+    <link rel="stylesheet" href="../../../tomorrow-night.css" />
+    <link rel="stylesheet" href="../../../ayu-highlight.css" />
+
+    <!-- Custom theme stylesheets -->
+  </head>
+  <body>
+    <div id="body-container">
+      <!-- Provide site root to javascript -->
+      <script>
+        var path_to_root = "../../../";
+        var default_theme = window.matchMedia("(prefers-color-scheme: dark)")
+          .matches
+          ? "navy"
+          : "light";
+      </script>
+
+      <!-- Work around some values being stored in localStorage wrapped in quotes -->
+      <script>
+        try {
+          var theme = localStorage.getItem("mdbook-theme");
+          var sidebar = localStorage.getItem("mdbook-sidebar");
+
+          if (theme.startsWith('"') && theme.endsWith('"')) {
+            localStorage.setItem(
+              "mdbook-theme",
+              theme.slice(1, theme.length - 1),
+            );
+          }
+
+          if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+            localStorage.setItem(
+              "mdbook-sidebar",
+              sidebar.slice(1, sidebar.length - 1),
+            );
+          }
+        } catch (e) {}
+      </script>
+
+      <!-- Set the theme before any content is loaded, prevents flash -->
+      <script>
+        var theme;
+        try {
+          theme = localStorage.getItem("mdbook-theme");
+        } catch (e) {}
+        if (theme === null || theme === undefined) {
+          theme = default_theme;
+        }
+        var html = document.querySelector("html");
+        html.classList.remove("no-js");
+        html.classList.remove("light");
+        html.classList.add(theme);
+        html.classList.add("js");
+      </script>
+
+      <!-- Hide / unhide sidebar before it is displayed -->
+      <script>
+        var html = document.querySelector("html");
+        var sidebar = null;
+        if (document.body.clientWidth >= 1080) {
+          try {
+            sidebar = localStorage.getItem("mdbook-sidebar");
+          } catch (e) {}
+          sidebar = sidebar || "visible";
+        } else {
+          sidebar = "hidden";
+        }
+        html.classList.remove("sidebar-visible");
+        html.classList.add("sidebar-" + sidebar);
+      </script>
+
+      <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+        <div class="sidebar-scrollbox">
+          <ol class="chapter">
+            <li class="chapter-item expanded affix">
+              <a href="../../../index.html">home</a>
+            </li>
+            <li class="chapter-item expanded">
+              <a href="../../../dotfiles.html"
+                ><strong aria-hidden="true">1.</strong> dotfiles management</a
+              >
+            </li>
+            <li class="chapter-item expanded affix"></li>
+            <li class="part-title">os</li>
+            <li class="chapter-item expanded">
+              <a href="../../../os/nixos/index.html"
+                ><strong aria-hidden="true">2.</strong> NixOS</a
+              >
+            </li>
+            <li class="chapter-item expanded">
+              <a href="../../../os/arch/index.html"
+                ><strong aria-hidden="true">3.</strong> Arch Linux</a
+              >
+            </li>
+            <li>
+              <ol class="section">
+                <li class="chapter-item expanded">
+                  <a href="../../../os/arch/install.html"
+                    ><strong aria-hidden="true">3.1.</strong> install</a
+                  >
+                </li>
+                <li class="chapter-item expanded">
+                  <a href="../../../os/arch/post-install.html"
+                    ><strong aria-hidden="true">3.2.</strong> post-install</a
+                  >
+                </li>
+              </ol>
+            </li>
+            <li class="chapter-item expanded"></li>
+            <li class="part-title">nix</li>
+            <li class="chapter-item expanded">
+              <div>
+                <strong aria-hidden="true">4.</strong> Nix expression language
+              </div>
+            </li>
+            <li class="chapter-item expanded">
+              <div><strong aria-hidden="true">5.</strong> nixpkgs</div>
+            </li>
+            <li class="chapter-item expanded">
+              <div><strong aria-hidden="true">6.</strong> NixOS</div>
+            </li>
+            <li class="chapter-item expanded affix"></li>
+            <li class="part-title">pkgs</li>
+            <li class="chapter-item expanded">
+              <div><strong aria-hidden="true">7.</strong> applications</div>
+            </li>
+            <li>
+              <ol class="section">
+                <li class="chapter-item expanded">
+                  <div><strong aria-hidden="true">7.1.</strong> audio</div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/applications/audio/cider.html"
+                        ><strong aria-hidden="true">7.1.1.</strong> cider</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/applications/audio/cmus.html"
+                        ><strong aria-hidden="true">7.1.2.</strong> cmus</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div>
+                    <strong aria-hidden="true">7.2.</strong> display-managers
+                  </div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../../pkgs/applications/display-managers/sddm.html"
+                        ><strong aria-hidden="true">7.2.1.</strong> sddm</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div><strong aria-hidden="true">7.3.</strong> editors</div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/applications/editors/neovim.html"
+                        ><strong aria-hidden="true">7.3.1.</strong> neovim</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div><strong aria-hidden="true">7.4.</strong> emulators</div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../../pkgs/applications/emulators/wine.html"
+                        class="active"
+                        ><strong aria-hidden="true">7.4.1.</strong> wine</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div>
+                    <strong aria-hidden="true">7.5.</strong> file-managers
+                  </div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../../pkgs/applications/file-managers/ranger.html"
+                        ><strong aria-hidden="true">7.5.1.</strong> ranger</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div><strong aria-hidden="true">7.6.</strong> misc</div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/applications/misc/mupdf.html"
+                        ><strong aria-hidden="true">7.6.1.</strong> mupdf</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/applications/misc/redshift.html"
+                        ><strong aria-hidden="true">7.6.2.</strong> redshift</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/applications/misc/sioyek.html"
+                        ><strong aria-hidden="true">7.6.3.</strong> sioyek</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/applications/misc/zathura.html"
+                        ><strong aria-hidden="true">7.6.4.</strong> zathura</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div><strong aria-hidden="true">7.7.</strong> networking</div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <div>
+                        <strong aria-hidden="true">7.7.1.</strong> mailreaders
+                      </div>
+                    </li>
+                    <li>
+                      <ol class="section">
+                        <li class="chapter-item expanded">
+                          <a
+                            href="../../../pkgs/applications/networking/mailreaders/neomutt.html"
+                            ><strong aria-hidden="true">7.7.1.1.</strong>
+                            neomutt</a
+                          >
+                        </li>
+                      </ol>
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div>
+                    <strong aria-hidden="true">7.8.</strong> terminal-emulators
+                  </div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../../pkgs/applications/terminal-emulators/alacritty.html"
+                        ><strong aria-hidden="true">7.8.1.</strong> alacritty</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div>
+                    <strong aria-hidden="true">7.9.</strong> version-management
+                  </div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../../pkgs/applications/version-management/git.html"
+                        ><strong aria-hidden="true">7.9.1.</strong> git</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../../pkgs/applications/version-management/git-credential-manager.html"
+                        ><strong aria-hidden="true">7.9.2.</strong>
+                        git-credential-manager</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../../pkgs/applications/version-management/pass-git-helper.html"
+                        ><strong aria-hidden="true">7.9.3.</strong>
+                        pass-git-helper</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div>
+                    <strong aria-hidden="true">7.10.</strong> window-managers
+                  </div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../../pkgs/applications/window-managers/i3.html"
+                        ><strong aria-hidden="true">7.10.1.</strong> i3</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../../pkgs/applications/window-managers/picom.html"
+                        ><strong aria-hidden="true">7.10.2.</strong> picom</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+            <li class="chapter-item expanded">
+              <div><strong aria-hidden="true">8.</strong> data</div>
+            </li>
+            <li>
+              <ol class="section">
+                <li class="chapter-item expanded">
+                  <div><strong aria-hidden="true">8.1.</strong> fonts</div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/data/fonts/ipafont.html"
+                        ><strong aria-hidden="true">8.1.1.</strong> ipafont</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+            <li class="chapter-item expanded">
+              <div><strong aria-hidden="true">9.</strong> development</div>
+            </li>
+            <li>
+              <ol class="section">
+                <li class="chapter-item expanded">
+                  <div><strong aria-hidden="true">9.1.</strong> libraries</div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../../pkgs/development/libraries/fontconfig.html"
+                        ><strong aria-hidden="true">9.1.1.</strong>
+                        fontconfig</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../../pkgs/development/libraries/pipewire.html"
+                        ><strong aria-hidden="true">9.1.2.</strong> pipewire</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+            <li class="chapter-item expanded">
+              <div><strong aria-hidden="true">10.</strong> misc</div>
+            </li>
+            <li>
+              <ol class="section">
+                <li class="chapter-item expanded">
+                  <div>
+                    <strong aria-hidden="true">10.1.</strong> screensavers
+                  </div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/misc/screensavers/xss-lock.html"
+                        ><strong aria-hidden="true">10.1.1.</strong> xss-lock</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+            <li class="chapter-item expanded">
+              <div><strong aria-hidden="true">11.</strong> os-specific</div>
+            </li>
+            <li>
+              <ol class="section">
+                <li class="chapter-item expanded">
+                  <div><strong aria-hidden="true">11.1.</strong> linux</div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../../pkgs/os-specific/linux/alsa-project.html"
+                        ><strong aria-hidden="true">11.1.1.</strong>
+                        alsa-project</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/os-specific/linux/bluez.html"
+                        ><strong aria-hidden="true">11.1.2.</strong> bluez</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/os-specific/linux/iwd.html"
+                        ><strong aria-hidden="true">11.1.3.</strong> iwd</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/os-specific/linux/plymouth.html"
+                        ><strong aria-hidden="true">11.1.4.</strong> plymouth</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+            <li class="chapter-item expanded">
+              <div><strong aria-hidden="true">12.</strong> servers</div>
+            </li>
+            <li>
+              <ol class="section">
+                <li class="chapter-item expanded">
+                  <div><strong aria-hidden="true">12.1.</strong> x11</div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/servers/x11/xorg.html"
+                        ><strong aria-hidden="true">12.1.1.</strong> xorg</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <a href="../../../pkgs/servers/pulseaudio.html"
+                    ><strong aria-hidden="true">12.2.</strong> pulseaudio</a
+                  >
+                </li>
+              </ol>
+            </li>
+            <li class="chapter-item expanded">
+              <div><strong aria-hidden="true">13.</strong> shells</div>
+            </li>
+            <li>
+              <ol class="section">
+                <li class="chapter-item expanded">
+                  <a href="../../../pkgs/shells/fish.html"
+                    ><strong aria-hidden="true">13.1.</strong> fish</a
+                  >
+                </li>
+              </ol>
+            </li>
+            <li class="chapter-item expanded">
+              <div><strong aria-hidden="true">14.</strong> tools</div>
+            </li>
+            <li>
+              <ol class="section">
+                <li class="chapter-item expanded">
+                  <div><strong aria-hidden="true">14.1.</strong> audio</div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/tools/audio/playerctl.html"
+                        ><strong aria-hidden="true">14.1.1.</strong>
+                        playerctl</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div>
+                    <strong aria-hidden="true">14.2.</strong> inputmethods
+                  </div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/tools/inputmethods/ibus.html"
+                        ><strong aria-hidden="true">14.2.1.</strong> ibus</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <div>
+                        <strong aria-hidden="true">14.2.2.</strong> ibus-engines
+                      </div>
+                    </li>
+                    <li>
+                      <ol class="section">
+                        <li class="chapter-item expanded">
+                          <a
+                            href="../../../pkgs/tools/inputmethods/ibus-engines/ibus-mozc.html"
+                            ><strong aria-hidden="true">14.2.2.1.</strong>
+                            ibus-mozc</a
+                          >
+                        </li>
+                      </ol>
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div><strong aria-hidden="true">14.3.</strong> misc</div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/tools/misc/clipster.html"
+                        ><strong aria-hidden="true">14.3.1.</strong> clipster</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/tools/misc/grub.html"
+                        ><strong aria-hidden="true">14.3.2.</strong> grub</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/tools/misc/qmk.html"
+                        ><strong aria-hidden="true">14.3.3.</strong> qmk</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/tools/misc/tmux.html"
+                        ><strong aria-hidden="true">14.3.4.</strong> tmux</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/tools/misc/yubikey-manager.html"
+                        ><strong aria-hidden="true">14.3.5.</strong>
+                        yubikey-manager</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div>
+                    <strong aria-hidden="true">14.4.</strong> networking
+                  </div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/tools/networking/dhcp.html"
+                        ><strong aria-hidden="true">14.4.1.</strong> dhcp</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/tools/networking/dhcpcd.html"
+                        ><strong aria-hidden="true">14.4.2.</strong> dhcpcd</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../../pkgs/tools/networking/globalprotect-openconnect.html"
+                        ><strong aria-hidden="true">14.4.3.</strong>
+                        globalprotect-openconnect</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/tools/networking/ifplugd.html"
+                        ><strong aria-hidden="true">14.4.4.</strong> ifplugd</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/tools/networking/mullvad.html"
+                        ><strong aria-hidden="true">14.4.5.</strong> mullvad</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/tools/networking/openconnect.html"
+                        ><strong aria-hidden="true">14.4.6.</strong>
+                        openconnect</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/tools/networking/openresolv.html"
+                        ><strong aria-hidden="true">14.4.7.</strong>
+                        openresolv</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/tools/networking/unbound.html"
+                        ><strong aria-hidden="true">14.4.8.</strong> unbound</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div>
+                    <strong aria-hidden="true">14.5.</strong> package-management
+                  </div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../../pkgs/tools/package-management/conda.html"
+                        ><strong aria-hidden="true">14.5.1.</strong> conda</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../../pkgs/tools/package-management/micromamba.html"
+                        ><strong aria-hidden="true">14.5.2.</strong>
+                        micromamba</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/tools/package-management/nix.html"
+                        ><strong aria-hidden="true">14.5.3.</strong> nix</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../../pkgs/tools/package-management/pacman.html"
+                        ><strong aria-hidden="true">14.5.4.</strong> pacman</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div><strong aria-hidden="true">14.6.</strong> security</div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/tools/security/browserpass.html"
+                        ><strong aria-hidden="true">14.6.1.</strong>
+                        browerpass</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/tools/security/gnupg.html"
+                        ><strong aria-hidden="true">14.6.2.</strong> gnupg</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/tools/security/pass/index.html"
+                        ><strong aria-hidden="true">14.6.3.</strong> pass</a
+                      >
+                    </li>
+                    <li>
+                      <ol class="section">
+                        <li class="chapter-item expanded">
+                          <div>
+                            <strong aria-hidden="true">14.6.3.1.</strong>
+                            extensions
+                          </div>
+                        </li>
+                        <li>
+                          <ol class="section">
+                            <li class="chapter-item expanded">
+                              <a
+                                href="../../../pkgs/tools/security/pass/extensions/otp.html"
+                                ><strong aria-hidden="true">14.6.3.1.1.</strong>
+                                pass-otp</a
+                              >
+                            </li>
+                          </ol>
+                        </li>
+                      </ol>
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div>
+                    <strong aria-hidden="true">14.7.</strong> typesetting
+                  </div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../../pkgs/tools/typesetting/tectonic.html"
+                        ><strong aria-hidden="true">14.7.1.</strong> tectonic</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+            <li class="chapter-item expanded"></li>
+            <li class="part-title">misc</li>
+            <li class="chapter-item expanded">
+              <a href="../../../misc/pace.html"
+                ><strong aria-hidden="true">15.</strong> pace</a
+              >
+            </li>
+          </ol>
+        </div>
+        <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+      </nav>
+
+      <!-- Track and set sidebar scroll position -->
+      <script>
+        var sidebarScrollbox = document.querySelector(
+          "#sidebar .sidebar-scrollbox",
+        );
+        sidebarScrollbox.addEventListener(
+          "click",
+          function (e) {
+            if (e.target.tagName === "A") {
+              sessionStorage.setItem(
+                "sidebar-scroll",
+                sidebarScrollbox.scrollTop,
+              );
+            }
+          },
+          { passive: true },
+        );
+        var sidebarScrollTop = sessionStorage.getItem("sidebar-scroll");
+        sessionStorage.removeItem("sidebar-scroll");
+        if (sidebarScrollTop) {
+          // preserve sidebar scroll position when navigating via links within sidebar
+          sidebarScrollbox.scrollTop = sidebarScrollTop;
+        } else {
+          // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+          var activeSection = document.querySelector("#sidebar .active");
+          if (activeSection) {
+            activeSection.scrollIntoView({ block: "center" });
+          }
+        }
+      </script>
+
+      <div id="page-wrapper" class="page-wrapper">
+        <div class="page">
+          <div id="menu-bar-hover-placeholder"></div>
+          <div id="menu-bar" class="menu-bar sticky">
+            <div class="left-buttons">
+              <button
+                id="sidebar-toggle"
+                class="icon-button"
+                type="button"
+                title="Toggle Table of Contents"
+                aria-label="Toggle Table of Contents"
+                aria-controls="sidebar"
+              >
+                <i class="fa fa-bars"></i>
+              </button>
+              <button
+                id="theme-toggle"
+                class="icon-button"
+                type="button"
+                title="Change theme"
+                aria-label="Change theme"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-controls="theme-list"
+              >
+                <i class="fa fa-paint-brush"></i>
+              </button>
+              <ul
+                id="theme-list"
+                class="theme-popup"
+                aria-label="Themes"
+                role="menu"
+              >
+                <li role="none">
+                  <button role="menuitem" class="theme" id="light">
+                    Light
+                  </button>
+                </li>
+                <li role="none">
+                  <button role="menuitem" class="theme" id="rust">Rust</button>
+                </li>
+                <li role="none">
+                  <button role="menuitem" class="theme" id="coal">Coal</button>
+                </li>
+                <li role="none">
+                  <button role="menuitem" class="theme" id="navy">Navy</button>
+                </li>
+                <li role="none">
+                  <button role="menuitem" class="theme" id="ayu">Ayu</button>
+                </li>
+              </ul>
+              <button
+                id="search-toggle"
+                class="icon-button"
+                type="button"
+                title="Search. (Shortkey: s)"
+                aria-label="Toggle Searchbar"
+                aria-expanded="false"
+                aria-keyshortcuts="S"
+                aria-controls="searchbar"
+              >
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+
+            <h1 class="menu-title">dotfiles</h1>
+
+            <div class="right-buttons">
+              <a
+                href="../../../print.html"
+                title="Print this book"
+                aria-label="Print this book"
+              >
+                <i id="print-button" class="fa fa-print"></i>
+              </a>
+              <a
+                href="https://github.com/stephen-huan/dotfiles"
+                title="Git repository"
+                aria-label="Git repository"
+              >
+                <i id="git-repository-button" class="fa fa-code-fork"></i>
+              </a>
+              <a
+                href="https://github.com/stephen-huan/dotfiles/edit/master/src/pkgs/applications/emulators/wine.md"
+                title="Suggest an edit"
+                aria-label="Suggest an edit"
+              >
+                <i id="git-edit-button" class="fa fa-edit"></i>
+              </a>
+            </div>
+          </div>
+
+          <div id="search-wrapper" class="hidden">
+            <form id="searchbar-outer" class="searchbar-outer">
+              <input
+                type="search"
+                id="searchbar"
+                name="searchbar"
+                placeholder="Search this book ..."
+                aria-controls="searchresults-outer"
+                aria-describedby="searchresults-header"
+              />
+            </form>
+            <div id="searchresults-outer" class="searchresults-outer hidden">
+              <div id="searchresults-header" class="searchresults-header"></div>
+              <ul id="searchresults"></ul>
+            </div>
+          </div>
+
+          <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+          <script>
+            document
+              .getElementById("sidebar-toggle")
+              .setAttribute("aria-expanded", sidebar === "visible");
+            document
+              .getElementById("sidebar")
+              .setAttribute("aria-hidden", sidebar !== "visible");
+            Array.from(document.querySelectorAll("#sidebar a")).forEach(
+              function (link) {
+                link.setAttribute("tabIndex", sidebar === "visible" ? 0 : -1);
+              },
+            );
+          </script>
+
+          <div id="content" class="content">
+            <main>
+              <h1 id="wine"><a class="header" href="#wine">wine</a></h1>
+              <ul>
+                <li>
+                  <a href="https://wiki.archlinux.org/title/Wine"
+                    >arch wiki - wine</a
+                  >
+                </li>
+                <li>
+                  this section will be mainly focused on running visual novels,
+                  see
+                  <a
+                    href="https://gist.github.com/eshrh/5bbf4deab58fefdab9eacf77b450efc0"
+                    >eshrh's gist</a
+                  >
+                </li>
+                <li>
+                  also see
+                  <a href="https://learnjapanese.moe/vn-linux/"
+                    >TheMoeWay - Visual novels on Linux</a
+                  >
+                </li>
+                <li>
+                  need Japanese locale for most games, so generate the locale
+                </li>
+                <li>
+                  edit <code>/etc/locale.gen</code> and uncomment
+                  <code>ja_JP.UTF-8 UTF-8</code>, run <code>locale-gen</code>
+                </li>
+              </ul>
+              <pre><code class="language-shell">locale-gen
+</code></pre>
+              <ul>
+                <li>
+                  enable the
+                  <a
+                    href="https://wiki.archlinux.org/title/Official_repositories#multilib"
+                    >multilib repository</a
+                  >
+                  by uncommenting the right section in
+                  <code>/etc/pacman.conf</code>
+                </li>
+              </ul>
+              <pre><code class="language-config">[multilib]
+Include = /etc/pacman.d/mirrorlist
+</code></pre>
+              <ul>
+                <li>install wine</li>
+              </ul>
+              <pre><code class="language-shell">pacman -S wine
+</code></pre>
+              <ul>
+                <li>install optional dependencies</li>
+                <li>
+                  install winetricks (basically a package manger inside wine)
+                </li>
+              </ul>
+              <pre><code class="language-shell">pacman -S winetricks
+</code></pre>
+              <ul>
+                <li>
+                  install zenity (GUI for winetricks, you could just use the
+                  CLI)
+                </li>
+              </ul>
+              <pre><code class="language-shell">pacman -S zenity
+</code></pre>
+              <ul>
+                <li><code>wine-mono</code> for .NET</li>
+              </ul>
+              <pre><code class="language-shell">pacamn -S wine-mono
+</code></pre>
+              <ul>
+                <li>
+                  if getting an error about <code>ntlm_auth</code> when
+                  installing things with <code>winetricks</code>, install samba
+                </li>
+              </ul>
+              <pre><code class="language-shell">pacman -S samba
+</code></pre>
+              <ul>
+                <li>
+                  most visual novels are 32-bit, so set <code>WINEARCH</code> to
+                  <code>win32</code>
+                </li>
+              </ul>
+              <pre><code class="language-fish">set -gx WINEARCH win32
+</code></pre>
+              <ul>
+                <li>
+                  opt out of microsoft
+                  <a
+                    href="https://docs.microsoft.com/en-us/dotnet/core/tools/telemetry"
+                    >.NET telemetry</a
+                  >
+                </li>
+              </ul>
+              <pre><code class="language-fish">set -gx DOTNET_CLI_TELEMETRY_OPTOUT 1
+</code></pre>
+              <ul>
+                <li>set windows version to windows XP, sometimes helpful</li>
+              </ul>
+              <pre><code class="language-shell">winecfg
+</code></pre>
+              <ul>
+                <li>
+                  &quot;Applications&quot; -&gt; &quot;Windows Version:&quot;
+                  change to &quot;Windows XP&quot;
+                </li>
+              </ul>
+              <h2 id="extra-packages-and-fonts">
+                <a class="header" href="#extra-packages-and-fonts"
+                  >extra packages and fonts</a
+                >
+              </h2>
+              <ul>
+                <li>if game doesn't work, try installing more libraries</li>
+              </ul>
+              <pre><code class="language-shell">pacman -S giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama ncurses lib32-ncurses libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs lib32-gst-plugins-good vulkan-icd-loader lib32-vulkan-icd-loader
+</code></pre>
+              <ul>
+                <li>
+                  if game doesn't work, try installing more libraries with
+                  winetricks
+                </li>
+              </ul>
+              <pre><code class="language-shell">winetricks d3dx9 dirac dotnet35 dotnet40 dxvk lavfilters vcrun2003 vcrun2005 vcrun2008
+</code></pre>
+              <ul>
+                <li>disable wine DLL overrides</li>
+              </ul>
+              <pre><code class="language-shell">winetricks alldlls=default
+</code></pre>
+              <ul>
+                <li>start winetricks</li>
+              </ul>
+              <pre><code class="language-shell">winetricks
+</code></pre>
+              <ul>
+                <li>
+                  &quot;Select the default wineprefix&quot; -&gt; &quot;Install
+                  a font&quot; -&gt; check <code>cjkfonts</code> and
+                  <code>corefonts</code>
+                </li>
+              </ul>
+              <h2 id="running-a-game">
+                <a class="header" href="#running-a-game">running a game</a>
+              </h2>
+              <ul>
+                <li>mount <code>.iso</code> as usual, unpack</li>
+              </ul>
+              <pre><code class="language-shell">sudo mount game.iso /mnt
+sudo cp -r /mnt/* game/
+</code></pre>
+              <ul>
+                <li>run game</li>
+              </ul>
+              <pre><code class="language-shell">LC_ALL=&quot;ja_JP.UTF-8&quot; TZ=&quot;Asia/Tokyo&quot; wine game.exe
+</code></pre>
+              <ul>
+                <li>kill game</li>
+              </ul>
+              <pre><code class="language-shell">wineserver --kill
+</code></pre>
+              <h2 id="cdemu"><a class="header" href="#cdemu">CDemu</a></h2>
+              <ul>
+                <li>
+                  if error along the lines of &quot;disk not plugged in&quot;
+                </li>
+                <li>try restarting</li>
+                <li>
+                  if that doesn't work, use
+                  <a href="http://www.cdemu.org/">cdemu</a>
+                </li>
+              </ul>
+              <pre><code class="language-shell">sudo pacman -S cdemu-client cdemu-daemon
+</code></pre>
+              <ul>
+                <li>start daemon</li>
+              </ul>
+              <pre><code class="language-shell">cdemu-daemon
+</code></pre>
+              <ul>
+                <li>mount iso</li>
+              </ul>
+              <pre><code class="language-shell">cdemu load 0 game.iso
+</code></pre>
+              <ul>
+                <li>check mount point</li>
+              </ul>
+              <pre><code class="language-shell">lsblk
+</code></pre>
+              <ul>
+                <li>
+                  for me, either <code>/dev/sr0</code> or <code>/dev/sr1</code>,
+                  check by file size / run <code>lsblk</code> before loading and
+                  after
+                </li>
+                <li>mount</li>
+              </ul>
+              <pre><code class="language-shell">mount /dev/sr0 /mnt
+</code></pre>
+              <ul>
+                <li>add mount point to wine</li>
+              </ul>
+              <pre><code class="language-shell">winecfg
+</code></pre>
+              <ul>
+                <li>
+                  &quot;Drives&quot; -&gt; &quot;Add...&quot;, pick arbitrary
+                  letter (&quot;E:&quot; is typical), change &quot;Path:&quot;
+                  or click on &quot;Browse...&quot; to <code>/mnt</code>
+                </li>
+                <li>
+                  <a href="#running-a-game">run game</a> as usual, hopefully
+                  just works
+                </li>
+              </ul>
+            </main>
+
+            <nav class="nav-wrapper" aria-label="Page navigation">
+              <!-- Mobile navigation buttons -->
+              <a
+                rel="prev"
+                href="../../../pkgs/applications/editors/neovim.html"
+                class="mobile-nav-chapters previous"
+                title="Previous chapter"
+                aria-label="Previous chapter"
+                aria-keyshortcuts="Left"
+              >
+                <i class="fa fa-angle-left"></i>
+              </a>
+
+              <a
+                rel="next"
+                href="../../../pkgs/applications/file-managers/ranger.html"
+                class="mobile-nav-chapters next"
+                title="Next chapter"
+                aria-label="Next chapter"
+                aria-keyshortcuts="Right"
+              >
+                <i class="fa fa-angle-right"></i>
+              </a>
+
+              <div style="clear: both"></div>
+            </nav>
+          </div>
+        </div>
+
+        <nav class="nav-wide-wrapper" aria-label="Page navigation">
+          <a
+            rel="prev"
+            href="../../../pkgs/applications/editors/neovim.html"
+            class="nav-chapters previous"
+            title="Previous chapter"
+            aria-label="Previous chapter"
+            aria-keyshortcuts="Left"
+          >
+            <i class="fa fa-angle-left"></i>
+          </a>
+
+          <a
+            rel="next"
+            href="../../../pkgs/applications/file-managers/ranger.html"
+            class="nav-chapters next"
+            title="Next chapter"
+            aria-label="Next chapter"
+            aria-keyshortcuts="Right"
+          >
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </nav>
+      </div>
+
+      <script>
+        window.playground_copyable = true;
+      </script>
+
+      <script src="../../../elasticlunr.min.js"></script>
+      <script src="../../../mark.min.js"></script>
+      <script src="../../../searcher.js"></script>
+
+      <script src="../../../clipboard.min.js"></script>
+      <script src="../../../highlight.js"></script>
+      <script src="../../../book.js"></script>
+
+      <!-- Custom JS scripts -->
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1841 @@
+<!DOCTYPE html>
+<html lang="en" class="sidebar-visible no-js light">
+  <head>
+    <!-- Book generated using mdBook -->
+    <meta charset="UTF-8" />
+    <title>Arch Linux - dotfiles</title>
+
+    <!-- Custom HTML head -->
+
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="icon" href="../../favicon.svg" />
+    <link rel="shortcut icon" href="../../favicon.png" />
+    <link rel="stylesheet" href="../../css/variables.css" />
+    <link rel="stylesheet" href="../../css/general.css" />
+    <link rel="stylesheet" href="../../css/chrome.css" />
+    <link rel="stylesheet" href="../../css/print.css" media="print" />
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="../../fonts/fonts.css" />
+
+    <!-- Highlight.js Stylesheets -->
+    <link rel="stylesheet" href="../../highlight.css" />
+    <link rel="stylesheet" href="../../tomorrow-night.css" />
+    <link rel="stylesheet" href="../../ayu-highlight.css" />
+
+    <!-- Custom theme stylesheets -->
+  </head>
+  <body>
+    <div id="body-container">
+      <!-- Provide site root to javascript -->
+      <script>
+        var path_to_root = "../../";
+        var default_theme = window.matchMedia("(prefers-color-scheme: dark)")
+          .matches
+          ? "navy"
+          : "light";
+      </script>
+
+      <!-- Work around some values being stored in localStorage wrapped in quotes -->
+      <script>
+        try {
+          var theme = localStorage.getItem("mdbook-theme");
+          var sidebar = localStorage.getItem("mdbook-sidebar");
+
+          if (theme.startsWith('"') && theme.endsWith('"')) {
+            localStorage.setItem(
+              "mdbook-theme",
+              theme.slice(1, theme.length - 1),
+            );
+          }
+
+          if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+            localStorage.setItem(
+              "mdbook-sidebar",
+              sidebar.slice(1, sidebar.length - 1),
+            );
+          }
+        } catch (e) {}
+      </script>
+
+      <!-- Set the theme before any content is loaded, prevents flash -->
+      <script>
+        var theme;
+        try {
+          theme = localStorage.getItem("mdbook-theme");
+        } catch (e) {}
+        if (theme === null || theme === undefined) {
+          theme = default_theme;
+        }
+        var html = document.querySelector("html");
+        html.classList.remove("no-js");
+        html.classList.remove("light");
+        html.classList.add(theme);
+        html.classList.add("js");
+      </script>
+
+      <!-- Hide / unhide sidebar before it is displayed -->
+      <script>
+        var html = document.querySelector("html");
+        var sidebar = null;
+        if (document.body.clientWidth >= 1080) {
+          try {
+            sidebar = localStorage.getItem("mdbook-sidebar");
+          } catch (e) {}
+          sidebar = sidebar || "visible";
+        } else {
+          sidebar = "hidden";
+        }
+        html.classList.remove("sidebar-visible");
+        html.classList.add("sidebar-" + sidebar);
+      </script>
+
+      <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+        <div class="sidebar-scrollbox">
+          <ol class="chapter">
+            <li class="chapter-item expanded affix">
+              <a href="../../index.html">home</a>
+            </li>
+            <li class="chapter-item expanded">
+              <a href="../../dotfiles.html"
+                ><strong aria-hidden="true">1.</strong> dotfiles management</a
+              >
+            </li>
+            <li class="chapter-item expanded affix"></li>
+            <li class="part-title">os</li>
+            <li class="chapter-item expanded">
+              <a href="../../os/nixos/index.html"
+                ><strong aria-hidden="true">2.</strong> NixOS</a
+              >
+            </li>
+            <li class="chapter-item expanded">
+              <a href="../../os/arch/index.html" class="active"
+                ><strong aria-hidden="true">3.</strong> Arch Linux</a
+              >
+            </li>
+            <li>
+              <ol class="section">
+                <li class="chapter-item expanded">
+                  <a href="../../os/arch/install.html"
+                    ><strong aria-hidden="true">3.1.</strong> install</a
+                  >
+                </li>
+                <li class="chapter-item expanded">
+                  <a href="../../os/arch/post-install.html"
+                    ><strong aria-hidden="true">3.2.</strong> post-install</a
+                  >
+                </li>
+              </ol>
+            </li>
+            <li class="chapter-item expanded"></li>
+            <li class="part-title">nix</li>
+            <li class="chapter-item expanded">
+              <div>
+                <strong aria-hidden="true">4.</strong> Nix expression language
+              </div>
+            </li>
+            <li class="chapter-item expanded">
+              <div><strong aria-hidden="true">5.</strong> nixpkgs</div>
+            </li>
+            <li class="chapter-item expanded">
+              <div><strong aria-hidden="true">6.</strong> NixOS</div>
+            </li>
+            <li class="chapter-item expanded affix"></li>
+            <li class="part-title">pkgs</li>
+            <li class="chapter-item expanded">
+              <div><strong aria-hidden="true">7.</strong> applications</div>
+            </li>
+            <li>
+              <ol class="section">
+                <li class="chapter-item expanded">
+                  <div><strong aria-hidden="true">7.1.</strong> audio</div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/applications/audio/cider.html"
+                        ><strong aria-hidden="true">7.1.1.</strong> cider</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/applications/audio/cmus.html"
+                        ><strong aria-hidden="true">7.1.2.</strong> cmus</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div>
+                    <strong aria-hidden="true">7.2.</strong> display-managers
+                  </div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../pkgs/applications/display-managers/sddm.html"
+                        ><strong aria-hidden="true">7.2.1.</strong> sddm</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div><strong aria-hidden="true">7.3.</strong> editors</div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/applications/editors/neovim.html"
+                        ><strong aria-hidden="true">7.3.1.</strong> neovim</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div><strong aria-hidden="true">7.4.</strong> emulators</div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/applications/emulators/wine.html"
+                        ><strong aria-hidden="true">7.4.1.</strong> wine</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div>
+                    <strong aria-hidden="true">7.5.</strong> file-managers
+                  </div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../pkgs/applications/file-managers/ranger.html"
+                        ><strong aria-hidden="true">7.5.1.</strong> ranger</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div><strong aria-hidden="true">7.6.</strong> misc</div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/applications/misc/mupdf.html"
+                        ><strong aria-hidden="true">7.6.1.</strong> mupdf</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/applications/misc/redshift.html"
+                        ><strong aria-hidden="true">7.6.2.</strong> redshift</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/applications/misc/sioyek.html"
+                        ><strong aria-hidden="true">7.6.3.</strong> sioyek</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/applications/misc/zathura.html"
+                        ><strong aria-hidden="true">7.6.4.</strong> zathura</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div><strong aria-hidden="true">7.7.</strong> networking</div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <div>
+                        <strong aria-hidden="true">7.7.1.</strong> mailreaders
+                      </div>
+                    </li>
+                    <li>
+                      <ol class="section">
+                        <li class="chapter-item expanded">
+                          <a
+                            href="../../pkgs/applications/networking/mailreaders/neomutt.html"
+                            ><strong aria-hidden="true">7.7.1.1.</strong>
+                            neomutt</a
+                          >
+                        </li>
+                      </ol>
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div>
+                    <strong aria-hidden="true">7.8.</strong> terminal-emulators
+                  </div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../pkgs/applications/terminal-emulators/alacritty.html"
+                        ><strong aria-hidden="true">7.8.1.</strong> alacritty</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div>
+                    <strong aria-hidden="true">7.9.</strong> version-management
+                  </div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../pkgs/applications/version-management/git.html"
+                        ><strong aria-hidden="true">7.9.1.</strong> git</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../pkgs/applications/version-management/git-credential-manager.html"
+                        ><strong aria-hidden="true">7.9.2.</strong>
+                        git-credential-manager</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../pkgs/applications/version-management/pass-git-helper.html"
+                        ><strong aria-hidden="true">7.9.3.</strong>
+                        pass-git-helper</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div>
+                    <strong aria-hidden="true">7.10.</strong> window-managers
+                  </div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/applications/window-managers/i3.html"
+                        ><strong aria-hidden="true">7.10.1.</strong> i3</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../pkgs/applications/window-managers/picom.html"
+                        ><strong aria-hidden="true">7.10.2.</strong> picom</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+            <li class="chapter-item expanded">
+              <div><strong aria-hidden="true">8.</strong> data</div>
+            </li>
+            <li>
+              <ol class="section">
+                <li class="chapter-item expanded">
+                  <div><strong aria-hidden="true">8.1.</strong> fonts</div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/data/fonts/ipafont.html"
+                        ><strong aria-hidden="true">8.1.1.</strong> ipafont</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+            <li class="chapter-item expanded">
+              <div><strong aria-hidden="true">9.</strong> development</div>
+            </li>
+            <li>
+              <ol class="section">
+                <li class="chapter-item expanded">
+                  <div><strong aria-hidden="true">9.1.</strong> libraries</div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/development/libraries/fontconfig.html"
+                        ><strong aria-hidden="true">9.1.1.</strong>
+                        fontconfig</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/development/libraries/pipewire.html"
+                        ><strong aria-hidden="true">9.1.2.</strong> pipewire</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+            <li class="chapter-item expanded">
+              <div><strong aria-hidden="true">10.</strong> misc</div>
+            </li>
+            <li>
+              <ol class="section">
+                <li class="chapter-item expanded">
+                  <div>
+                    <strong aria-hidden="true">10.1.</strong> screensavers
+                  </div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/misc/screensavers/xss-lock.html"
+                        ><strong aria-hidden="true">10.1.1.</strong> xss-lock</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+            <li class="chapter-item expanded">
+              <div><strong aria-hidden="true">11.</strong> os-specific</div>
+            </li>
+            <li>
+              <ol class="section">
+                <li class="chapter-item expanded">
+                  <div><strong aria-hidden="true">11.1.</strong> linux</div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/os-specific/linux/alsa-project.html"
+                        ><strong aria-hidden="true">11.1.1.</strong>
+                        alsa-project</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/os-specific/linux/bluez.html"
+                        ><strong aria-hidden="true">11.1.2.</strong> bluez</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/os-specific/linux/iwd.html"
+                        ><strong aria-hidden="true">11.1.3.</strong> iwd</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/os-specific/linux/plymouth.html"
+                        ><strong aria-hidden="true">11.1.4.</strong> plymouth</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+            <li class="chapter-item expanded">
+              <div><strong aria-hidden="true">12.</strong> servers</div>
+            </li>
+            <li>
+              <ol class="section">
+                <li class="chapter-item expanded">
+                  <div><strong aria-hidden="true">12.1.</strong> x11</div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/servers/x11/xorg.html"
+                        ><strong aria-hidden="true">12.1.1.</strong> xorg</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <a href="../../pkgs/servers/pulseaudio.html"
+                    ><strong aria-hidden="true">12.2.</strong> pulseaudio</a
+                  >
+                </li>
+              </ol>
+            </li>
+            <li class="chapter-item expanded">
+              <div><strong aria-hidden="true">13.</strong> shells</div>
+            </li>
+            <li>
+              <ol class="section">
+                <li class="chapter-item expanded">
+                  <a href="../../pkgs/shells/fish.html"
+                    ><strong aria-hidden="true">13.1.</strong> fish</a
+                  >
+                </li>
+              </ol>
+            </li>
+            <li class="chapter-item expanded">
+              <div><strong aria-hidden="true">14.</strong> tools</div>
+            </li>
+            <li>
+              <ol class="section">
+                <li class="chapter-item expanded">
+                  <div><strong aria-hidden="true">14.1.</strong> audio</div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/tools/audio/playerctl.html"
+                        ><strong aria-hidden="true">14.1.1.</strong>
+                        playerctl</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div>
+                    <strong aria-hidden="true">14.2.</strong> inputmethods
+                  </div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/tools/inputmethods/ibus.html"
+                        ><strong aria-hidden="true">14.2.1.</strong> ibus</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <div>
+                        <strong aria-hidden="true">14.2.2.</strong> ibus-engines
+                      </div>
+                    </li>
+                    <li>
+                      <ol class="section">
+                        <li class="chapter-item expanded">
+                          <a
+                            href="../../pkgs/tools/inputmethods/ibus-engines/ibus-mozc.html"
+                            ><strong aria-hidden="true">14.2.2.1.</strong>
+                            ibus-mozc</a
+                          >
+                        </li>
+                      </ol>
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div><strong aria-hidden="true">14.3.</strong> misc</div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/tools/misc/clipster.html"
+                        ><strong aria-hidden="true">14.3.1.</strong> clipster</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/tools/misc/grub.html"
+                        ><strong aria-hidden="true">14.3.2.</strong> grub</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/tools/misc/qmk.html"
+                        ><strong aria-hidden="true">14.3.3.</strong> qmk</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/tools/misc/tmux.html"
+                        ><strong aria-hidden="true">14.3.4.</strong> tmux</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/tools/misc/yubikey-manager.html"
+                        ><strong aria-hidden="true">14.3.5.</strong>
+                        yubikey-manager</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div>
+                    <strong aria-hidden="true">14.4.</strong> networking
+                  </div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/tools/networking/dhcp.html"
+                        ><strong aria-hidden="true">14.4.1.</strong> dhcp</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/tools/networking/dhcpcd.html"
+                        ><strong aria-hidden="true">14.4.2.</strong> dhcpcd</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../pkgs/tools/networking/globalprotect-openconnect.html"
+                        ><strong aria-hidden="true">14.4.3.</strong>
+                        globalprotect-openconnect</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/tools/networking/ifplugd.html"
+                        ><strong aria-hidden="true">14.4.4.</strong> ifplugd</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/tools/networking/mullvad.html"
+                        ><strong aria-hidden="true">14.4.5.</strong> mullvad</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/tools/networking/openconnect.html"
+                        ><strong aria-hidden="true">14.4.6.</strong>
+                        openconnect</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/tools/networking/openresolv.html"
+                        ><strong aria-hidden="true">14.4.7.</strong>
+                        openresolv</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/tools/networking/unbound.html"
+                        ><strong aria-hidden="true">14.4.8.</strong> unbound</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div>
+                    <strong aria-hidden="true">14.5.</strong> package-management
+                  </div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/tools/package-management/conda.html"
+                        ><strong aria-hidden="true">14.5.1.</strong> conda</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../pkgs/tools/package-management/micromamba.html"
+                        ><strong aria-hidden="true">14.5.2.</strong>
+                        micromamba</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/tools/package-management/nix.html"
+                        ><strong aria-hidden="true">14.5.3.</strong> nix</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/tools/package-management/pacman.html"
+                        ><strong aria-hidden="true">14.5.4.</strong> pacman</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div><strong aria-hidden="true">14.6.</strong> security</div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/tools/security/browserpass.html"
+                        ><strong aria-hidden="true">14.6.1.</strong>
+                        browerpass</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/tools/security/gnupg.html"
+                        ><strong aria-hidden="true">14.6.2.</strong> gnupg</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/tools/security/pass/index.html"
+                        ><strong aria-hidden="true">14.6.3.</strong> pass</a
+                      >
+                    </li>
+                    <li>
+                      <ol class="section">
+                        <li class="chapter-item expanded">
+                          <div>
+                            <strong aria-hidden="true">14.6.3.1.</strong>
+                            extensions
+                          </div>
+                        </li>
+                        <li>
+                          <ol class="section">
+                            <li class="chapter-item expanded">
+                              <a
+                                href="../../pkgs/tools/security/pass/extensions/otp.html"
+                                ><strong aria-hidden="true">14.6.3.1.1.</strong>
+                                pass-otp</a
+                              >
+                            </li>
+                          </ol>
+                        </li>
+                      </ol>
+                    </li>
+                  </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <div>
+                    <strong aria-hidden="true">14.7.</strong> typesetting
+                  </div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/tools/typesetting/tectonic.html"
+                        ><strong aria-hidden="true">14.7.1.</strong> tectonic</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+            <li class="chapter-item expanded"></li>
+            <li class="part-title">misc</li>
+            <li class="chapter-item expanded">
+              <a href="../../misc/pace.html"
+                ><strong aria-hidden="true">15.</strong> pace</a
+              >
+            </li>
+          </ol>
+        </div>
+        <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+      </nav>
+
+      <!-- Track and set sidebar scroll position -->
+      <script>
+        var sidebarScrollbox = document.querySelector(
+          "#sidebar .sidebar-scrollbox",
+        );
+        sidebarScrollbox.addEventListener(
+          "click",
+          function (e) {
+            if (e.target.tagName === "A") {
+              sessionStorage.setItem(
+                "sidebar-scroll",
+                sidebarScrollbox.scrollTop,
+              );
+            }
+          },
+          { passive: true },
+        );
+        var sidebarScrollTop = sessionStorage.getItem("sidebar-scroll");
+        sessionStorage.removeItem("sidebar-scroll");
+        if (sidebarScrollTop) {
+          // preserve sidebar scroll position when navigating via links within sidebar
+          sidebarScrollbox.scrollTop = sidebarScrollTop;
+        } else {
+          // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+          var activeSection = document.querySelector("#sidebar .active");
+          if (activeSection) {
+            activeSection.scrollIntoView({ block: "center" });
+          }
+        }
+      </script>
+
+      <div id="page-wrapper" class="page-wrapper">
+        <div class="page">
+          <div id="menu-bar-hover-placeholder"></div>
+          <div id="menu-bar" class="menu-bar sticky">
+            <div class="left-buttons">
+              <button
+                id="sidebar-toggle"
+                class="icon-button"
+                type="button"
+                title="Toggle Table of Contents"
+                aria-label="Toggle Table of Contents"
+                aria-controls="sidebar"
+              >
+                <i class="fa fa-bars"></i>
+              </button>
+              <button
+                id="theme-toggle"
+                class="icon-button"
+                type="button"
+                title="Change theme"
+                aria-label="Change theme"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-controls="theme-list"
+              >
+                <i class="fa fa-paint-brush"></i>
+              </button>
+              <ul
+                id="theme-list"
+                class="theme-popup"
+                aria-label="Themes"
+                role="menu"
+              >
+                <li role="none">
+                  <button role="menuitem" class="theme" id="light">
+                    Light
+                  </button>
+                </li>
+                <li role="none">
+                  <button role="menuitem" class="theme" id="rust">Rust</button>
+                </li>
+                <li role="none">
+                  <button role="menuitem" class="theme" id="coal">Coal</button>
+                </li>
+                <li role="none">
+                  <button role="menuitem" class="theme" id="navy">Navy</button>
+                </li>
+                <li role="none">
+                  <button role="menuitem" class="theme" id="ayu">Ayu</button>
+                </li>
+              </ul>
+              <button
+                id="search-toggle"
+                class="icon-button"
+                type="button"
+                title="Search. (Shortkey: s)"
+                aria-label="Toggle Searchbar"
+                aria-expanded="false"
+                aria-keyshortcuts="S"
+                aria-controls="searchbar"
+              >
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+
+            <h1 class="menu-title">dotfiles</h1>
+
+            <div class="right-buttons">
+              <a
+                href="../../print.html"
+                title="Print this book"
+                aria-label="Print this book"
+              >
+                <i id="print-button" class="fa fa-print"></i>
+              </a>
+              <a
+                href="https://github.com/stephen-huan/dotfiles"
+                title="Git repository"
+                aria-label="Git repository"
+              >
+                <i id="git-repository-button" class="fa fa-code-fork"></i>
+              </a>
+              <a
+                href="https://github.com/stephen-huan/dotfiles/edit/master/src/os/arch/README.md"
+                title="Suggest an edit"
+                aria-label="Suggest an edit"
+              >
+                <i id="git-edit-button" class="fa fa-edit"></i>
+              </a>
+            </div>
+          </div>
+
+          <div id="search-wrapper" class="hidden">
+            <form id="searchbar-outer" class="searchbar-outer">
+              <input
+                type="search"
+                id="searchbar"
+                name="searchbar"
+                placeholder="Search this book ..."
+                aria-controls="searchresults-outer"
+                aria-describedby="searchresults-header"
+              />
+            </form>
+            <div id="searchresults-outer" class="searchresults-outer hidden">
+              <div id="searchresults-header" class="searchresults-header"></div>
+              <ul id="searchresults"></ul>
+            </div>
+          </div>
+
+          <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+          <script>
+            document
+              .getElementById("sidebar-toggle")
+              .setAttribute("aria-expanded", sidebar === "visible");
+            document
+              .getElementById("sidebar")
+              .setAttribute("aria-hidden", sidebar !== "visible");
+            Array.from(document.querySelectorAll("#sidebar a")).forEach(
+              function (link) {
+                link.setAttribute("tabIndex", sidebar === "visible" ? 0 : -1);
+              },
+            );
+          </script>
+
+          <div id="content" class="content">
+            <main>
+              <h1 id="archlinux-on-a-tuxedo-pulse">
+                <a class="header" href="#archlinux-on-a-tuxedo-pulse"
+                  >archlinux on a tuxedo pulse</a
+                >
+              </h1>
+              <ul>
+                <li>CPU: AMD Ryzen 7 4800H with Radeon graphics</li>
+                <li>
+                  <a href="https://en.wikipedia.org/wiki/Radeon_RX_Vega_series"
+                    >wikipedia - radeon</a
+                  >
+                </li>
+                <li>
+                  Renoir (2020) table, Ryzen 7 4800H -&gt; GCN 5th gen
+                  architecture
+                </li>
+                <li>GPU: Radeon RX Vega 7 (AMD ATI 04:00.0 Renoir)</li>
+                <li>Driver AMDGPU</li>
+                <li>fn + space to change keyboard backlight</li>
+                <li>
+                  LVM on LUKS (LVM in encrypted drive)
+                  <ul>
+                    <li>what tuxedo does by default</li>
+                  </ul>
+                </li>
+                <li>filesystem: ext4</li>
+                <li>bootloader: grub</li>
+              </ul>
+              <h2 id="tuxedo-specifics">
+                <a class="header" href="#tuxedo-specifics">tuxedo specifics</a>
+              </h2>
+              <ul>
+                <li>
+                  <a href="https://wiki.archlinux.org/title/Tuxedo_Pulse_15"
+                    >arch wiki - Tuxedo Pulse 15</a
+                  >
+                </li>
+                <li>install keyboard control</li>
+              </ul>
+              <pre><code class="language-shell">paru -S tuxedo-keyboard
+</code></pre>
+              <ul>
+                <li>install power / CPU / fan control</li>
+              </ul>
+              <pre><code class="language-shell">paru -S tuxedo-control-center-bin
+</code></pre>
+              <ul>
+                <li>set screen brightness (0-255)</li>
+              </ul>
+              <pre><code class="language-shell">echo 127 | sudo tee /sys/class/backlight/amdgpu_bl0/brightness
+</code></pre>
+              <ul>
+                <li>set keyboard backlight (0-2)</li>
+              </ul>
+              <pre><code class="language-shell">echo 0 | sudo tee /sys/devices/platform/tuxedo_keyboard/leds/white:kbd_backlight/brightness
+</code></pre>
+              <h2 id="uefi"><a class="header" href="#uefi">UEFI</a></h2>
+              <ul>
+                <li>enter by holding <code>F2</code> on boot</li>
+                <li>or by selecting corresponding entry in GRUB</li>
+                <li>
+                  settings:
+                  <ul>
+                    <li>put USB first in boot order</li>
+                    <li>put GRUB second in boot order</li>
+                    <li>turn off secure boot (enable later)</li>
+                    <li>disable webcam</li>
+                  </ul>
+                </li>
+              </ul>
+              <h2 id="live-boot">
+                <a class="header" href="#live-boot">live boot</a>
+              </h2>
+              <ul>
+                <li>
+                  need to set proper UEFI order (enter
+                  <a href="#uefi">UEFI</a> with USB plugged in)
+                </li>
+                <li>to get started</li>
+              </ul>
+              <pre><code class="language-shell">cryptsetup open /dev/nvme0n1p3 cryptlvm
+mount /dev/VolumeGroup/root /mnt
+arch-chroot /mnt
+</code></pre>
+              <h2 id="boot-process">
+                <a class="header" href="#boot-process">boot process</a>
+              </h2>
+              <ol>
+                <li>Power on --- Tuxedo logo (avoidable?)</li>
+                <li>
+                  bootloarder: <a href="/pkgs/tools/misc/grub.html">grub</a>
+                </li>
+                <li>
+                  splash screen:
+                  <a href="/pkgs/os-specific/linux/plymouth.html">plymouth</a>
+                </li>
+                <li>
+                  display manager:
+                  <a href="/pkgs/applications/display-managers/sddm.html"
+                    >sddm</a
+                  >
+                </li>
+                <li>
+                  window manager:
+                  <a href="/pkgs/applications/window-managers/i3.html">i3</a>
+                </li>
+              </ol>
+              <h2 id="usb"><a class="header" href="#usb">USB</a></h2>
+              <ul>
+                <li>
+                  <a href="https://wiki.archlinux.org/title/USB_storage_devices"
+                    >arch wiki - USB storage devices</a
+                  >
+                </li>
+                <li>find name of device with <code>lsblk -f</code></li>
+                <li>
+                  mount (folder needs to exist, make with <code>mkdir</code>)
+                </li>
+              </ul>
+              <pre><code class="language-shell">sudo mount /dev/sda2 /mnt
+</code></pre>
+              <ul>
+                <li>unmount</li>
+              </ul>
+              <pre><code class="language-shell">sudo umount /mnt
+</code></pre>
+              <h2 id="gpu"><a class="header" href="#gpu">GPU</a></h2>
+              <ul>
+                <li>
+                  <a href="https://wiki.archlinux.org/title/AMDGPU"
+                    >arch wiki - AMDGPU</a
+                  >
+                </li>
+                <li>Install mesa for OpenGL/3D acceleration</li>
+              </ul>
+              <pre><code class="language-shell">sudo pacman -S mesa
+</code></pre>
+              <ul>
+                <li>test mesa support</li>
+              </ul>
+              <pre><code class="language-shell">sudo pacman -S mesa-utils
+glxinfo
+</code></pre>
+              <ul>
+                <li>Install DDX driver for 2D acceleration</li>
+              </ul>
+              <pre><code class="language-shell">sudo pacman -S xf86-video-amdgpu
+</code></pre>
+              <ul>
+                <li>Enable vulkan support</li>
+              </ul>
+              <pre><code class="language-shell">sudo pacman -S amdvlk
+</code></pre>
+              <ul>
+                <li>test vulkan support</li>
+              </ul>
+              <pre><code class="language-shell">sudo pacman -S vulkan-tools
+vulkaninfo
+</code></pre>
+              <ul>
+                <li>Accelerated video decoding</li>
+              </ul>
+              <pre><code class="language-shell">pacman -S libva-mesa-driver mesa-vdpau
+</code></pre>
+              <h2 id="internetnetworking">
+                <a class="header" href="#internetnetworking"
+                  >internet/networking</a
+                >
+              </h2>
+              <ul>
+                <li>
+                  <a
+                    href="https://wiki.archlinux.org/title/Network_configuration"
+                    >arch wiki - network configuration</a
+                  >
+                </li>
+                <li>
+                  wifi: <a href="/pkgs/os-specific/linux/iwd.html">iwd</a>
+                </li>
+                <li><a href="#ethernet">ethernet</a></li>
+                <li>
+                  dhcp:
+                  <a href="/pkgs/tools/networking/dhcpcd.html">dhclient</a> or
+                  <a href="/pkgs/tools/networking/dhcp.html">dhcp</a>
+                  (deprecated)
+                </li>
+                <li>
+                  <a href="#dns">dns</a>:
+                  <a href="/pkgs/tools/networking/openresolv.html"
+                    >openresolv</a
+                  >
+                  + <a href="/pkgs/tools/networking/unbound.html">unbound</a>
+                </li>
+                <li>
+                  vpn:
+                  <a href="/pkgs/tools/networking/mullvad.html">mullvad</a>,
+                  <a href="./pkgs/tools/networking/openconnect.html"
+                    >openconnect</a
+                  >
+                </li>
+              </ul>
+              <h3 id="ethernet">
+                <a class="header" href="#ethernet">ethernet</a>
+              </h3>
+              <ul>
+                <li>
+                  <a
+                    href="https://wiki.archlinux.org/title/Network_configuration/Ethernet"
+                    >arch wiki - network configuration/ethernet</a
+                  >
+                </li>
+                <li>
+                  hypothetically simpler than wifi because directly plugged in
+                </li>
+                <li>check network interface name</li>
+              </ul>
+              <pre><code class="language-shell">ip link show
+</code></pre>
+              <ul>
+                <li>something like this:</li>
+              </ul>
+              <pre><code class="language-text">1: lo: ...
+    link/loopback ...
+2: eno1: ...
+    link/ether ...
+    altname enp2s0
+4: wlan0: ...
+    link/ether ...
+</code></pre>
+              <ul>
+                <li>turn on:</li>
+              </ul>
+              <pre><code class="language-shell">ip link set eno1 up
+</code></pre>
+              <ul>
+                <li>turn off:</li>
+              </ul>
+              <pre><code class="language-shell">ip link set eno1 down
+</code></pre>
+              <h4 id="systemd-networkd">
+                <a class="header" href="#systemd-networkd">systemd-networkd</a>
+              </h4>
+              <ul>
+                <li>
+                  <a href="https://wiki.archlinux.org/title/Systemd-networkd"
+                    >arch wiki - systemd-networkd</a
+                  >
+                </li>
+                <li>probably just works</li>
+              </ul>
+              <h4 id="georgia-tech">
+                <a class="header" href="#georgia-tech">georgia tech</a>
+              </h4>
+              <ul>
+                <li>
+                  need to remember to register new device at
+                  <a href="https://portal.lawn.gatech.edu"
+                    >portal.lawn.gatech.edu</a
+                  >!
+                </li>
+                <li>otherwise, garbage data when trying to make DNS query</li>
+                <li>make sure ethernet is connected and DHCP is working</li>
+                <li>check MAC address with <code>ip link</code></li>
+              </ul>
+              <pre><code class="language-text">2: eno1: ...
+    link/ether MAC_ADDRESS brd ff:ff:ff:ff:ff:ff
+    altname enp2s0
+</code></pre>
+              <h3 id="dns"><a class="header" href="#dns">DNS</a></h3>
+              <ul>
+                <li>
+                  <a
+                    href="https://wiki.archlinux.org/title/Domain_name_resolution"
+                    >arch wiki - domain name resolution</a
+                  >
+                </li>
+                <li>
+                  if just need quick functional DNS to install other things:
+                  <a href="#systemd-resolved">systemd-resolved</a>
+                </li>
+                <li>
+                  good DNS:
+                  <a href="/pkgs/tools/networking/openresolv.html"
+                    >openresolv</a
+                  >
+                  + <a href="/pkgs/tools/networking/unbound.html">unbound</a>
+                </li>
+                <li>
+                  <a
+                    href="https://wiki.archlinux.org/title/Network_configuration#DHCP"
+                    >DHCP</a
+                  >
+                  seems to either do DNS or allow DNS to be done without an
+                  explicit DNS client...
+                </li>
+                <li>
+                  DNS is provided by (g)libc, see
+                  <a
+                    href="https://wiki.archlinux.org/title/Domain_name_resolution#Glibc_resolver"
+                    >arch wiki - domain name resolution</a
+                  >
+                </li>
+              </ul>
+              <h4 id="systemd-resolved">
+                <a class="header" href="#systemd-resolved">systemd-resolved</a>
+              </h4>
+              <ul>
+                <li>
+                  <a href="https://wiki.archlinux.org/title/Systemd-resolved"
+                    >arch wiki - systemd-resolved</a
+                  >
+                </li>
+              </ul>
+              <pre><code class="language-shell">systemctl start systemd-resolved
+</code></pre>
+              <ul>
+                <li>probably just works</li>
+              </ul>
+              <h4 id="nsdo"><a class="header" href="#nsdo">nsdo</a></h4>
+              <ul>
+                <li>
+                  <a href="https://github.com/ausbin/nsdo">github - nsdo</a>
+                </li>
+                <li>might be nice</li>
+              </ul>
+              <h2 id="audio"><a class="header" href="#audio">Audio</a></h2>
+              <ul>
+                <li>
+                  <a href="https://wiki.archlinux.org/title/Sound_system"
+                    >arch wiki - sound system</a
+                  >
+                </li>
+                <li>
+                  <a href="/pkgs/os-specific/linux/alsa-project.html">ALSA</a>:
+                  kernel driver
+                </li>
+                <li>
+                  <a href="/pkgs/development/libraries/pipewire.html"
+                    >PipeWire</a
+                  >/<a href="/pkgs/servers/pulseaudio.html">PulseAudio</a> on
+                  top
+                </li>
+                <li>
+                  bluetooth:
+                  <a href="/pkgs/os-specific/linux/bluez.html">bluez</a>
+                </li>
+                <li>
+                  mpris:
+                  <a href="/pkgs/tools/audio/playerctl.html">playerctl</a>
+                </li>
+              </ul>
+              <h3 id="music-applications">
+                <a class="header" href="#music-applications"
+                  >Music applications</a
+                >
+              </h3>
+              <ul>
+                <li><a href="/pkgs/applications/audio/cmus.html">cmus</a></li>
+                <li><a href="/pkgs/applications/audio/cider.html">cider</a></li>
+                <li><a href="#apple-music">Apple Music</a></li>
+                <li><a href="#itunes">iTunes</a></li>
+              </ul>
+              <h4 id="apple-music">
+                <a class="header" href="#apple-music">Apple Music</a>
+              </h4>
+              <ul>
+                <li>
+                  use web client:
+                  <a href="https://music.apple.com/">music.apple.com</a>
+                </li>
+                <li>pros: no installation/configuration</li>
+                <li>
+                  cons: many
+                  <ul>
+                    <li>
+                      need apple device for 2fa sign in
+                      <ul>
+                        <li>this is not true</li>
+                      </ul>
+                    </li>
+                    <li>feels slow/clunky</li>
+                    <li>randomly breaks</li>
+                    <li>doesn't store place</li>
+                  </ul>
+                </li>
+              </ul>
+              <h4 id="itunes"><a class="header" href="#itunes">iTunes</a></h4>
+              <ul>
+                <li>
+                  this is possible to wine but is broken on the latest version
+                </li>
+                <li>black screen from some rendering issue</li>
+                <li>
+                  <a href="https://www.theiphonewiki.com/wiki/ITunes"
+                    >https://www.theiphonewiki.com/wiki/ITunes</a
+                  >
+                </li>
+                <li>
+                  doesn't seem to be able to import many things, randomly
+                  crashes
+                </li>
+                <li>
+                  <a href="https://forums.linuxmint.com/viewtopic.php?t=292556"
+                    >https://forums.linuxmint.com/viewtopic.php?t=292556</a
+                  >
+                </li>
+                <li>
+                  <a href="https://wiki.archlinux.org/title/IOS"
+                    >https://wiki.archlinux.org/title/IOS</a
+                  >
+                </li>
+                <li>
+                  <a href="https://libimobiledevice.org/"
+                    >https://libimobiledevice.org/</a
+                  >
+                </li>
+                <li>
+                  <a href="https://github.com/libimobiledevice/ifuse"
+                    >https://github.com/libimobiledevice/ifuse</a
+                  >
+                </li>
+                <li>
+                  <a href="https://github.com/libimobiledevice/ifuse/issues/63"
+                    >https://github.com/libimobiledevice/ifuse/issues/63</a
+                  >
+                </li>
+                <li>TODO</li>
+              </ul>
+              <pre><code class="language-fish">function musicsync --description &quot;sync music to phone&quot;
+  # mount vlc media folder to ~/mnt
+  ifuse --documents org.videolan.vlc-ios ~/mnt
+  # see https://superuser.com/questions/1192448/rsync-mkstemp-filename-failed-function-not-implemented-38
+  rsync -av --progress --no-perms --no-owner --no-group --exclude &quot;*.m3u&quot; \
+    ~/Music/personal ~/mnt/
+  # copy playlists from cmus
+  set temp (pwd)
+  cd ~/Music/personal/playlists
+  python cmus_copy.py
+  # generate playlists from artists
+  python artist_playlist.py
+  cd &quot;$temp&quot;
+  rsync -av --progress --no-perms --no-owner --no-group \
+    ~/Music/personal/playlists ~/mnt/personal
+  # done
+  umount ~/mnt
+end
+</code></pre>
+              <h2 id="security">
+                <a class="header" href="#security">Security</a>
+              </h2>
+              <ul>
+                <li>
+                  pgp: <a href="/pkgs/tools/security/gnupg.html">gnupg</a>
+                </li>
+                <li>
+                  hardware security key:
+                  <a href="/pkgs/tools/misc/yubikey-manager.html">yubikey</a>
+                </li>
+                <li>
+                  password manger:
+                  <a href="/pkgs/tools/security/pass.html">pass</a>
+                </li>
+                <li>
+                  git authentication:
+                  <a
+                    href="/pkgs/applications/version-management/git-credential-manager.html"
+                    >git-credential-manager</a
+                  >
+                  or
+                  <a
+                    href="./pkgs/applications/version-management/pass-git-helper"
+                    >pass-git-helper</a
+                  >
+                </li>
+              </ul>
+              <h2 id="input"><a class="header" href="#input">input</a></h2>
+              <ul>
+                <li>
+                  keyboard firmware:
+                  <a href="./pkgs/tools/misc/qmk.html">tmk/qmk</a>
+                </li>
+                <li>
+                  remapping: <a href="./pkgs/servers/x11/xorg.html#xkb">xkb</a>
+                </li>
+                <li>
+                  ime:
+                  <a href="/pkgs/tools/inputmethods/ibus.html">ibus</a> with
+                  <a href="/pkgs/tools/inputmethods/ibus-engines/ibus-mozc.html"
+                    >mozc</a
+                  >
+                </li>
+              </ul>
+              <h2 id="miscellaneous">
+                <a class="header" href="#miscellaneous">Miscellaneous</a>
+              </h2>
+              <h3 id="proper-naming">
+                <a class="header" href="#proper-naming">Proper naming</a>
+              </h3>
+              <ul>
+                <li>
+                  <p>
+                    <a
+                      href="https://wiki.archlinux.org/title/Arch_terminology#Arch_Linux"
+                      >arch wiki - arch terminology</a
+                    >
+                  </p>
+                  <blockquote>
+                    <h2 id="arch-linux">
+                      <a class="header" href="#arch-linux">Arch Linux</a>
+                    </h2>
+                    <p>Arch should be referred to as:</p>
+                    <ul>
+                      <li><strong>Arch Linux</strong></li>
+                      <li><strong>Arch</strong> (Linux implied)</li>
+                      <li><strong>archlinux</strong> (UNIX name)</li>
+                    </ul>
+                    <p>
+                      Archlinux, ArchLinux, archLinux, aRcHlInUx, etc. are all
+                      weird, and weirder mutations.
+                    </p>
+                    <p>
+                      Officially, the 'Arch' in &quot;Arch Linux&quot; is
+                      pronounced /ˈɑrtʃ/ as in an &quot;archer&quot;/bowman, or
+                      &quot;arch-nemesis&quot;, and not as in &quot;ark&quot; or
+                      &quot;archangel&quot;.
+                    </p>
+                  </blockquote>
+                </li>
+                <li>
+                  <p>
+                    can never remember what the &quot;official&quot; names are
+                  </p>
+                </li>
+              </ul>
+              <h3 id="mkinitcpio">
+                <a class="header" href="#mkinitcpio">mkinitcpio</a>
+              </h3>
+              <ul>
+                <li><code>sudo mkinitcpio -P</code></li>
+              </ul>
+              <pre><code class="language-shell">==&gt; WARNING: Possibly missing firmware for module: xhci_pci
+-&gt; Running build hook: [keymap]
+-&gt; Running build hook: [consolefont]
+-&gt; Running build hook: [modconf]
+-&gt; Running build hook: [block]
+==&gt; WARNING: Possibly missing firmware for module: wd719x
+==&gt; WARNING: Possibly missing firmware for module: qla2xxx
+==&gt; WARNING: Possibly missing firmware for module: qed
+==&gt; WARNING: Possibly missing firmware for module: qla1280
+==&gt; WARNING: Possibly missing firmware for module: aic94xx
+==&gt; WARNING: Possibly missing firmware for module: bfa
+-&gt; Running build hook: [plymouth-encrypt]
+==&gt; WARNING: Possibly missing firmware for module: qat_4xxx
+</code></pre>
+              <ul>
+                <li>
+                  can install
+                  <a
+                    href="https://aur.archlinux.org/packages/mkinitcpio-firmware"
+                    >mkinitcpio-firmware</a
+                  >
+                </li>
+              </ul>
+              <pre><code class="language-shell">paru -S mkinitcpio-firmware
+</code></pre>
+              <ul>
+                <li>however, warnings are harmless if nothing is broken</li>
+                <li>
+                  one of those cases where the &quot;solution&quot; may be more
+                  dangerous than the problem
+                </li>
+              </ul>
+              <h3 id="virtual-terminal">
+                <a class="header" href="#virtual-terminal">virtual terminal</a>
+              </h3>
+              <ul>
+                <li>
+                  <a href="https://wiki.archlinux.org/title/Linux_console"
+                    >arch wiki - linux console</a
+                  >
+                </li>
+                <li>switch with <code>ctrl+alt+F[1-6]</code></li>
+                <li>
+                  graphical session (if running) is typically terminal 1, at
+                  least for
+                  <a href="/pkgs/applications/display-managers/sddm.html"
+                    >sddm</a
+                  >
+                </li>
+              </ul>
+              <h4 id="set-consolefont">
+                <a class="header" href="#set-consolefont">set consolefont</a>
+              </h4>
+              <ul>
+                <li>
+                  <a href="https://wiki.archlinux.org/title/Linux_console#Fonts"
+                    >arch wiki - linux console</a
+                  >
+                </li>
+                <li><code>sudo mkinitcpio -P</code></li>
+              </ul>
+              <pre><code class="language-text">==&gt; WARNING: consolefont: no font found in configuration
+</code></pre>
+              <ul>
+                <li>
+                  list of fonts <code>/usr/share/kbd/consolefonts/</code>,
+                  installed by the kbd package
+                </li>
+                <li>switch to virtual terminal for the following</li>
+                <li>display font table</li>
+              </ul>
+              <pre><code class="language-shell">showconsolefont
+</code></pre>
+              <ul>
+                <li>set font</li>
+              </ul>
+              <pre><code class="language-shell">setfont
+</code></pre>
+              <ul>
+                <li>
+                  edit configuration file <code>/etc/vconsole.conf</code>, see
+                  <code>man vconsole.conf </code>
+                </li>
+              </ul>
+              <pre><code class="language-text">FONT=Lat2-Terminus16
+</code></pre>
+              <ul>
+                <li>
+                  default font
+                  <a href="https://en.wikipedia.org/wiki/CP437">cp437</a>,
+                  appears not to be in folder and instead built-in to kernel
+                </li>
+                <li>
+                  <a
+                    href="https://alexandre.deverteuil.net/docs/archlinux-consolefonts/"
+                    >webpage of fonts</a
+                  >
+                </li>
+                <li>
+                  <code>.psfu</code> indicates Unicode translation map built-in
+                </li>
+                <li>
+                  package for popular
+                  <a href="http://terminus-font.sourceforge.net/index.html"
+                    >terminus font</a
+                  >, includes more sizes than kbd
+                </li>
+              </ul>
+              <pre><code class="language-shell">pacman -S terminus-font
+</code></pre>
+              <h3 id="screen-capture">
+                <a class="header" href="#screen-capture">Screen capture</a>
+              </h3>
+              <ul>
+                <li>
+                  <a href="https://wiki.archlinux.org/title/Screen_capture"
+                    >arch wiki - screen capture</a
+                  >
+                </li>
+                <li>
+                  install <a href="https://github.com/naelstrof/maim">maim</a>
+                </li>
+              </ul>
+              <pre><code class="language-shell">pacman -S maim
+</code></pre>
+              <ul>
+                <li>take full-screenshot</li>
+              </ul>
+              <pre><code class="language-shell">maim file.png
+</code></pre>
+              <ul>
+                <li>
+                  make selection with mouse (<code>-D</code> for click twice
+                  instead of click-dragging)
+                </li>
+              </ul>
+              <pre><code class="language-shell">maim -sD file.png
+</code></pre>
+              <ul>
+                <li>install <a href="https://obsproject.com/">obs</a></li>
+              </ul>
+              <pre><code class="language-shell">pacman -S obs-studio
+</code></pre>
+              <h4 id="copying-images-to-clipboard-with-maimxclip">
+                <a
+                  class="header"
+                  href="#copying-images-to-clipboard-with-maimxclip"
+                  >copying images to clipboard with maim/xclip</a
+                >
+              </h4>
+              <ul>
+                <li>
+                  see
+                  <a href="https://github.com/naelstrof/maim#examples"
+                    >maim examples</a
+                  >
+                </li>
+              </ul>
+              <h3 id="clipboard">
+                <a class="header" href="#clipboard">Clipboard</a>
+              </h3>
+              <ul>
+                <li>
+                  <a href="https://wiki.archlinux.org/title/Clipboard"
+                    >arch wiki - clipboard</a
+                  >
+                </li>
+                <li>
+                  managed by X, PRIMARY, CLIPBOARD, and SECONDARY selections
+                  <ul>
+                    <li>PRIMARY: selected text, i.e. highlighted by mouse</li>
+                    <li>
+                      CLIPBOARD: text that is explicitly copied (e.g. by ctrl-c)
+                    </li>
+                    <li>SECONDARY: no agreed upon purpose</li>
+                  </ul>
+                </li>
+                <li>
+                  install <a href="https://github.com/astrand/xclip">xclip</a>,
+                  command-line interface
+                </li>
+              </ul>
+              <pre><code class="language-shell">pacman -S xclip
+</code></pre>
+              <ul>
+                <li>
+                  by default, clipboard contents lost if application is closed
+                </li>
+                <li>
+                  this is because X only stores references to the data, not
+                  copies
+                </li>
+                <li>
+                  see
+                  <a href="https://wiki.ubuntu.com/ClipboardPersistence"
+                    >ubuntu wiki - ClipboardPersistence</a
+                  >
+                </li>
+                <li>
+                  see this
+                  <a
+                    href="https://www.reddit.com/r/archlinux/comments/9tkvsl/persistent_clipboard/"
+                    >reddit post</a
+                  >, recommends <code>clipmenu</code>.
+                </li>
+                <li>
+                  however, I can't get <code>clipmenu</code> to work and there's
+                  a security concern: copying passwords/sensitive information to
+                  clipboard; most clipboard managers (including
+                  <code>clipmenu</code>) store data on disk as plaintext
+                </li>
+                <li>
+                  install
+                  <a href="https://github.com/mrichar1/clipster">clipster</a>
+                </li>
+              </ul>
+              <pre><code class="language-shell">paru -S clipster
+</code></pre>
+              <ul>
+                <li>disable history</li>
+                <li>
+                  edit configuration file
+                  <code>~/.config/clipster/clipster.ini</code>
+                </li>
+              </ul>
+              <pre><code class="language-ini">[clipster]
+
+# Number of items to save in the history file for each selection.
+# 0 - don't save history.
+history_size = 0
+</code></pre>
+              <h3 id="clipboard-1">
+                <a class="header" href="#clipboard-1">Clipboard</a>
+              </h3>
+              <p>
+                For a general overview of the X window system's approach to the
+                <a href="https://wiki.archlinux.org/title/Clipboard"
+                  >clipboard</a
+                >, see
+                <a href="https://wiki.archlinux.org/title/Clipboard"
+                  >Arch wiki - clipboard</a
+                >. The summary is that the clipboard is managed by X, and has
+                three distinct <em>selections</em>: PRIMARY, CLIPBOARD, and
+                SECONDARY selections:
+              </p>
+              <ul>
+                <li>PRIMARY: selected text, i.e. highlighted by mouse</li>
+                <li>
+                  CLIPBOARD: text that is explicitly copied (e.g. by ctrl-c)
+                </li>
+                <li>SECONDARY: no agreed upon purpose</li>
+              </ul>
+              <p>
+                In order to manage these selections, install some command-line
+                tools like <a href="https://github.com/astrand/xclip">xclip</a>.
+              </p>
+              <pre><code class="language-shell">pacman -S xclip
+</code></pre>
+              <p>
+                For example, to copy a screenshot (taken with the package
+                <a href="https://github.com/naelstrof/maim">maim</a>) to the
+                clipboard you can use:
+              </p>
+              <pre><code class="language-shell">maim --select --nodrag | xclip -selection clipboard -target image/png
+</code></pre>
+              <p>
+                Packages will also use
+                <a href="https://vergenet.net/~conrad/software/xsel/">xsel</a>,
+                so you'll probably have both installed even if you don't
+                explicitly install them.
+              </p>
+              <pre><code class="language-shell">pacman -S xsel
+</code></pre>
+              <p>
+                By default, the clipboard contents are lost if the application
+                you got the data from is closed. For example, if you open a
+                terminal window, type some text into it, and copy the text, you
+                can paste the text somewhere else. But if you close the terminal
+                window, you can no longer paste the text --- it is lost. This is
+                because X only stores <em>references</em> to the data, not
+                copies. See the
+                <a href="https://wiki.ubuntu.com/ClipboardPersistence"
+                  >Ubuntu wiki - ClipboardPersistence</a
+                >
+                for more information as well as this this
+                <a
+                  href="https://www.reddit.com/r/archlinux/comments/9tkvsl/persistent_clipboard/"
+                  >reddit post</a
+                >. The Ubuntu article recommends Parcellite while the Reddit
+                post recommends clipmenu. The
+                <a href="https://wiki.archlinux.org/title/Clipboard#Managers"
+                  >Arch wiki</a
+                >
+                also has a list of clipboard managers. I tried a lot of these,
+                and here's my commentary.
+              </p>
+              <p>
+                For most clipboard managers, they don't solve the aforementioned
+                persistence issue. Instead, they maintain a history of
+                everything that is copied, and if you lose your selection, you
+                can use a command-line interface or open a GUI to select a
+                previous entry and re-copy it to your clipboard. But I don't
+                want to have to manually re-copy the last thing I copied, I just
+                want to be able to keep the entry in my clipboard if I close the
+                application. I couldn't get
+                <a href="https://github.com/cdown/clipmenu/">clipmenu</a>, the
+                program mentioned in the Reddit post to work like this, and I
+                also couldn't get
+                <a href="https://github.com/xrelkd/clipcat">clipcat</a> to work.
+              </p>
+              <p>
+                <a
+                  href="https://www.x.org/releases/X11R7.5/doc/man/man1/xclipboard.1.html"
+                  >xclipboard</a
+                >, the official X clipboard manager works, but it always
+                launches a GUI window that it seems can't be suppressed.
+                <a href="http://parcellite.sourceforge.net/">Parcellite</a>
+                works but it's a bit old and relies on GTK2. A modern
+                replacement is
+                <a href="https://github.com/CristianHenzel/ClipIt">ClipIt</a>,
+                but when I used it reminded me that there was a security
+                concern: I sometimes copy passwords and other sensitive
+                information to the clipboard, and all of these clipboard
+                managers store data on disk as plaintext in a temporary
+                directory. I wanted to find a clipboard manager that supported
+                clipboard persistence without manual intervention while only
+                storing data in memory and not disk. I settled on Clipster.
+              </p>
+              <h4 id="copypaste">
+                <a class="header" href="#copypaste">copy/paste</a>
+              </h4>
+              <p>
+                Interestingly enough, one can also use the open-source
+                <a href="https://github.com/qmk/qmk_firmware/">qmk</a> firmware
+                to bind physical keys to copy/paste. The relevant
+                <a href="https://docs.qmk.fm/#/keycodes">keycodes</a> are
+                <code>KC_CUT</code>, <code>KC_COPY</code>, and
+                <code>KC_PASTE</code>. The X keyboard event viewer
+                <code>xev</code> (<code>pacman -S xorg-xev</code>) shows that
+                these are mapped to <code>XF86Cut</code> (145)
+                <code>XF86Copy</code> (141), and <code>XF86Paste</code> (143).
+                Support for these keys seems to be built-in to X as well as most
+                GUI applications.
+              </p>
+              <h3 id="pdf-viewers">
+                <a class="header" href="#pdf-viewers">PDF viewers</a>
+              </h3>
+              <ul>
+                <li>
+                  <a href="https://wiki.archlinux.org/title/PDF,_PS_and_DjVu"
+                    >arch wiki - PDF, PS and DjVu</a
+                  >
+                </li>
+                <li>
+                  <a href="/pkgs/applications/misc/sioyek.html">sioyek</a> or
+                  <a href="/pkgs/applications/misc/zathura.html">zathura</a> or
+                  <a href="/pkgs/applications/misc/mupdf.html">mupdf</a>
+                </li>
+              </ul>
+            </main>
+
+            <nav class="nav-wrapper" aria-label="Page navigation">
+              <!-- Mobile navigation buttons -->
+              <a
+                rel="prev"
+                href="../../os/nixos/index.html"
+                class="mobile-nav-chapters previous"
+                title="Previous chapter"
+                aria-label="Previous chapter"
+                aria-keyshortcuts="Left"
+              >
+                <i class="fa fa-angle-left"></i>
+              </a>
+
+              <a
+                rel="next"
+                href="../../os/arch/install.html"
+                class="mobile-nav-chapters next"
+                title="Next chapter"
+                aria-label="Next chapter"
+                aria-keyshortcuts="Right"
+              >
+                <i class="fa fa-angle-right"></i>
+              </a>
+
+              <div style="clear: both"></div>
+            </nav>
+          </div>
+        </div>
+
+        <nav class="nav-wide-wrapper" aria-label="Page navigation">
+          <a
+            rel="prev"
+            href="../../os/nixos/index.html"
+            class="nav-chapters previous"
+            title="Previous chapter"
+            aria-label="Previous chapter"
+            aria-keyshortcuts="Left"
+          >
+            <i class="fa fa-angle-left"></i>
+          </a>
+
+          <a
+            rel="next"
+            href="../../os/arch/install.html"
+            class="nav-chapters next"
+            title="Next chapter"
+            aria-label="Next chapter"
+            aria-keyshortcuts="Right"
+          >
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </nav>
+      </div>
+
+      <script>
+        window.playground_copyable = true;
+      </script>
+
+      <script src="../../elasticlunr.min.js"></script>
+      <script src="../../mark.min.js"></script>
+      <script src="../../searcher.js"></script>
+
+      <script src="../../clipboard.min.js"></script>
+      <script src="../../highlight.js"></script>
+      <script src="../../book.js"></script>
+
+      <!-- Custom JS scripts -->
+    </div>
+  </body>
+</html>

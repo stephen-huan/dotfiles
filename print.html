@@ -1,0 +1,3988 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>dotfiles</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">home</a></li><li class="chapter-item expanded "><a href="dotfiles.html"><strong aria-hidden="true">1.</strong> dotfiles management</a></li><li class="chapter-item expanded affix "><li class="part-title">os</li><li class="chapter-item expanded "><a href="os/nixos/index.html"><strong aria-hidden="true">2.</strong> NixOS</a></li><li class="chapter-item expanded "><a href="os/arch/index.html"><strong aria-hidden="true">3.</strong> Arch Linux</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="os/arch/install.html"><strong aria-hidden="true">3.1.</strong> install</a></li><li class="chapter-item expanded "><a href="os/arch/post-install.html"><strong aria-hidden="true">3.2.</strong> post-install</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">nix</li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Nix expression language</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> nixpkgs</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> NixOS</div></li><li class="chapter-item expanded affix "><li class="part-title">pkgs</li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> applications</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.1.</strong> audio</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="pkgs/applications/audio/cider.html"><strong aria-hidden="true">7.1.1.</strong> cider</a></li><li class="chapter-item expanded "><a href="pkgs/applications/audio/cmus.html"><strong aria-hidden="true">7.1.2.</strong> cmus</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.2.</strong> display-managers</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="pkgs/applications/display-managers/sddm.html"><strong aria-hidden="true">7.2.1.</strong> sddm</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.3.</strong> editors</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="pkgs/applications/editors/neovim.html"><strong aria-hidden="true">7.3.1.</strong> neovim</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.4.</strong> emulators</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="pkgs/applications/emulators/wine.html"><strong aria-hidden="true">7.4.1.</strong> wine</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.5.</strong> file-managers</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="pkgs/applications/file-managers/ranger.html"><strong aria-hidden="true">7.5.1.</strong> ranger</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.6.</strong> misc</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="pkgs/applications/misc/mupdf.html"><strong aria-hidden="true">7.6.1.</strong> mupdf</a></li><li class="chapter-item expanded "><a href="pkgs/applications/misc/redshift.html"><strong aria-hidden="true">7.6.2.</strong> redshift</a></li><li class="chapter-item expanded "><a href="pkgs/applications/misc/sioyek.html"><strong aria-hidden="true">7.6.3.</strong> sioyek</a></li><li class="chapter-item expanded "><a href="pkgs/applications/misc/zathura.html"><strong aria-hidden="true">7.6.4.</strong> zathura</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.7.</strong> networking</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.7.1.</strong> mailreaders</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="pkgs/applications/networking/mailreaders/neomutt.html"><strong aria-hidden="true">7.7.1.1.</strong> neomutt</a></li></ol></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.8.</strong> terminal-emulators</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="pkgs/applications/terminal-emulators/alacritty.html"><strong aria-hidden="true">7.8.1.</strong> alacritty</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.9.</strong> version-management</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="pkgs/applications/version-management/git.html"><strong aria-hidden="true">7.9.1.</strong> git</a></li><li class="chapter-item expanded "><a href="pkgs/applications/version-management/git-credential-manager.html"><strong aria-hidden="true">7.9.2.</strong> git-credential-manager</a></li><li class="chapter-item expanded "><a href="pkgs/applications/version-management/pass-git-helper.html"><strong aria-hidden="true">7.9.3.</strong> pass-git-helper</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.10.</strong> window-managers</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="pkgs/applications/window-managers/i3.html"><strong aria-hidden="true">7.10.1.</strong> i3</a></li><li class="chapter-item expanded "><a href="pkgs/applications/window-managers/picom.html"><strong aria-hidden="true">7.10.2.</strong> picom</a></li></ol></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> data</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">8.1.</strong> fonts</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="pkgs/data/fonts/ipafont.html"><strong aria-hidden="true">8.1.1.</strong> ipafont</a></li></ol></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.</strong> development</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">9.1.</strong> libraries</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="pkgs/development/libraries/fontconfig.html"><strong aria-hidden="true">9.1.1.</strong> fontconfig</a></li><li class="chapter-item expanded "><a href="pkgs/development/libraries/pipewire.html"><strong aria-hidden="true">9.1.2.</strong> pipewire</a></li></ol></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">10.</strong> misc</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">10.1.</strong> screensavers</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="pkgs/misc/screensavers/xss-lock.html"><strong aria-hidden="true">10.1.1.</strong> xss-lock</a></li></ol></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">11.</strong> os-specific</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">11.1.</strong> linux</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="pkgs/os-specific/linux/alsa-project.html"><strong aria-hidden="true">11.1.1.</strong> alsa-project</a></li><li class="chapter-item expanded "><a href="pkgs/os-specific/linux/bluez.html"><strong aria-hidden="true">11.1.2.</strong> bluez</a></li><li class="chapter-item expanded "><a href="pkgs/os-specific/linux/iwd.html"><strong aria-hidden="true">11.1.3.</strong> iwd</a></li><li class="chapter-item expanded "><a href="pkgs/os-specific/linux/plymouth.html"><strong aria-hidden="true">11.1.4.</strong> plymouth</a></li></ol></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">12.</strong> servers</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">12.1.</strong> x11</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="pkgs/servers/x11/xorg.html"><strong aria-hidden="true">12.1.1.</strong> xorg</a></li></ol></li><li class="chapter-item expanded "><a href="pkgs/servers/pulseaudio.html"><strong aria-hidden="true">12.2.</strong> pulseaudio</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">13.</strong> shells</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="pkgs/shells/fish.html"><strong aria-hidden="true">13.1.</strong> fish</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">14.</strong> tools</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">14.1.</strong> audio</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="pkgs/tools/audio/playerctl.html"><strong aria-hidden="true">14.1.1.</strong> playerctl</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">14.2.</strong> inputmethods</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="pkgs/tools/inputmethods/ibus.html"><strong aria-hidden="true">14.2.1.</strong> ibus</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">14.2.2.</strong> ibus-engines</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="pkgs/tools/inputmethods/ibus-engines/ibus-mozc.html"><strong aria-hidden="true">14.2.2.1.</strong> ibus-mozc</a></li></ol></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">14.3.</strong> misc</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="pkgs/tools/misc/clipster.html"><strong aria-hidden="true">14.3.1.</strong> clipster</a></li><li class="chapter-item expanded "><a href="pkgs/tools/misc/grub.html"><strong aria-hidden="true">14.3.2.</strong> grub</a></li><li class="chapter-item expanded "><a href="pkgs/tools/misc/qmk.html"><strong aria-hidden="true">14.3.3.</strong> qmk</a></li><li class="chapter-item expanded "><a href="pkgs/tools/misc/tmux.html"><strong aria-hidden="true">14.3.4.</strong> tmux</a></li><li class="chapter-item expanded "><a href="pkgs/tools/misc/yubikey-manager.html"><strong aria-hidden="true">14.3.5.</strong> yubikey-manager</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">14.4.</strong> networking</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="pkgs/tools/networking/dhcp.html"><strong aria-hidden="true">14.4.1.</strong> dhcp</a></li><li class="chapter-item expanded "><a href="pkgs/tools/networking/dhcpcd.html"><strong aria-hidden="true">14.4.2.</strong> dhcpcd</a></li><li class="chapter-item expanded "><a href="pkgs/tools/networking/globalprotect-openconnect.html"><strong aria-hidden="true">14.4.3.</strong> globalprotect-openconnect</a></li><li class="chapter-item expanded "><a href="pkgs/tools/networking/ifplugd.html"><strong aria-hidden="true">14.4.4.</strong> ifplugd</a></li><li class="chapter-item expanded "><a href="pkgs/tools/networking/mullvad.html"><strong aria-hidden="true">14.4.5.</strong> mullvad</a></li><li class="chapter-item expanded "><a href="pkgs/tools/networking/openconnect.html"><strong aria-hidden="true">14.4.6.</strong> openconnect</a></li><li class="chapter-item expanded "><a href="pkgs/tools/networking/openresolv.html"><strong aria-hidden="true">14.4.7.</strong> openresolv</a></li><li class="chapter-item expanded "><a href="pkgs/tools/networking/unbound.html"><strong aria-hidden="true">14.4.8.</strong> unbound</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">14.5.</strong> package-management</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="pkgs/tools/package-management/conda.html"><strong aria-hidden="true">14.5.1.</strong> conda</a></li><li class="chapter-item expanded "><a href="pkgs/tools/package-management/micromamba.html"><strong aria-hidden="true">14.5.2.</strong> micromamba</a></li><li class="chapter-item expanded "><a href="pkgs/tools/package-management/nix.html"><strong aria-hidden="true">14.5.3.</strong> nix</a></li><li class="chapter-item expanded "><a href="pkgs/tools/package-management/pacman.html"><strong aria-hidden="true">14.5.4.</strong> pacman</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">14.6.</strong> security</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="pkgs/tools/security/browserpass.html"><strong aria-hidden="true">14.6.1.</strong> browerpass</a></li><li class="chapter-item expanded "><a href="pkgs/tools/security/gnupg.html"><strong aria-hidden="true">14.6.2.</strong> gnupg</a></li><li class="chapter-item expanded "><a href="pkgs/tools/security/pass/index.html"><strong aria-hidden="true">14.6.3.</strong> pass</a></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">14.6.3.1.</strong> extensions</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="pkgs/tools/security/pass/extensions/otp.html"><strong aria-hidden="true">14.6.3.1.1.</strong> pass-otp</a></li></ol></li></ol></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">14.7.</strong> typesetting</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="pkgs/tools/typesetting/tectonic.html"><strong aria-hidden="true">14.7.1.</strong> tectonic</a></li></ol></li></ol></li><li class="chapter-item expanded "><li class="part-title">misc</li><li class="chapter-item expanded "><a href="misc/pace.html"><strong aria-hidden="true">15.</strong> pace</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">dotfiles</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/stephen-huan/dotfiles" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-code-fork"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="dotfiles"><a class="header" href="#dotfiles">dotfiles</a></h1>
+<p>Collection of configuration files (&quot;dotfiles&quot;) on <a href="./arch.html">archlinux</a>.</p>
+<p>Files are managed with <a href="https://yadm.io/">yadm</a>,
+see <a href="dotfiles.html">dotfiles.md</a> for
+other dotfile systems and how to use <code>yadm</code>.</p>
+<p>Quickstart:</p>
+<pre><code class="language-shell">cd ~
+# make sure yadm is installed
+sudo pacman -S yadm
+yadm clone https://github.com/stephen-huan/dotfiles
+# if yadm does not prompt automatically
+yadm bootstrap
+yadm status
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="dotfiles-management"><a class="header" href="#dotfiles-management">dotfiles management</a></h1>
+<p>See <a href="https://dotfiles.github.io/">dotfiles.github.io</a>.</p>
+<h2 id="home-manager"><a class="header" href="#home-manager">Home Manager</a></h2>
+<p><a href="https://nix-community.github.io/home-manager/">Home manager</a> is a system for
+managing user files with tools from the <a href="https://nixos.org/">Nix</a> ecosystem.
+In particular, it allows packages to be installed declaratively with Nix and
+exposes Nix modules for configuration. As a result, in inherits the benefits
+of Nix (reproducibility, safe rollbacks, atomic transactions, etc.).</p>
+<p>The practical implication is that configuration files are now stored
+read-only in the Nix store (<code>/nix/store/*</code>), generated from a
+declarative configuration which can be version controlled with git.</p>
+<h2 id="yadm"><a class="header" href="#yadm">yadm</a></h2>
+<p><a href="https://yadm.io/"><code>yadm</code></a> uses <code>git</code> to avoid symlinking. You edit
+files in <code>$HOME</code> as usual and use <code>yadm add</code> to add them to tracking.
+yadm stores its git repository in <code>~/.local/share/yadm/repo.git</code>, so
+if you have an existing dotfiles repository you can copy its <code>.git</code>
+to that path. Because yadm restricts itself to <code>$HOME</code>, file paths
+are simple --- they just mirror your actual <code>$HOME</code>. <code>yadm</code> itself
+is just as thin wrapper over <code>git</code> with some extra features.</p>
+<p>Finally, <code>yadm bootstrap</code> allows <code>~/.config/yadm/bootstrap</code>
+to be executed after install.</p>
+<pre><code class="language-shell">yadm bootstrap
+</code></pre>
+<h2 id="rcm"><a class="header" href="#rcm">rcm</a></h2>
+<p>It's simple, it works, but the documentation is pretty hard to figure out.</p>
+<p><a href="https://github.com/thoughtbot/rcm"><code>rcm</code></a> is a dotfiles manager. Basically
+you put all your dotfiles in one place (<code>~/.dotfiles</code> by default) and it
+symlinks everything to its proper place. It does this with a few implicit
+rules: it stores files in the <code>~/.dotfiles</code> folder <em>without</em> a dot, e.g.
+<code>~/.vimrc</code> is saved as <code>~/.dotfiles/vimrc</code>. When symlinking a path, a dot is
+always added on to the front (unless explicitly told otherwise) and file paths
+are preserved. For example, <code>~/.dotfiles/vimrc</code> is linked to <code>~/.vimrc</code> and
+<code>~/.dotfiles/config/fish/config.fish</code> becomes <code>~/.config/fish/config.fish</code>.
+If it really wanted to be general, it'd maintain a key-value store to map
+dotfiles path to a target path but the current system works well enough.</p>
+<p>For all the commands, add <code>-v</code> to see what's going on.</p>
+<ul>
+<li>
+<p><code>lsrc</code>: list files tracked by <code>rcm</code> (i.e. files in <code>~/.dotfiles</code>).</p>
+</li>
+<li>
+<p><code>mkrc</code>: move a file to <code>~/.dotfiles</code> and symlink.</p>
+</li>
+</ul>
+<p><code>mkrc ~/.vimrc</code> would move <code>~/.vimrc</code> to <code>~/.dotfiles/vimrc</code> and link.</p>
+<p><code>mkrc ~/.config/fish/config.fish</code> would move <code>config.fish</code>
+to <code>~/.dotfiles/config/fish/config.fish</code></p>
+<p>You can move files by hand and symlink later with the next command.</p>
+<ul>
+<li>
+<p><code>rcup</code>: symlink everything.</p>
+</li>
+<li>
+<p><code>rcdn</code>: remove symlinks.</p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="nixos"><a class="header" href="#nixos">NixOS</a></h1>
+<p>I am preparing to move to <a href="https://nixos.org/">NixOS</a>. I may still include
+notes here for archival purposes, commentary, tutorials, and guides, but
+when that happens, the canonical source of truth will be the Nix code.</p>
+<p>The structure of this book follows <a href="https://github.com/NixOS/nixpkgs/">nixpkgs</a>
+(you can search for packages <a href="https://search.nixos.org/packages">here</a>).</p>
+<p>I still have some notes on <a href="os/nixos/./arch.html">Arch Linux</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="archlinux-on-a-tuxedo-pulse"><a class="header" href="#archlinux-on-a-tuxedo-pulse">archlinux on a tuxedo pulse</a></h1>
+<ul>
+<li>CPU: AMD Ryzen 7 4800H with Radeon graphics</li>
+<li><a href="https://en.wikipedia.org/wiki/Radeon_RX_Vega_series">wikipedia - radeon</a></li>
+<li>Renoir (2020) table, Ryzen 7 4800H -&gt; GCN 5th gen architecture</li>
+<li>GPU: Radeon RX Vega 7 (AMD ATI 04:00.0 Renoir)</li>
+<li>Driver AMDGPU</li>
+<li>fn + space to change keyboard backlight</li>
+<li>LVM on LUKS (LVM in encrypted drive)
+<ul>
+<li>what tuxedo does by default</li>
+</ul>
+</li>
+<li>filesystem: ext4</li>
+<li>bootloader: grub</li>
+</ul>
+<h2 id="tuxedo-specifics"><a class="header" href="#tuxedo-specifics">tuxedo specifics</a></h2>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Tuxedo_Pulse_15">arch wiki -
+Tuxedo Pulse 15</a></li>
+<li>install keyboard control</li>
+</ul>
+<pre><code class="language-shell">paru -S tuxedo-keyboard
+</code></pre>
+<ul>
+<li>install power / CPU / fan control</li>
+</ul>
+<pre><code class="language-shell">paru -S tuxedo-control-center-bin
+</code></pre>
+<ul>
+<li>set screen brightness (0-255)</li>
+</ul>
+<pre><code class="language-shell">echo 127 | sudo tee /sys/class/backlight/amdgpu_bl0/brightness
+</code></pre>
+<ul>
+<li>set keyboard backlight (0-2)</li>
+</ul>
+<pre><code class="language-shell">echo 0 | sudo tee /sys/devices/platform/tuxedo_keyboard/leds/white:kbd_backlight/brightness
+</code></pre>
+<h2 id="uefi"><a class="header" href="#uefi">UEFI</a></h2>
+<ul>
+<li>enter by holding <code>F2</code> on boot</li>
+<li>or by selecting corresponding entry in GRUB</li>
+<li>settings:
+<ul>
+<li>put USB first in boot order</li>
+<li>put GRUB second in boot order</li>
+<li>turn off secure boot (enable later)</li>
+<li>disable webcam</li>
+</ul>
+</li>
+</ul>
+<h2 id="live-boot"><a class="header" href="#live-boot">live boot</a></h2>
+<ul>
+<li>need to set proper UEFI order (enter <a href="os/arch/index.html#uefi">UEFI</a> with USB plugged in)</li>
+<li>to get started</li>
+</ul>
+<pre><code class="language-shell">cryptsetup open /dev/nvme0n1p3 cryptlvm
+mount /dev/VolumeGroup/root /mnt
+arch-chroot /mnt
+</code></pre>
+<h2 id="boot-process"><a class="header" href="#boot-process">boot process</a></h2>
+<ol>
+<li>Power on --- Tuxedo logo (avoidable?)</li>
+<li>bootloarder: <a href="os/arch//pkgs/tools/misc/grub.html">grub</a></li>
+<li>splash screen: <a href="os/arch//pkgs/os-specific/linux/plymouth.html">plymouth</a></li>
+<li>display manager: <a href="os/arch//pkgs/applications/display-managers/sddm.html">sddm</a></li>
+<li>window manager: <a href="os/arch//pkgs/applications/window-managers/i3.html">i3</a></li>
+</ol>
+<h2 id="usb"><a class="header" href="#usb">USB</a></h2>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/USB_storage_devices">arch wiki - USB storage devices</a></li>
+<li>find name of device with <code>lsblk -f</code></li>
+<li>mount (folder needs to exist, make with <code>mkdir</code>)</li>
+</ul>
+<pre><code class="language-shell">sudo mount /dev/sda2 /mnt
+</code></pre>
+<ul>
+<li>unmount</li>
+</ul>
+<pre><code class="language-shell">sudo umount /mnt
+</code></pre>
+<h2 id="gpu"><a class="header" href="#gpu">GPU</a></h2>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/AMDGPU">arch wiki - AMDGPU</a></li>
+<li>Install mesa for OpenGL/3D acceleration</li>
+</ul>
+<pre><code class="language-shell">sudo pacman -S mesa
+</code></pre>
+<ul>
+<li>test mesa support</li>
+</ul>
+<pre><code class="language-shell">sudo pacman -S mesa-utils
+glxinfo
+</code></pre>
+<ul>
+<li>Install DDX driver for 2D acceleration</li>
+</ul>
+<pre><code class="language-shell">sudo pacman -S xf86-video-amdgpu
+</code></pre>
+<ul>
+<li>Enable vulkan support</li>
+</ul>
+<pre><code class="language-shell">sudo pacman -S amdvlk
+</code></pre>
+<ul>
+<li>test vulkan support</li>
+</ul>
+<pre><code class="language-shell">sudo pacman -S vulkan-tools
+vulkaninfo
+</code></pre>
+<ul>
+<li>Accelerated video decoding</li>
+</ul>
+<pre><code class="language-shell">pacman -S libva-mesa-driver mesa-vdpau
+</code></pre>
+<h2 id="internetnetworking"><a class="header" href="#internetnetworking">internet/networking</a></h2>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Network_configuration">arch wiki - network configuration</a></li>
+<li>wifi: <a href="os/arch//pkgs/os-specific/linux/iwd.html">iwd</a></li>
+<li><a href="os/arch/index.html#ethernet">ethernet</a></li>
+<li>dhcp: <a href="os/arch//pkgs/tools/networking/dhcpcd.html">dhclient</a>
+or <a href="os/arch//pkgs/tools/networking/dhcp.html">dhcp</a> (deprecated)</li>
+<li><a href="os/arch/index.html#dns">dns</a>: <a href="os/arch//pkgs/tools/networking/openresolv.html">openresolv</a> +
+<a href="os/arch//pkgs/tools/networking/unbound.html">unbound</a></li>
+<li>vpn: <a href="os/arch//pkgs/tools/networking/mullvad.html">mullvad</a>,
+<a href="os/arch/./pkgs/tools/networking/openconnect.html">openconnect</a></li>
+</ul>
+<h3 id="ethernet"><a class="header" href="#ethernet">ethernet</a></h3>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Network_configuration/Ethernet">arch wiki - network configuration/ethernet</a></li>
+<li>hypothetically simpler than wifi because directly plugged in</li>
+<li>check network interface name</li>
+</ul>
+<pre><code class="language-shell">ip link show
+</code></pre>
+<ul>
+<li>something like this:</li>
+</ul>
+<pre><code class="language-text">1: lo: ...
+    link/loopback ...
+2: eno1: ...
+    link/ether ...
+    altname enp2s0
+4: wlan0: ...
+    link/ether ...
+</code></pre>
+<ul>
+<li>turn on:</li>
+</ul>
+<pre><code class="language-shell">ip link set eno1 up
+</code></pre>
+<ul>
+<li>turn off:</li>
+</ul>
+<pre><code class="language-shell">ip link set eno1 down
+</code></pre>
+<h4 id="systemd-networkd"><a class="header" href="#systemd-networkd">systemd-networkd</a></h4>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Systemd-networkd">arch wiki - systemd-networkd</a></li>
+<li>probably just works</li>
+</ul>
+<h4 id="georgia-tech"><a class="header" href="#georgia-tech">georgia tech</a></h4>
+<ul>
+<li>need to remember to register new device at
+<a href="https://portal.lawn.gatech.edu">portal.lawn.gatech.edu</a>!</li>
+<li>otherwise, garbage data when trying to make DNS query</li>
+<li>make sure ethernet is connected and DHCP is working</li>
+<li>check MAC address with <code>ip link</code></li>
+</ul>
+<pre><code class="language-text">2: eno1: ...
+    link/ether MAC_ADDRESS brd ff:ff:ff:ff:ff:ff
+    altname enp2s0
+</code></pre>
+<h3 id="dns"><a class="header" href="#dns">DNS</a></h3>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Domain_name_resolution">arch wiki - domain name resolution</a></li>
+<li>if just need quick functional DNS to install
+other things: <a href="os/arch/index.html#systemd-resolved">systemd-resolved</a></li>
+<li>good DNS: <a href="os/arch//pkgs/tools/networking/openresolv.html">openresolv</a> +
+<a href="os/arch//pkgs/tools/networking/unbound.html">unbound</a></li>
+<li><a href="https://wiki.archlinux.org/title/Network_configuration#DHCP">DHCP</a> seems
+to either do DNS or allow DNS to be done without an explicit DNS client...</li>
+<li>DNS is provided by (g)libc, see <a href="https://wiki.archlinux.org/title/Domain_name_resolution#Glibc_resolver">arch wiki - domain name resolution</a></li>
+</ul>
+<h4 id="systemd-resolved"><a class="header" href="#systemd-resolved">systemd-resolved</a></h4>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Systemd-resolved">arch wiki -
+systemd-resolved</a></li>
+</ul>
+<pre><code class="language-shell">systemctl start systemd-resolved
+</code></pre>
+<ul>
+<li>probably just works</li>
+</ul>
+<h4 id="nsdo"><a class="header" href="#nsdo">nsdo</a></h4>
+<ul>
+<li><a href="https://github.com/ausbin/nsdo">github - nsdo</a></li>
+<li>might be nice</li>
+</ul>
+<h2 id="audio"><a class="header" href="#audio">Audio</a></h2>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Sound_system">arch wiki - sound system</a></li>
+<li><a href="os/arch//pkgs/os-specific/linux/alsa-project.html">ALSA</a>: kernel driver</li>
+<li><a href="os/arch//pkgs/development/libraries/pipewire.html">PipeWire</a>/<a href="os/arch//pkgs/servers/pulseaudio.html">PulseAudio</a>
+on top</li>
+<li>bluetooth: <a href="os/arch//pkgs/os-specific/linux/bluez.html">bluez</a></li>
+<li>mpris: <a href="os/arch//pkgs/tools/audio/playerctl.html">playerctl</a></li>
+</ul>
+<h3 id="music-applications"><a class="header" href="#music-applications">Music applications</a></h3>
+<ul>
+<li><a href="os/arch//pkgs/applications/audio/cmus.html">cmus</a></li>
+<li><a href="os/arch//pkgs/applications/audio/cider.html">cider</a></li>
+<li><a href="os/arch/index.html#apple-music">Apple Music</a></li>
+<li><a href="os/arch/index.html#itunes">iTunes</a></li>
+</ul>
+<h4 id="apple-music"><a class="header" href="#apple-music">Apple Music</a></h4>
+<ul>
+<li>use web client: <a href="https://music.apple.com/">music.apple.com</a></li>
+<li>pros: no installation/configuration</li>
+<li>cons: many
+<ul>
+<li>need apple device for 2fa sign in
+<ul>
+<li>this is not true</li>
+</ul>
+</li>
+<li>feels slow/clunky</li>
+<li>randomly breaks</li>
+<li>doesn't store place</li>
+</ul>
+</li>
+</ul>
+<h4 id="itunes"><a class="header" href="#itunes">iTunes</a></h4>
+<ul>
+<li>this is possible to wine but is broken on the latest version</li>
+<li>black screen from some rendering issue</li>
+<li><a href="https://www.theiphonewiki.com/wiki/ITunes">https://www.theiphonewiki.com/wiki/ITunes</a></li>
+<li>doesn't seem to be able to import many things, randomly crashes</li>
+<li><a href="https://forums.linuxmint.com/viewtopic.php?t=292556">https://forums.linuxmint.com/viewtopic.php?t=292556</a></li>
+<li><a href="https://wiki.archlinux.org/title/IOS">https://wiki.archlinux.org/title/IOS</a></li>
+<li><a href="https://libimobiledevice.org/">https://libimobiledevice.org/</a></li>
+<li><a href="https://github.com/libimobiledevice/ifuse">https://github.com/libimobiledevice/ifuse</a></li>
+<li><a href="https://github.com/libimobiledevice/ifuse/issues/63">https://github.com/libimobiledevice/ifuse/issues/63</a></li>
+<li>TODO</li>
+</ul>
+<pre><code class="language-fish">function musicsync --description &quot;sync music to phone&quot;
+  # mount vlc media folder to ~/mnt
+  ifuse --documents org.videolan.vlc-ios ~/mnt
+  # see https://superuser.com/questions/1192448/rsync-mkstemp-filename-failed-function-not-implemented-38
+  rsync -av --progress --no-perms --no-owner --no-group --exclude &quot;*.m3u&quot; \
+    ~/Music/personal ~/mnt/
+  # copy playlists from cmus
+  set temp (pwd)
+  cd ~/Music/personal/playlists
+  python cmus_copy.py
+  # generate playlists from artists
+  python artist_playlist.py
+  cd &quot;$temp&quot;
+  rsync -av --progress --no-perms --no-owner --no-group \
+    ~/Music/personal/playlists ~/mnt/personal
+  # done
+  umount ~/mnt
+end
+</code></pre>
+<h2 id="security"><a class="header" href="#security">Security</a></h2>
+<ul>
+<li>pgp: <a href="os/arch//pkgs/tools/security/gnupg.html">gnupg</a></li>
+<li>hardware security key: <a href="os/arch//pkgs/tools/misc/yubikey-manager.html">yubikey</a></li>
+<li>password manger: <a href="os/arch//pkgs/tools/security/pass.html">pass</a></li>
+<li>git authentication: <a href="os/arch//pkgs/applications/version-management/git-credential-manager.html">git-credential-manager</a>
+or <a href="os/arch/./pkgs/applications/version-management/pass-git-helper">pass-git-helper</a></li>
+</ul>
+<h2 id="input"><a class="header" href="#input">input</a></h2>
+<ul>
+<li>keyboard firmware: <a href="os/arch/./pkgs/tools/misc/qmk.html">tmk/qmk</a></li>
+<li>remapping: <a href="os/arch/./pkgs/servers/x11/xorg.html#xkb">xkb</a></li>
+<li>ime: <a href="os/arch//pkgs/tools/inputmethods/ibus.html">ibus</a> with
+<a href="os/arch//pkgs/tools/inputmethods/ibus-engines/ibus-mozc.html">mozc</a></li>
+</ul>
+<h2 id="miscellaneous"><a class="header" href="#miscellaneous">Miscellaneous</a></h2>
+<h3 id="proper-naming"><a class="header" href="#proper-naming">Proper naming</a></h3>
+<ul>
+<li>
+<p><a href="https://wiki.archlinux.org/title/Arch_terminology#Arch_Linux">arch wiki - arch
+terminology</a></p>
+<blockquote>
+<h2 id="arch-linux"><a class="header" href="#arch-linux">Arch Linux</a></h2>
+<p>Arch should be referred to as:</p>
+<ul>
+<li><strong>Arch Linux</strong></li>
+<li><strong>Arch</strong> (Linux implied)</li>
+<li><strong>archlinux</strong> (UNIX name)</li>
+</ul>
+<p>Archlinux, ArchLinux, archLinux, aRcHlInUx,
+etc. are all weird, and weirder mutations.</p>
+<p>Officially, the 'Arch' in &quot;Arch Linux&quot; is pronounced /ˈɑrtʃ/ as in an
+&quot;archer&quot;/bowman, or &quot;arch-nemesis&quot;, and not as in &quot;ark&quot; or &quot;archangel&quot;.</p>
+</blockquote>
+</li>
+<li>
+<p>can never remember what the &quot;official&quot; names are</p>
+</li>
+</ul>
+<h3 id="mkinitcpio"><a class="header" href="#mkinitcpio">mkinitcpio</a></h3>
+<ul>
+<li><code>sudo mkinitcpio -P</code></li>
+</ul>
+<pre><code class="language-shell">==&gt; WARNING: Possibly missing firmware for module: xhci_pci
+-&gt; Running build hook: [keymap]
+-&gt; Running build hook: [consolefont]
+-&gt; Running build hook: [modconf]
+-&gt; Running build hook: [block]
+==&gt; WARNING: Possibly missing firmware for module: wd719x
+==&gt; WARNING: Possibly missing firmware for module: qla2xxx
+==&gt; WARNING: Possibly missing firmware for module: qed
+==&gt; WARNING: Possibly missing firmware for module: qla1280
+==&gt; WARNING: Possibly missing firmware for module: aic94xx
+==&gt; WARNING: Possibly missing firmware for module: bfa
+-&gt; Running build hook: [plymouth-encrypt]
+==&gt; WARNING: Possibly missing firmware for module: qat_4xxx
+</code></pre>
+<ul>
+<li>can install
+<a href="https://aur.archlinux.org/packages/mkinitcpio-firmware">mkinitcpio-firmware</a></li>
+</ul>
+<pre><code class="language-shell">paru -S mkinitcpio-firmware
+</code></pre>
+<ul>
+<li>however, warnings are harmless if nothing is broken</li>
+<li>one of those cases where the &quot;solution&quot;
+may be more dangerous than the problem</li>
+</ul>
+<h3 id="virtual-terminal"><a class="header" href="#virtual-terminal">virtual terminal</a></h3>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Linux_console">arch wiki - linux console</a></li>
+<li>switch with <code>ctrl+alt+F[1-6]</code></li>
+<li>graphical session (if running) is typically terminal 1, at
+least for <a href="os/arch//pkgs/applications/display-managers/sddm.html">sddm</a></li>
+</ul>
+<h4 id="set-consolefont"><a class="header" href="#set-consolefont">set consolefont</a></h4>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Linux_console#Fonts">arch wiki -
+linux console</a></li>
+<li><code>sudo mkinitcpio -P</code></li>
+</ul>
+<pre><code class="language-text">==&gt; WARNING: consolefont: no font found in configuration
+</code></pre>
+<ul>
+<li>list of fonts <code>/usr/share/kbd/consolefonts/</code>, installed by the kbd package</li>
+<li>switch to virtual terminal for the following</li>
+<li>display font table</li>
+</ul>
+<pre><code class="language-shell">showconsolefont
+</code></pre>
+<ul>
+<li>set font</li>
+</ul>
+<pre><code class="language-shell">setfont
+</code></pre>
+<ul>
+<li>edit configuration file <code>/etc/vconsole.conf</code>, see <code>man vconsole.conf </code></li>
+</ul>
+<pre><code class="language-text">FONT=Lat2-Terminus16
+</code></pre>
+<ul>
+<li>default font <a href="https://en.wikipedia.org/wiki/CP437">cp437</a>,
+appears not to be in folder and instead built-in to kernel</li>
+<li><a href="https://alexandre.deverteuil.net/docs/archlinux-consolefonts/">webpage of
+fonts</a></li>
+<li><code>.psfu</code> indicates Unicode translation map built-in</li>
+<li>package for popular
+<a href="http://terminus-font.sourceforge.net/index.html">terminus font</a>,
+includes more sizes than kbd</li>
+</ul>
+<pre><code class="language-shell">pacman -S terminus-font
+</code></pre>
+<h3 id="screen-capture"><a class="header" href="#screen-capture">Screen capture</a></h3>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Screen_capture">arch wiki - screen capture</a></li>
+<li>install <a href="https://github.com/naelstrof/maim">maim</a></li>
+</ul>
+<pre><code class="language-shell">pacman -S maim
+</code></pre>
+<ul>
+<li>take full-screenshot</li>
+</ul>
+<pre><code class="language-shell">maim file.png
+</code></pre>
+<ul>
+<li>make selection with mouse (<code>-D</code> for click twice instead of click-dragging)</li>
+</ul>
+<pre><code class="language-shell">maim -sD file.png
+</code></pre>
+<ul>
+<li>install <a href="https://obsproject.com/">obs</a></li>
+</ul>
+<pre><code class="language-shell">pacman -S obs-studio
+</code></pre>
+<h4 id="copying-images-to-clipboard-with-maimxclip"><a class="header" href="#copying-images-to-clipboard-with-maimxclip">copying images to clipboard with maim/xclip</a></h4>
+<ul>
+<li>see <a href="https://github.com/naelstrof/maim#examples">maim examples</a></li>
+</ul>
+<h3 id="clipboard"><a class="header" href="#clipboard">Clipboard</a></h3>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Clipboard">arch wiki - clipboard</a></li>
+<li>managed by X, PRIMARY, CLIPBOARD, and SECONDARY selections
+<ul>
+<li>PRIMARY: selected text, i.e. highlighted by mouse</li>
+<li>CLIPBOARD: text that is explicitly copied (e.g. by ctrl-c)</li>
+<li>SECONDARY: no agreed upon purpose</li>
+</ul>
+</li>
+<li>install <a href="https://github.com/astrand/xclip">xclip</a>, command-line interface</li>
+</ul>
+<pre><code class="language-shell">pacman -S xclip
+</code></pre>
+<ul>
+<li>by default, clipboard contents lost if application is closed</li>
+<li>this is because X only stores references to the data, not copies</li>
+<li>see <a href="https://wiki.ubuntu.com/ClipboardPersistence">ubuntu wiki -
+ClipboardPersistence</a></li>
+<li>see this <a href="https://www.reddit.com/r/archlinux/comments/9tkvsl/persistent_clipboard/">reddit post</a>,
+recommends <code>clipmenu</code>.</li>
+<li>however, I can't get <code>clipmenu</code> to work and there's a security
+concern: copying passwords/sensitive information to clipboard; most
+clipboard managers (including <code>clipmenu</code>) store data on disk as plaintext</li>
+<li>install <a href="https://github.com/mrichar1/clipster">clipster</a></li>
+</ul>
+<pre><code class="language-shell">paru -S clipster
+</code></pre>
+<ul>
+<li>disable history</li>
+<li>edit configuration file <code>~/.config/clipster/clipster.ini</code></li>
+</ul>
+<pre><code class="language-ini">[clipster]
+
+# Number of items to save in the history file for each selection.
+# 0 - don't save history.
+history_size = 0
+</code></pre>
+<h3 id="clipboard-1"><a class="header" href="#clipboard-1">Clipboard</a></h3>
+<p>For a general overview of the X window system's approach to the
+<a href="https://wiki.archlinux.org/title/Clipboard">clipboard</a>, see <a href="https://wiki.archlinux.org/title/Clipboard">Arch
+wiki - clipboard</a>. The
+summary is that the clipboard is managed by X, and has three distinct
+<em>selections</em>: PRIMARY, CLIPBOARD, and SECONDARY selections:</p>
+<ul>
+<li>PRIMARY: selected text, i.e. highlighted by mouse</li>
+<li>CLIPBOARD: text that is explicitly copied (e.g. by ctrl-c)</li>
+<li>SECONDARY: no agreed upon purpose</li>
+</ul>
+<p>In order to manage these selections, install some command-line
+tools like <a href="https://github.com/astrand/xclip">xclip</a>.</p>
+<pre><code class="language-shell">pacman -S xclip
+</code></pre>
+<p>For example, to copy a screenshot (taken with the package
+<a href="https://github.com/naelstrof/maim">maim</a>) to the clipboard you can use:</p>
+<pre><code class="language-shell">maim --select --nodrag | xclip -selection clipboard -target image/png
+</code></pre>
+<p>Packages will also use <a href="https://vergenet.net/~conrad/software/xsel/">xsel</a>, so
+you'll probably have both installed even if you don't explicitly install them.</p>
+<pre><code class="language-shell">pacman -S xsel
+</code></pre>
+<p>By default, the clipboard contents are lost if the application you got the data
+from is closed. For example, if you open a terminal window, type some text into
+it, and copy the text, you can paste the text somewhere else. But if you close
+the terminal window, you can no longer paste the text --- it is lost. This is
+because X only stores <em>references</em> to the data, not copies. See the <a href="https://wiki.ubuntu.com/ClipboardPersistence">Ubuntu
+wiki - ClipboardPersistence</a>
+for more information as well as this this <a href="https://www.reddit.com/r/archlinux/comments/9tkvsl/persistent_clipboard/">reddit post</a>. The
+Ubuntu article recommends Parcellite while the Reddit post recommends clipmenu.
+The <a href="https://wiki.archlinux.org/title/Clipboard#Managers">Arch wiki</a> also has
+a list of clipboard managers. I tried a lot of these, and here's my commentary.</p>
+<p>For most clipboard managers, they don't solve the aforementioned persistence
+issue. Instead, they maintain a history of everything that is copied, and
+if you lose your selection, you can use a command-line interface or open
+a GUI to select a previous entry and re-copy it to your clipboard. But I
+don't want to have to manually re-copy the last thing I copied, I just want
+to be able to keep the entry in my clipboard if I close the application. I
+couldn't get <a href="https://github.com/cdown/clipmenu/">clipmenu</a>, the program
+mentioned in the Reddit post to work like this, and I also couldn't get
+<a href="https://github.com/xrelkd/clipcat">clipcat</a> to work.</p>
+<p><a href="https://www.x.org/releases/X11R7.5/doc/man/man1/xclipboard.1.html">xclipboard</a>, the
+official X clipboard manager works, but it always launches a GUI window that
+it seems can't be suppressed. <a href="http://parcellite.sourceforge.net/">Parcellite</a>
+works but it's a bit old and relies on GTK2. A modern replacement
+is <a href="https://github.com/CristianHenzel/ClipIt">ClipIt</a>, but when I
+used it reminded me that there was a security concern: I sometimes
+copy passwords and other sensitive information to the clipboard,
+and all of these clipboard managers store data on disk as plaintext
+in a temporary directory. I wanted to find a clipboard manager that
+supported clipboard persistence without manual intervention while only
+storing data in memory and not disk. I settled on Clipster.</p>
+<h4 id="copypaste"><a class="header" href="#copypaste">copy/paste</a></h4>
+<p>Interestingly enough, one can also use the open-source
+<a href="https://github.com/qmk/qmk_firmware/">qmk</a> firmware to bind physical keys
+to copy/paste. The relevant <a href="https://docs.qmk.fm/#/keycodes">keycodes</a>
+are <code>KC_CUT</code>, <code>KC_COPY</code>, and <code>KC_PASTE</code>. The X keyboard event viewer
+<code>xev</code> (<code>pacman -S xorg-xev</code>) shows that these are mapped to <code>XF86Cut</code>
+(145) <code>XF86Copy</code> (141), and <code>XF86Paste</code> (143). Support for these keys
+seems to be built-in to X as well as most GUI applications.</p>
+<h3 id="pdf-viewers"><a class="header" href="#pdf-viewers">PDF viewers</a></h3>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/PDF,_PS_and_DjVu">arch wiki - PDF, PS and DjVu</a></li>
+<li><a href="os/arch//pkgs/applications/misc/sioyek.html">sioyek</a> or
+<a href="os/arch//pkgs/applications/misc/zathura.html">zathura</a> or
+<a href="os/arch//pkgs/applications/misc/mupdf.html">mupdf</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="install"><a class="header" href="#install">install</a></h1>
+<h2 id="making-live-usb"><a class="header" href="#making-live-usb">making live USB</a></h2>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Installation_guide">arch wiki - installation guide</a></li>
+<li><a href="https://archlinux.org/download/">Download ISO</a> [torrent link]</li>
+<li>Download PGP signature and check checksums on ISO download page</li>
+<li>Verify PGP signature</li>
+</ul>
+<pre><code class="language-shell">gpg --keyserver-options auto-key-retrieve --verify archlinux-version-x86_64.iso.sig
+</code></pre>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/USB_flash_installation_medium">arch wiki - USB flash installation medium</a></li>
+<li>copy ISO to USB</li>
+</ul>
+<pre><code class="language-shell">cp path/to/archlinux-version-x86_64.iso /dev/sdx
+</code></pre>
+<ul>
+<li>boot from USB (make sure to set correct <a href="os/arch/install.html#uefi">UEFI</a> order)</li>
+</ul>
+<h2 id="in-live-environment"><a class="header" href="#in-live-environment">in live environment</a></h2>
+<ul>
+<li>Connect to WiFi</li>
+</ul>
+<pre><code class="language-shell">iwctl
+[iwd]# help
+[iwd]# station list
+[iwd]# station wlan0 connect WIFI_NAME
+[iwd]# station list
+</code></pre>
+<ul>
+<li>Check connection</li>
+</ul>
+<pre><code class="language-shell">ping archlinux.org
+</code></pre>
+<ul>
+<li>Set system clock</li>
+</ul>
+<pre><code class="language-shell">timedatectl set-ntp true
+</code></pre>
+<ul>
+<li>Check system time</li>
+</ul>
+<pre><code class="language-shell">timedatectl status
+</code></pre>
+<h3 id="partition-disk"><a class="header" href="#partition-disk">partition disk</a></h3>
+<ul>
+<li>Partition disks: only need UEFI (EFI system partition) and root (/)</li>
+<li>Swap does not need to be a partition, can be a file for flexibility/ease</li>
+</ul>
+<pre><code class="language-shell">lsblk
+fdisk -l
+</code></pre>
+<p>If Tuxedo: by default, partitions look like (1 TB drive)</p>
+<pre><code class="language-text">Devic          ...  Size Type
+/dev/nvme0n1p1        1G EFI System
+/dev/nvme0n1p2      512M Microsoft basic data
+/dev/nvme0n1p3      930G Linux filesystem
+</code></pre>
+<ul>
+<li>Normally could use existing EFI partition</li>
+<li>But file format is wrong (we want FAT32 for GRUB, format is ext3)</li>
+<li>Will fix later</li>
+</ul>
+<h3 id="prepare-drive-for-encryption"><a class="header" href="#prepare-drive-for-encryption">prepare drive for encryption</a></h3>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Solid_state_drive/Memory_cell_clearing">arch wiki - solid state drive memory cell cleaning</a></li>
+<li>Can clean SSD before this step if desired</li>
+<li><a href="https://wiki.archlinux.org/title/Dm-crypt/Drive_preparation">arch wiki - prepare drive for dm-crypt</a></li>
+<li>Create temporary encrypted container</li>
+</ul>
+<pre><code class="language-shell">cryptsetup open --type plain -d /dev/urandom /dev/nvme0n1p3 to_be_wiped
+</code></pre>
+<ul>
+<li>Verify that it exists</li>
+</ul>
+<pre><code class="language-shell">lsblk
+</code></pre>
+<ul>
+<li>Wipe container with zeros</li>
+</ul>
+<pre><code class="language-shell">dd if=/dev/zero of=/dev/mapper/to_be_wiped status=progress
+</code></pre>
+<p>WARNING: 1 TB disk capacity / (80 MB/s write speed) = ~3.5 hours</p>
+<ul>
+<li>Close temporary container</li>
+</ul>
+<pre><code class="language-shell">cryptsetup close to_be_wiped
+</code></pre>
+<h3 id="encrypt-entire-drive"><a class="header" href="#encrypt-entire-drive">encrypt entire drive</a></h3>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS">arch wiki - dm-crypt encrypting an entire system</a></li>
+<li>Use LVM on LUKS (logical volume manager inside encrypted disk)</li>
+<li>Create LUKS encrypted partition on system partition</li>
+</ul>
+<pre><code class="language-shell">cryptsetup luksFormat /dev/nvme0n1p3
+</code></pre>
+<ul>
+<li>Open container (decrypted container now at <code>/dev/mapper/cryptlvm</code>)</li>
+</ul>
+<pre><code class="language-shell">cryptsetup open /dev/nvme0n1p3 cryptlvm
+</code></pre>
+<ul>
+<li>Create physical volume</li>
+</ul>
+<pre><code class="language-shell">pvcreate /dev/mapper/cryptlvm
+</code></pre>
+<ul>
+<li>Create volume group (name <code>VolumeGroup</code>, arbitrary)</li>
+</ul>
+<pre><code class="language-shell">vgcreate VolumeGroup /dev/mapper/cryptlvm
+</code></pre>
+<ul>
+<li>Create logical volumes</li>
+<li>I said we could use a swap file</li>
+<li>If using LVM, easy to re-size partitions, might as well use swap partition</li>
+<li>Make swap partition same size as RAM for easy suspend to disk (hibernate)</li>
+<li>Don't use entire volume group capacity for easy resizing in the future</li>
+</ul>
+<pre><code class="language-shell">lvcreate -L 32G      VolumeGroup -n swap
+lvcreate -l 100%FREE VolumeGroup -n root
+</code></pre>
+<ul>
+<li>Format filesystems</li>
+</ul>
+<pre><code class="language-shell">mkswap    /dev/VolumeGroup/swap
+mkfs.ext4 /dev/VolumeGroup/root
+</code></pre>
+<ul>
+<li>Mount filesystems</li>
+</ul>
+<pre><code class="language-shell">swapon /dev/VolumeGroup/swap
+mount /dev/VolumeGroup/root /mnt
+</code></pre>
+<ul>
+<li>Prepare boot partition</li>
+</ul>
+<pre><code class="language-shell">mkfs.fat -F 32 /dev/nvme0n1p1
+mkdir /mnt/boot
+mount /dev/nvme0n1p1 /mnt/boot
+</code></pre>
+<ul>
+<li>Select mirrors with <code>reflector</code></li>
+<li><a href="https://wiki.archlinux.org/title/Reflector">arch wiki - reflector</a></li>
+<li><code>pacstrap</code> to install base, kernel, firmware</li>
+</ul>
+<pre><code class="language-shell">pacstrap /mnt base linux linux-firmware
+</code></pre>
+<ul>
+<li>Generate fstab</li>
+</ul>
+<pre><code class="language-shell">genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
+</code></pre>
+<h2 id="switch-into-new-system"><a class="header" href="#switch-into-new-system">switch into new system</a></h2>
+<ul>
+<li>Change root into new system</li>
+</ul>
+<pre><code class="language-shell">arch-chroot /mnt
+</code></pre>
+<ul>
+<li>Install useful packages</li>
+</ul>
+<pre><code class="language-shell">pacman -S man-db man-pages vim fish
+</code></pre>
+<ul>
+<li>Install necessary packages</li>
+</ul>
+<pre><code class="language-shell">pacman -S lvm2 grub efibootmgr iwd
+</code></pre>
+<ul>
+<li>Set timezone</li>
+</ul>
+<pre><code class="language-shell">ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime
+</code></pre>
+<ul>
+<li>Run <code>hwclock</code></li>
+</ul>
+<pre><code class="language-shell">hwclock --systohc
+</code></pre>
+<ul>
+<li>Edit <code>/etc/locale.gen</code> and uncomment <code>en_US.UTF-8 UTF-8</code>, run <code>locale-gen</code></li>
+</ul>
+<pre><code class="language-shell">locale-gen
+</code></pre>
+<ul>
+<li>Create <code>/etc/locale.conf</code> with the <code>LANG</code> variable</li>
+</ul>
+<pre><code class="language-shell">LANG=en_US.UTF-8
+</code></pre>
+<ul>
+<li>Create hostname in <code>/etc/hostname</code></li>
+</ul>
+<pre><code class="language-shell">myhostname
+</code></pre>
+<ul>
+<li>Set root password</li>
+</ul>
+<pre><code class="language-shell">passwd
+</code></pre>
+<h3 id="edit-initramfs"><a class="header" href="#edit-initramfs">edit initramfs</a></h3>
+<ul>
+<li>Add the following to <code>/etc/mkinitcpio.conf</code>
+<blockquote>
+<p>HOOKS=(base udev autodetect <strong>keyboard</strong> <strong>keymap</strong> <strong>consolefont</strong> modconf block <strong>encrypt</strong> <strong>lvm2</strong> filesystems fsck)</p>
+</blockquote>
+</li>
+<li>Recreate initramfs image</li>
+</ul>
+<pre><code class="language-shell">mkinitcpio -P
+</code></pre>
+<h3 id="install-grub"><a class="header" href="#install-grub">install GRUB</a></h3>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/GRUB">arch wiki - GRUB</a></li>
+<li>EFI system partition already mounted to <code>/boot</code></li>
+<li>Install <a href="os/arch//pkgs/tools/misc/grub.html">GRUB</a></li>
+</ul>
+<pre><code class="language-shell">grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+</code></pre>
+<ul>
+<li>Edit <code>/etc/default/grub</code> where <code>device-UUID</code> is the UUID of <code>/dev/nvme0n1p1</code></li>
+<li>This can be found with <code>lsblk -f</code></li>
+</ul>
+<pre><code class="language-text">GRUB_CMDLINE_LINUX_DEFAULT=&quot;cryptdevice=UUID=device-UUID:cryptlvm root=/dev/VolumeGroup/root resume=/dev/VolumeGroup/swap&quot;
+</code></pre>
+<ul>
+<li>Use <code>grub-mkconfig</code> to generate <code>/boot/grub/grub.cfg</code></li>
+</ul>
+<pre><code class="language-shell">grub-mkconfig -o /boot/grub/grub.cfg
+</code></pre>
+<ul>
+<li>Reboot</li>
+</ul>
+<pre><code class="language-shell">reboot
+</code></pre>
+<ul>
+<li>Hopefully the following:
+<ul>
+<li>&quot;Arch Linux&quot; appears in GRUB menu</li>
+<li>Prompt for encryption key</li>
+<li>Prompt for username</li>
+<li>Prompt for password</li>
+<li>Login successful!</li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="post-install"><a class="header" href="#post-install">post-install</a></h1>
+<ul>
+<li>Start WiFi with <code>iwd</code> and DNS</li>
+<li><a href="https://wiki.archlinux.org/title/Users_and_groups">arch wiki - users and groups</a></li>
+<li>Add new user account</li>
+<li>Make sure shell is in <code>/etc/shells</code> or unable to log in</li>
+</ul>
+<pre><code class="language-shell">useradd -m -s /usr/bin/fish username
+</code></pre>
+<ul>
+<li>Set password</li>
+</ul>
+<pre><code class="language-shell">passwd username
+</code></pre>
+<ul>
+<li>Give <code>sudo</code> permission</li>
+</ul>
+<pre><code class="language-shell">EDITOR=vim visudo
+</code></pre>
+<ul>
+<li>Go to &quot;User privilege specification&quot; and add</li>
+</ul>
+<pre><code class="language-conf">USER_NAME   ALL=(ALL) ALL
+</code></pre>
+<ul>
+<li>Logout of root and log in to user account</li>
+</ul>
+<pre><code class="language-shell">exit
+</code></pre>
+<ul>
+<li>or switch user</li>
+</ul>
+<pre><code>su stephenhuan
+</code></pre>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/XDG_user_directories">arch wiki - XDG user directories</a></li>
+<li>Install xdg-users-dirs</li>
+</ul>
+<pre><code class="language-shell">sudo pacman -S xdg-user-dirs
+</code></pre>
+<ul>
+<li>Create user directories</li>
+</ul>
+<pre><code class="language-shell">xdg-user-dirs-update
+</code></pre>
+<ul>
+<li>Install AUR helper <a href="https://github.com/morganamilo/paru">paru</a></li>
+</ul>
+<pre><code class="language-shell">sudo pacman -S --needed git base-devel
+git clone https://aur.archlinux.org/paru.git
+cd paru
+sudo makepkg -si
+</code></pre>
+<ul>
+<li>Get dotfiles with <a href="https://yadm.io/">yadm</a></li>
+</ul>
+<pre><code class="language-shell">cd ~
+pacman -S yadm
+yadm clone https://github.com/stephen-huan/dotfiles
+</code></pre>
+<ul>
+<li>Install <a href="os/arch//pkgs/applications/display-managers/sddm.html">display manager</a></li>
+</ul>
+<pre><code class="language-shell">sudo pacman -S sddm
+</code></pre>
+<ul>
+<li>Enable display manager</li>
+</ul>
+<pre><code class="language-shell">sudo systemctl enable sddm.service
+</code></pre>
+<ul>
+<li>Install window manager (<a href="os/arch//pkgs/applications/window-managers/i3.html">i3</a>)</li>
+</ul>
+<pre><code class="language-shell">sudo pacman -S i3
+</code></pre>
+<ul>
+<li>Install terminal emulator (<a href="os/arch//pkgs/applications/terminal-emulators/alacritty.html">alacritty</a>)</li>
+</ul>
+<pre><code class="language-shell">sudo pacman -S alacritty
+</code></pre>
+<ul>
+<li>Enter graphical</li>
+</ul>
+<pre><code class="language-shell">sudo systemctl start sddm.service
+</code></pre>
+<ul>
+<li>If no terminal emulator, can get suck in i3!</li>
+<li>Use <code>ctrl+alt+F[1-6]</code> to switch to virtual console</li>
+<li>From virtual console back to graphical</li>
+</ul>
+<pre><code class="language-shell">sudo systemctl restart sddm.service
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="cider"><a class="header" href="#cider">cider</a></h1>
+<ul>
+<li>open-source Electron client</li>
+<li>install <a href="https://cider.sh/">cider</a></li>
+</ul>
+<pre><code class="language-shell">paru -S cider
+</code></pre>
+<h2 id="settings"><a class="header" href="#settings">Settings</a></h2>
+<ul>
+<li>many themes are broken, the only light theme I could get
+to work was <a href="https://github.com/ciderapp/iTheme">iTheme</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="cmus"><a class="header" href="#cmus">cmus</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Cmus">arch wiki - cmus</a></li>
+<li>install</li>
+</ul>
+<pre><code>pacman -S cmus
+</code></pre>
+<ul>
+<li>make sure pulseaudio backend is used: <code>:set output_plugin=pulse</code></li>
+<li>install backends for specific filetypes, e.g. .mp3:</li>
+</ul>
+<pre><code>pacman -S libmad
+</code></pre>
+<ul>
+<li>.flac</li>
+</ul>
+<pre><code>pacman -S flac
+</code></pre>
+<ul>
+<li>note <code>ffmpeg</code> provides large number of codecs</li>
+</ul>
+<h2 id="hangs-after-close"><a class="header" href="#hangs-after-close">hangs after close</a></h2>
+<ul>
+<li>hangs if music is paused and then cmus is closed</li>
+<li>trying to open another cmus window results in</li>
+</ul>
+<pre><code>cmus: Error: an error occured while initializing MPRIS: File exists. MPRIS will be disabled.
+cmus: Press &lt;enter&gt; to continue.
+</code></pre>
+<ul>
+<li>MPRIS is the freedesktop specification for
+music player control, see <a href="pkgs/applications/audio/cmus.html#mpris">MPRIS</a></li>
+<li>seems to be a pipewire issue, see <a href="https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/946">Delayed exit from paused music in
+cmus</a></li>
+<li>as well as <a href="https://github.com/cmus/cmus/issues/1064">Quitting while playback is paused takes
+several seconds</a></li>
+<li>brought back up again recently, see <a href="https://github.com/pop-os/pipewire/issues/6">Cmus hangs when paused
+for a long time</a></li>
+</ul>
+<h2 id="cmus-1"><a class="header" href="#cmus-1">cmus</a></h2>
+<p><a href="https://cmus.github.io/">cmus</a> is a terminal based music player. It's
+lightweight and fast; what more could you ask for? My only complaint is that
+if you close the window, the music stops playing. One solution is to put it in
+a <a href="pkgs/applications/audio/./tmux.html">tmux</a> server (this has the added benefit of being able to open
+multiple cmus windows at the same time, because each is a view into the same
+running process). These days I'm too lazy to start tmux, so I just put a cmus
+window in a high-number workspace and switch to that workspace when I need to.</p>
+<p>My friend swears by <a href="https://www.musicpd.org/">mpd</a> because of its
+client-server architecture: that gives the ability to use any client,
+from curses-based terminal interfaces to integration in emacs. It also
+makes it easy to do cool things like fancy frequency visualizations and
+sharing what music you're listening to on a webserver. I don't have
+these use cases, so I stick to cmus. And when I tried to setup mpd a
+long time ago, I found it hard to do and never got it working.</p>
+<p>The highest praise I can give cmus is that I have not
+touched the configuration at all, but I use it very often.</p>
+<h3 id="playlists"><a class="header" href="#playlists">Playlists</a></h3>
+<p>The man pages <code>cmus</code> and <code>cmus-tutorial</code> are pretty good, the only complaint
+I have is the playlist creation is not well-explained. Press <code>3</code> to go to
+playlist view, by default this will have only a single playlist called
+&quot;default&quot;. Create a new playlist with <code>:pl-create playlist-name</code> (by default
+this is not bound to any key so you have to use the command) and delete a
+playlist with <code>D</code>. Playlists are sorted alphabetically but this can probably
+be configured somewhere. The asterisk &quot;*&quot; indicates which playlist new songs
+will be added to. To change what the active playlist is, press <code>&lt;space&gt;</code> (this
+was the confusing part which I could not find documentation on). Finally, to
+add songs press <code>y</code> on a song (you can also press <code>y</code> on albums and artists,
+which is very useful). To remove the song from the playlist, go to the playlist
+view and press <code>D</code> on the song. To change the order, press <code>p</code> to move a song
+down and <code>P</code> to move a song up. Finally, to play the playlist press <code>&lt;enter&gt;</code>
+and the same controls as usual can be used (<code>x</code> to play, <code>v</code> to stop, <code>c</code> for
+play/pause toggle, <code>z</code> previous song and <code>b</code> next song).</p>
+<p>Note that playing from a playlist switches the mode to &quot;playlist mode&quot;
+(this means that there can be two highlights at the same time, one in
+playlist view and the other in library view). One can press <code>shift-M</code>
+to switch between modes without interrupting the current song.</p>
+<h3 id="queue"><a class="header" href="#queue">Queue</a></h3>
+<p>The queue is well-explained, I just never knew what it was for. My use case
+for the queue is if I'm listening to something but I want to hear a particular
+song, so I can tell cmus to play that song without interrupting the flow of my
+current listening session. The best way to think of the queue is terms of two
+concepts: playlists and the <em>implicit queue</em> inherent to cmus.</p>
+<p>The &quot;implicit queue&quot; is how I like to think of the &quot;all from library&quot;,
+&quot;artist from library&quot;, and &quot;album from library&quot; modes (toggleable with
+<code>m</code>). If you select &quot;artist from library&quot; and you play an artist, cmus
+essentially adds all of that artist's songs to the queue (the &quot;real&quot; queue
+which is accessible through pressing <code>4</code> is empty, hence the name implicit
+queue). Thus, the modes control which song play next, which is what the
+queue does. The toggles <code>C</code>, <code>r</code>, and <code>s</code> also control the implicit queue
+--- <code>C</code> toggles &quot;continue&quot;, which determines whether the next song is
+automatically played or not (if not, then you will have to start the next
+song manually). <code>r</code> toggles &quot;repeat&quot;, which determines whether the queue
+infinitely cycles, and <code>s</code> toggles &quot;shuffle&quot;, which determines whether the
+queue is permuted. Thus, it is helpful to think of the modes and toggles
+and manipulating an implicit queue (the modes determine which songs go
+into the queue and the toggles determine how that queue behaves).</p>
+<p>To go back to the &quot;real&quot; queue, it behaves similarity to a playlist. One
+adds songs with <code>e</code> instead of <code>y</code>, and the same playlist manipulation can
+be done (<code>D</code> to remove, <code>p</code>/<code>P</code> to move around). When cmus determines which
+song to play after the current song finishes, it first tries to dequeue a
+song from the &quot;real&quot; queue. If the real queue is empty, it dequeues a song
+from the implicit queue described above. Thus, if you're listening to an
+artist but want to play another song one-off, then you can add that song
+to the queue with <code>e</code>. When the song ends, you'll be back to listening to
+that artist in the same position in the implicit queue you were in.</p>
+<h3 id="cmus-remote"><a class="header" href="#cmus-remote"><code>cmus-remote</code></a></h3>
+<p><code>cmus-remote</code> can be used to control cmus from the command-line, e.g. to
+generate a status text based on the current song (which I do for <code>i3status</code>)
+or to integrate into <code>ranger</code>, e.g. when selecting an audio file, add the file
+to the queue and play it. See the man page <code>cmus-remote</code> for more details.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sddm"><a class="header" href="#sddm">sddm</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/SDDM">arch wiki - SDDM</a></li>
+<li>Install sddm</li>
+</ul>
+<pre><code class="language-shell">sudo pacman -S sddm
+</code></pre>
+<ul>
+<li>Enable sddm</li>
+</ul>
+<pre><code class="language-shell">sudo systemctl enable sddm.service
+</code></pre>
+<ul>
+<li>Default configuration: <code>/usr/lib/sddm/sddm.conf.d/default.conf</code> or</li>
+</ul>
+<pre><code class="language-shell">sddm --example-config
+</code></pre>
+<ul>
+<li>Configuration directory: <code>/etc/sddm.conf.d/</code>, can place any files in the
+directory e.g. <code>sddm.conf</code>, name/extension doesn't matter</li>
+<li>Testing</li>
+</ul>
+<pre><code class="language-shell">sddm-greeter --test-mode --theme /usr/share/sddm/themes/simplicity
+</code></pre>
+<h2 id="theming"><a class="header" href="#theming">Theming</a></h2>
+<ul>
+<li>Install theme</li>
+</ul>
+<pre><code class="language-shell">paru -S simplicity-sddm-theme-git
+</code></pre>
+<ul>
+<li>or my <a href="https://gitlab.com/stephenhuan/simplicity-sddm-theme">patch</a> that
+fixes an issue where username was empty if real name was not set
+<ul>
+<li>currently merged</li>
+</ul>
+</li>
+<li>Themes go in <code>/usr/share/sddm/themes/</code> by default</li>
+<li>Can edit theme settings by copying default theme file
+<code>/usr/share/sddm/themes/simplicity/theme.conf</code> to
+<code>/usr/share/sddm/themes/simplicity/theme.conf.user</code> and making custom changes</li>
+</ul>
+<h2 id="profile-icon"><a class="header" href="#profile-icon">Profile Icon</a></h2>
+<ul>
+<li>Add a PNG file <code>username.face.icon</code> to <code>/usr/share/sddm/faces/</code></li>
+<li>Or create <code>~/.face.icon</code> and let SDDM find it:</li>
+</ul>
+<pre><code class="language-shell">setfacl -m u:sddm:x ~/
+setfacl -m u:sddm:r ~/.face.icon
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="neovim"><a class="header" href="#neovim"><a href="https://neovim.io/">neovim</a></a></h1>
+<p>First, install <a href="https://github.com/wbthomason/packer.nvim">packer.nvim</a> with:</p>
+<pre><code class="language-shell">git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+</code></pre>
+<p>Then, run <code>:PackerSync</code> to install the various plugins.</p>
+<h2 id="neovim-1"><a class="header" href="#neovim-1">neovim</a></h2>
+<p><a href="https://neovim.io/">neovim</a> is a fork of <a href="https://www.vim.org/">vim</a> focused
+on extensibility and usability. It's an almost drop-in replacement for vim,
+although there are a few minor differences. Neovim has a few major advantages
+over vim. In terms of performance, neovim is apparently truly asynchronous,
+uses the scripting language Lua instead of vimscript with LuaJIT for extra
+speed, and has a faster startup time. Neovim also has support for syntax-aware
+syntax highlighting and text formatting (through tree-sitter) as well as
+built-in support for LSP. In general, neovim is a more modern and extensible
+replacement for vim and I've found it basically acts as a drop-in replacement
+without much configuration hassle.</p>
+<p>See also Daniel's
+<a href="https://github.com/brownie-in-motion/dotfiles/tree/master/.config/nvim">config</a>
+for inspiration.</p>
+<h2 id="miscellaneous-tips"><a class="header" href="#miscellaneous-tips">Miscellaneous tips</a></h2>
+<h3 id="neovim-as-a-man-pager"><a class="header" href="#neovim-as-a-man-pager">Neovim as a man pager</a></h3>
+<p>Neovim can be used to read man pages more easily.</p>
+<pre><code class="language-fish">set -gx MANPAGER &quot;/usr/bin/nvim +Man!&quot;
+set -gx MANWIDTH 80
+</code></pre>
+<h3 id="security-conscious-editing"><a class="header" href="#security-conscious-editing">Security-conscious editing</a></h3>
+<p>If you're editing passwords, important emails, or other sensitive
+information, it's best to have a different configuration so that you
+sandbox vim. By default, vim generates swap files, backup files, etc.
+and will load modelines which have had and continue to have <a href="https://lwn.net/Vulnerabilities/20249/">security
+vulnerabilities</a>. See my hardened
+<a href="pkgs/applications/editors/../../.config/nvim/init-private.lua">init.lua</a> which can be used with:</p>
+<pre><code class="language-shell">/usr/bin/nvim --clean --noplugin -nu ~/.config/nvim/init-private.lua &quot;$@&quot;
+</code></pre>
+<p>Alias this to <code>vim-private</code>, which you can then use as an value
+for <code>EDITOR</code>. The commands in <code>init.lua</code> were based on this
+<a href="https://vi.stackexchange.com/questions/6177/">Stack Exchange</a>.
+For posterity, here is a vim-compatible version.</p>
+<pre><code class="language-vim script">&quot; pass will automatically do some of this, even with no configuration
+&quot; https://git.zx2c4.com/password-store/tree/contrib/vim/redact_pass.vim
+
+set viminfo=
+set history=0
+set noswapfile
+set nobackup
+set nowritebackup
+set noundofile
+set secure
+set nomodeline
+set noshelltemp
+
+set nocompatible               &quot; turn off vi compatibility mode
+set backspace=indent,eol,start &quot; make backspace always work
+set showcmd                    &quot; show an incomplete command
+set showmode                   &quot; show mode
+
+&quot; save file for all modes
+noremap  &lt;c-s&gt; &lt;cmd&gt;w&lt;cr&gt;
+noremap! &lt;c-s&gt; &lt;cmd&gt;w&lt;cr&gt;
+&quot; exit file for all modes
+noremap  &lt;c-q&gt; &lt;cmd&gt;q!&lt;cr&gt;
+noremap! &lt;c-q&gt; &lt;cmd&gt;q!&lt;cr&gt;
+</code></pre>
+<h3 id="reflowing-text-paragraphs"><a class="header" href="#reflowing-text-paragraphs">Reflowing text paragraphs</a></h3>
+<p>When writing text in vim, it's helpful to re-format the text to a
+certain line width (usually less than 80 characters long) and to
+make paragraphs look nice by making them more rectangular. See my
+<a href="https://cgdct.moe/blog/far/">blog post</a> on the matter.</p>
+<p>Long story short, <code>gq</code> is the operator and you can set the option
+<code>'formatprg'</code> to set the program. I recommend using my program <code>far</code> or
+the original program it was based on, <a href="http://www.nicemice.net/par/">par</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="wine"><a class="header" href="#wine">wine</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Wine">arch wiki - wine</a></li>
+<li>this section will be mainly focused on running visual novels,
+see <a href="https://gist.github.com/eshrh/5bbf4deab58fefdab9eacf77b450efc0">eshrh's gist</a></li>
+<li>also see <a href="https://learnjapanese.moe/vn-linux/">TheMoeWay - Visual novels on Linux</a></li>
+<li>need Japanese locale for most games, so generate the locale</li>
+<li>edit <code>/etc/locale.gen</code> and uncomment <code>ja_JP.UTF-8 UTF-8</code>, run <code>locale-gen</code></li>
+</ul>
+<pre><code class="language-shell">locale-gen
+</code></pre>
+<ul>
+<li>enable the <a href="https://wiki.archlinux.org/title/Official_repositories#multilib">multilib
+repository</a>
+by uncommenting the right section in <code>/etc/pacman.conf</code></li>
+</ul>
+<pre><code class="language-config">[multilib]
+Include = /etc/pacman.d/mirrorlist
+</code></pre>
+<ul>
+<li>install wine</li>
+</ul>
+<pre><code class="language-shell">pacman -S wine
+</code></pre>
+<ul>
+<li>install optional dependencies</li>
+<li>install winetricks (basically a package manger inside wine)</li>
+</ul>
+<pre><code class="language-shell">pacman -S winetricks
+</code></pre>
+<ul>
+<li>install zenity (GUI for winetricks, you could just use the CLI)</li>
+</ul>
+<pre><code class="language-shell">pacman -S zenity
+</code></pre>
+<ul>
+<li><code>wine-mono</code> for .NET</li>
+</ul>
+<pre><code class="language-shell">pacamn -S wine-mono
+</code></pre>
+<ul>
+<li>if getting an error about <code>ntlm_auth</code> when
+installing things with <code>winetricks</code>, install samba</li>
+</ul>
+<pre><code class="language-shell">pacman -S samba
+</code></pre>
+<ul>
+<li>most visual novels are 32-bit, so set <code>WINEARCH</code> to <code>win32</code></li>
+</ul>
+<pre><code class="language-fish">set -gx WINEARCH win32
+</code></pre>
+<ul>
+<li>opt out of microsoft <a href="https://docs.microsoft.com/en-us/dotnet/core/tools/telemetry">.NET telemetry</a></li>
+</ul>
+<pre><code class="language-fish">set -gx DOTNET_CLI_TELEMETRY_OPTOUT 1
+</code></pre>
+<ul>
+<li>set windows version to windows XP, sometimes helpful</li>
+</ul>
+<pre><code class="language-shell">winecfg
+</code></pre>
+<ul>
+<li>&quot;Applications&quot; -&gt; &quot;Windows Version:&quot; change to &quot;Windows XP&quot;</li>
+</ul>
+<h2 id="extra-packages-and-fonts"><a class="header" href="#extra-packages-and-fonts">extra packages and fonts</a></h2>
+<ul>
+<li>if game doesn't work, try installing more libraries</li>
+</ul>
+<pre><code class="language-shell">pacman -S giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama ncurses lib32-ncurses libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs lib32-gst-plugins-good vulkan-icd-loader lib32-vulkan-icd-loader
+</code></pre>
+<ul>
+<li>if game doesn't work, try installing more libraries with winetricks</li>
+</ul>
+<pre><code class="language-shell">winetricks d3dx9 dirac dotnet35 dotnet40 dxvk lavfilters vcrun2003 vcrun2005 vcrun2008
+</code></pre>
+<ul>
+<li>disable wine DLL overrides</li>
+</ul>
+<pre><code class="language-shell">winetricks alldlls=default
+</code></pre>
+<ul>
+<li>start winetricks</li>
+</ul>
+<pre><code class="language-shell">winetricks
+</code></pre>
+<ul>
+<li>&quot;Select the default wineprefix&quot; -&gt; &quot;Install
+a font&quot; -&gt; check <code>cjkfonts</code> and <code>corefonts</code></li>
+</ul>
+<h2 id="running-a-game"><a class="header" href="#running-a-game">running a game</a></h2>
+<ul>
+<li>mount <code>.iso</code> as usual, unpack</li>
+</ul>
+<pre><code class="language-shell">sudo mount game.iso /mnt
+sudo cp -r /mnt/* game/
+</code></pre>
+<ul>
+<li>run game</li>
+</ul>
+<pre><code class="language-shell">LC_ALL=&quot;ja_JP.UTF-8&quot; TZ=&quot;Asia/Tokyo&quot; wine game.exe
+</code></pre>
+<ul>
+<li>kill game</li>
+</ul>
+<pre><code class="language-shell">wineserver --kill
+</code></pre>
+<h2 id="cdemu"><a class="header" href="#cdemu">CDemu</a></h2>
+<ul>
+<li>if error along the lines of &quot;disk not plugged in&quot;</li>
+<li>try restarting</li>
+<li>if that doesn't work, use <a href="http://www.cdemu.org/">cdemu</a></li>
+</ul>
+<pre><code class="language-shell">sudo pacman -S cdemu-client cdemu-daemon
+</code></pre>
+<ul>
+<li>start daemon</li>
+</ul>
+<pre><code class="language-shell">cdemu-daemon
+</code></pre>
+<ul>
+<li>mount iso</li>
+</ul>
+<pre><code class="language-shell">cdemu load 0 game.iso
+</code></pre>
+<ul>
+<li>check mount point</li>
+</ul>
+<pre><code class="language-shell">lsblk
+</code></pre>
+<ul>
+<li>for me, either <code>/dev/sr0</code> or <code>/dev/sr1</code>, check by
+file size / run <code>lsblk</code> before loading and after</li>
+<li>mount</li>
+</ul>
+<pre><code class="language-shell">mount /dev/sr0 /mnt
+</code></pre>
+<ul>
+<li>add mount point to wine</li>
+</ul>
+<pre><code class="language-shell">winecfg
+</code></pre>
+<ul>
+<li>&quot;Drives&quot; -&gt; &quot;Add...&quot;, pick arbitrary letter (&quot;E:&quot; is
+typical), change &quot;Path:&quot; or click on &quot;Browse...&quot; to <code>/mnt</code></li>
+<li><a href="pkgs/applications/emulators/wine.html#running-a-game">run game</a> as usual, hopefully just works</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ranger"><a class="header" href="#ranger"><a href="https://ranger.github.io/">ranger</a></a></h1>
+<p>ranger is a terminal file manager. Moving around and manipulating files with
+ranger tends to be faster than the equivalent <code>cd</code>/<code>ls</code>/<code>mv</code>/<code>cp</code>/<code>rm</code>/etc.
+shell commands. For exploring a file system, ranger is much faster than
+<code>cd</code> and <code>ls</code> since one just presses <code>h</code> and <code>l</code> to go up and down the
+file hierarchy and always can see the current files. The operations on
+files <code>mv</code>/<code>cp</code>/<code>rm</code>/etc. require typing the paths of both the source and
+destination, while in ranger one simply acts on the file currently under the
+cursor. In general, operations in ranger are faster since the path does not
+need to be explicitly specified unlike shell commands in the terminal.</p>
+<h2 id="previews"><a class="header" href="#previews">Previews</a></h2>
+<ul>
+<li>Image previews</li>
+</ul>
+<p>Edit <code>rc.conf</code>:</p>
+<pre><code class="language-config">set preview_images true
+set preview_images_method ueberzug
+</code></pre>
+<p><code>preview_images_method</code> can also be set to <code>w3m</code> for general terminals.</p>
+<p>For the rest of the previews, edit <code>scope.sh</code>:</p>
+<ul>
+<li>Videos</li>
+</ul>
+<pre><code class="language-shell">pacman -S ffmpegthumbnailer
+</code></pre>
+<ul>
+<li>PDF</li>
+</ul>
+<pre><code class="language-shell">pacman -S pdftoppm
+</code></pre>
+<ul>
+<li>Syntax highlighting (without <code>bat</code>)</li>
+</ul>
+<p>Use the package <code>highlight</code>. To pick a theme, copy the scope via <code>ranger --copy-config=scope</code> and edit the variable <code>HIGHLIGHT_STYLE</code> near the top.
+To use a base16 theme, replace the highlight command near the bottom.</p>
+<ul>
+<li>Syntax highlighting (with <code>bat</code>)</li>
+</ul>
+<pre><code class="language-shell">pacman -S bat
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="mupdf"><a class="header" href="#mupdf">mupdf</a></h1>
+<ul>
+<li>has a pdf viewing tool</li>
+</ul>
+<h2 id="simulating-greyscalecolorblindness"><a class="header" href="#simulating-greyscalecolorblindness">simulating greyscale/colorblindness</a></h2>
+<ul>
+<li><a href="https://epubs.siam.org/journal-authors#illustrations">siam</a>
+prints in black/white, preview how the document will look</li>
+<li>greyscale: use <a href="https://superuser.com/questions/1182578/how-to-convert-pdf-to-grayscale-through-mutool-mupdf-tools">mupdf</a>,
+package <code>mupdf-tools</code></li>
+</ul>
+<pre><code class="language-shell">mutool draw -c gray -o &quot;output%d.png&quot; input.pdf
+</code></pre>
+<ul>
+<li>colorblind: use <a href="https://docs.gimp.org/2.10/en/gimp-display-filter-dialog.html#gimp-deficient-vision">gimp</a>,
+package <code>gimp</code></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="redshift"><a class="header" href="#redshift">redshift</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/redshift">arch wiki - redshift</a></li>
+<li>install redshift</li>
+</ul>
+<pre><code class="language-shell">pacman -S redshift
+</code></pre>
+<ul>
+<li>add location to configuration file <code>~/.config/redshift/redshift.conf</code></li>
+</ul>
+<pre><code class="language-ini">[redshift]
+location-provider=manual
+
+[manual]
+lat=33.78
+lon=-84.39
+</code></pre>
+<ul>
+<li>can get coordinates with <a href="http://www.geonames.org/">geonames.org</a></li>
+<li>note: to convert <code>xxo yy' zz&quot;</code> to decimal find <code>xx + yy/60 + zz/3600</code>
+(hours minutes seconds)</li>
+<li>note: north and east are positive, south and west are negative</li>
+<li>can also use google maps, right-click location</li>
+<li>start system service</li>
+</ul>
+<pre><code class="language-shell">systemctl --user status redshift.service
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sioyek"><a class="header" href="#sioyek">sioyek</a></h1>
+<ul>
+<li>relatively new viewer <a href="https://sioyek.info/">sioyek</a> explicitly
+designed for scientific use (research papers, technical books)</li>
+</ul>
+<pre><code class="language-shell">paru -S sioyek
+</code></pre>
+<ul>
+<li>pretty good, out-of-the-box integration with
+<a href="https://github.com/lervag/vimtex">vimtex</a></li>
+</ul>
+<pre><code class="language-vim">let g:vimtex_view_method = 'sioyek'
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="zathura"><a class="header" href="#zathura">zathura</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Zathura">arch wiki - zathura</a></li>
+<li><a href="https://pwmt.org/projects/zathura/">zathura</a> is popular (vim keybinds etc.)</li>
+</ul>
+<pre><code class="language-shell">pacman -S zathura
+</code></pre>
+<ul>
+<li>install specific formats (muPDF backend for PDF), comic book (<code>.cbz</code>), etc.</li>
+</ul>
+<pre><code class="language-shell">pacman -S zathura-pdf-mupdf
+pacman -S zathura-cb
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="neomutt"><a class="header" href="#neomutt"><a href="https://neomutt.org/">neomutt</a></a></h1>
+<p><code>neomutt</code> is a mail user agent (MUA). More specifically, it lets you
+read email from the terminal. It is possible to download and send mail
+from mutt natively, but I prefer external programs for those functions.</p>
+<p>A quick overview:</p>
+<ul>
+<li>downloading mail: <a href="pkgs/applications/networking/mailreaders/neomutt.html#offlineimap">offlineimap</a></li>
+<li>sending mail: <a href="pkgs/applications/networking/mailreaders/neomutt.html#msmtp">msmtp</a></li>
+<li>reading mail: neomutt + <a href="pkgs/applications/networking/mailreaders//pkgs/applications/editors/neovim.html">neovim</a>
+(occasional full-screen reading) +
+<a href="http://w3m.sourceforge.net/">w3m</a> (for html emails)</li>
+<li>editing mail: <a href="pkgs/applications/networking/mailreaders//pkgs/applications/editors/neovim.html">neovim</a></li>
+<li>indexing mail: <a href="pkgs/applications/networking/mailreaders/neomutt.html#notmuch">notmuch</a></li>
+<li>encrypting mail: <a href="https://gnupg.org/software/gpgme/index.html">gpg</a></li>
+<li>adding attachments: <a href="pkgs/applications/networking/mailreaders//pkgs/applications/file-managers/ranger.html">ranger</a>
+<ul>
+<li>determining what program to use to open attachments:
+<a href="pkgs/applications/networking/mailreaders//pkgs/applications/file-managers/ranger.html">rifle</a></li>
+</ul>
+</li>
+<li>general selector: <a href="https://github.com/junegunn/fzf">fzf</a></li>
+</ul>
+<h3 id="neomutt-1"><a class="header" href="#neomutt-1">neomutt</a></h3>
+<p><a href="https://neomutt.org/">neomutt</a> is essentially a superset of regular
+<a href="https://gitlab.com/muttmua/mutt/-/wikis/home">mutt</a> aiming to fix
+bugs, collect patches, and in general incite development of mutt. It
+therefore makes sense to use neomutt rather than mutt.</p>
+<h3 id="general-notes"><a class="header" href="#general-notes">General Notes</a></h3>
+<p>My primary email is gmail, which has its quirks. In particular, all emails go
+into &quot;all mail&quot; (including emails sent by you!) and the different &quot;folders&quot; are
+more like <em>tags</em> --- attributes of the emails in all mail. This mirrors notmuch
+nicely but IMAP not so much so there will be a few oddities.</p>
+<p>I use PGP to sign and encrypt email. For more information (and tips),
+see <a href="https://stephen-huan.github.io/2021/02/21/email.html">my website</a>.</p>
+<p>Lastly, I use Google's <a href="https://landing.google.com/advancedprotection/">Advanced
+Protection</a> program.
+Surprisingly enough, one can use command-line tools to access mail even with
+advanced protection on (if you authenticate with OAuth2).</p>
+<p>With that in mind, the first step is to get mail.</p>
+<h2 id="offlineimap"><a class="header" href="#offlineimap"><a href="https://www.offlineimap.org/">offlineimap</a></a></h2>
+<p><code>offlineimap</code> is used to download (and sync!) mail. Note that this is a
+two-way operation: it will update the local repository of mail if there
+are changes in the remote and <em>it will also update the remote if there
+are local changes!</em> There is a risk of deleting email permanently if you
+delete locally and have offlineimap sync. Run with the <code>--dry-run</code> option
+to see what offlineimap will do while testing.</p>
+<p>offlineimap is configured with Python, unfortunately Python 2. There's a
+<a href="https://github.com/OfflineIMAP/offlineimap3">Python 3 fork</a> of offlineimap,
+and the same author also wrote <a href="https://github.com/OfflineIMAP/imapfw">imapfw</a>,
+a Python 3 replacement, but the project appears to be dead.</p>
+<p>In order to authenticate, we must use OAuth2 as mentioned before. The specific
+steps depends on the email provider, but in general we need a client id,
+secret, and refresh token. We can redeem the refresh token for an access token,
+which is what we actually use to authenticate. I store these credentials in the
+lightweight PGP-based password manager <a href="pkgs/applications/networking/mailreaders/./pass.html">pass</a>. To generate an access
+token, we could use offlineimap's built-in <code>oauth2_refresh_token_eval</code> option
+but for integration with <code>msmtp</code> and caching we might as well use our own
+program: <a href="pkgs/applications/networking/mailreaders/../.dotfiles/config/offlineimap/offlineimap.py">offlineimap.py</a>.</p>
+<p>Google and Microsoft cover all my email accounts, including those which
+that are not necessarily <code>@gmail.com</code> or <code>@hotmail.com</code>. For example,
+my <a href="https://support.cc.gatech.edu/services/e-mail">Georgia Tech email</a>
+ending in <code>@gatech.edu</code> is actually provided by Outlook, so I can use
+<a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-v2-protocols">Microsoft OAuth</a>
+to authenticate, without needing to go through
+Georgia Tech's single sign-on authentication portal.</p>
+<h3 id="google-oauth"><a class="header" href="#google-oauth">Google OAuth</a></h3>
+<p>We'll be using the
+<a href="https://github.com/google/gmail-oauth2-tools">gmail-oauth2-tools</a>
+repository as the client library.</p>
+<p>Follow the instructions
+<a href="https://github.com/OfflineIMAP/offlineimap/blob/e70d3992a0e9bb0fcdf3c94e1edf25a4124dfcd2/offlineimap.conf#L918-L937">here</a>.
+The Google Cloud Console is pretty poorly designed, so it may
+take some effort to figure out how to create a new project.</p>
+<p>If you're getting something along the lines of <code>KeyError: 'access_token'</code> it
+might be that the refresh token is invalid. This is because Google's <a href="https://developers.google.com/identity/protocols/oauth2#expiration">OAuth
+policy</a>
+restricts the lifespan of a refresh token to 7 days if the app is configured
+for external users and the publishing setting is &quot;Testing&quot;, a common situation
+one would be in for personal use. The solution is to press the &quot;PUBLISH APP&quot;
+button on the OAuth consent screen. Although it will warn you that &quot;Because
+you're using one or more sensitive scopes, your app registration requires
+verification by Google. Please prepare your app to submit for verification&quot;,
+you don't actually need to verify the app, that just removes the warning screen
+asking the user whether they trust the developer while getting a refresh token.</p>
+<h3 id="microsoft-oauth"><a class="header" href="#microsoft-oauth">Microsoft OAuth</a></h3>
+<p>We'll be using the
+<a href="https://msal-python.readthedocs.io/en/latest/">msal</a> client library.</p>
+<p>Follow the instructions to <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app">create a new application</a>
+and <a href="https://docs.microsoft.com/en-us/exchange/client-developer/legacy-protocols/how-to-authenticate-an-imap-pop-smtp-application-by-using-oauth">add IMAP and SMTP permissions</a>.
+These instructions are a bit verbose, so I'll condense them here:</p>
+<ol>
+<li>Navigate to the <a href="https://portal.azure.com/">Azure portal</a></li>
+<li>Go to &quot;Azure Active Directory&quot;, either by searching or clicking on the icon</li>
+<li>Find &quot;App registrations&quot; in the side bar
+under &quot;Manage&quot; and press &quot;New registration&quot;</li>
+<li>Under &quot;Manage&quot;, select &quot;Authentication&quot;. Use the &quot;Web&quot;
+platform with a redirect URI of &quot;http://localhost&quot;.</li>
+<li>Select &quot;Certificates &amp; secrets&quot; and press &quot;New
+client secret&quot;. Record the client id and secret.</li>
+<li>Select &quot;API Permissions&quot;. Press &quot;Add a permission&quot; and use &quot;Microsoft
+Graph&quot; with &quot;Delegated permissions&quot;. The permissions we need are
+<code>offline_access</code> (under OpenId permissions), <code>User.Read</code> (under User),
+<code>IMAP.AccessAsUser.all</code> (under IMAP) and <code>SMTP.Send</code> (under SMTP).</li>
+<li>Depending on the situation, we might need a tenant. For Georgia Tech,
+this is <code>gtvault.onmicrosoft.com</code>. This value can be found by going to
+the &quot;Azure Active Directory&quot; page and looking at the value of &quot;Primary
+domain&quot;. Otherwise, this can be set to <code>common</code>.</li>
+</ol>
+<p>Something strange Microsoft does is their <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/refresh-tokens">refresh tokens</a>:
+they give a new refresh token back after every access token request, and
+refresh tokens expire after 90 days. If you were authenticating through
+offlineimap, you might be passing <code>oauth2_refresh_token</code> so offlineimap can
+automatically request access tokens. So if you suddenly become unable to
+request access tokens, it might be because of the refresh token expiration.
+<code>offlineimap.py</code> will automatically save the refreshed refresh token, but
+you still need to update the client secrets at least every two years (since
+24 months is the longest possible expiration date for client secrets).</p>
+<h2 id="msmtp"><a class="header" href="#msmtp"><a href="https://marlam.de/msmtp/">msmtp</a></a></h2>
+<p>With offlineimap configured, <code>msmtp</code> works similarly. Set the authentication
+protocol to <code>oauthbearer</code> and <code>passwordeval</code> to run the above <code>offlineimap.py</code>
+script, passing in the email. That way both <code>offlineimap</code> and <code>msmtp</code> use the
+same cached access token.</p>
+<h2 id="notmuch"><a class="header" href="#notmuch"><a href="https://notmuchmail.org/">notmuch</a></a></h2>
+<p><code>notmuch</code> is an email indexer, tagger, and searcher. Add a postsync hook to
+<code>offlineimap</code> so tagging happens on new mail. We can also use notmuch as
+an address book by searching the addresses of the emails you've received.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="alacritty"><a class="header" href="#alacritty"><a href="https://github.com/alacritty/alacritty">alacritty</a></a></h1>
+<p>I used to use <a href="https://sw.kovidgoyal.net/kitty/">kitty</a> and there really wasn't
+anything wrong with it. The reason I switched was mainly philosophical, kitty
+just did too much like the whole integrated tab / window splitting and so on.
+Terminal emulators should be relatively simple and leave the complexity to
+other programs (your window manager, tmux, etc.). Alacritty doesn't too much,
+but has all the features I've come to expect from a terminal emulator. Also,
+the vim mode is sometimes useful if you really don't want to use the mouse.</p>
+<p>See <a href="https://github.com/alacritty/alacritty/blob/master/docs/features.md">features.md</a>
+for an overview of supported features.</p>
+<h2 id="bugs"><a class="header" href="#bugs">Bugs</a></h2>
+<h3 id="keybindings-like--in-vim-mode-dont-work"><a class="header" href="#keybindings-like--in-vim-mode-dont-work">Keybindings Like &quot;$&quot; in Vim Mode Don't Work</a></h3>
+<p>The default keybindings that involve shift and non-letter keys don't
+work. This is an X-specific issue caused by a bug in the upstream
+library <a href="https://github.com/rust-windowing/winit">winit</a>'s handling
+of virtual keycodes. See</p>
+<ul>
+<li><a href="https://github.com/rust-windowing/winit/issues/1443">github - WindowEvent missing virtual_keycode while DeviceEvent contains
+it on Linux</a></li>
+<li><a href="https://github.com/alacritty/alacritty/issues/3460">github - WindowEvent missing virtual keycode on Linux</a></li>
+<li><a href="https://github.com/alacritty/alacritty/issues/3460">github - Keybinding doesn't work (Shift + Key4)</a></li>
+</ul>
+<p>To fix, use the scancodes instead of the key
+names. Edit <code>~/.config/alacritty/alacritty.yml</code>:</p>
+<pre><code class="language-yaml">key_bindings:
+  # specify scancode to get around invalid virtual keycode provided by winit
+  - { key: 5, mods: Shift, mode: Vi|~Search, action: Last }
+  - { key: 7, mods: Shift, mode: Vi|~Search, action: FirstOccupied }
+  - { key: 6, mods: Shift, mode: Vi|~Search, action: Bracket }
+  - { key: 53, mods: Shift, mode: Vi|~Search, action: SearchBackward }
+</code></pre>
+<p>The scancodes can be found with</p>
+<pre><code class="language-shell">sudo showkey --keycodes
+</code></pre>
+<p>There is theoretically a difference between interpreted
+keycodes and raw scancodes. See <a href="https://wiki.archlinux.org/title/Keyboard_input">arch wiki - keyboard
+input</a> for the
+details. However, the keycodes shown by <code>showkey --keycodes</code> seem
+to be the same as the ones shown by <code>showkey --scancodes</code>, both of
+which are different than the keycodes or keysyms shown by <code>xev</code>.
+For example, if I press the letter &quot;a&quot; on my keyboard:</p>
+<ul>
+<li><code>showkey --scancodes</code>: 0x1e (30)</li>
+<li><code>showkey --scancodes</code>: 0x9e (158) is also shown</li>
+<li><code>showkey --keycodes</code>: 30</li>
+<li><code>xev</code> keycode field: 38</li>
+<li><code>xev</code> keysym field: 0x61 (97), ASCII value for &quot;a&quot;</li>
+</ul>
+<p>For Alacritty, you should be using the (decimal) keycode in common between
+<code>showkey --scancodes</code> and <code>showkey --keycodes</code>. It's possible to get these
+from <code>showkey --scancodes</code> but you have to convert the hex to decimal, and
+when I press a key it seems to alternate between two different values.
+<code>showkey --keycodes</code> is easier to use and works.</p>
+<h3 id="cursor-spins-on-empty-background"><a class="header" href="#cursor-spins-on-empty-background">Cursor Spins on Empty Background</a></h3>
+<p>This is especially applicable to i3wm users. The problem is that if the mouse
+cursor is on the desktop background (not hovering over an active window), then
+it's stuck in the &quot;spinning&quot; or &quot;waiting&quot; state. For why this happens, see:</p>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/I3#Mouse_cursor_remains_in_waiting_mode">arch wiki - i3</a></li>
+<li><a href="https://i3wm.org/docs/userguide.html#exec">i3wm user guide</a></li>
+<li><a href="https://www.freedesktop.org/wiki/Specifications/startup-notification-spec/">freedesktop.org - startup-notification-spec</a></li>
+</ul>
+<p>The summary is that the freedesktop startup-notification-spec provides a
+mechanism by which applications upon launching can signal through X that
+they have began started up, and finished starting up. This allows your
+cursor to appear &quot;busy&quot; when the application is starting up, and turn back
+to normal once the application opens. This also allows i3 to guarantee that
+the application's window is put where it was originally launched from.
+However, if i3 launches an application with <code>exec</code> and expects startup
+notifications when the application does not send them, then i3 assumes the
+application is taking a long time to startup, timing out after 60 seconds,
+causing the cursor to appear busy for 60 seconds. This can be fixed by
+starting the offending application with <code>exec --no-startup-id</code>.</p>
+<p>Alacritty does not support startup notification events,
+causing the busy cursor. The default i3 configuration
+launches a terminal with the following line:</p>
+<pre><code class="language-config">bindsym Mod1+Return exec i3-sensible-terminal
+</code></pre>
+<p><code>i3-sensible-terminal</code>, as the name implies, looks for a sensible terminal
+in the user's path and since the application is launched with <code>exec</code> and
+not <code>exec --no-startup-id</code>, the cursor will be busy for 60 seconds after
+launching an alacritty window. See:</p>
+<ul>
+<li><a href="https://github.com/alacritty/alacritty/issues/868">github - Alacritty causing 1-2 mins of busy
+cursor on i3 desktop, and extreme i3 performance
+issues</a></li>
+<li><a href="https://github.com/alacritty/alacritty/issues/6097">github - Alacritty causing 1-2 mins of busy cursor on i3 desktop
+(re-opening #868)</a></li>
+</ul>
+<p>The first issue is a nearly 5 year old issue, and the second issue was
+re-filed by me because new evidence came out that it was in fact Alacritty's
+noncompliance to startup-notification-spec that causes the issue. Alacritty
+maintainers refuse to fix this since the issue is (mostly) cosmetic.</p>
+<p>Note that the cursor can be fixed immediately by restarting i3.</p>
+<pre><code class="language-shell">i3 restart
+</code></pre>
+<h3 id="improper-spacing-on-certain-characters"><a class="header" href="#improper-spacing-on-certain-characters">Improper Spacing on Certain Characters</a></h3>
+<p>The characters &quot;★&quot; (Unicode codepoint <code>0x2605</code>) and &quot;☆&quot; (<code>0x2606</code>)
+are displayed improperly for &quot;most&quot; monospace fonts. This is because
+the Unicode specification considers them single-width characters but
+they but are rendered as double-width, causing them to clip into
+their neighbors. See the issue I filed, <a href="https://github.com/alacritty/alacritty/issues/6144">alacritty/alacritty/#6144</a>. I've tested:</p>
+<ul>
+<li>Noto Sans Mono (<code>noto-fonts</code>)</li>
+<li>IPAGothic (<code>otf-ipafont</code>)</li>
+<li>Source Code Pro (<code>adobe-source-code-pro-fonts</code>)</li>
+</ul>
+<p>The fonts which I've found to work has been:</p>
+<ul>
+<li>DejaVu Sans Mono (<code>ttf-dejavu</code>)</li>
+</ul>
+<p>It's a bit misleading to call this a &quot;bug&quot; since it's pretty much impossible to
+determine the <em>display</em> width of Unicode characters (it's font specific). That
+being said, &quot;GUI&quot; programs like Firefox, Signal, and Emacs (but not gvim) seem
+to have figured it out, so there's no real reason a terminal emulator couldn't.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="git"><a class="header" href="#git"><a href="https://git-scm.com/">git</a></a></h1>
+<p>I use git for all of my projects that need version control.</p>
+<h2 id="git-credential-caching"><a class="header" href="#git-credential-caching">Git Credential Caching</a></h2>
+<p>By default, git will prompt you on every operation that needs authentication to
+provide a username/password. It is possible to use the built-in storage methods
+to either cache credentials in memory for 15 minutes, or to store credentials
+permanently on disk as plaintext. If one wants permanent encrypted credential
+storage, it requires some additional setup.</p>
+<p>See</p>
+<ul>
+<li><a href="https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage">git book - 7.14 Git Tools - Credential Storage</a></li>
+<li><a href="https://git-scm.com/docs/gitcredentials">git doc - gitcredentials</a></li>
+<li><a href="https://github.com/GitCredentialManager/git-credential-manager/blob/main/docs/credstores.md#gpgpass-compatible-files">git-credential-manager - Credential stores</a></li>
+</ul>
+<p>The simplest thing to do is to install the <a href="https://github.com/GitCredentialManager/git-credential-manager">git-credential-manager</a>
+which is developed by <a href="https://github.blog/2022-04-07-git-credential-manager-authentication-for-everyone/">GitHub</a>.</p>
+<pre><code class="language-shell">paru -S git-credential-manager-core
+</code></pre>
+<p>It's possible to configure git-credential-manger to
+use the GPG-based password manger <a href="pkgs/applications/version-management/./pass.html">pass</a>.</p>
+<pre><code class="language-shell">git-credential-manager configure
+git config --global credential.credentialStore gpg
+</code></pre>
+<p>or just edit <code>~/.config/git/config</code> directly</p>
+<pre><code class="language-ini">[credential]
+	helper = /usr/bin/git-credential-manager
+	credentialStore = gpg
+</code></pre>
+<p>Next time a credential is requested, a pop-up appears and one
+can authenticate in a variety of ways (through browser login,
+through a personal access token, etc.). It then stores the data at</p>
+<pre><code class="language-text">~/.password-store/git/https/github.com/stephen-huan.gpg
+</code></pre>
+<p>for GitHub, for example.</p>
+<p>Another program that uses <code>pass</code> to perform git credential caching is
+<a href="https://github.com/languitar/pass-git-helper">pass-git-helper</a>, but it
+seems a bit more complicated. One advantage of git-credential-manager
+is that it is able to use different methods to store its secrets.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="git-credential-manager"><a class="header" href="#git-credential-manager">git-credential-manager</a></h1>
+<ul>
+<li><a href="https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage">git book - 7.14 Git Tools - Credential Storage</a></li>
+<li><a href="https://git-scm.com/docs/gitcredentials">git doc - gitcredentials</a></li>
+<li><a href="https://github.com/GitCredentialManager/git-credential-manager/blob/main/docs/credstores.md#gpgpass-compatible-files">git-credential-manager - Credential stores</a></li>
+<li>install <a href="https://github.com/GitCredentialManager/git-credential-manager">git-credential-manager</a></li>
+</ul>
+<pre><code class="language-shell">paru -S git-credential-manager-core
+</code></pre>
+<ul>
+<li>run configuration and use gpg/pass files</li>
+</ul>
+<pre><code class="language-shell">git-credential-manager-core configure
+git config --global credential.credentialStore gpg
+</code></pre>
+<ul>
+<li>or edit <code>~/.config/git/config</code> directly</li>
+</ul>
+<pre><code class="language-ini">[credential]
+	helper = /usr/share/git-credential-manager-core/git-credential-manager-core
+	credentialStore = gpg
+</code></pre>
+<ul>
+<li>running a <code>git-credential-manager-core</code> command seems to break arrow keys?</li>
+<li>next time credential is requested, pop-up appears, can
+authenticate in a variety of ways (browser, token, etc.)</li>
+<li>stores at <code>~/.password-store/git/https/github.com/stephen-huan.gpg</code>, e.g.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="pass-git-helper"><a class="header" href="#pass-git-helper">pass-git-helper</a></h1>
+<ul>
+<li><a href="https://github.com/languitar/pass-git-helper">pass-git-helper</a></li>
+<li>seems a bit complicated</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="i3"><a class="header" href="#i3">i3</a></h1>
+<ul>
+<li>use <code>xev</code> to get keysym names (i.e. <code>[</code> is bracketleft)</li>
+</ul>
+<h2 id="cursor-spins-on-empty-background-1"><a class="header" href="#cursor-spins-on-empty-background-1">cursor spins on empty background</a></h2>
+<ul>
+<li>see <a href="https://wiki.archlinux.org/title/I3#Mouse_cursor_remains_in_waiting_mode">arch wiki -
+i3</a></li>
+<li>see <a href="https://i3wm.org/docs/userguide.html#exec">i3wm user guide</a></li>
+<li>see <a href="https://www.freedesktop.org/wiki/Specifications/startup-notification-spec/">freedesktop.org - startup-notification-spec</a></li>
+<li>run offending command in i3 config with <code>exec --no-startup-id</code></li>
+<li>i3 has startup notifications, i.e. when an application
+finishes starting, it will signal to i3 that it's finished,
+i3 will change the cursor from waiting to normal.</li>
+<li>but if the application doesn't support startup notifications,
+it'll take 1 minute for the cursor to reset to normal</li>
+</ul>
+<h3 id="issue-in-alacritty"><a class="header" href="#issue-in-alacritty">issue in alacritty</a></h3>
+<ul>
+<li>alacritty causes this issue</li>
+<li>see <a href="https://github.com/alacritty/alacritty/issues/868">github - Alacritty causing 1-2 mins of
+busy cursor on i3 desktop, and extreme i3
+performance issues</a></li>
+<li>fix cursor</li>
+</ul>
+<pre><code class="language-shell">i3 restart
+</code></pre>
+<ul>
+<li>alacritty refuses to fix this, see <a href="https://github.com/alacritty/alacritty/issues/6097">Alacritty causing 1-2 mins of busy cursor on i3 desktop (re-opening #868)</a></li>
+</ul>
+<h3 id="archive"><a class="header" href="#archive">archive</a></h3>
+<ul>
+<li>see <a href="https://www.reddit.com/r/i3wm/comments/ncbbvn/how_to_get_rid_of_spinning_cursor/">reddit - How to get rid of spinning
+cursor?</a></li>
+<li>see <a href="https://faq.i3wm.org/question/561/what-is-that-thing-called-no-startup-id/index.html">i3wm faq - What is that thing called --no-startup-id?
+</a></li>
+<li><a href="pkgs/applications/window-managers/i3.html#sddm">sddm</a> executes <code>~/.xprofile</code> by default
+(check <code>/usr/share/sddm/scripts/Xsession</code>).</li>
+<li>nicer to have single script for all commands in
+<code>~/.xprofile</code> than preface every command with <code>exec</code> in i3</li>
+<li>(imagined) problem: likely caused by daemons in <code>~/.xprofile</code></li>
+<li>seem to have no effect if not directly spawned
+by <code>exec</code> in i3 config (<code>~/.config/i3/config</code>)</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="picom"><a class="header" href="#picom">picom</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/picom">arch wiki - picom</a></li>
+<li>install picom</li>
+</ul>
+<pre><code class="language-shell">pacman -S picom
+</code></pre>
+<ul>
+<li>TODO</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ipafont"><a class="header" href="#ipafont">ipafont</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Localization/Japanese">arch wiki - localization/Japanese</a></li>
+<li>install <a href="https://moji.or.jp/ipafont/">ipafont</a> from
+Japan's <a href="https://www.ipa.go.jp/index.html">information-technology promotion agency
+(IPA)</a>, government agency</li>
+<li>&quot;one of the highest quality open source font&quot; - arch wiki</li>
+</ul>
+<pre><code class="language-shell">pacman -S otf-ipafont
+</code></pre>
+<ul>
+<li>see <a href="https://ja.wikipedia.org/wiki/IPA%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88">wikipedia - IPA フォント</a>
+for the differences between IPA[/P/Ex/mj] Mincho/Gothic</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="fontconfig"><a class="header" href="#fontconfig">fontconfig</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Font_configuration">arch wiki - font configuration</a></li>
+<li><a href="https://wiki.archlinux.org/title/Font_configuration/Examples#Japanese">arch wiki - font configuration/examples</a></li>
+<li>list fonts</li>
+</ul>
+<pre><code class="language-shell">fc-list
+</code></pre>
+<ul>
+<li>query settings</li>
+</ul>
+<pre><code class="language-shell">fc-match --verbose sans
+</code></pre>
+<ul>
+<li>edit <code>~/.config/fontconfig/fonts.conf</code></li>
+</ul>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; ?&gt;
+&lt;!DOCTYPE fontconfig SYSTEM &quot;urn:fontconfig:fonts.dtd&quot;&gt;
+&lt;fontconfig&gt;
+  &lt;alias&gt;
+    &lt;family&gt;serif&lt;/family&gt;
+    &lt;prefer&gt;
+      &lt;family&gt;Noto Serif&lt;/family&gt;
+      &lt;family&gt;IPAMincho&lt;/family&gt;
+    &lt;/prefer&gt;
+  &lt;/alias&gt;
+
+  &lt;alias&gt;
+    &lt;family&gt;sans-serif&lt;/family&gt;
+    &lt;prefer&gt;
+      &lt;family&gt;Noto Sans&lt;/family&gt;
+      &lt;family&gt;IPAGothic&lt;/family&gt;
+    &lt;/prefer&gt;
+  &lt;/alias&gt;
+
+  &lt;alias&gt;
+    &lt;family&gt;monospace&lt;/family&gt;
+    &lt;prefer&gt;
+      &lt;family&gt;Noto Sans Mono&lt;/family&gt;
+      &lt;family&gt;IPAGothic&lt;/family&gt;
+    &lt;/prefer&gt;
+  &lt;/alias&gt;
+&lt;/fontconfig&gt;
+</code></pre>
+<h1 id="japanese"><a class="header" href="#japanese">japanese</a></h1>
+<ul>
+<li>see <a href="pkgs/development/libraries//pkgs/data/fonts/ipafont.html">ipafont</a></li>
+</ul>
+<h2 id="firefox-japanese-font-is-wrong"><a class="header" href="#firefox-japanese-font-is-wrong">firefox japanese font is wrong</a></h2>
+<ul>
+<li>differences in kanji for chinese and japanese,
+e.g. &quot;語&quot; in 日本語, &quot;直&quot; in 直す</li>
+<li><a href="https://learnjapanese.moe/img/font2.png"> chinese ver.</a>,
+<a href="https://learnjapanese.moe/img/font3.png">japanese ver.</a></li>
+<li>firefox displays chinese version despite setting japanese fonts</li>
+<li>enter <code>about:config</code></li>
+<li>change <code>font.cjk_pref_fallback_order</code> from
+<code>zh-cn,zh-hk,zh-tw,ja,ko</code> to <code>ja,zh-cn,zh-hk,zh-tw,ko</code></li>
+<li>also, default western font is serif instead of sans-serif for
+some reason, makes japanese also serif, e.g. in myanimelist</li>
+<li>change <code>font.default.x-western</code> from <code>serif</code> to <code>sans-serif</code></li>
+<li>or just change in normal settings page <code>about:preferences</code>, &quot;General&quot; -&gt;
+&quot;Fonts&quot; -&gt; &quot;Fonts for&quot; select Latin, &quot;Proportional&quot; select &quot;Sans Serif&quot;</li>
+</ul>
+<h2 id="how-to-tell-noto-sans-cjk-jp-and-ipagothic-apart"><a class="header" href="#how-to-tell-noto-sans-cjk-jp-and-ipagothic-apart">how to tell Noto Sans CJK JP and IPAGothic apart</a></h2>
+<ul>
+<li>katakana &quot;ta&quot;: タ
+<ul>
+<li>ipa horizontal line precisely connects the two parallel lines</li>
+<li>noto looks kind of like a ヌ, doesn't touch left and juts past right</li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="pipewire"><a class="header" href="#pipewire">pipewire</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/PipeWire">arch wiki - PipeWire</a></li>
+<li>modern drop-in replacement for PulseAudio</li>
+<li>install</li>
+</ul>
+<pre><code class="language-shell">pacman -S pipewire
+</code></pre>
+<ul>
+<li>make sure to select &quot;WirePlumber&quot; session manager</li>
+<li>replace ALSA with pipewire</li>
+</ul>
+<pre><code class="language-shell">pacman -S pipewire-alsa
+</code></pre>
+<ul>
+<li>replace pulseaudio with pipewire</li>
+</ul>
+<pre><code class="language-shell">pacman -S pipewire-pulse
+</code></pre>
+<ul>
+<li>also enables bluetooth management</li>
+<li>enable services</li>
+</ul>
+<pre><code class="language-shell">systemctl --user enable pipewire-pulse.service
+systemctl --user start  pipewire-pulse.service
+</code></pre>
+<ul>
+<li>check working</li>
+</ul>
+<pre><code class="language-shell">pactl info
+</code></pre>
+<ul>
+<li>speaker test works!</li>
+</ul>
+<pre><code class="language-shell">speaker-test
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="screensaver-xss-locki3lock"><a class="header" href="#screensaver-xss-locki3lock">screensaver (xss-lock/i3lock)</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Session_lock">arch wiki - session lock</a></li>
+<li><a href="https://wiki.archlinux.org/title/Power_management#xss-lock">arch wiki - power
+management</a></li>
+<li><a href="https://wiki.archlinux.org/title/DPMS">arch wiki - display power
+management signaling</a></li>
+<li>install xss-lock</li>
+</ul>
+<pre><code class="language-shell">pacman -S xss-lock
+</code></pre>
+<ul>
+<li>set to use <code>i3lock</code> as a locker</li>
+</ul>
+<pre><code class="language-shell">xss-lock --transfer-sleep-lock -- i3lock --nofork --image=$HOME/Pictures/config/screensaver &amp;
+</code></pre>
+<ul>
+<li>for <code>i3lock</code>, <code>--nofork</code> prevents multiple instances and set background image</li>
+<li>manually trigger lock</li>
+</ul>
+<pre><code class="language-shell">loginctl lock-session
+</code></pre>
+<h2 id="picom-transparency-leaks-screen-after-lock"><a class="header" href="#picom-transparency-leaks-screen-after-lock">picom transparency leaks screen after lock</a></h2>
+<ul>
+<li>picom set to make inactive windows slightly
+transparent (<code>inactive-opacity = 0.9;</code>)</li>
+<li>this causes <code>i3lock</code> to also become transparent, leaking your desktop screen</li>
+<li>see <a href="https://www.reddit.com/r/archlinux/comments/q4fo26/picom_make_i3lock_opaque/">reddit - Picom make i3lock opaque</a></li>
+<li>edit <code>~/.config/picom/picom.conf</code>, add</li>
+</ul>
+<pre><code class="language-config">opacity-rule = [ &quot;100:class_g = 'i3lock'&quot; ];
+</code></pre>
+<h3 id="using-picom-trans"><a class="header" href="#using-picom-trans">using picom-trans?</a></h3>
+<ul>
+<li><code>man picom</code></li>
+</ul>
+<pre><code class="language-man">       --opacity-rule OPACITY:'CONDITION'
+           Specify a list of opacity rules, in the format PERCENT:PATTERN, like
+           50:name *= &quot;Firefox&quot;. picom-trans is recommended over this.
+</code></pre>
+<ul>
+<li>okay, <code>man picom-trans</code>, should be ran like</li>
+</ul>
+<pre><code class="language-shell">picom-trans -n &quot;i3lock&quot; 100
+</code></pre>
+<ul>
+<li>however, this has to happen <em>after</em> the window exists</li>
+<li>hard to do, since <code>i3lock</code> is should be ran with <code>--nofork</code></li>
+</ul>
+<h3 id="archive-1"><a class="header" href="#archive-1">archive</a></h3>
+<ul>
+<li>below simply doesn't work, works when running <code>i3lock</code> from a terminal
+but not when actually triggered (by sleep or with <code>loginctl lock-session</code>)</li>
+<li>follow the instructions for slock in the picom article:
+<a href="https://wiki.archlinux.org/title/picom#slock">arch wiki - picom</a></li>
+<li>install xwininfo</li>
+</ul>
+<pre><code class="language-shell">sudo pacman -S xorg-xwininfo
+</code></pre>
+<ul>
+<li>run the command and click to get the window id</li>
+</ul>
+<pre><code class="language-shell">xwininfo &amp; i3lock --nofork --image=$HOME/Pictures/config/screensaver
+</code></pre>
+<ul>
+<li>use the discovered id to have picom exclude the window</li>
+</ul>
+<pre><code class="language-shell">picom --daemon --focus-exclude 'id = 0x4600007'
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="alsa-project"><a class="header" href="#alsa-project">alsa-project</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/ALSA">arch wiki - Advanced Linux Sound Architecture</a></li>
+<li>no need to install, built-in to kernel</li>
+<li>install userspace utilities:</li>
+</ul>
+<pre><code class="language-shell">pacman -S alsa-utils
+</code></pre>
+<ul>
+<li>for better resampling:</li>
+</ul>
+<pre><code class="language-shell">pacman -S alsa-plugins
+</code></pre>
+<ul>
+<li>unmute channels:</li>
+</ul>
+<pre><code class="language-shell">alsamixer
+</code></pre>
+<ul>
+<li>speaker test:</li>
+</ul>
+<pre><code class="language-shell">speaker-test -c2
+</code></pre>
+<ul>
+<li>hard to use, can't get working</li>
+<li>just install userspace component, you'll have to anyways!</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="bluez"><a class="header" href="#bluez">bluez</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Bluetooth">arch wiki - bluetooth</a></li>
+<li><a href="https://wiki.archlinux.org/title/Bluetooth_headset">arch wiki - bluetooth headset</a></li>
+<li>install bluez</li>
+</ul>
+<pre><code class="language-shell">pacman -S bluez
+pacman -S bluez-utils
+</code></pre>
+<ul>
+<li>enable service</li>
+</ul>
+<pre><code class="language-shell">systemctl enable bluetooth.service
+systemctl start  bluetooth.service
+</code></pre>
+<ul>
+<li>start command line prompt</li>
+</ul>
+<pre><code class="language-shell">bluetoothctl
+</code></pre>
+<ul>
+<li>turn power on, turn agent, start scanning for devices</li>
+</ul>
+<pre><code class="language-shell">[bluetooth]# power on
+[bluetooth]# agent on
+[bluetooth]# default-agent
+[bluetooth]# scan on
+</code></pre>
+<ul>
+<li>find MAC address of device</li>
+<li>note: might be spammed by other devices, exit to prevent</li>
+<li>pair, connect, and trust for future auto-connect</li>
+</ul>
+<pre><code class="language-text">[bluetooth]# pair MAC_ADDRESS
+[bluetooth]# connect MAC_ADDRESS
+[bluetooth]# trust MAC_ADDRESS
+</code></pre>
+<ul>
+<li>enable auto power-on of bluetooth module in <code>/etc/bluetooth/main.conf</code></li>
+</ul>
+<pre><code class="language-config">[Policy]
+AutoEnable=true
+</code></pre>
+<h2 id="bluetooth-randomly-stuck"><a class="header" href="#bluetooth-randomly-stuck">bluetooth randomly stuck</a></h2>
+<ul>
+<li>bluetooth stuck after waking up from sleep</li>
+<li><code>sudo systemctl restart bluetooth.service</code> and the like hangs</li>
+<li>kill daemon directly</li>
+</ul>
+<pre><code class="language-shell">sudo pkill -9 bluetoothd
+</code></pre>
+<h2 id="device-not-showing-up"><a class="header" href="#device-not-showing-up">device not showing up</a></h2>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Bluetooth#Device_does_not_show_up_in_scan">arch wiki - bluetooth</a></li>
+<li>certain bluetooth low energy (BLE) devices don't show up in scan</li>
+<li>set <code>transport le</code></li>
+</ul>
+<pre><code class="language-shell">[bluetooth]# menu scan
+[bluetooth]# transport le
+[bluetooth]# back
+[bluetooth]# scan on
+[bluetooth]# devices
+</code></pre>
+<ul>
+<li>still doesn't work with
+<a href="https://www.coolermaster.com/catalog/peripheral/mice/mm712/">MM712 mouse</a>,
+TODO</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="iwd"><a class="header" href="#iwd">iwd</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Iwd">arch wiki - iwd</a></li>
+<li>install iwd</li>
+</ul>
+<pre><code class="language-shell">pacman -S iwd
+</code></pre>
+<ul>
+<li>edit configuration in <code>/etc/iwd/main.conf</code> to enable DHCP management</li>
+</ul>
+<pre><code class="language-conf">[General]
+EnableNetworkConfiguration=true
+</code></pre>
+<ul>
+<li>add DNS with openresolv (see <a href="pkgs/os-specific/linux/iwd.html#dns">DNS</a>)</li>
+</ul>
+<pre><code class="language-conf">[Network]
+NameResolvingService=resolvconf
+</code></pre>
+<ul>
+<li>start systemd service</li>
+</ul>
+<pre><code class="language-shell">systemctl enable iwd
+systemctl start  iwd
+</code></pre>
+<ul>
+<li>enter prompt</li>
+</ul>
+<pre><code class="language-shell">iwctl
+</code></pre>
+<ul>
+<li>helpful commands in prompt</li>
+</ul>
+<pre><code class="language-shell">[iwd]# help
+[iwd]# station list
+[iwd]# station wlan0 connect WIFI_NAME
+[iwd]# station list
+</code></pre>
+<ul>
+<li>still need DNS, can only use systemd-resolved / resolvconf</li>
+<li>it seems iwd can do its own DNS (or DHCP does DNS?)</li>
+<li>DNS is provided by (g)libc, see <a href="https://wiki.archlinux.org/title/Domain_name_resolution#Glibc_resolver">arch wiki - domain name resolution</a></li>
+</ul>
+<h2 id="eduroam"><a class="header" href="#eduroam">eduroam</a></h2>
+<ul>
+<li>generate password hash</li>
+</ul>
+<pre><code class="language-shell">iconv -t utf16le | openssl md4 -provider legacy
+</code></pre>
+<ul>
+<li>EOF to end (don't press enter, sends <code>'\n'</code>): press <code>ctrl-D</code> twice</li>
+<li>edit <code>/var/lib/iwd/essid.8021x</code>, for eduroam <code>/var/lib/iwd/eduroam.8021x</code>:</li>
+</ul>
+<pre><code class="language-conf">[Security]
+EAP-Method=PEAP
+EAP-Identity=anonymous@gatech.edu
+# EAP-PEAP-CACert=/path/to/root.crt
+# EAP-PEAP-ServerDomainMask=lawn.gatech.edu
+EAP-PEAP-Phase2-Method=MSCHAPV2
+EAP-PEAP-Phase2-Identity=username@gatech.edu
+EAP-PEAP-Phase2-Password-Hash=passwordhash
+
+[Settings]
+AutoConnect=true
+</code></pre>
+<ul>
+<li>can't put <code>EAP-PEAP-CACert</code> in home directory</li>
+</ul>
+<h2 id="ead"><a class="header" href="#ead">ead</a></h2>
+<ul>
+<li>ethernet authentication daemon</li>
+</ul>
+<pre><code class="language-shell">systemctl start ead.service
+</code></pre>
+<ul>
+<li>not sure what this does</li>
+<li>replacement for <code>wpa_supplicant</code>, see
+<a href="https://www.reddit.com/r/voidlinux/comments/u4kmjo/ead_ethernet_authentication_daemon/">reddit - EAD ethernet authentication daemon</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="plymouth"><a class="header" href="#plymouth">Plymouth</a></h1>
+<p><a href="https://wiki.archlinux.org/title/Plymouth">arch wiki - plymouth</a></p>
+<ul>
+<li>install plymouth (recommended to use development version, but unstable)</li>
+</ul>
+<pre><code class="language-shell">paru -S plymouth
+</code></pre>
+<ul>
+<li>add plymouth hook to <code>/etc/mkinitcpio.conf</code>
+<blockquote>
+<p>HOOKS=(base udev autodetect <strong>keyboard</strong> <strong>keymap</strong> <strong>consolefont</strong> modconf block <strong>encrypt</strong> <strong>lvm2</strong> filesystems fsck)</p>
+<p>HOOKS=(base udev <strong>plymouth</strong> autodetect keyboard keymap consolefont modconf block <strong>plymouth-encrypt</strong> lvm2 filesystems fsck)</p>
+</blockquote>
+</li>
+<li>make sure to replace <code>encrypt</code> with <code>plymouth-encrypt</code>!
+<ul>
+<li>(now: <code>plymouth-encrypt</code> no longer necessary as of version <code>22.02.122-7</code>)</li>
+</ul>
+</li>
+<li>add <code>amdgpu</code> to <code>MODULES</code></li>
+</ul>
+<pre><code>MODULES=(amdgpu ...)
+</code></pre>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Silent_boot">arch wiki - silent boot</a></li>
+<li>add kernel parameters:</li>
+</ul>
+<pre><code class="language-conf">quiet loglevel=3 udev.log_level=3 splash vt.global_cursor_default=0 fbcon=nodefer
+</code></pre>
+<ul>
+<li><code>splash</code> necessary, <code>fbcon=nodefer</code>: don't try to defer vendor logo</li>
+<li>switch display manager service for smoother transition</li>
+</ul>
+<pre><code class="language-shell">sudo systemctl disable sddm.service
+sudo systemctl enable sddm-plymouth.service
+</code></pre>
+<ul>
+<li>can't quite get totally smooth transition (goes
+to black then sddm) but good enough for me :p
+<ul>
+<li>(now: <code>plymouth-encrypt</code> no longer necessary as of version <code>22.02.122-7</code>)</li>
+</ul>
+</li>
+</ul>
+<h2 id="theming-1"><a class="header" href="#theming-1">theming</a></h2>
+<ul>
+<li>list themes (can install additional from AUR)</li>
+</ul>
+<pre><code class="language-shell">plymouth-set-default-theme -l
+</code></pre>
+<ul>
+<li>use <code>-R</code> to rebuild initramfs</li>
+</ul>
+<pre><code>plymouth-set-default-theme -R theme
+</code></pre>
+<ul>
+<li>or edit <code>/etc/plymouth/plymouthd.conf</code></li>
+</ul>
+<pre><code class="language-conf">[Daemon]
+Theme=simple
+</code></pre>
+<ul>
+<li>and regenerate initramfs with <code>sudo mkinitcpio -P</code></li>
+<li>for themes using ModuleName <code>two-step</code>, e.g. spinner (check
+<code>/usr/share/plymouth/themes/</code> folder, <code>.plymouth</code> file for module)</li>
+<li>add background to <code>/usr/share/plymouth/themes/theme/background-tile.png</code></li>
+<li>can only tile! (seems hardcoded)</li>
+</ul>
+<h3 id="script-module"><a class="header" href="#script-module">script module</a></h3>
+<ul>
+<li>problem: many modules compiled into <code>.so</code>, hard to modify</li>
+<li>solution: use <code>script</code> module, write code in domain-specific language</li>
+<li>language documented on <a href="https://www.freedesktop.org/wiki/Software/Plymouth/Scripts/">Plymouth page</a> but out of date</li>
+<li>easiest to read <a href="https://gitlab.freedesktop.org/plymouth/plymouth/-/tree/main/src/plugins/splash/script">C source</a> directly</li>
+<li>and examples:
+<ul>
+<li>default script theme <code>/usr/share/plymouth/themes/script</code></li>
+<li><a href="https://github.com/f1rstlady/plymouth-theme-logo-spinner">spinner script theme</a></li>
+</ul>
+</li>
+<li>language is sort of weird
+<ul>
+<li>everything is an object...</li>
+<li>...except functions, they seem not to be first-class objects</li>
+<li>no runtime errors, <code>NULL</code> propagation</li>
+<li>global easily pollutes namespace</li>
+</ul>
+</li>
+<li>feels like what I would imagine JavaScript is
+<ul>
+<li>but to be honest I have written more <code>.script</code> than <code>.js</code>...</li>
+</ul>
+</li>
+</ul>
+<h3 id="testing"><a class="header" href="#testing">testing</a></h3>
+<ul>
+<li>switch to virtual console with ctrl+alt+F6</li>
+<li>log in as root, run</li>
+</ul>
+<pre><code class="language-shell">plymouthd
+plymouth show-splash
+plymouth quit
+</code></pre>
+<ul>
+<li>problem: once plymouth starts showing splash, cannot issue commands!</li>
+<li>solution: make shell file, say <code>test.fish</code></li>
+</ul>
+<pre><code class="language-fish">plymouthd --debug --debug-file=/usr/share/plymouth/themes/simple/testing/log.txt
+plymouth show-splash
+sleep 5
+plymouth quit
+</code></pre>
+<ul>
+<li>run with <code>test.fish</code>, after 5 seconds automatically kills</li>
+<li>testing messages:</li>
+</ul>
+<pre><code class="language-fish">plymouthd
+plymouth show-splash
+set message &quot;test message&quot;
+sleep 1
+plymouth display-message --text=$message
+sleep 2
+# has to be the same message or callback isn't called
+plymouth hide-message --text=$message
+sleep 2
+</code></pre>
+<ul>
+<li>testing passwords: need to inject key presses into <code>/dev/tty1</code> (by default)</li>
+<li>easiest way (not necessarily best) with <a href="https://en.wikipedia.org/wiki/Ioctl">TIOCSTI</a></li>
+<li>see <a href="https://stackoverflow.com/questions/29614264/unable-to-fake-terminal-input-with-termios-tiocsti/29615101#29615101">stackoverflow</a> - <code>inject.py</code>:</li>
+</ul>
+<pre><code class="language-python">import fcntl
+import sys
+import termios
+
+with open(sys.argv[1], &quot;w&quot;) as fd:
+    chars = eval(f&quot;'{sys.argv[2]}'&quot;)
+    for c in chars:
+        fcntl.ioctl(fd, termios.TIOCSTI, c)
+</code></pre>
+<ul>
+<li>client script:</li>
+</ul>
+<pre><code class="language-bash">plymouthd
+plymouth show-splash
+sleep 1
+plymouth ask-for-password --prompt=&quot;test&quot; &amp;
+sleep 1
+python inject.py /dev/tty1 &quot;these keypresses are sent to /dev/tty1&quot;
+sleep 1
+# backspaces
+python inject.py /dev/tty1 &quot;\x7f\x7f\x7f\x7f\x7f\x7f\x7f&quot;
+sleep 1
+python inject.py /dev/tty1 &quot;additional text&quot;
+sleep 1
+# enter, send password
+python inject.py /dev/tty1 &quot;\n&quot;
+sleep 2
+plymouth quit
+</code></pre>
+<ul>
+<li>useful: <code>tmux</code> to have multiple consoles, <code>vim</code> settings:</li>
+</ul>
+<pre><code class="language-vim">set autoindent
+set expandtab
+set shiftwidth=4
+set tabstop=4
+set colorcolumn=80
+</code></pre>
+<h2 id="multi-head"><a class="header" href="#multi-head">multi-head</a></h2>
+<p><a href="https://blogs.gnome.org/halfline/2009/09/29/plymouth-multi-head-support/">just works!</a></p>
+<p>careful when scripting:</p>
+<pre><code class="language-c">Window.GetX()
+Window.GetY()
+</code></pre>
+<p>are not accurate (leads to black bars on multi-head setups
+with different resolutions). Basically assume the <code>Window</code>'s
+top left corner is <code>(0, 0)</code> and everything will be ok.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="xorg"><a class="header" href="#xorg">xorg</a></h1>
+<h2 id="xkb"><a class="header" href="#xkb">xkb</a></h2>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/xmodmap">arch wiki - xmodmap</a></li>
+<li>outdated, use xkb instead</li>
+<li>still useful for viewing what modifiers are set to, run with <code>xmodmap</code></li>
+</ul>
+<pre><code class="language-shell">pacman -S xorg-xmodmap
+</code></pre>
+<ul>
+<li>xev, keyboard event viewer, also useful tool, run with <code>xev</code></li>
+</ul>
+<pre><code class="language-shell">pacman -S xorg-xev
+</code></pre>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/X_keyboard_extension">arch wiki - X keyboard extension</a></li>
+<li>install, comes as dependency of <code>xorg-server</code>, probably already have it</li>
+</ul>
+<pre><code class="language-shell">pacman -S xorg-xkbcomp
+</code></pre>
+<ul>
+<li>complicated as hell, can't say too much about this</li>
+<li>if you screw up, can make keyboard unusable, first store default config</li>
+</ul>
+<pre><code class="language-shell">xkbcomp $DISPLAY output.xkb
+</code></pre>
+<ul>
+<li>can reset with</li>
+</ul>
+<pre><code class="language-shell">setxkbmap -layout us
+</code></pre>
+<ul>
+<li>once you make custom keymap at <code>~/.Xkeymap</code>, put in <code>~/.xprofile</code> at startup:</li>
+</ul>
+<pre><code class="language-shell">test -f ~/.Xkeymap &amp;&amp; xkbcomp ~/.Xkeymap $DISPLAY
+</code></pre>
+<h3 id="super_r-as-mod3"><a class="header" href="#super_r-as-mod3">Super_R as mod3</a></h3>
+<ul>
+<li>use case: qmk <a href="https://docs.qmk.fm/#/mod_tap">&quot;hyper&quot;</a> (not in
+the linux modifier sense) is ctrl_L + shift_L + alt_L + super_L</li>
+<li>use this as i3 mod, need secondary modifier
+that can't be ctrl/shift/alt/super</li>
+<li>use super_R as unused mod3 to distinguish</li>
+<li>comment out (not necessary, no clue what this does)</li>
+</ul>
+<pre><code class="language-config">    interpret Super_R+AnyOf(all) {
+        virtualModifier= Super;
+        action= SetMods(modifiers=modMapMods,clearLocks);
+    };
+</code></pre>
+<ul>
+<li>change <code>Super</code> to <code>Mod3</code> here</li>
+</ul>
+<pre><code class="language-config">    interpret Super_R+AnyOfOrNone(all) {
+        action= SetMods(modifiers=Super,clearLocks);
+    };
+</code></pre>
+<ul>
+<li>change <code>Mod4</code> to <code>Mod3</code> here</li>
+</ul>
+<pre><code class="language-config">    modifier_map Mod4 { &lt;RWIN&gt; };
+</code></pre>
+<ul>
+<li>n.b.: I no longer use this, it's simpler to make hyper
+shift_L + alt_L + super_L (still unlikely to conflict with
+other keybindings) and use ctrl as a secondary modifier</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="pulseaudio"><a class="header" href="#pulseaudio">pulseaudio</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/PulseAudio">arch wiki - PulseAudio</a></li>
+<li>seem to be able to use pulseaudio applications</li>
+<li>e.g. simple mixer</li>
+</ul>
+<pre><code class="language-shell">pacman -S pulsemixer
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="fish"><a class="header" href="#fish"><a href="http://fishshell.com/">fish</a></a></h1>
+<p>Fish is a non-POSIX compliant shell that can do a lot of interesting things.
+Check my <a href="https://asciinema.org/~vazae">asciinema</a> for inspiration.</p>
+<p>Package manager is <a href="https://github.com/jorgebucaran/fisher">fisher</a>
+although it has its quirks (can only update all packages).</p>
+<p>Theme is &quot;Tomorrow&quot;, run <code>fish_config</code> to select it.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="playerctl"><a class="header" href="#playerctl">playerctl</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/MPRIS">arch wiki - MPRIS</a></li>
+<li><a href="https://specifications.freedesktop.org/mpris-spec/latest/">freedesktop - MPRIS D-Bus Interface Specification</a></li>
+<li>Media Player Remote Interfacing Specification (MPRIS)</li>
+<li>freedesktop specification for music player control</li>
+<li>install <a href="https://github.com/altdesktop/playerctl">playerctl</a>,
+front-end client to control implementing players</li>
+</ul>
+<pre><code class="language-shell">pacman -S playerctl
+</code></pre>
+<ul>
+<li>start daemon to track most player with most
+recent activity, e.g. put in <code>~/.xprofile</code></li>
+</ul>
+<pre><code class="language-shell">playerctld daemon
+</code></pre>
+<ul>
+<li><code>XF86Audio</code> audio control keys are already bound in default i3 config</li>
+</ul>
+<pre><code class="language-config"># Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@     +10% &amp;&amp; $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@     -10% &amp;&amp; $refresh_i3status
+bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute   @DEFAULT_SINK@   toggle &amp;&amp; $refresh_i3status
+bindsym XF86AudioMicMute     exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle &amp;&amp; $refresh_i3status
+</code></pre>
+<ul>
+<li>bind <code>XF86Audio</code> player control keys to corresponding <code>playerctl</code> commands</li>
+</ul>
+<pre><code class="language-config"># my headphones alternate between play/pause while my keyboard just has play
+# so to keep it consistent, force both to toggle
+bindsym XF86AudioPlay    exec playerctl play-pause
+bindsym XF86AudioPause   exec playerctl play-pause
+bindsym XF86AudioStop    exec playerctl stop
+bindsym XF86AudioPrev    exec playerctl previous
+bindsym XF86AudioNext    exec playerctl next
+bindsym XF86AudioForward exec playerctl position 1+
+bindsym XF86AudioRewind  exec playerctl position 1-
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ibus"><a class="header" href="#ibus">ibus</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Input_method">arch wiki - input method</a></li>
+<li><a href="https://wiki.archlinux.org/title/IBus">arch wiki - ibus</a></li>
+<li>install ibus</li>
+</ul>
+<pre><code class="language-shell">pacman -S ibus
+</code></pre>
+<ul>
+<li>run at startup, set environmental variables, put in <code>~/.xprofile</code></li>
+</ul>
+<pre><code class="language-shell">ibus-daemon --daemonize --replace --xim
+
+export GTK_IM_MODULE=ibus
+export QT_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+</code></pre>
+<ul>
+<li>no clue what <code>--xim</code> does, but if left out doesn't work in alacritty, e.g.</li>
+<li>no clue what the environmental variables do,
+but if left out doesn't work in alacritty, e.g.</li>
+<li>can put variables in <code>/etc/environment</code> but why
+would you want to? need to edit with sudo, etc.</li>
+<li>edit config, add input methods, etc.</li>
+</ul>
+<pre><code class="language-shell">ibus-setup
+</code></pre>
+<ul>
+<li>can also right-click icon if it's running</li>
+<li>change activation shortcut to whatever you like, etc.</li>
+</ul>
+<h1 id="mozc-japanese-ime"><a class="header" href="#mozc-japanese-ime">mozc (japanese ime)</a></h1>
+<ul>
+<li>see <a href="pkgs/tools/inputmethods//pkgs/tools/inputmethods/ibus-engines/ibus-mozc.html">mozc</a></li>
+</ul>
+<h2 id="ibus-overwrites-xkb"><a class="header" href="#ibus-overwrites-xkb">ibus overwrites xkb</a></h2>
+<ul>
+<li>using <a href="pkgs/tools/inputmethods//pkgs/servers/x11/xorg.html#xkb">xmodmap/xkb</a> to make changes</li>
+<li>ibus randomly clears these when switching back and forth</li>
+<li>&quot;IBus Preferences&quot; -&gt; &quot;Advanced&quot; -&gt; &quot;Keyboard Layout&quot; -&gt;
+check &quot;Use system keyboard layout&quot;</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ibus-mozc"><a class="header" href="#ibus-mozc">ibus-mozc</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Localization/Japanese">arch wiki - localization/japanese</a></li>
+<li><a href="https://wiki.archlinux.org/title/Mozc">arch wiki - mozc</a></li>
+<li>open source version of google's japanese input</li>
+<li>install mozc-ut (mozc with much larger <a href="http://linuxplayers.g1.xrea.com/mozc-ut.html#install-arch-linux">UT
+dictionary</a>)</li>
+</ul>
+<pre><code class="language-shell">paru -S mozc
+</code></pre>
+<ul>
+<li>install communication module with ibus</li>
+</ul>
+<pre><code class="language-shell">paru -S ibus-mozc
+</code></pre>
+<ul>
+<li>add to ibus</li>
+</ul>
+<pre><code class="language-shell">ibus-setup
+</code></pre>
+<ul>
+<li>&quot;IBus Preferences&quot; -&gt; &quot;Input method&quot; -&gt; &quot;Add&quot; -&gt; &quot;Japanese&quot; -&gt; &quot;Mozc&quot;</li>
+<li>startup in hiragana mode, useful if no hardware key for Eisu etc.</li>
+<li>edit <code>~/.config/mozc/ibus_config.textproto</code>,
+change <code>active_on_launch</code> from <code>False</code> to <code>True</code></li>
+</ul>
+<pre><code class="language-config">...
+}
+active_on_launch: True
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="clipster"><a class="header" href="#clipster">clipster</a></h1>
+<p><a href="https://github.com/mrichar1/clipster">Clipster</a> is a Python
+clipboard manager that can be installed from the AUR:</p>
+<pre><code class="language-shell">paru -S clipster
+</code></pre>
+<p>In order to start it, add the command to your <code>~/.xprofile</code>
+or however you want to run a command on startup.</p>
+<pre><code class="language-shell">clipster --daemon &amp;
+</code></pre>
+<p>Clipster supports persistence out of the box
+and can be configured to store no history.</p>
+<p>Edit the configuration file at <code>~/.config/clipster/clipster.ini</code>.</p>
+<pre><code class="language-ini">[clipster]
+
+# Number of items to save in the history file for each selection.
+# 0 - don't save history.
+history_size = 0
+</code></pre>
+<p>Note that you can still check your clipboard history with</p>
+<pre><code class="language-shell">clipster --select
+</code></pre>
+<p>This will show the entries you've copied, but this data is stored
+in memory instead of on disk. If you kill the daemon (<code>pkill clipster</code>) and re-run it, you'll see that the history is cleared.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="grub"><a class="header" href="#grub">GRUB</a></h1>
+<h2 id="install-1"><a class="header" href="#install-1">install</a></h2>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/GRUB">arch wiki - GRUB</a></li>
+<li>install grub</li>
+</ul>
+<pre><code class="language-shell">sudo pacman -S grub efibootmgr
+</code></pre>
+<ul>
+<li>Assume EFI system partition already mounted to <code>/boot</code></li>
+<li>Install GRUB</li>
+</ul>
+<pre><code class="language-shell">grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+</code></pre>
+<ul>
+<li>Configuration file at <code>/etc/default/grub</code></li>
+<li>Need to run <code>grub-mkconfig</code>!</li>
+<li>Use <code>grub-mkconfig</code> to generate <code>/boot/grub/grub.cfg</code></li>
+</ul>
+<pre><code class="language-shell">grub-mkconfig -o /boot/grub/grub.cfg
+</code></pre>
+<ul>
+<li>Or can edit <code>/boot/grub/grub.cfg</code> directly without <code>/etc/default/grub</code></li>
+</ul>
+<h2 id="microcode"><a class="header" href="#microcode">microcode</a></h2>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Microcode">arch wiki - microcode</a></li>
+<li>microcode updates</li>
+</ul>
+<pre><code class="language-shell">pacman -S amd-ucode
+</code></pre>
+<ul>
+<li>update GRUB, automatically adds microcode to startup</li>
+</ul>
+<pre><code class="language-shell">grub-mkconfig -o /boot/grub/grub.cfg
+</code></pre>
+<ul>
+<li>check <code>amd-ucode.img</code> before <code>initramfs-linux.img</code> in <code>/boot/grub/grub.cfg</code>
+<blockquote>
+<p>initrd <strong>/boot/amd-ucode.img</strong> /boot/initramfs-linux.img</p>
+</blockquote>
+</li>
+<li>check kernel messages for early loading of microcode</li>
+</ul>
+<pre><code class="language-shell">journalctl -k --grep=microcode
+</code></pre>
+<h2 id="image-background-styling-theming"><a class="header" href="#image-background-styling-theming">image background, styling, theming</a></h2>
+<ul>
+<li><a href="https://help.ubuntu.com/community/Grub2/Displays">ubuntu - grub</a></li>
+<li>option 1: set <code>GRUB_BACKGROUND</code> in <code>/etc/default/grub</code>
+<ul>
+<li>problem: filesystem encrypted, image not accessible by grub!</li>
+</ul>
+</li>
+<li>option 2: copy an image file to <code>/boot/grub</code>
+<ul>
+<li>solution: <code>/boot</code> isn't encrypted</li>
+</ul>
+</li>
+<li>colors: set &quot;black&quot; for transparent, full list
+<a href="https://www.gnu.org/software/grub/manual/grub/html_node/color_005fnormal.html">here</a></li>
+<li>set <code>GRUB_COLOR_NORMAL</code> (default) and <code>GRUB_COLOR_HIGHLIGHT</code> (selected)</li>
+</ul>
+<h2 id="fix-rescue-shell-before-menu"><a class="header" href="#fix-rescue-shell-before-menu">fix rescue shell before menu</a></h2>
+<ul>
+<li>fix initially entering shell instead of menu
+<ul>
+<li>but still works with <code>exit</code> command</li>
+</ul>
+</li>
+<li>re-order UEFI entries
+<ul>
+<li>UEFI NVME Drive BBS Priorities set first to GRUB instead of ubuntu</li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="qmk"><a class="header" href="#qmk">qmk</a></h1>
+<ul>
+<li><a href="https://docs.qmk.fm/#/newbs_getting_started">qmk - Setting Up Your QMK Environment</a></li>
+<li>install qmk</li>
+</ul>
+<pre><code class="language-shell">pacman -S qmk
+</code></pre>
+<ul>
+<li>qmk setup</li>
+</ul>
+<pre><code class="language-shell">qmk setup
+</code></pre>
+<ul>
+<li>or use personal fork</li>
+</ul>
+<pre><code class="language-shell">qmk setup stephen-huan/qmk_firmware
+</code></pre>
+<ul>
+<li>set default keyboard and keymap</li>
+</ul>
+<pre><code class="language-shell">qmk config user.keyboard=dm9records/plaid
+qmk config user.keymap=stephen-huan
+</code></pre>
+<ul>
+<li>compile and flash</li>
+</ul>
+<pre><code class="language-shell">qmk compile
+qmk flash
+</code></pre>
+<ul>
+<li>see <a href="https://github.com/stephen-huan/plaid">stephen-huan/plaid</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="tmux"><a class="header" href="#tmux">tmux</a></h1>
+<p><a href="https://github.com/tmux/tmux/wiki">tmux</a> is a &quot;terminal multiplexer&quot;,
+meaning its main functionality is in splitting terminal windows and
+controlling multiple terminals from the same window. In practice, I use
+it to detach a terminal window from the window itself (e.g. putting
+<a href="pkgs/tools/misc//pkgs/applications/audio/cmus.html">cmus</a> in a tmux server and then
+detaching means the music still plays, even if the window is closed.
+The music player can then be brought up again with <code>tmux attach</code>, if
+I want to switch songs or adjust the volume). These days I don't make
+much use of tmux anymore, instead preferring to use features from my
+window manager, terminal emulator, or text editor.</p>
+<p>tmux is probably most helpful for remote connections with ssh, so
+your commands keep running even after you close the connection.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="yubikey-manager"><a class="header" href="#yubikey-manager">yubikey-manager</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/YubiKey">arch wiki - YubiKey</a></li>
+<li>install manager</li>
+</ul>
+<pre><code class="language-shell">pacman -S yubikey-manager
+</code></pre>
+<ul>
+<li>enable service</li>
+</ul>
+<pre><code class="language-shell">systemctl enable pcscd.service
+systemctl start  pcscd.service
+</code></pre>
+<ul>
+<li>for U2F</li>
+</ul>
+<pre><code class="language-shell">pacman -S libfido2
+</code></pre>
+<ul>
+<li>with <a href="https://developers.yubico.com/PGP/">PGP</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="dhcp-dhclient"><a class="header" href="#dhcp-dhclient">dhcp (dhclient)</a></h1>
+<ul>
+<li>install dhclient (n.b. deprecated)</li>
+</ul>
+<pre><code class="language-shell">pacman -S dhclient
+</code></pre>
+<ul>
+<li>start system service</li>
+</ul>
+<pre><code class="language-shell">systemctl enable dhclient@eno1.service
+systemctl start  dhclient@eno1.service
+</code></pre>
+<ul>
+<li>dhclient overwrites <code>/etc/resolv.conf</code> which is a problem if using vpn, etc.</li>
+<li>see <a href="https://bbs.archlinux.org/viewtopic.php?id=265736">arch forum - dhclient overwrites resolv.conf even when resolvconf
+is installed</a></li>
+<li>I can't get this to work, resolvconf processes it in the wrong order</li>
+<li>this could be fixed by hardcoding or just ignoring DNS altogether
+(I get my DNS server from mullvad or 1.1.1.1 anyways)</li>
+<li>patch from arch forum in <code>/etc/dhclient-enter-hooks</code></li>
+</ul>
+<pre><code class="language-sh">	# if [ -f /etc/resolv.conf ]; then
+	#     chown --reference=/etc/resolv.conf $new_resolv_conf
+	#     chmod --reference=/etc/resolv.conf $new_resolv_conf
+	# fi
+	# mv -f $new_resolv_conf /etc/resolv.conf
+
+        # use resolvconf
+        cat $new_resolv_conf | /usr/bin/resolvconf -a $interface
+        rm $new_resolv_conf
+</code></pre>
+<ul>
+<li>use <a href="pkgs/tools/networking//pkgs/tools/networking/unbound.html">unbound</a> to prevent DNS servers being in the wrong order</li>
+</ul>
+<h5 id="operation-not-permitted"><a class="header" href="#operation-not-permitted">operation not permitted</a></h5>
+<ul>
+<li>error <code>journalctl -u dhclient@eno1.service</code></li>
+</ul>
+<pre><code class="language-text">Jun 11 16:22:03 neko dhclient[687]: send_packet: Operation not permitted
+Jun 11 16:22:03 neko dhclient[687]: dhclient.c:2996: Failed to send 300 byte long packet over fallback interface.
+</code></pre>
+<ul>
+<li>see <a href="https://www.linuxquestions.org/questions/linux-networking-3/dhcpd-complains-failed-to-send-300-byte-long-packet-over-fallback-interface-4175548986/#post5705157">linuxquestions - dhcpd complains &quot;Failed to send
+300 byte long packet over fallback interface.&quot;</a></li>
+<li>when it works check <code>tcpdump</code> output (<code>pacman -S tcpdump</code>)</li>
+</ul>
+<pre><code class="language-shell">sudo tcpdump &gt; out.txt
+</code></pre>
+<ul>
+<li>note that <code>bootps</code> is usually port 67 and <code>bootpc</code> is usually port 68</li>
+</ul>
+<pre><code class="language-text">02:58:43.767759 IP neko.bootpc &gt; 255.255.255.255.bootps: BOOTP/DHCP, Request from b0:25:aa:44:bd:c2 (oui Unknown), length 300
+02:58:43.770219 ARP, Request who-has res388d-128-61-95-198.res.gatech.edu (Broadcast) tell _gateway, length 46
+02:58:43.773852 IP _gateway.bootps &gt; neko.bootpc: BOOTP/DHCP, Reply, length 300
+02:58:43.774738 IP _gateway.bootps &gt; neko.bootpc: BOOTP/DHCP, Reply, length 300
+</code></pre>
+<ul>
+<li>firewall issue, try using built-in kernel packet filter, front end <code>iptables</code></li>
+<li><a href="https://wiki.archlinux.org/title/Iptables">arch wiki - iptables</a></li>
+<li><a href="https://wiki.archlinux.org/title/Ebtables">arch wiki - ebtables</a></li>
+<li><a href="https://wiki.archlinux.org/title/Nftables">arch wiki - nftables</a></li>
+<li>open <code>bootps</code> and <code>bootpc</code> ports for DHCP</li>
+</ul>
+<pre><code class="language-shell">iptables -A OUTPUT -p udp --sport 1024:65535 --dport 67 -j ACCEPT
+iptables -A OUTPUT -p udp --sport 68 --dport 67 -j ACCEPT
+
+iptables -A INPUT -p udp --sport 1024:65535 --dport 68 -j ACCEPT
+iptables -A INPUT -p udp --sport 67 --dport 68 -j ACCEPT
+</code></pre>
+<ul>
+<li>list</li>
+</ul>
+<pre><code class="language-shell">ebtables-nft --list
+</code></pre>
+<ul>
+<li>to undo run</li>
+</ul>
+<pre><code class="language-shell">iptables -F
+ebtables-nft -F
+</code></pre>
+<ul>
+<li>firewall created by <a href="https://github.com/mullvad/mullvadvpn-app#environment-variables-used-by-the-service">mullvad</a></li>
+<li>solution: use split tunnel to exclude dhclient from the vpn, see <a href="https://mullvad.net/en/help/how-use-mullvad-cli/">mullvad -
+How to use the Mullvad CLI</a></li>
+<li>edit <code>/etc/dhclient-exit-hooks</code></li>
+</ul>
+<pre><code class="language-sh"># exclude dhclient from vpn, also from firewall
+mullvad split-tunnel pid add &quot;$(pgrep --oldest dhclient)&quot;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="dhcpcd"><a class="header" href="#dhcpcd">dhcpcd</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Dhcpcd">arch wiki - dhcpcd</a></li>
+<li>need separate DHCP client for ethernet
+--- <a href="pkgs/tools/networking//pkgs/os-specific/linux/iwd.html">iwd</a>
+has its own, but only for itself (wireless)</li>
+<li>install dhcpcd</li>
+</ul>
+<pre><code class="language-shell">pacman -S dhcpcd
+</code></pre>
+<ul>
+<li>could enable for all interfaces, but only need for ethernet:</li>
+</ul>
+<pre><code class="language-shell">systemctl enable dhcpcd@eno1.service
+systemctl start  dhcpcd@eno1.service
+</code></pre>
+<ul>
+<li>hangs on boot up, waiting for IP address</li>
+<li>create <code>/etc/systemd/system/dhcpcd@eno1.service.d/no-wait.conf</code></li>
+<li>could use <code>systemctl edit </code></li>
+</ul>
+<pre><code class="language-toml">[Service]
+ExecStart=
+ExecStart=/usr/bin/dhcpcd -b -q %I
+</code></pre>
+<ul>
+<li>already automatically enables/disables ethernet based on cable plug in/out</li>
+<li>add wifi disable/enable based on ethernet state
+by adding hook to <code>/etc/dhcpcd.exit-hook</code> (or in
+<code>/etc/dhcpcd.enter-hook</code> or in <code>/usr/lib/dhcpcd/dhcpcd-hooks</code>)</li>
+<li>based on <a href="https://bugs.archlinux.org/task/67382#comment191690">this comment</a></li>
+<li>see <code>man dhcpcd-run-hooks</code> for the values of <code>$interface</code>, <code>$reason</code>, etc.</li>
+</ul>
+<pre><code class="language-sh"># disable wifi if ethernet connected and enable wifi if ethernet disconnected
+
+wired=eno1
+wireless=wlan0
+
+if [ &quot;${interface}&quot; = $wired ]; then
+    case &quot;${reason}&quot; in NOCARRIER|BOUND)
+    if $if_up; then     # ethernet up means wifi down
+        iwctl station $wireless disconnect
+    elif $if_down; then # ethernet down means wifi up
+        # parse `iwctl known-networks list` and connect to most recent network
+        last=&quot;$(/home/stephenhuan/bin/iwd-last-network)&quot;
+        iwctl station $wireless connect $last
+    fi
+    ;;
+    esac
+fi
+</code></pre>
+<h2 id="losing-connection"><a class="header" href="#losing-connection">losing connection</a></h2>
+<ul>
+<li>connection randomly drops for a few seconds, happens relatively frequently</li>
+<li><code>journalctl -u dhcpcd@eno1.service</code></li>
+</ul>
+<pre><code class="language-text">May 29 15:17:33 neko dhcpcd[806]: eno1: 00:56:2b:56:19:38(00:00:00:ff:eb:0d) claims 128.61.88.130
+May 29 15:17:33 neko dhcpcd[806]: eno1: 00:aa:6e:d4:c0:38(00:00:00:ff:f2:b4) claims 128.61.88.130
+May 29 15:17:33 neko dhcpcd[806]: eno1: 10 second defence failed for 128.61.88.130
+May 29 15:17:33 neko dhcpcd[806]: eno1: deleting route to 128.61.80.0/20
+May 29 15:17:33 neko dhcpcd[806]: eno1: deleting default route via 128.61.80.1
+May 29 15:17:34 neko dhcpcd[806]: eno1: rebinding lease of 128.61.88.130
+May 29 15:17:34 neko dhcpcd[806]: eno1: probing address 128.61.88.130/20
+May 29 15:17:39 neko dhcpcd[806]: eno1: leased 128.61.88.130 for 7200 seconds
+May 29 15:17:39 neko dhcpcd[806]: eno1: adding route to 128.61.80.0/20
+May 29 15:17:39 neko dhcpcd[806]: eno1: adding default route via 128.61.80.1
+</code></pre>
+<ul>
+<li><a href="https://forums.raspberrypi.com/viewtopic.php?t=295979">same problem</a>
+<ul>
+<li>advice was to fix the ip conflict, hard to do
+<ul>
+<li>already using dynamic ip instead of static</li>
+<li>can't change the configuration of other devices</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>problem described in <a href="https://datatracker.ietf.org/doc/html/rfc2131">rfc2131</a>
+<blockquote>
+<ol start="5">
+<li>The client receives the DHCPACK message with configuration
+parameters. The client SHOULD perform a final check on the
+parameters (e.g., ARP for allocated network address), and notes the
+duration of the lease specified in the DHCPACK message. At this
+point, the client is configured. If the client detects that the
+address is already in use (e.g., through the use of ARP), the
+client MUST send a DHCPDECLINE message to the server and restarts
+the configuration process. The client SHOULD wait a minimum of ten
+seconds before restarting the configuration process to avoid
+excessive network traffic in case of looping.</li>
+</ol>
+</blockquote>
+</li>
+<li>fits with <code>journalctl</code> log:
+<ul>
+<li>found ip conflict with ARP, someone else is claiming the address</li>
+<li><code>eno1: 00:56:2b:56:19:38(00:00:00:ff:eb:0d) claims 128.61.88.130</code></li>
+<li>wait for ten seconds before restarting</li>
+<li><code>10 second defence failed for 128.61.88.130</code></li>
+<li>re-negotiate lease</li>
+<li><code>eno1: leased 128.61.88.130 for 7200 seconds</code></li>
+</ul>
+</li>
+<li>check ARP with <a href="https://github.com/royhills/arp-scan">arp-scan</a>:</li>
+</ul>
+<pre><code class="language-shell">pacman -S arp-scan
+</code></pre>
+<ul>
+<li>solution proposed in issue <a href="https://github.com/NetworkConfiguration/dhcpcd/issues/36">dhcpcd loses
+static IP</a></li>
+<li>certain devices send faulty ARP probes, tell <code>dhcpcd</code> to ignore ARP</li>
+<li><code>/etc/dhcpcd.conf</code></li>
+</ul>
+<pre><code class="language-text">noarp
+</code></pre>
+<ul>
+<li>still might not work</li>
+<li>same issue <a href="https://forums.raspberrypi.com/viewtopic.php?t=302782">DHCPCD fails again, with DAD detection
+this time</a></li>
+<li>see <a href="https://datatracker.ietf.org/doc/html/rfc5227">rfc5227</a></li>
+<li>as of 2022-06-17 this has not been fixed</li>
+<li>also this error, but probably caused by mullvad</li>
+</ul>
+<pre><code class="language-text">May 31 23:20:37 neko dhcpcd[743]: ps_root_recvmsg: Operation not permitted
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="globalprotect-openconnect"><a class="header" href="#globalprotect-openconnect">globalprotect-openconnect</a></h1>
+<ul>
+<li>if using network manager, install package <code>networkmanager-openconnect</code>,
+unfortunately I am using <a href="pkgs/tools/networking//pkgs/os-specific/linux/iwd.html">iwd</a></li>
+<li>can use <a href="https://github.com/yuezk/GlobalProtect-openconnect">GlobalProtect-openconnect</a> or
+<a href="https://github.com/dlenski/gp-saml-gui">gp-saml-gui</a> to do web login</li>
+<li>surprisingly enough, GlobalProtect-openconnect is on official repositories</li>
+</ul>
+<pre><code class="language-shell">pacman -S globalprotect-openconnect
+</code></pre>
+<ul>
+<li>run</li>
+</ul>
+<pre><code class="language-shell">gpclient
+</code></pre>
+<ul>
+<li>enter <code>vpn.gatech.edu</code> for portal address</li>
+<li>doesn't work with proprietary 2fa</li>
+</ul>
+<pre><code class="language-text">Gateway authentication failed
+
+Unknown response for gateway
+prelogin interface.
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ifplugd"><a class="header" href="#ifplugd">ifplugd</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Network_configuration/Ethernet#ifplugd_for_laptops">arch wiki - network configuration/ethernet</a></li>
+<li>not necessary if using <a href="pkgs/tools/networking//pkgs/tools/networking/dhcpcd.html">dhcpcd</a>,
+same feature works out of the box</li>
+<li>install ifplugd:</li>
+</ul>
+<pre><code class="language-shell">pacman -S ifplugd
+</code></pre>
+<ul>
+<li>edit config to change default <code>eth0</code> device
+to <code>eno1</code> at <code>/etc/ifplugd/ifplugd.conf</code></li>
+</ul>
+<pre><code class="language-config">INTERFACES=&quot;eno1&quot;
+</code></pre>
+<ul>
+<li>enable service</li>
+</ul>
+<pre><code class="language-shell">systemctl enable ifplugd@eno1.service
+systemctl start  ifplugd@eno1.service
+</code></pre>
+<ul>
+<li>can use to disable wifi when ethernet connected
+and enable wifi when ethernet disconnected</li>
+<li>runs <code>/etc/ifplugd/ifplugd.action</code> on up/down with two arguments: name of
+ethernet interface and whether it went up or down. Shell script inspired by
+<a href="https://busybox.busybox.narkive.com/yvV73uN2/looking-for-simple-ifplugd-example-script#post2">this link</a>:</li>
+</ul>
+<pre><code class="language-sh">#!/bin/sh
+# disable wifi if ethernet connected and enable wifi if ethernet disconnected
+
+case $2 in
+    up)   # ethernet up means wifi down
+        iwctl station wlan0 disconnect
+        ;;
+    down) # ethernet down means wifi up
+        # parse `iwctl known-networks list` and connect to most recent network
+        iwctl station wlan0 connect &quot;$(/home/stephenhuan/bin/iwd-last-network)&quot;
+        ;;
+esac
+</code></pre>
+<ul>
+<li>remember to mark as executable!</li>
+</ul>
+<pre><code>chmod +x /etc/ifplugd/ifplugd.action
+</code></pre>
+<ul>
+<li>parsing script <code>iwd-last-network</code> simply wraps <code>iwctl known-networks list</code>:</li>
+</ul>
+<pre><code class="language-python">#!/usr/bin/env python3
+&quot;&quot;&quot;
+Script to parse `iwctl known-networks list`
+and return the most recently connected network.
+
+iwd version 1.30-1.
+&quot;&quot;&quot;
+import datetime
+import subprocess
+
+
+def __known_networks() -&gt; str:
+    &quot;&quot;&quot;Wraps `iwctl known-networks list`.&quot;&quot;&quot;
+    out = subprocess.run(
+        [&quot;iwctl&quot;, &quot;known-networks&quot;, &quot;list&quot;],
+        capture_output=True,
+        text=True,
+    )
+    return out.stdout
+
+
+def get_date(date: str) -&gt; datetime.datetime:
+    &quot;&quot;&quot;Parse iwctl date format into a datetime object.&quot;&quot;&quot;
+    return datetime.datetime.strptime(date, &quot;%b %d, %H:%M %p&quot;)
+
+
+def get_known_networks() -&gt; list[str]:
+    &quot;&quot;&quot;Parses the output of iwctl.&quot;&quot;&quot;
+    lines = __known_networks().strip().splitlines()
+    header = lines[2].lower()
+    fields = header.split()[1:]
+    start = header.find(&quot; &quot;)
+    starts = {field: header.find(field) - start for field in fields}
+    offset = {
+        field: (starts[field], starts.get(next_field, len(header)))
+        for field, next_field in zip(fields, fields[1:] + [None])
+    }
+    get_field = lambda line, field: line[
+        offset[field][0] + line.find(&quot; &quot;) : offset[field][1] + line.find(&quot; &quot;)
+    ].strip()
+    return [
+        (
+            get_field(row, &quot;name&quot;),
+            get_field(row, &quot;security&quot;),
+            get_field(row, &quot;hidden&quot;),
+            get_date(&quot; &quot;.join(row.split()[-4:])),
+        )
+        for row in lines[4:]
+    ]
+
+
+if __name__ == &quot;__main__&quot;:
+    lines = get_known_networks()
+    recent = sorted(lines, key=lambda row: row[-1], reverse=True)
+    print(recent[0][0])
+</code></pre>
+<ul>
+<li>hang on shutdown: <code>[  *** ] A stop job is running for ...</code></li>
+<li><a href="https://bbs.archlinux.org/viewtopic.php?pid=1922083">forum post</a></li>
+<li><a href="https://bugs.archlinux.org/task/67382">bug tracker</a></li>
+<li>use dhcpcd hook instead?</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="mullvad"><a class="header" href="#mullvad">mullvad</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Mullvad">arch wiki - mullvad</a></li>
+<li>installing GUI also comes with CLI, nice to have around</li>
+<li>choice of which to install after running below command</li>
+</ul>
+<pre><code class="language-shell">paru -S mullvad-vpn
+</code></pre>
+<ul>
+<li>enable service</li>
+</ul>
+<pre><code class="language-shell">systemctl enable mullvad-daemon.service
+systemctl start  mullvad-daemon.service
+</code></pre>
+<ul>
+<li>set auto-connect</li>
+</ul>
+<pre><code class="language-shell">mullvad auto-connect set on
+</code></pre>
+<ul>
+<li>running <code>mullvad-vpn</code> opens GUI while <code>mullvad</code> is CLI</li>
+<li>opening GUI creates lock icon in bar, but can't seem to close window
+<ul>
+<li>use <a href="pkgs/tools/networking//pkgs/applications/window-managers/i3.html">i3</a>, <code>mod+alt+q</code></li>
+</ul>
+</li>
+<li>quitting app kills vpn connection</li>
+<li>might be easiest to just use CLI:
+<ul>
+<li><a href="https://mullvad.net/en/help/how-use-mullvad-cli/">mullvad CLI</a></li>
+<li><a href="https://mullvad.net/en/help/cli-command-wg/">mullvad CLI wireguard</a></li>
+</ul>
+</li>
+<li>set account number</li>
+</ul>
+<pre><code class="language-shell">mullvad account set 1234123412341234
+</code></pre>
+<ul>
+<li>set protocol to WireGuard</li>
+</ul>
+<pre><code class="language-shell">mullvad relay set tunnel-protocol wireguard
+</code></pre>
+<ul>
+<li>list servers</li>
+</ul>
+<pre><code class="language-shell">mullvad relay list
+</code></pre>
+<ul>
+<li>set server (format 2 character country code, 3 character
+city code, server-name), from <code>mullvad relay list</code></li>
+</ul>
+<pre><code class="language-shell">mullvad relay set location us atl us-atl-001
+</code></pre>
+<ul>
+<li>can give any prefix, e.g. just <code>set location us</code></li>
+<li>connect</li>
+</ul>
+<pre><code class="language-shell">mullvad connect
+</code></pre>
+<ul>
+<li>disconnect</li>
+</ul>
+<pre><code class="language-shell">mullvad disconnect
+</code></pre>
+<ul>
+<li>check status</li>
+</ul>
+<pre><code class="language-shell">mullvad status
+</code></pre>
+<ul>
+<li>external check: <a href="https://mullvad.net/en/check/">am I mullvad?</a></li>
+<li>launch <code>&lt;program&gt;</code> and exclude it from vpn</li>
+</ul>
+<pre><code class="language-shell">mullvad-exclude &lt;program&gt;
+</code></pre>
+<ul>
+<li>or, for currently running process with <code>&lt;pid&gt;</code></li>
+</ul>
+<pre><code class="language-shell">mullvad split-tunnel pid add &lt;pid&gt;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="openconnect"><a class="header" href="#openconnect">OpenConnect</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/OpenConnect">arch wiki - OpenConnect</a></li>
+<li>install <a href="https://www.infradead.org/openconnect/index.html">openconnect</a></li>
+</ul>
+<pre><code class="language-shell">pacman -S openconnect
+</code></pre>
+<ul>
+<li>using <a href="https://www.infradead.org/openconnect/globalprotect.html">global
+protect</a>,
+proprietary vpn used on many university campuses</li>
+<li>problem: authentication isn't with SAML, but with some proprietary 2fa</li>
+<li>surprisingly enough, just works, run openconnect</li>
+</ul>
+<pre><code class="language-shell">sudo openconnect --protocol=gp vpn.gatech.edu
+</code></pre>
+<ul>
+<li>have to paste in password with ctrl-shift-V</li>
+<li>make sure <a href="pkgs/tools/networking/openconnect.html#mullvad-vpn">mullvad</a> is disconnected before</li>
+<li>automate login with fish script</li>
+</ul>
+<pre><code class="language-fish">function vpn --description &quot;connect to gatech's proprietary global protect vpn&quot;
+    # disconnect mullvad before continuing
+    set -g mullvad_status (mullvad status)
+    mullvad disconnect
+
+    set password &quot;$(pass school/gatech/gatech.edu | head --lines=1)&quot;
+    # 1st line is password, 2nd line is 2fa prompt, and 3rd line is gateway
+    echo -e &quot;$password\\npush1\\ndc-ext-gw.vpn.gatech.edu&quot; |
+        sudo openconnect \
+            --protocol=gp \
+            vpn.gatech.edu \
+            --user=shuan7 \
+            --passwd-on-stdin
+end
+
+function vpn-cleanup --on-signal SIGINT --description &quot;post hook&quot;
+    # if connected before disconnecting, reconnect to mullvad
+    if ! string match --entire --ignore-case -q -- disconnected $mullvad_status
+        mullvad connect
+    end
+end
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="openresolv"><a class="header" href="#openresolv">openresolv</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Openresolv">arch wiki - openresolv</a></li>
+<li>openresolv allows multiple programs to edit <code>/etc/resolv.conf</code></li>
+<li>install openresolv</li>
+</ul>
+<pre><code class="language-shell">pacman -S openresolv
+</code></pre>
+<ul>
+<li>configuration file in <code>/etc/resolvconf.conf</code></li>
+<li>it seems openresolv works by itself by just specifying a nameserver:</li>
+</ul>
+<pre><code class="language-conf"># Configuration for resolvconf(8)
+# See resolvconf.conf(5) for details
+
+resolv_conf=/etc/resolv.conf
+# If you run a local name server, you should uncomment the below line and
+# configure your subscribers configuration files below.
+#name_servers=127.0.0.1
+name_servers=1.1.1.1
+</code></pre>
+<ul>
+<li><code>sudo resolvconf -u</code> to generate <code>/etc/resolv.conf</code></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="unbound"><a class="header" href="#unbound">unbound</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Unbound">arch wiki - unbound</a></li>
+<li><a href="https://dnsprivacy.org/dns_privacy_clients/#unbound">dnsprivacy - DNS privacy clients</a></li>
+<li><a href="https://mullvad.net/en/help/dns-over-https-and-dns-over-tls/">mullvad - DNS over HTTPS and DNS over TLS</a></li>
+<li><a href="https://mullvad.net/en/help/socks5-proxy/">mullavd - SOCKS5 proxy</a></li>
+<li>install unbound</li>
+</ul>
+<pre><code class="language-shell">pacman -S unbound
+</code></pre>
+<ul>
+<li>install expat for DNSSEC verification</li>
+</ul>
+<pre><code class="language-shell">pacman -S expat
+</code></pre>
+<ul>
+<li>using <a href="pkgs/tools/networking//pkgs/tools/networking/openresolv.html">openresolv</a>,
+edit <code>/etc/resolvconf.conf</code></li>
+</ul>
+<pre><code class="language-config">name_servers=&quot;::1 127.0.0.1&quot;
+resolv_conf_options=&quot;trust-ad&quot;
+
+private_interfaces=&quot;*&quot;
+unbound_conf=/etc/unbound/resolvconf.conf
+</code></pre>
+<ul>
+<li>edit unbound config <code>/etc/unbound/unbound.conf</code></li>
+</ul>
+<pre><code class="language-config"># include: &quot;/etc/unbound/resolvconf.conf&quot;
+
+server:
+    prefetch: yes
+    hide-identity: yes
+    hide-version: yes
+    tls-system-cert: yes
+
+    forward-zone:
+        name: &quot;.&quot;
+        forward-addr: 194.242.2.2@853#doh.mullvad.net
+        forward-addr: 193.19.108.2@853#doh.mullvad.net
+        # forward-addr: 1.1.1.1@853#cloudflare-dns.com
+        # forward-addr: 1.0.0.1@853#cloudflare-dns.com
+        forward-tls-upstream: yes
+</code></pre>
+<ul>
+<li>if using vpn, resolvconf generated include should probably
+not be used, literally the definition of a DNS leak</li>
+<li>also seems to be broken, can't resolve servers because of mullvad firewall</li>
+<li>if using mullvad, should use local gateway, can't use TLS because domain
+name isn't known (10.64.0.1 corresponds to currently connected mullvad
+server, different hostname depending on which server you're currently
+connected to). This is annoying because then then the fallbacks can't
+use TLS. Could hypothetically fix by specifying a particular host. This
+is doubly annoying because the mullvad doh.mullvad.net DNS servers only
+use TLS, so they can't be used as fallbacks.</li>
+</ul>
+<pre><code class="language-config">    forward-zone:
+        name: &quot;.&quot;
+        # https://mullvad.net/en/help/socks5-proxy/
+        forward-addr: 10.64.0.1
+        forward-addr: 1.1.1.1
+        forward-addr: 1.0.0.1
+</code></pre>
+<h2 id="unbound-1"><a class="header" href="#unbound-1">unbound</a></h2>
+<p>To enable DNSSEC for
+<a href="https://dnsprivacy.org/wiki/display/DP/DNS+Privacy+Clients#DNSPrivacyClients-Unbound">unbound</a>,
+follow the instructions
+<a href="https://nlnetlabs.nl/documentation/unbound/howto-anchor/">here</a>.</p>
+<p>Basically, to generate the <code>root.key</code> file at <code>/usr/local/etc/unbound</code> just run</p>
+<pre><code class="language-shell">sudo unbound-anchor
+</code></pre>
+<p>and to generate the <code>root.hints</code> file (which is not strictly necessary,
+as unbound comes with a default root.hints file, but if your package
+manager doesn't update as often, you can update it yourself) run</p>
+<pre><code class="language-shell">curl --output /usr/local/etc/unbound/root.hints https://www.internic.net/domain/named.cache
+</code></pre>
+<p>Unbound must be started with sudo to have permissions
+to bind to its port, so run with the following:</p>
+<pre><code class="language-shell">sudo brew services start unbound
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="conda"><a class="header" href="#conda">conda</a></h1>
+<ul>
+<li>install <a href="https://docs.conda.io/en/latest/miniconda.html">miniconda</a></li>
+</ul>
+<pre><code class="language-shell">paru -S miniconda3
+</code></pre>
+<ul>
+<li>lightweight installer for
+<a href="https://docs.conda.io/projects/conda/en/latest/">conda</a> that doesn't
+install as much as <a href="https://docs.anaconda.com/anaconda/">anaconda</a>
+(over 250 packages by default)</li>
+<li>or <a href="pkgs/tools/package-management//pkgs/tools/package-management/micromamba.html">micromamba</a>,
+extremely minimal and fast re-implementation of conda</li>
+<li>what they want you to do (and what the post-install message will say)</li>
+</ul>
+<pre><code class="language-shell">source /opt/miniconda3/etc/fish/conf.d/conda.fish
+</code></pre>
+<ul>
+<li>or if on bash/POSIX shell</li>
+</ul>
+<pre><code class="language-shell">source /opt/miniconda3/etc/profile.d/conda.sh
+</code></pre>
+<ul>
+<li>will add <code>conda</code> to <code>PATH</code>, to make changes permanent</li>
+</ul>
+<pre><code class="language-shell">conda init fish
+</code></pre>
+<ul>
+<li>or</li>
+</ul>
+<pre><code class="language-shell">conda init
+</code></pre>
+<ul>
+<li>but I don't necessarily want to have every shell startup be in (base)</li>
+<li>instead, comment out the addition to the configuration
+file and run the command manually when using conda</li>
+</ul>
+<pre><code class="language-shell">eval /opt/miniconda3/bin/conda &quot;shell.fish&quot; &quot;hook&quot; $argv | source
+</code></pre>
+<h2 id="terminals-database-is-inaccessible"><a class="header" href="#terminals-database-is-inaccessible">terminals database is inaccessible</a></h2>
+<ul>
+<li><a href="https://askubuntu.com/questions/988694/clear-command-terminals-database-is-inaccessible/1402408#1402408">ask ubuntu - clear command - terminals database is inaccessible</a></li>
+</ul>
+<pre><code>export TERMINFO=/usr/share/terminfo
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="micromamba"><a class="header" href="#micromamba">micromamba</a></h1>
+<ul>
+<li>re-implementation of <a href="pkgs/tools/package-management//pkgs/tools/package-management/conda.html">conda</a> in C++</li>
+<li>uses <code>libsolv</code>, library used by Red Hat's <code>dnf</code> and others (see
+<a href="https://mamba.readthedocs.io/en/latest/developer_zone/internals.html">internals</a>)</li>
+<li>pretty much drop-in replacement, just much faster</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="nix"><a class="header" href="#nix">nix</a></h1>
+<ul>
+<li>n.b.: this is a guide for using nix/entering nixos on archlinux</li>
+<li><a href="https://wiki.archlinux.org/title/Nix">arch wiki - nix</a></li>
+<li>install nix</li>
+</ul>
+<pre><code class="language-shell">pacman -S nix
+</code></pre>
+<ul>
+<li>start daemon (allows operations on nix store without <code>sudo</code>/root)</li>
+</ul>
+<pre><code class="language-shell">sudo systemctl enable nix-daemon.service
+sudo systemctl start  nix-daemon.service
+</code></pre>
+<ul>
+<li>add self to <code>nix-users</code></li>
+</ul>
+<pre><code class="language-shell">sudo gpasswd -a username nix-users
+</code></pre>
+<ul>
+<li>don't use channels because not reproducible, so don't do this</li>
+</ul>
+<pre><code class="language-shell">nix-channel --add https://nixos.org/channels/nixpkgs-unstable
+nix-channel --update
+</code></pre>
+<ul>
+<li><a href="https://nixos.org/manual/nix/stable/package-management/garbage-collection.html">nixos - garbage collection</a></li>
+</ul>
+<pre><code class="language-shell">nix-collect-garbage
+</code></pre>
+<ul>
+<li>enable flakes and new CLI interface by editing <code>~/.config/nix/nix.conf</code></li>
+</ul>
+<pre><code class="language-text">experimental-features = nix-command flakes
+</code></pre>
+<ul>
+<li><a href="https://nix-community.github.io/home-manager/">home-manager</a></li>
+</ul>
+<pre><code class="language-shell">nix run home-manager/master -- init --switch
+</code></pre>
+<ul>
+<li>problem:</li>
+</ul>
+<pre><code class="language-shell">home-manager switch
+nix-store --gc
+home-manager switch
+</code></pre>
+<ul>
+<li>
+<p>keeps clearing/re-downloading on every switch</p>
+</li>
+<li>
+<p>looking at the stores: nixpkgs and
+home-manager, precisely the inputs to the flake</p>
+</li>
+<li>
+<p>solution: use <a href="https://github.com/nix-community/nix-direnv">nix-direnv</a>
+to register flake inputs as gc root</p>
+</li>
+<li>
+<p><a href="https://nixos.org/manual/nixos/stable/index.html#sec-installing-from-other-distro">nixos manual</a></p>
+</li>
+</ul>
+<pre><code class="language-shell">nixos-generate-config --root /mnt
+</code></pre>
+<ul>
+<li>not risking normal build (overwriting bootloader), try <code>kexec</code> to prototype</li>
+<li><a href="https://wiki.archlinux.org/title/Kexec">arch wiki - kexec</a></li>
+</ul>
+<pre><code class="language-shell">pacman -S kexec-tools
+</code></pre>
+<ul>
+<li>flake template for <code>configuration.nix</code></li>
+</ul>
+<pre><code class="language-shell">nix flake new /etc/nixos -t github:nix-community/home-manager#nixos
+</code></pre>
+<pre><code class="language-shell">nix-build '&lt;nixpkgs/nixos&gt;' \
+    -I /nix/store/{hash}-nixpkgs \
+    --arg configuration ./configuration.nix \
+    --attr config.system.build.kexecTree
+</code></pre>
+<ul>
+<li>turn off <code>amdgpu</code> and <a href="https://wiki.archlinux.org/title/Kernel_mode_setting">kernel mode setting</a></li>
+<li><code>/etc/default/grub</code></li>
+</ul>
+<pre><code class="language-text">GRUB_CMDLINE_LINUX_DEFAULT=&quot;... quiet loglevel=3 ... nomodeset&quot;
+</code></pre>
+<ul>
+<li><code>/etc/mkinitcpio.conf</code></li>
+</ul>
+<pre><code class="language-text">MODULES=()
+</code></pre>
+<ul>
+<li>reload grub/initramfs, reboot, go into vt, run <code>sudo ./result/kexec-boot</code></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="pacman"><a class="header" href="#pacman">pacman</a></h1>
+<pre><code class="language-shell">sudo pacman -S pacman-contrib
+</code></pre>
+<ul>
+<li>TODO</li>
+</ul>
+<h2 id="reflector"><a class="header" href="#reflector">reflector</a></h2>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Reflector">arch wiki - reflector</a></li>
+<li><code>/etc/xdg/reflector/reflector.conf</code></li>
+</ul>
+<pre><code class="language-shell">sudo systemctl start reflector.service
+</code></pre>
+<ul>
+<li>or</li>
+</ul>
+<pre><code class="language-shell">reflector --latest 20 --protocol https --country us --sort rate --save /etc/pacman.d/mirrorlist
+</code></pre>
+<ul>
+<li>TODO</li>
+</ul>
+<h2 id="pacgraph"><a class="header" href="#pacgraph">pacgraph</a></h2>
+<ul>
+<li>TODO</li>
+</ul>
+<h2 id="aur-helper-paru"><a class="header" href="#aur-helper-paru">AUR helper [paru]</a></h2>
+<ul>
+<li><a href="https://github.com/Jguer/yay">yay</a></li>
+<li><a href="https://github.com/morganamilo/paru">paru</a></li>
+<li>if migrating from other AUR helper,</li>
+</ul>
+<pre><code class="language-shell">paru --gendb
+</code></pre>
+<ul>
+<li>TODO</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="browserpass"><a class="header" href="#browserpass">browserpass</a></h1>
+<ul>
+<li><a href="https://github.com/browserpass/browserpass-extension">browserpass</a></li>
+<li>install <a href="https://github.com/browserpass/browserpass-native">native app</a></li>
+</ul>
+<pre><code class="language-shell">pacman -S browserpass
+</code></pre>
+<ul>
+<li>install <a href="https://github.com/browserpass/browserpass-extension">firefox extension</a></li>
+</ul>
+<pre><code class="language-shell">pacman -S browserpass-firefox
+</code></pre>
+<ul>
+<li>install <a href="https://github.com/browserpass/browserpass-extension">chrome extension</a></li>
+</ul>
+<pre><code class="language-shell">paru -S browserpass-chrome
+</code></pre>
+<ul>
+<li>remember to quit and re-open chrome!</li>
+</ul>
+<h2 id="browserpass-1"><a class="header" href="#browserpass-1">browserpass</a></h2>
+<p>pass can be used to autofill username and password forms in the browser through
+the <a href="https://github.com/browserpass/browserpass-extension">browserpass</a>
+extension. It is installed in two parts, first, a native messaging host, and
+second, an extension for the browser.</p>
+<p>The <a href="https://github.com/browserpass/browserpass-native">native app</a>
+can be installed with</p>
+<pre><code class="language-shell">pacman -S browserpass
+</code></pre>
+<p>Install the <a href="https://github.com/browserpass/browserpass-extension">Firefox
+extension</a> with</p>
+<pre><code class="language-shell">pacman -S browserpass-firefox
+</code></pre>
+<p>Or the <a href="https://github.com/browserpass/browserpass-extension">Chrome
+extension</a> (AUR) with</p>
+<pre><code class="language-shell">paru -S browserpass-chrome
+</code></pre>
+<p>Remember to quit and re-open the browser after installing the extension.</p>
+<p>In order to use browserpass, the directory structure
+and file structure needs to be organized in a
+<a href="https://github.com/browserpass/browserpass-extension#organizing-password-store">particular way</a>.
+This was a bit of pain to migrate from whatever ad-hoc format I was using
+previously, but it didn't take too long. I recommend putting the password
+on the first line with no prefix so things like <code>pass -c file</code> still work,
+and specifying the username with <code>username: ...</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="gnupg"><a class="header" href="#gnupg">gnupg</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/GnuPG">arch wiki - GnuPG</a></li>
+<li>install</li>
+</ul>
+<pre><code class="language-shell">pacman -S gnupg
+</code></pre>
+<ul>
+<li>set <code>pinentry</code> program (should use something graphical for background)</li>
+</ul>
+<pre><code class="language-shell">pacman -Ql pinentry | grep /usr/bin/
+</code></pre>
+<ul>
+<li>also add <code>ssh</code> support</li>
+<li>edit <code>~/.gnupg/gpg-agent.conf</code></li>
+</ul>
+<pre><code class="language-config"># set SSH_AUTH_SOCK to use gpg-agent instead of ssh-agent
+enable-ssh-support
+
+# use alternative pinentry
+pinentry-program /usr/bin/pinentry-qt
+</code></pre>
+<ul>
+<li>copy over old data (private keys, revocation certificates)</li>
+</ul>
+<h2 id="mullvad-1"><a class="header" href="#mullvad-1">mullvad</a></h2>
+<ul>
+<li>can't import keys from keyserver with
+<a href="pkgs/tools/security//pkgs/tools/networking/mullvad.html">mullvad</a>!</li>
+</ul>
+<h2 id="yubikey"><a class="header" href="#yubikey">yubikey</a></h2>
+<ul>
+<li>see <a href="pkgs/tools/security//pkgs/tools/misc/yubikey-manager.html">yubikey</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="pass"><a class="header" href="#pass">pass</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Pass">arch wiki - pass</a></li>
+<li>install <a href="https://www.passwordstore.org/">pass</a></li>
+</ul>
+<pre><code class="language-shell">pacman -S pass
+</code></pre>
+<ul>
+<li>if setup <a href="pkgs/tools/security/pass//pkgs/tools/security/gnupg.html">PGP</a> and
+<a href="pkgs/tools/security/pass//pkgs/tools/misc/yubikey-manager.html">yubikey</a>, should just work</li>
+<li>comes with dmenu selection</li>
+</ul>
+<pre><code class="language-shell">passmenu
+</code></pre>
+<h2 id="securing"><a class="header" href="#securing">securing</a></h2>
+<ul>
+<li>set <code>PASSWORD_STORE_SIGNING_KEY</code></li>
+</ul>
+<pre><code class="language-fish">set -gx PASSWORD_STORE_SIGNING_KEY &quot;EA6E27948C7DBF5D0DF085A10FBC2E3BA99DD60E&quot;
+</code></pre>
+<ul>
+<li>this requires a signature on <code>.gpg-id</code> and non-system extensions</li>
+<li>if, for example, using remote git to track and pull update to <code>.gpg-id</code>
+or malicious extension, won't be used because signature breaks</li>
+<li>generate signature</li>
+</ul>
+<pre><code class="language-shell">gpg --detach-sign .gpg-id
+</code></pre>
+<ul>
+<li>do the same for any non-system extensions (not recommended)</li>
+<li>enable non-system extensions (if extension isn't packaged, e.g.)</li>
+</ul>
+<pre><code class="language-fish">set -gx PASSWORD_STORE_ENABLE_EXTENSIONS &quot;true&quot;
+</code></pre>
+<h2 id="pass-otp"><a class="header" href="#pass-otp">pass-otp</a></h2>
+<ul>
+<li>see <a href="pkgs/tools/security/pass//pkgs/tools/security/pass/extensions/otp.html">pass-otp</a></li>
+</ul>
+<h2 id="browserpass-2"><a class="header" href="#browserpass-2">browserpass</a></h2>
+<ul>
+<li>see <a href="pkgs/tools/security/pass//pkgs/tools/security/browserpass.html">browserpass</a></li>
+</ul>
+<h2 id="git-credential-manager-1"><a class="header" href="#git-credential-manager-1">git-credential-manager</a></h2>
+<ul>
+<li>see
+<a href="pkgs/tools/security/pass//pkgs/applications/version-management/git-credential-manager.html">git credential manager</a></li>
+</ul>
+<h2 id="pass-1"><a class="header" href="#pass-1">pass</a></h2>
+<p><a href="https://www.passwordstore.org/">pass</a> is a simple
+GPG-based command-line password manger. To install, run</p>
+<pre><code class="language-shell">pacman -S pass
+</code></pre>
+<p>Note that the archlinux package comes with dmenu integration, with the binary</p>
+<pre><code class="language-shell">passmenu
+</code></pre>
+<h3 id="setting-a-signing-key"><a class="header" href="#setting-a-signing-key">Setting a signing key</a></h3>
+<p>In order to set a signing key, use the
+environmental variable <code>PASSWORD_STORE_SIGNING_KEY</code></p>
+<pre><code class="language-fish">set -gx PASSWORD_STORE_SIGNING_KEY &quot;EA6E27948C7DBF5D0DF085A10FBC2E3BA99DD60E&quot;
+</code></pre>
+<p>Setting this is in order to require a signature on <code>.gpg-id</code> and non-system
+extensions. For example, if you are using a remote git server to track your
+password store; if you pull an update to <code>.gpg-id</code> that contains a different
+key from the one you usually use, you won't encrypt new passwords to the
+malicious key because the signature will break. New local extensions or
+modifications to existing extensions won't happen for the same reason.</p>
+<p>In order to generate a signature, run</p>
+<pre><code class="language-shell">gpg --detach-sign .gpg-id
+</code></pre>
+<p>Do the same for any non-system extensions. However, it's probably more secure
+to install extensions with your system's package manager, since these packages
+will be automatically updated and also signed by the package maintainer. If an
+extension isn't packaged, you can enable non-system extensions with</p>
+<pre><code class="language-fish">set -gx PASSWORD_STORE_ENABLE_EXTENSIONS &quot;true&quot;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="pass-otp-1"><a class="header" href="#pass-otp-1">pass-otp</a></h1>
+<ul>
+<li>install <a href="https://github.com/tadfisher/pass-otp">pass-otp</a></li>
+</ul>
+<pre><code class="language-shell">pacman -S pass-otp
+</code></pre>
+<ul>
+<li>automatically updates and checks gpg signature</li>
+<li>probably more secure than copying to <code>.extensions</code> folder and signing</li>
+</ul>
+<h2 id="totp-2fa-pass-otp"><a class="header" href="#totp-2fa-pass-otp">TOTP 2fa (pass-otp)</a></h2>
+<p>With the <a href="https://github.com/tadfisher/pass-otp">pass-otp</a> extension, pass
+can generate time-based one-time passwords (TOTP). These are commonly used
+in two-factor authentication (the 6 digit codes that change every set period
+of time, usually every 30 seconds). Usually these are loaded into an app
+like Google Authenticator by scanning a QR code. However, one can usually
+show the secret directly, which can be stored in pass. Note that storing
+two-factor secrets in pass along with your passwords kind of defeats the
+point of two-factor authentication; stronger two-factor authentication can
+be achieved with hardware tokens like <a href="https://www.yubico.com/">yubikeys</a>.</p>
+<p>pass-otp can be installed with</p>
+<pre><code class="language-shell">pacman -S pass-otp
+</code></pre>
+<p>A TOTP URI is then added to the password file in the following format:</p>
+<pre><code class="language-text">otpauth://totp/SERVICE:USERNAME?secret=AAAAAAAAAAAAAAAA&amp;issuer=SERVICE
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="tectonic-latex-compiler"><a class="header" href="#tectonic-latex-compiler">tectonic (LaTeX compiler)</a></h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/TeX_Live">arch wiki - TeX Live</a></li>
+<li>really the only required package</li>
+</ul>
+<pre><code class="language-shell">pacman -S texlive-core
+</code></pre>
+<ul>
+<li>install a lot of TeX live packages</li>
+</ul>
+<pre><code class="language-shell">pacman -S texlive-most
+pacman -S texlive-lang
+</code></pre>
+<ul>
+<li>install <a href="https://www.ctan.org/pkg/biber?lang=en">biber</a> (biblatex backend)</li>
+</ul>
+<pre><code class="language-shell">pacman -S biber
+</code></pre>
+<ul>
+<li>tlmgr (tex live package manager) is broken, can install alternative</li>
+</ul>
+<pre><code class="language-shell">paru -S tllocalmgr-git
+</code></pre>
+<ul>
+<li>but let's be real, how often do you install something with <code>tlmgr</code>?</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="pace"><a class="header" href="#pace">PACE</a></h1>
+<ul>
+<li>project directory</li>
+</ul>
+<pre><code class="language-text">~/p-fschaefer7-0
+</code></pre>
+<ul>
+<li>home directory</li>
+</ul>
+<pre><code class="language-text">/storage/home/hcoda1/6/shuan7
+</code></pre>
+<ul>
+<li>scratch (temp)</li>
+</ul>
+<pre><code class="language-text">~/scratch
+</code></pre>
+<ul>
+<li><a href="https://docs.pace.gatech.edu/gettingStarted/commands/">helpful commands</a></li>
+</ul>
+<h2 id="logging-in"><a class="header" href="#logging-in">logging in</a></h2>
+<ul>
+<li>need to run GT <a href="https://docs.pace.gatech.edu/gettingStarted/vpn/">VPN</a>
+(GlobalProtect)</li>
+<li><a href="https://docs.pace.gatech.edu/phoenix_cluster/logon_phnx/">logging in</a>:</li>
+<li>(kitty sets <code>$TERM</code> wrong)</li>
+</ul>
+<pre><code class="language-shell">TERM=xterm-color ssh shuan7@login-phoenix.pace.gatech.edu
+</code></pre>
+<ul>
+<li>(GT password)</li>
+<li>to see headnodes</li>
+</ul>
+<pre><code class="language-shell">pace-whoami
+</code></pre>
+<h2 id="transferring-files"><a class="header" href="#transferring-files">transferring files</a></h2>
+<ul>
+<li><a href="https://docs.pace.gatech.edu/storage/globus/">transferring files</a></li>
+<li>just use <code>scp</code>/<code>rsync</code>...</li>
+</ul>
+<h2 id="submitting-jobs"><a class="header" href="#submitting-jobs">submitting jobs</a></h2>
+<ul>
+<li><a href="https://docs.pace.gatech.edu/phoenix_cluster/slurm_guide_phnx/">submitting jobs</a></li>
+<li>account</li>
+</ul>
+<pre><code class="language-text">gts-fschaefer7
+</code></pre>
+<ul>
+<li>see accounts</li>
+</ul>
+<pre><code class="language-shell">pace-quota
+</code></pre>
+<ul>
+<li>see queue status</li>
+</ul>
+<pre><code class="language-shell">pace-check-queue -c inferno
+</code></pre>
+<ul>
+<li>make
+<a href="https://docs.pace.gatech.edu/phoenix_cluster/slurm_conversion_phnx/">slurm</a>
+file:</li>
+</ul>
+<pre><code class="language-bash">#!/bin/bash
+#SBATCH -Jcknn-cg                 # job name
+#SBATCH --account=gts-fschaefer7  # charge account
+#SBATCH --nodes=1                 # number of nodes and cores per node required
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=8
+#SBATCH --mem-per-cpu=22gb        # memory per core
+#SBATCH -t48:00:00                # duration of the job (hh:mm:ss)
+#SBATCH -qinferno                 # QOS name
+#SBATCH -ojobs/cg_%j.out          # combined output and error messages file
+cd $SLURM_SUBMIT_DIR              # change to working directory
+
+# load modules
+module load anaconda3
+
+# enter conda virtual environment
+conda activate ./venv
+
+# run commands
+lscpu
+lsmem
+
+time srun python -m experiments.cg
+</code></pre>
+<ul>
+<li>submit job to scheduler (two queues: <code>inferno</code> and <code>embers</code>)</li>
+</ul>
+<pre><code class="language-bash">sbatch job.sbatch
+</code></pre>
+<ul>
+<li>
+<p>job inherits current directory, have to run <code>sbatch</code> from proper directory!</p>
+</li>
+<li>
+<p>submitted job status</p>
+</li>
+</ul>
+<pre><code class="language-shell">squeue -u shuan7
+</code></pre>
+<h2 id="interactive-session"><a class="header" href="#interactive-session">interactive session</a></h2>
+<ul>
+<li>request <a href="https://docs.pace.gatech.edu/phoenix_cluster/slurm_guide_phnx/#interactive-jobs">interactive session</a>:</li>
+</ul>
+<pre><code class="language-bash">salloc -A gts-fschaefer7 -q inferno -N 1 --ntasks-per-node=4 -t 1:00:00
+</code></pre>
+<h2 id="software"><a class="header" href="#software">software</a></h2>
+<h3 id="modules"><a class="header" href="#modules">modules</a></h3>
+<ul>
+<li><a href="https://docs.pace.gatech.edu/software/modules/">modules</a></li>
+</ul>
+<h3 id="conda-1"><a class="header" href="#conda-1">conda</a></h3>
+<ul>
+<li><a href="https://docs.pace.gatech.edu/software/anacondaEnv/">conda</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
