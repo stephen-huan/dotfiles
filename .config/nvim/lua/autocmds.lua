@@ -39,3 +39,33 @@ vim.api.nvim_create_autocmd("TermOpen", {
         vim.opt_local.signcolumn = "no"
     end,
 })
+-- file-specific highlighting
+vim.api.nvim_create_autocmd("FileType", {
+    group = "vimrc",
+    pattern = { "fish", "sh" },
+    callback = function(args)
+        vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
+            group = vim.api.nvim_create_augroup(
+                string.format("polar.shell.enter<buffer=%d>", args.buf),
+                { clear = true }
+            ),
+            buffer = args.buf,
+            callback = function()
+                -- set alternative highlight (still falls back to global)
+                local ns = vim.api.nvim_get_namespaces()["polar.shell"]
+                vim.api.nvim_win_set_hl_ns(0, ns)
+            end,
+        })
+        vim.api.nvim_create_autocmd({ "BufLeave" }, {
+            group = vim.api.nvim_create_augroup(
+                string.format("polar.shell.leave<buffer=%d>", args.buf),
+                { clear = true }
+            ),
+            buffer = args.buf,
+            callback = function()
+                -- return to original global highlight
+                vim.api.nvim_win_set_hl_ns(0, 0)
+            end,
+        })
+    end,
+})
