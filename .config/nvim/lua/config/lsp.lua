@@ -97,10 +97,12 @@ local packages = {
         },
         linter = {
             -- https://github.com/mpeterv/luacheck
+            --[[
             {
                 package = "luacheck",
                 name = "luacheck",
             },
+            --]]
             -- https://github.com/Kampfkarren/selene
             {
                 package = "selene",
