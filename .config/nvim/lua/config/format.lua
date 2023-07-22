@@ -1,5 +1,5 @@
 -- utilities for creating configurations
-local util = require "formatter.util"
+-- local util = require "formatter.util"
 local packages = require("config.lsp").packages
 
 -- register formatters for each filetype

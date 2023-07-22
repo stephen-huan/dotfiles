@@ -272,9 +272,22 @@ for _, language in pairs(packages) do
     end
 end
 
+local on_attach_semantic = function(client, bufnr)
+    local tokens = (
+        client.server_capabilities.semanticTokensProvider.legend.tokenTypes
+    )
+    for index, token in pairs(tokens) do
+        -- fixes TODO, covered by most nvim-treesitter's @comment query anyways
+        if token == "comment" then
+            tokens[index] = nil
+        end
+    end
+    on_attach(client, bufnr)
+end
+
 -- adjust lsp configuration: https://github.com/neovim/nvim-lspconfig/
 lspconfig.lua_ls.setup {
-    on_attach = on_attach,
+    on_attach = on_attach_semantic,
     capabilities = capabilities,
     settings = {
         Lua = {
@@ -299,9 +312,9 @@ lspconfig.lua_ls.setup {
     },
 }
 
--- https://github.com/oxalica/nil/blob/main/dev/nvim-lsp.nix
+-- https://github.com/oxalica/nil/blob/main/docs/configuration.md
 require("lspconfig").nil_ls.setup {
-    on_attach = on_attach,
+    on_attach = on_attach_semantic,
     capabilities = capabilities,
     settings = {
         ["nil"] = {
