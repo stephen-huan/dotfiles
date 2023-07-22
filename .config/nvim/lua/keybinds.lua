@@ -16,23 +16,7 @@ vim.keymap.set(modes, "<c-j>", "<cmd>qa!<cr>")
 -- new tab
 vim.keymap.set("n", "<c-n>", "<cmd>tabnew<cr>")
 -- show highlight under cursor
-vim.keymap.set("", "<c-h>h", function()
-    local colorID = vim.fn.synID(vim.fn.line ".", vim.fn.col ".", 1)
-    local transID = vim.fn.synID(vim.fn.line ".", vim.fn.col ".", 0)
-    local hi = vim.fn.synIDattr(colorID, "name")
-    local trans = vim.fn.synIDattr(transID, "name")
-    local lo = vim.fn.synIDattr(vim.fn.synIDtrans(colorID), "name")
-    local result = vim.treesitter.get_captures_at_cursor(0)
-    print(
-        string.format(
-            "hi<%s> trans<%s> lo<%s> tree-sitter: %s",
-            hi,
-            trans,
-            lo,
-            vim.inspect(result)
-        )
-    )
-end)
+vim.keymap.set("", "<c-h>h", "<cmd>Inspect<cr>")
 
 -- leader shortcuts
 
