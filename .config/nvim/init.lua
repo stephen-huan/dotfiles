@@ -1,5 +1,5 @@
 -- needs to be before the package is loaded
-vim.g.polyglot_disabled = { "sensible", "ftdetect" }
+vim.g.polyglot_disabled = { "sensible", "ftdetect", "python" }
 require "plugins"
 require "options"
 require "keybinds"
