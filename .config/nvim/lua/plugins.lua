@@ -358,8 +358,7 @@ return require("packer").startup(function(use)
         end,
     }
     -- cython
-    -- use "lambdalisue/vim-cython-syntax"
-    use "stephen-huan/vim-cython-syntax"
+    use "lambdalisue/vim-cython-syntax"
     -- julia
     use "JuliaEditorSupport/julia-vim"
     -- lean
