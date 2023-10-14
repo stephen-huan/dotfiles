@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # script to update dependencies
 
 cargo install mdbook

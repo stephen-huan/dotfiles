@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # script to build the site locally
 
 site_dir="book"

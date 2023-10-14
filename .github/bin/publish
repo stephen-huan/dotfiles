@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # script to deploy the site to Cloudflare pages
 
 site_dir="book"
