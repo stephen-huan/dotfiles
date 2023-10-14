@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # ran by display manager before window manager
 
 # automatically determine monitor layout
@@ -14,7 +14,7 @@ xset r rate 225 25
 clipster --daemon &
 
 # ime
-ibus-daemon --daemonize --replace --xim
+QT_ENABLE_HIGHDPI_SCALING=0 ibus-daemon --daemonize --replace --xim
 
 export GTK_IM_MODULE=ibus
 export QT_IM_MODULE=ibus
