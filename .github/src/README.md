@@ -2,8 +2,8 @@
 
 Collection of configuration files ("dotfiles") on [NixOS](./os/nixos/).
 
-Files are managed with [home-manager](./os/nixos/nixos/home-manager.md),
-see [dotfiles.md](dotfiles.md) for other dotfile systems.
+Files are managed with [home-manager](/os/nixos/nixos/home-manager.md),
+see [dotfiles management](/dotfiles.md) for other dotfile systems.
 
 Quickstart:
 
