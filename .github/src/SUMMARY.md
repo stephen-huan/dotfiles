@@ -73,6 +73,7 @@
     - [bluez](./pkgs/os-specific/linux/bluez.md)
     - [iwd](./pkgs/os-specific/linux/iwd.md)
     - [plymouth](./pkgs/os-specific/linux/plymouth.md)
+    - [tuxedo-keyboard](./pkgs/os-specific/linux/tuxedo-keyboard.md)
 - [servers]()
   - [x11]()
     - [xorg](./pkgs/servers/x11/xorg.md)
