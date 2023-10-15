@@ -6,7 +6,7 @@ n.b.: this is a guide for using nix/entering nixos on archlinux
 - install nix
 
 ```shell
-pacman -S ix
+pacman -S nix
 ```
 
 - start daemon (allows operations on nix store without `sudo`/root)

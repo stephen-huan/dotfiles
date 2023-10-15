@@ -8,4 +8,3 @@ versions are pinned in `flake.lock`, like the package managers for many
 programming languages, enabling easy updates of dependencies. In addition,
 the project's interface is also declared in `flake.nix`, creating a unified
 experience for interacting with any Flake project.
-

@@ -42,4 +42,3 @@ Note that commands need to be fully qualified as the path is different.
   chroot /mnt /nix/var/nix/profiles/system/activate
   chroot /mnt /run/current-system/sw/bin/bash
   ```
-

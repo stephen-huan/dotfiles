@@ -14,7 +14,7 @@
 ## tuxedo specifics
 
 - [arch wiki -
-  Tuxedo Pulse 15](https://wiki.archlinux.org/title/Tuxedo_Pulse_15)
+  Tuxedo Pulse 15](https://wiki.archlinux.org/title/TUXEDO_Pulse_15)
 - install keyboard control
 
 ```shell
