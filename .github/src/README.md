@@ -1,19 +1,13 @@
 # dotfiles
 
-Collection of configuration files ("dotfiles") on [archlinux](./os/arch/).
+Collection of configuration files ("dotfiles") on [NixOS](./os/nixos/).
 
-Files are managed with [yadm](https://yadm.io/),
-see [dotfiles.md](dotfiles.md) for
-other dotfile systems and how to use `yadm`.
+Files are managed with [home-manager](./os/nixos/nixos/home-manager.md),
+see [dotfiles.md](dotfiles.md) for other dotfile systems.
 
 Quickstart:
 
 ```shell
-cd ~
-# make sure yadm is installed
-sudo pacman -S yadm
-yadm clone https://github.com/stephen-huan/dotfiles
-# if yadm does not prompt automatically
-yadm bootstrap
-yadm status
+git clone https://github.com/stephen-huan/dotfiles ~/.config/home-manager
+sudo nixos-rebuild switch
 ```

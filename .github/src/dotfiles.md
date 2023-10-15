@@ -7,7 +7,7 @@ See [dotfiles.github.io](https://dotfiles.github.io/).
 [Home manager](https://nix-community.github.io/home-manager/) is a system for
 managing user files with tools from the [Nix](https://nixos.org/) ecosystem.
 In particular, it allows packages to be installed declaratively with Nix and
-exposes Nix modules for configuration. As a result, in inherits the benefits
+exposes Nix modules for configuration. As a result, it inherits the benefits
 of Nix (reproducibility, safe rollbacks, atomic transactions, etc.).
 
 The practical implication is that configuration files are now stored

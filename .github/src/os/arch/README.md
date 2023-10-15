@@ -39,7 +39,7 @@ echo 127 | sudo tee /sys/class/backlight/amdgpu_bl0/brightness
 echo 0 | sudo tee /sys/devices/platform/tuxedo_keyboard/leds/white:kbd_backlight/brightness
 ```
 
-## UEFI
+## uefi
 
 - enter by holding `F2` on boot
 - or by selecting corresponding entry in GRUB
@@ -68,9 +68,9 @@ arch-chroot /mnt
 4. display manager: [sddm](/pkgs/applications/display-managers/sddm.md)
 5. window manager: [i3](/pkgs/applications/window-managers/i3.md)
 
-## Miscellaneous
+## miscellaneous
 
-### USB
+### usb
 
 - [arch wiki - USB storage devices](https://wiki.archlinux.org/title/USB_storage_devices)
 - find name of device with `lsblk -f`
@@ -86,7 +86,7 @@ sudo mount /dev/sda2 /mnt
 sudo umount /mnt
 ```
 
-### PDF viewers
+### pdf viewers
 
 - [arch wiki - PDF, PS and DjVu](https://wiki.archlinux.org/title/PDF,_PS_and_DjVu)
 - [sioyek](/pkgs/applications/misc/sioyek.md) or
@@ -174,7 +174,7 @@ FONT=Lat2-Terminus16
 pacman -S terminus-font
 ```
 
-### Proper naming
+### proper naming
 
 - [arch wiki - arch
   terminology](https://wiki.archlinux.org/title/Arch_terminology#Arch_Linux)

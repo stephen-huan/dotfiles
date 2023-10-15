@@ -47,7 +47,7 @@ vulnerabilities](https://lwn.net/Vulnerabilities/20249/). See my hardened
 [init.lua](https://github.com/stephen-huan/dotfiles/blob/master/.config/nvim/init-private.lua)
 which can be used with:
 
-```shell
+```sh
 /usr/bin/nvim --clean --noplugin -nu ~/.config/nvim/init-private.lua "$@"
 ```
 
@@ -56,7 +56,7 @@ for `EDITOR`. The commands in `init.lua` were based on this
 [Stack Exchange](https://vi.stackexchange.com/questions/6177/).
 For posterity, here is a vim-compatible version.
 
-```vim script
+```vim
 " pass will automatically do some of this, even with no configuration
 " https://git.zx2c4.com/password-store/tree/contrib/vim/redact_pass.vim
 
