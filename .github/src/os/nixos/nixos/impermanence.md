@@ -69,6 +69,15 @@ their account. The configuration will warn on rebuild, however.
 warning: password file ‘’ does not exist
 ```
 
+Generate password with [yescrypt](https://www.openwall.com/yescrypt/)
+hash function, now
+[default](https://archlinux.org/news/changes-to-default-password-hashing-algorithm-and-umask-settings/)
+on archlinux (and for `mkpasswd`).
+
+```sh
+mkpasswd --method=yescrypt "$(pass encryption/tuxedo/password)" > root.yescrypt
+```
+
 See also [reddit](https://www.reddit.com/r/NixOS/comments/o1er2p/),
 impermanence [issue
 #120](https://github.com/nix-community/impermanence/issues/120).
