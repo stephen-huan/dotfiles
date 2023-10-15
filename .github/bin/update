@@ -3,4 +3,7 @@
 
 cargo install mdbook
 npm update --save
+rm -f package-lock.json
+rm -rf node_modules
+node2nix --development --nodejs-18
 

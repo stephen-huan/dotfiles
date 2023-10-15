@@ -1,5 +1,6 @@
 node_modules
 katex.min.css
+theme/highlight.js
 # mdbook template files
 # book/404.html
 book/ayu-highlight.css

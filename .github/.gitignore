@@ -1,3 +1,5 @@
 node_modules
 book
 .lycheecache
+.direnv
+_drafts
