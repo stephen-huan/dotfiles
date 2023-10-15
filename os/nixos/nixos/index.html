@@ -3,7 +3,7 @@
   <head>
     <!-- Book generated using mdBook -->
     <meta charset="UTF-8" />
-    <title>globalprotect-openconnect - dotfiles</title>
+    <title>NixOS - dotfiles</title>
 
     <!-- Custom HTML head -->
 
@@ -125,7 +125,7 @@
                   >
                 </li>
                 <li class="chapter-item expanded">
-                  <a href="../../../os/nixos/nixos/index.html"
+                  <a href="../../../os/nixos/nixos/index.html" class="active"
                     ><strong aria-hidden="true">2.3.</strong> NixOS</a
                   >
                 </li>
@@ -664,7 +664,6 @@
                     <li class="chapter-item expanded">
                       <a
                         href="../../../pkgs/tools/networking/globalprotect-openconnect.html"
-                        class="active"
                         ><strong aria-hidden="true">11.4.3.</strong>
                         globalprotect-openconnect</a
                       >
@@ -923,7 +922,7 @@
                 <i id="git-repository-button" class="fa fa-code-fork"></i>
               </a>
               <a
-                href="https://github.com/stephen-huan/dotfiles/edit/master/src/pkgs/tools/networking/globalprotect-openconnect.md"
+                href="https://github.com/stephen-huan/dotfiles/edit/master/src/os/nixos/nixos/README.md"
                 title="Suggest an edit"
                 aria-label="Suggest an edit"
               >
@@ -966,48 +965,229 @@
 
           <div id="content" class="content">
             <main>
-              <h1 id="globalprotect-openconnect">
-                <a class="header" href="#globalprotect-openconnect"
-                  >globalprotect-openconnect</a
+              <h1 id="nixos"><a class="header" href="#nixos">NixOS</a></h1>
+              <p>
+                There is a search engine for
+                <a href="https://search.nixos.org/options">options</a>.
+              </p>
+              <h2 id="writing-modules">
+                <a class="header" href="#writing-modules">writing modules</a>
+              </h2>
+              <p>
+                Tips for writing modules can be found at
+                <a href="./modules.html">modules</a>.
+              </p>
+              <h2 id="testing-configuration">
+                <a class="header" href="#testing-configuration"
+                  >testing configuration</a
                 >
-              </h1>
-              <ul>
-                <li>
-                  if using network manager, install package
-                  <code>networkmanager-openconnect</code>, unfortunately I am
-                  using <a href="/pkgs/os-specific/linux/iwd.html">iwd</a>
-                </li>
-                <li>
-                  can use
-                  <a href="https://github.com/yuezk/GlobalProtect-openconnect"
-                    >GlobalProtect-openconnect</a
-                  >
-                  or
-                  <a href="https://github.com/dlenski/gp-saml-gui"
-                    >gp-saml-gui</a
-                  >
-                  to do web login
-                </li>
-                <li>
-                  surprisingly enough, GlobalProtect-openconnect is on official
-                  repositories
-                </li>
-              </ul>
-              <pre><code class="language-shell">pacman -S globalprotect-openconnect
-</code></pre>
-              <ul>
-                <li>run</li>
-              </ul>
-              <pre><code class="language-shell">gpclient
-</code></pre>
-              <ul>
-                <li>enter <code>vpn.gatech.edu</code> for portal address</li>
-                <li>doesn't work with proprietary 2fa</li>
-              </ul>
-              <pre><code class="language-text">Gateway authentication failed
+              </h2>
+              <p>
+                I couldn't get
+                <a
+                  href="https://nixos.org/manual/nix/stable/command-ref/nix-instantiate"
+                  ><code>nix-instantiate --eval</code></a
+                >
+                to play well with flakes, so I use the following setup.
+              </p>
+              <p>
+                Although I don't usually use a REPL for most languages (python,
+                julia, e.g.), preferring file-based development, unfortunately I
+                couldn't find a more ergonomic setup than using the
+                <a
+                  href="https://aldoborrero.com/posts/2022/12/02/learn-how-to-use-the-nix-repl-effectively/"
+                  >REPL</a
+                >.
+              </p>
+              <p>
+                I wrap
+                <a
+                  href="https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-repl"
+                  ><code>nix repl</code></a
+                >
+                with a shell script like
+              </p>
+              <pre><code class="language-sh">#!/bin/sh
 
-Unknown response for gateway
-prelogin interface.
+nix repl --file &quot;$(dirname &quot;$0&quot;)/repl.nix&quot;
+</code></pre>
+              <p>
+                that loads a <code>repl.nix</code> placed in the same directory.
+              </p>
+              <pre><code class="language-nix">let
+  hostname = &quot;&lt;hostname&gt;&quot;;
+  flake = builtins.getFlake &quot;/home/&lt;user&gt;/.config/home-manager&quot;;
+in
+{
+  inherit flake;
+  ${hostname} = flake.nixosConfigurations.${hostname};
+}
+</code></pre>
+              <p>This can be then used like</p>
+              <pre><code class="language-nix">nix-repl&gt; &lt;hostname&gt;.config.
+</code></pre>
+              <p>
+                and press <code>&lt;tab&gt;</code> to see completions.
+                <code>:p</code> can be used to force evaluation.
+              </p>
+              <p>
+                If I have something I want to inspect over and over again, I use
+                a wrapper of
+                <a
+                  href="https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-eval"
+                  >nix eval</a
+                >
+              </p>
+              <pre><code class="language-sh">nix eval &quot;.#nixosConfigurations.$(hostname)&quot; --apply &quot;$(hostname): $1&quot;
+</code></pre>
+              <p>like so.</p>
+              <pre><code class="language-shell">nixos-eval &quot;&lt;hostname&gt;.config.system.activationScripts.usrbinenv&quot;
+</code></pre>
+              <h2 id="updating">
+                <a class="header" href="#updating">updating</a>
+              </h2>
+              <p>
+                Simple script to make sure <code>/boot</code> is mounted before
+                updating.
+              </p>
+              <pre><code class="language-sh">#!/bin/sh
+
+if [ ! &quot;$(findmnt /boot)&quot; ]; then
+    sudo mkdir --parents /boot
+    sudo mount --onlyonce /dev/nvme0n1p1 /boot
+fi
+sudo nixos-rebuild switch
+</code></pre>
+              <p><code>nixos-rebuild</code> has a few possible commands.</p>
+              <ul>
+                <li><code>switch</code>: activate and make boot default</li>
+                <li><code>boot</code>: make boot default but don't activate</li>
+                <li><code>test</code>: activate but don't make boot default</li>
+                <li>
+                  <code>build</code>: neither activate nor make boot default
+                  <ul>
+                    <li>
+                      the result is a symlink placed in <code>./result</code>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              <h2 id="miscellaneous">
+                <a class="header" href="#miscellaneous">miscellaneous</a>
+              </h2>
+              <h3 id="binsh"><a class="header" href="#binsh">/bin/sh</a></h3>
+              <p>
+                Having <code>/bin/sh</code> is technically an impurity as
+                applications can reference it without knowing the exact version.
+                However, it's required to do <code>system()</code> calls in
+                <a href="https://man7.org/linux/man-pages/man3/system.3.html"
+                  >libc</a
+                >, so it can't be easily disabled entirely. This can cause
+                <a href="https://github.com/NixOS/nixpkgs/issues/1424"
+                  >issues</a
+                >
+                with
+                <a href="https://github.com/NixOS/nix/issues/6081"
+                  >reproducibility</a
+                >
+                but progress in fixing this seems to have
+                <a href="https://github.com/NixOS/nixpkgs/pull/4998">stalled</a
+                >.
+              </p>
+              <p>
+                (see also:
+                <a href="https://discourse.nixos.org/t/5673"
+                  >NixOS Discourse - Add /bin/bash to avoid unnecessary pain</a
+                >,
+                <a href="https://nixos.wiki/wiki/Command_Shell"
+                  >NixOS Wiki - Command Shell</a
+                >)
+              </p>
+              <p>
+                I think the cleanest thing to do is to use the default sandbox
+                shell provided in the default
+                <a
+                  href="https://github.com/NixOS/nix/blob/d070d8b7460f412a657745698dba291c66792402/flake.nix#L128-L130"
+                  >stdenv</a
+                >,
+                <a
+                  href="https://github.com/NixOS/nixpkgs/blob/master/pkgs/os-specific/linux/busybox/sandbox-shell.nix"
+                  >currently</a
+                >
+                a statically linked ash shell from
+                <a href="https://www.busybox.net/">busybox</a>. The reasoning
+                being that if <code>/bin/sh</code> matches the one used at
+                build-time, there's less chance of a runtime error due to
+                possible incompatibility.
+              </p>
+              <pre><code class="language-nix">environment.binsh = &quot;${pkgs.busybox-sandbox-shell}/bin/busybox&quot;;
+</code></pre>
+              <p>
+                It does
+                <a
+                  href="https://github.com/NixOS/nixpkgs/blob/b3f4040512b360397bb8989a85776335ff3c2847/modules/config/shells-environment.nix#L140-L150"
+                  >warn</a
+                >
+                about changing from bash, but considering it's over 10 years
+                old, it's probably fine now.
+              </p>
+              <h3 id="usrbinenv">
+                <a class="header" href="#usrbinenv">/usr/bin/env</a>
+              </h3>
+              <p>
+                Like <code>/bin/sh</code>, <code>/usr/bin/env</code> is an
+                <a href="https://github.com/NixOS/nix/issues/1205">impurity</a>
+                that does not exist at
+                <a href="https://github.com/NixOS/nixpkgs/issues/6227"
+                  >build time</a
+                >.
+              </p>
+              <p>
+                Unlike <code>sh</code>, it can be disabled relatively
+                <a
+                  href="https://github.com/NixOS/nixpkgs/blob/df82096af06deaa8ddd53accaaa488474575b6d6/nixos/modules/system/activation/activation-script.nix#L97-L109"
+                  >easily</a
+                >.
+              </p>
+              <pre><code class="language-nix">environment.usrbinenv = null;
+</code></pre>
+              <p>
+                This can cause issues for unpatched software that rely on
+                <code>env</code>, e.g. <code>prettier</code> installed with
+                <code>npm</code>.
+              </p>
+              <p>
+                There are (currently) also a few minor spurious errors that
+                should be fixed, see this
+                <a href="https://github.com/NixOS/nixpkgs/issues/260658"
+                  >issue</a
+                >.
+              </p>
+              <pre><code class="language-nix">system.activationScripts.usrbinenv =
+  lib.mkIf (config.environment.usrbinenv == null) (
+    lib.mkForce ''
+      rm -f /usr/bin/env
+      mkdir -p /usr/bin
+      rmdir --ignore-fail-on-non-empty /usr/bin /usr
+    ''
+  );
+systemd.services.systemd-update-done.serviceConfig.ExecStart = [
+  &quot;&quot; # clear
+  (
+    pkgs.writeShellScript &quot;systemd-update-done-wrapper&quot; ''
+      mkdir -p /usr
+      ${pkgs.systemd}/lib/systemd/systemd-update-done
+      rmdir --ignore-fail-on-non-empty /usr
+    ''
+  )
+];
+</code></pre>
+              <h3 id="vulnix"><a class="header" href="#vulnix">vulnix</a></h3>
+              <p>
+                <a href="https://github.com/nix-community/vulnix">vulnix</a>
+                scans the dependencies of the entire system for CVEs.
+              </p>
+              <pre><code class="language-shell">vulnix --system
 </code></pre>
             </main>
 
@@ -1015,7 +1195,7 @@ prelogin interface.
               <!-- Mobile navigation buttons -->
               <a
                 rel="prev"
-                href="../../../pkgs/tools/networking/dhcpcd.html"
+                href="../../../os/nixos/nixpkgs.html"
                 class="mobile-nav-chapters previous"
                 title="Previous chapter"
                 aria-label="Previous chapter"
@@ -1026,7 +1206,7 @@ prelogin interface.
 
               <a
                 rel="next"
-                href="../../../pkgs/tools/networking/ifplugd.html"
+                href="../../../os/nixos/nixos/home-manager.html"
                 class="mobile-nav-chapters next"
                 title="Next chapter"
                 aria-label="Next chapter"
@@ -1043,7 +1223,7 @@ prelogin interface.
         <nav class="nav-wide-wrapper" aria-label="Page navigation">
           <a
             rel="prev"
-            href="../../../pkgs/tools/networking/dhcpcd.html"
+            href="../../../os/nixos/nixpkgs.html"
             class="nav-chapters previous"
             title="Previous chapter"
             aria-label="Previous chapter"
@@ -1054,7 +1234,7 @@ prelogin interface.
 
           <a
             rel="next"
-            href="../../../pkgs/tools/networking/ifplugd.html"
+            href="../../../os/nixos/nixos/home-manager.html"
             class="nav-chapters next"
             title="Next chapter"
             aria-label="Next chapter"

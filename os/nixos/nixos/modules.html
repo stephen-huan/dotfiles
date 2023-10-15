@@ -3,7 +3,7 @@
   <head>
     <!-- Book generated using mdBook -->
     <meta charset="UTF-8" />
-    <title>globalprotect-openconnect - dotfiles</title>
+    <title>modules - dotfiles</title>
 
     <!-- Custom HTML head -->
 
@@ -144,7 +144,9 @@
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../os/nixos/nixos/modules.html"
+                      <a
+                        href="../../../os/nixos/nixos/modules.html"
+                        class="active"
                         ><strong aria-hidden="true">2.3.3.</strong> modules</a
                       >
                     </li>
@@ -664,7 +666,6 @@
                     <li class="chapter-item expanded">
                       <a
                         href="../../../pkgs/tools/networking/globalprotect-openconnect.html"
-                        class="active"
                         ><strong aria-hidden="true">11.4.3.</strong>
                         globalprotect-openconnect</a
                       >
@@ -923,7 +924,7 @@
                 <i id="git-repository-button" class="fa fa-code-fork"></i>
               </a>
               <a
-                href="https://github.com/stephen-huan/dotfiles/edit/master/src/pkgs/tools/networking/globalprotect-openconnect.md"
+                href="https://github.com/stephen-huan/dotfiles/edit/master/src/os/nixos/nixos/modules.md"
                 title="Suggest an edit"
                 aria-label="Suggest an edit"
               >
@@ -966,56 +967,54 @@
 
           <div id="content" class="content">
             <main>
-              <h1 id="globalprotect-openconnect">
-                <a class="header" href="#globalprotect-openconnect"
-                  >globalprotect-openconnect</a
-                >
+              <h1 id="modules">
+                <a class="header" href="#modules">modules</a>
               </h1>
+              <p>
+                The
+                <a href="https://discourse.nixos.org/t/11838"
+                  >list of arguments</a
+                >
+                to a module are
+              </p>
               <ul>
                 <li>
-                  if using network manager, install package
-                  <code>networkmanager-openconnect</code>, unfortunately I am
-                  using <a href="/pkgs/os-specific/linux/iwd.html">iwd</a>
+                  <code>config</code>: option definitions (setting options)
+                </li>
+                <li><code>lib</code>: Nixpkg's library functions</li>
+                <li>
+                  <code>pkgs</code>: reference to
+                  <a href="https://github.com/NixOS/nixpkgs">Nixpkgs</a>
                 </li>
                 <li>
-                  can use
-                  <a href="https://github.com/yuezk/GlobalProtect-openconnect"
-                    >GlobalProtect-openconnect</a
+                  <code>options</code>: option declarations (defining options)
+                </li>
+                <li>
+                  <code>modulesPath</code>: path to Nixpkg's
+                  <a
+                    href="https://github.com/NixOS/nixpkgs/tree/master/nixos/modules"
+                    >NixOS modules</a
                   >
-                  or
-                  <a href="https://github.com/dlenski/gp-saml-gui"
-                    >gp-saml-gui</a
-                  >
-                  to do web login
-                </li>
-                <li>
-                  surprisingly enough, GlobalProtect-openconnect is on official
-                  repositories
                 </li>
               </ul>
-              <pre><code class="language-shell">pacman -S globalprotect-openconnect
-</code></pre>
-              <ul>
-                <li>run</li>
-              </ul>
-              <pre><code class="language-shell">gpclient
-</code></pre>
-              <ul>
-                <li>enter <code>vpn.gatech.edu</code> for portal address</li>
-                <li>doesn't work with proprietary 2fa</li>
-              </ul>
-              <pre><code class="language-text">Gateway authentication failed
-
-Unknown response for gateway
-prelogin interface.
-</code></pre>
+              <p>
+                These are documented in
+                <a
+                  href="https://nixos.org/manual/nixos/stable/#sec-writing-modules"
+                  >NixOS Manual - Writing NixOS Modules</a
+                >.
+              </p>
+              <p>
+                Using <code>lib</code> instead of <code>pkgs.lib</code> can
+                sometime prevent infinite recursion errors.
+              </p>
             </main>
 
             <nav class="nav-wrapper" aria-label="Page navigation">
               <!-- Mobile navigation buttons -->
               <a
                 rel="prev"
-                href="../../../pkgs/tools/networking/dhcpcd.html"
+                href="../../../os/nixos/nixos/impermanence.html"
                 class="mobile-nav-chapters previous"
                 title="Previous chapter"
                 aria-label="Previous chapter"
@@ -1026,7 +1025,7 @@ prelogin interface.
 
               <a
                 rel="next"
-                href="../../../pkgs/tools/networking/ifplugd.html"
+                href="../../../os/nixos/flakes.html"
                 class="mobile-nav-chapters next"
                 title="Next chapter"
                 aria-label="Next chapter"
@@ -1043,7 +1042,7 @@ prelogin interface.
         <nav class="nav-wide-wrapper" aria-label="Page navigation">
           <a
             rel="prev"
-            href="../../../pkgs/tools/networking/dhcpcd.html"
+            href="../../../os/nixos/nixos/impermanence.html"
             class="nav-chapters previous"
             title="Previous chapter"
             aria-label="Previous chapter"
@@ -1054,7 +1053,7 @@ prelogin interface.
 
           <a
             rel="next"
-            href="../../../pkgs/tools/networking/ifplugd.html"
+            href="../../../os/nixos/flakes.html"
             class="nav-chapters next"
             title="Next chapter"
             aria-label="Next chapter"

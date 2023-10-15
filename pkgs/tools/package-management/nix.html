@@ -115,25 +115,45 @@
             <li>
               <ol class="section">
                 <li class="chapter-item expanded">
-                  <div>
-                    <strong aria-hidden="true">2.1.</strong> Nix expression
-                    language
-                  </div>
+                  <a href="../../../os/nixos/nix.html"
+                    ><strong aria-hidden="true">2.1.</strong> Nix</a
+                  >
                 </li>
                 <li class="chapter-item expanded">
-                  <div><strong aria-hidden="true">2.2.</strong> nixpkgs</div>
+                  <a href="../../../os/nixos/nixpkgs.html"
+                    ><strong aria-hidden="true">2.2.</strong> Nixpkgs</a
+                  >
                 </li>
                 <li class="chapter-item expanded">
-                  <div><strong aria-hidden="true">2.3.</strong> NixOS</div>
+                  <a href="../../../os/nixos/nixos/index.html"
+                    ><strong aria-hidden="true">2.3.</strong> NixOS</a
+                  >
                 </li>
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
-                      <div>
-                        <strong aria-hidden="true">2.3.1.</strong> home-manager
-                      </div>
+                      <a href="../../../os/nixos/nixos/home-manager.html"
+                        ><strong aria-hidden="true">2.3.1.</strong>
+                        home-manager</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../../os/nixos/nixos/impermanence.html"
+                        ><strong aria-hidden="true">2.3.2.</strong>
+                        impermanence</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../../os/nixos/nixos/modules.html"
+                        ><strong aria-hidden="true">2.3.3.</strong> modules</a
+                      >
                     </li>
                   </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <a href="../../../os/nixos/flakes.html"
+                    ><strong aria-hidden="true">2.4.</strong> Flakes</a
+                  >
                 </li>
               </ol>
             </li>
@@ -485,6 +505,13 @@
                         ><strong aria-hidden="true">8.1.4.</strong> plymouth</a
                       >
                     </li>
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../../pkgs/os-specific/linux/tuxedo-keyboard.html"
+                        ><strong aria-hidden="true">8.1.5.</strong>
+                        tuxedo-keyboard</a
+                      >
+                    </li>
                   </ol>
                 </li>
               </ol>
@@ -595,18 +622,23 @@
                       >
                     </li>
                     <li class="chapter-item expanded">
+                      <a href="../../../pkgs/tools/misc/plocate.html"
+                        ><strong aria-hidden="true">11.3.4.</strong> plocate</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
                       <a href="../../../pkgs/tools/misc/qmk.html"
-                        ><strong aria-hidden="true">11.3.4.</strong> qmk</a
+                        ><strong aria-hidden="true">11.3.5.</strong> qmk</a
                       >
                     </li>
                     <li class="chapter-item expanded">
                       <a href="../../../pkgs/tools/misc/tmux.html"
-                        ><strong aria-hidden="true">11.3.5.</strong> tmux</a
+                        ><strong aria-hidden="true">11.3.6.</strong> tmux</a
                       >
                     </li>
                     <li class="chapter-item expanded">
                       <a href="../../../pkgs/tools/misc/yubikey-manager.html"
-                        ><strong aria-hidden="true">11.3.6.</strong>
+                        ><strong aria-hidden="true">11.3.7.</strong>
                         yubikey-manager</a
                       >
                     </li>
@@ -936,11 +968,10 @@
           <div id="content" class="content">
             <main>
               <h1 id="nix"><a class="header" href="#nix">nix</a></h1>
+              <p>
+                n.b.: this is a guide for using nix/entering nixos on archlinux
+              </p>
               <ul>
-                <li>
-                  n.b.: this is a guide for using nix/entering nixos on
-                  archlinux
-                </li>
                 <li>
                   <a href="https://wiki.archlinux.org/title/Nix"
                     >arch wiki - nix</a
@@ -966,21 +997,12 @@ sudo systemctl start  nix-daemon.service
 </code></pre>
               <ul>
                 <li>
-                  don't use channels because not reproducible, so don't do this
+                  don't use channels because not reproducible, so don't do the
+                  below
                 </li>
               </ul>
               <pre><code class="language-shell">nix-channel --add https://nixos.org/channels/nixpkgs-unstable
 nix-channel --update
-</code></pre>
-              <ul>
-                <li>
-                  <a
-                    href="https://nixos.org/manual/nix/stable/package-management/garbage-collection.html"
-                    >nixos - garbage collection</a
-                  >
-                </li>
-              </ul>
-              <pre><code class="language-shell">nix-collect-garbage
 </code></pre>
               <ul>
                 <li>
@@ -992,15 +1014,30 @@ nix-channel --update
 </code></pre>
               <ul>
                 <li>
+                  <a
+                    href="https://nixos.org/manual/nix/stable/package-management/garbage-collection.html"
+                    >nix reference manual - garbage collection</a
+                  >
+                </li>
+              </ul>
+              <pre><code class="language-shell">nix-collect-garbage
+</code></pre>
+              <h2 id="home-manager">
+                <a class="header" href="#home-manager">home-manager</a>
+              </h2>
+              <ul>
+                <li>
+                  generate initial
                   <a href="https://nix-community.github.io/home-manager/"
                     >home-manager</a
                   >
+                  configuration
                 </li>
               </ul>
               <pre><code class="language-shell">nix run home-manager/master -- init --switch
 </code></pre>
               <ul>
-                <li>problem:</li>
+                <li>problem with gc:</li>
               </ul>
               <pre><code class="language-shell">home-manager switch
 nix-store --gc
@@ -1027,18 +1064,109 @@ home-manager switch
                 </li>
                 <li>
                   <p>
+                    problem:
                     <a
-                      href="https://nixos.org/manual/nixos/stable/index.html#sec-installing-from-other-distro"
-                      >nixos manual</a
+                      href="https://github.com/nix-community/home-manager/issues/354"
+                      >failed</a
+                    >
+                    to
+                    <a href="https://github.com/NixOS/nixpkgs/issues/38991"
+                      >set locale</a
                     >
                   </p>
                 </li>
+                <li>
+                  <p>solution: set <code>LOCALE_ARCHIVE</code> to</p>
+                </li>
               </ul>
-              <pre><code class="language-shell">nixos-generate-config --root /mnt
+              <pre><code class="language-shell">/nix/store/{hash}-glibc-locales-{version}/lib/locale/locale-archive
+</code></pre>
+              <h2 id="installing-nixos-with-kexec">
+                <a class="header" href="#installing-nixos-with-kexec"
+                  >installing nixos with kexec</a
+                >
+              </h2>
+              <ul>
+                <li>
+                  <a
+                    href="https://nixos.org/manual/nixos/stable/index.html#sec-booting-via-kexec"
+                    >nixos manual - booting into nixos via kexec</a
+                  >
+                </li>
+                <li>
+                  generate default/automatic configuration
+                  (<code>configuration.nix</code>/<code>hardware-configuration.nix</code>)
+                </li>
+              </ul>
+              <pre><code class="language-shell">nixos-generate-config
 </code></pre>
               <ul>
                 <li>
-                  not risking normal build (overwriting bootloader), try
+                  (optional) use flake template for
+                  <code>configuration.nix</code>
+                </li>
+              </ul>
+              <pre><code class="language-shell">nix flake new /etc/nixos -t github:nix-community/home-manager#nixos
+</code></pre>
+              <h3 id="configuration-tips">
+                <a class="header" href="#configuration-tips"
+                  >configuration tips</a
+                >
+              </h3>
+              <ul>
+                <li>need to import <code>netboot-minimal.nix</code></li>
+              </ul>
+              <pre><code class="language-nix">  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+      (modulesPath + &quot;/installer/netboot/netboot-minimal.nix&quot;)
+    ];
+</code></pre>
+              <ul>
+                <li>
+                  <a
+                    href="https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/installer/netboot/netboot-minimal.nix"
+                    >netboot-minimal.nix</a
+                  >
+                  disables loading <code>linux-firmware</code>, preventing gpu
+                  from working
+                </li>
+              </ul>
+              <pre><code class="language-nix">  # overwrite /installer/netboot/netboot-minimal.nix
+  hardware.enableRedistributableFirmware = lib.mkForce true;
+</code></pre>
+              <ul>
+                <li>
+                  on luks, probably need to manually specify root partition
+                </li>
+              </ul>
+              <pre><code class="language-nix">  boot.initrd.luks.devices.cryptlvm.device =
+    &quot;/dev/disk/by-uuid/5d57809c-d0e9-49e9-939e-f5d68392faf4&quot;;
+  # manually specify because `nixos-generate-config` doesn't pick it up
+  fileSystems.&quot;/&quot; = {
+    device = &quot;/dev/VolumeGroup/root&quot;;
+    fsType = &quot;ext4&quot;;
+  };
+</code></pre>
+              <ul>
+                <li>
+                  enable kernel flag <code>boot.shell_on_fail</code> to debug in
+                  case
+                  <a href="https://discourse.nixos.org/t/26516"
+                    >things go wrong</a
+                  >
+                </li>
+              </ul>
+              <pre><code class="language-nix">  boot.kernelParams = [ &quot;boot.shell_on_fail&quot; ];
+</code></pre>
+              <h3 id="entering-the-build">
+                <a class="header" href="#entering-the-build"
+                  >entering the build</a
+                >
+              </h3>
+              <ul>
+                <li>
+                  not risking normal build (overwrites bootloader), try
                   <code>kexec</code> to prototype
                 </li>
                 <li>
@@ -1050,10 +1178,8 @@ home-manager switch
               <pre><code class="language-shell">pacman -S kexec-tools
 </code></pre>
               <ul>
-                <li>flake template for <code>configuration.nix</code></li>
+                <li>generate kernel image</li>
               </ul>
-              <pre><code class="language-shell">nix flake new /etc/nixos -t github:nix-community/home-manager#nixos
-</code></pre>
               <pre><code class="language-shell">nix-build '&lt;nixpkgs/nixos&gt;' \
     -I /nix/store/{hash}-nixpkgs \
     --arg configuration ./configuration.nix \
@@ -1061,17 +1187,33 @@ home-manager switch
 </code></pre>
               <ul>
                 <li>
-                  turn off <code>amdgpu</code> and
-                  <a href="https://wiki.archlinux.org/title/Kernel_mode_setting"
-                    >kernel mode setting</a
-                  >
+                  <p>
+                    if using flakes, path to nixpkgs can also be
+                    <code>-I nixpkgs=flake:nixpkgs</code>
+                  </p>
                 </li>
-                <li><code>/etc/default/grub</code></li>
+                <li>
+                  <p>
+                    turn off
+                    <a
+                      href="https://wiki.archlinux.org/title/Kernel_mode_setting"
+                      >kernel mode setting</a
+                    >
+                  </p>
+                </li>
+                <li>
+                  <p><code>/etc/default/grub</code></p>
+                </li>
               </ul>
               <pre><code class="language-text">GRUB_CMDLINE_LINUX_DEFAULT=&quot;... quiet loglevel=3 ... nomodeset&quot;
 </code></pre>
               <ul>
-                <li><code>/etc/mkinitcpio.conf</code></li>
+                <li>
+                  <p>remove <code>amdgpu</code> kernel module</p>
+                </li>
+                <li>
+                  <p><code>/etc/mkinitcpio.conf</code></p>
+                </li>
               </ul>
               <pre><code class="language-text">MODULES=()
 </code></pre>

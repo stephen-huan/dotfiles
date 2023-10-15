@@ -3,7 +3,7 @@
   <head>
     <!-- Book generated using mdBook -->
     <meta charset="UTF-8" />
-    <title>globalprotect-openconnect - dotfiles</title>
+    <title>plocate - dotfiles</title>
 
     <!-- Custom HTML head -->
 
@@ -622,7 +622,9 @@
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/tools/misc/plocate.html"
+                      <a
+                        href="../../../pkgs/tools/misc/plocate.html"
+                        class="active"
                         ><strong aria-hidden="true">11.3.4.</strong> plocate</a
                       >
                     </li>
@@ -664,7 +666,6 @@
                     <li class="chapter-item expanded">
                       <a
                         href="../../../pkgs/tools/networking/globalprotect-openconnect.html"
-                        class="active"
                         ><strong aria-hidden="true">11.4.3.</strong>
                         globalprotect-openconnect</a
                       >
@@ -923,7 +924,7 @@
                 <i id="git-repository-button" class="fa fa-code-fork"></i>
               </a>
               <a
-                href="https://github.com/stephen-huan/dotfiles/edit/master/src/pkgs/tools/networking/globalprotect-openconnect.md"
+                href="https://github.com/stephen-huan/dotfiles/edit/master/src/pkgs/tools/misc/plocate.md"
                 title="Suggest an edit"
                 aria-label="Suggest an edit"
               >
@@ -966,48 +967,18 @@
 
           <div id="content" class="content">
             <main>
-              <h1 id="globalprotect-openconnect">
-                <a class="header" href="#globalprotect-openconnect"
-                  >globalprotect-openconnect</a
-                >
+              <h1 id="plocate">
+                <a class="header" href="#plocate">plocate</a>
               </h1>
-              <ul>
-                <li>
-                  if using network manager, install package
-                  <code>networkmanager-openconnect</code>, unfortunately I am
-                  using <a href="/pkgs/os-specific/linux/iwd.html">iwd</a>
-                </li>
-                <li>
-                  can use
-                  <a href="https://github.com/yuezk/GlobalProtect-openconnect"
-                    >GlobalProtect-openconnect</a
-                  >
-                  or
-                  <a href="https://github.com/dlenski/gp-saml-gui"
-                    >gp-saml-gui</a
-                  >
-                  to do web login
-                </li>
-                <li>
-                  surprisingly enough, GlobalProtect-openconnect is on official
-                  repositories
-                </li>
-              </ul>
-              <pre><code class="language-shell">pacman -S globalprotect-openconnect
+              <p>
+                <a href="https://plocate.sesse.net/">plocate</a> is a locate
+                implementation.
+              </p>
+              <p>Generate the index</p>
+              <pre><code class="language-shell">sudo updatedb
 </code></pre>
-              <ul>
-                <li>run</li>
-              </ul>
-              <pre><code class="language-shell">gpclient
-</code></pre>
-              <ul>
-                <li>enter <code>vpn.gatech.edu</code> for portal address</li>
-                <li>doesn't work with proprietary 2fa</li>
-              </ul>
-              <pre><code class="language-text">Gateway authentication failed
-
-Unknown response for gateway
-prelogin interface.
+              <p>Look for a path</p>
+              <pre><code class="language-shell">locate &lt;path&gt;
 </code></pre>
             </main>
 
@@ -1015,7 +986,7 @@ prelogin interface.
               <!-- Mobile navigation buttons -->
               <a
                 rel="prev"
-                href="../../../pkgs/tools/networking/dhcpcd.html"
+                href="../../../pkgs/tools/misc/grub.html"
                 class="mobile-nav-chapters previous"
                 title="Previous chapter"
                 aria-label="Previous chapter"
@@ -1026,7 +997,7 @@ prelogin interface.
 
               <a
                 rel="next"
-                href="../../../pkgs/tools/networking/ifplugd.html"
+                href="../../../pkgs/tools/misc/qmk.html"
                 class="mobile-nav-chapters next"
                 title="Next chapter"
                 aria-label="Next chapter"
@@ -1043,7 +1014,7 @@ prelogin interface.
         <nav class="nav-wide-wrapper" aria-label="Page navigation">
           <a
             rel="prev"
-            href="../../../pkgs/tools/networking/dhcpcd.html"
+            href="../../../pkgs/tools/misc/grub.html"
             class="nav-chapters previous"
             title="Previous chapter"
             aria-label="Previous chapter"
@@ -1054,7 +1025,7 @@ prelogin interface.
 
           <a
             rel="next"
-            href="../../../pkgs/tools/networking/ifplugd.html"
+            href="../../../pkgs/tools/misc/qmk.html"
             class="nav-chapters next"
             title="Next chapter"
             aria-label="Next chapter"

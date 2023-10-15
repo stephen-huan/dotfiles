@@ -3,7 +3,7 @@
   <head>
     <!-- Book generated using mdBook -->
     <meta charset="UTF-8" />
-    <title>globalprotect-openconnect - dotfiles</title>
+    <title>impermanence - dotfiles</title>
 
     <!-- Custom HTML head -->
 
@@ -138,7 +138,9 @@
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../os/nixos/nixos/impermanence.html"
+                      <a
+                        href="../../../os/nixos/nixos/impermanence.html"
+                        class="active"
                         ><strong aria-hidden="true">2.3.2.</strong>
                         impermanence</a
                       >
@@ -664,7 +666,6 @@
                     <li class="chapter-item expanded">
                       <a
                         href="../../../pkgs/tools/networking/globalprotect-openconnect.html"
-                        class="active"
                         ><strong aria-hidden="true">11.4.3.</strong>
                         globalprotect-openconnect</a
                       >
@@ -923,7 +924,7 @@
                 <i id="git-repository-button" class="fa fa-code-fork"></i>
               </a>
               <a
-                href="https://github.com/stephen-huan/dotfiles/edit/master/src/pkgs/tools/networking/globalprotect-openconnect.md"
+                href="https://github.com/stephen-huan/dotfiles/edit/master/src/os/nixos/nixos/impermanence.md"
                 title="Suggest an edit"
                 aria-label="Suggest an edit"
               >
@@ -966,56 +967,170 @@
 
           <div id="content" class="content">
             <main>
-              <h1 id="globalprotect-openconnect">
-                <a class="header" href="#globalprotect-openconnect"
-                  >globalprotect-openconnect</a
-                >
+              <h1 id="impermanence">
+                <a class="header" href="#impermanence">impermanence</a>
               </h1>
+              <p>
+                <a href="https://github.com/nix-community/impermanence/"
+                  >impermanence</a
+                >
+                registers persistent storage for when root gets wiped on reboot
+                (e.g. tmpfs on <code>/</code>).
+              </p>
+              <p>See</p>
               <ul>
                 <li>
-                  if using network manager, install package
-                  <code>networkmanager-openconnect</code>, unfortunately I am
-                  using <a href="/pkgs/os-specific/linux/iwd.html">iwd</a>
-                </li>
-                <li>
-                  can use
-                  <a href="https://github.com/yuezk/GlobalProtect-openconnect"
-                    >GlobalProtect-openconnect</a
+                  <a href="https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/"
+                    >https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/</a
                   >
-                  or
-                  <a href="https://github.com/dlenski/gp-saml-gui"
-                    >gp-saml-gui</a
-                  >
-                  to do web login
                 </li>
                 <li>
-                  surprisingly enough, GlobalProtect-openconnect is on official
-                  repositories
+                  <a href="https://elis.nu/blog/2020/06/nixos-tmpfs-as-home/"
+                    >https://elis.nu/blog/2020/06/nixos-tmpfs-as-home/</a
+                  >
+                </li>
+                <li>
+                  <a href="https://grahamc.com/blog/erase-your-darlings/"
+                    >https://grahamc.com/blog/erase-your-darlings/</a
+                  >
                 </li>
               </ul>
-              <pre><code class="language-shell">pacman -S globalprotect-openconnect
-</code></pre>
+              <h2 id="configuration">
+                <a class="header" href="#configuration">configuration</a>
+              </h2>
+              <p>Example configurations</p>
               <ul>
-                <li>run</li>
+                <li>
+                  <a
+                    href="https://gist.github.com/byrongibson/b279469f0d2954cc59b3db59c511a199"
+                    >https://gist.github.com/byrongibson/b279469f0d2954cc59b3db59c511a199</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/nix-community/impermanence/issues/92"
+                    >https://github.com/nix-community/impermanence/issues/92</a
+                  >
+                </li>
               </ul>
-              <pre><code class="language-shell">gpclient
+              <p>Configuration is relatively simple, change something like</p>
+              <pre><code class="language-nix">  fileSystems.&quot;/&quot; = {
+    device = &quot;/dev/VolumeGroup/root&quot;;
+    fsType = &quot;ext4&quot;;
+  };
 </code></pre>
+              <p>to</p>
+              <pre><code class="language-nix">  fileSystems.&quot;/&quot; = {
+    fsType = &quot;tmpfs&quot;;
+    options = [ &quot;defaults&quot; &quot;size=2G&quot; &quot;mode=755&quot; ];
+  };
+  fileSystems.&quot;/persistent&quot; = {
+    device = &quot;/dev/VolumeGroup/root&quot;;
+    fsType = &quot;ext4&quot;;
+    neededForBoot = true;
+  };
+  # https://nixos.wiki/wiki/Filesystems
+  fileSystems.&quot;/nix&quot; = {
+    device = &quot;/persistent/nix&quot;;
+    options = [ &quot;bind&quot; ];
+  };
+</code></pre>
+              <p>Here the name <code>/persistent</code> is arbitrary.</p>
+              <h2 id="important-state">
+                <a class="header" href="#important-state">important state</a>
+              </h2>
               <ul>
-                <li>enter <code>vpn.gatech.edu</code> for portal address</li>
-                <li>doesn't work with proprietary 2fa</li>
+                <li>
+                  <code>/etc/machine-id</code>: if not stored, new id
+                  (re-)generated on every boot
+                  <ul>
+                    <li>
+                      used by <code>systemd</code>/<code>journalctl</code>
+                      in<code>/var/log/journal/&lt;machine-id&gt;</code>
+                    </li>
+                  </ul>
+                </li>
               </ul>
-              <pre><code class="language-text">Gateway authentication failed
-
-Unknown response for gateway
-prelogin interface.
+              <h3 id="persisting-passwords">
+                <a class="header" href="#persisting-passwords"
+                  >persisting passwords</a
+                >
+              </h3>
+              <p>Can use</p>
+              <ul>
+                <li>
+                  <code>users.users.&lt;name&gt;.password</code>: (plaintext)
+                  password
+                </li>
+                <li>
+                  <code>users.users.&lt;name&gt;.hashedPassword</code>: hashed
+                  password from <code>mkpasswd</code>
+                </li>
+                <li>
+                  <code>users.users.&lt;name&gt;.hashedPasswordFile</code>: path
+                  to hashed password
+                </li>
+              </ul>
+              <p>
+                <code>hashedPasswordFile</code> is a file whose
+                <a href="https://discourse.nixos.org/t/12378">only line</a> is a
+                hashed password as generated by <code>mkpasswd</code>.
+                Unfortunately <code>hashedPassword</code> and
+                <code>password</code> overwrite <code>hashedPasswordFile</code>,
+                so if the file is deleted, one can get locked out of their
+                account. The configuration will warn on rebuild, however.
+              </p>
+              <pre><code class="language-text">warning: password file ‘’ does not exist
 </code></pre>
+              <p>
+                See also
+                <a href="https://www.reddit.com/r/NixOS/comments/o1er2p/"
+                  >reddit</a
+                >, impermanence
+                <a
+                  href="https://github.com/nix-community/impermanence/issues/120"
+                  >issue #120</a
+                >.
+              </p>
+              <h2 id="memory-used">
+                <a class="header" href="#memory-used">memory used</a>
+              </h2>
+              <p>
+                Can use <code>df</code> to measure
+                <a href="https://superuser.com/questions/542736"
+                  >tmpfs memory usage</a
+                >.
+              </p>
+              <pre><code class="language-shell">df -h
+</code></pre>
+              <pre><code class="language-text">Filesystem             Size  Used Avail Use% Mounted on
+devtmpfs               1.6G     0  1.6G   0% /dev
+tmpfs                   16G  8.0K   16G   1% /dev/shm
+tmpfs                  7.7G  6.3M  7.7G   1% /run
+tmpfs                   16G  1.2M   16G   1% /run/wrappers
+tmpfs                  2.0G  1.6M  2.0G   1% /
+/dev/VolumeGroup/root  883G  447G  392G  54% /persistent
+tmpfs                  3.1G   32K  3.1G   1% /run/user/1000
+</code></pre>
+              <p>The relevant line is</p>
+              <pre><code class="language-text">tmpfs                  2.0G  1.6M  2.0G   1% /
+</code></pre>
+              <p>
+                <code>nixos-rebuild</code> works in <code>/build</code> which
+                can cause memory
+                <a href="https://discourse.nixos.org/t/13957">issues</a>.
+              </p>
+              <p>Can check what's about to be cleared with</p>
+              <pre><code class="language-shell">ncdu -x /
+</code></pre>
+              <p>(<code>-x</code> means to not cross filesystem boundaries)</p>
             </main>
 
             <nav class="nav-wrapper" aria-label="Page navigation">
               <!-- Mobile navigation buttons -->
               <a
                 rel="prev"
-                href="../../../pkgs/tools/networking/dhcpcd.html"
+                href="../../../os/nixos/nixos/home-manager.html"
                 class="mobile-nav-chapters previous"
                 title="Previous chapter"
                 aria-label="Previous chapter"
@@ -1026,7 +1141,7 @@ prelogin interface.
 
               <a
                 rel="next"
-                href="../../../pkgs/tools/networking/ifplugd.html"
+                href="../../../os/nixos/nixos/modules.html"
                 class="mobile-nav-chapters next"
                 title="Next chapter"
                 aria-label="Next chapter"
@@ -1043,7 +1158,7 @@ prelogin interface.
         <nav class="nav-wide-wrapper" aria-label="Page navigation">
           <a
             rel="prev"
-            href="../../../pkgs/tools/networking/dhcpcd.html"
+            href="../../../os/nixos/nixos/home-manager.html"
             class="nav-chapters previous"
             title="Previous chapter"
             aria-label="Previous chapter"
@@ -1054,7 +1169,7 @@ prelogin interface.
 
           <a
             rel="next"
-            href="../../../pkgs/tools/networking/ifplugd.html"
+            href="../../../os/nixos/nixos/modules.html"
             class="nav-chapters next"
             title="Next chapter"
             aria-label="Next chapter"

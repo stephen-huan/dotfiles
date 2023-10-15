@@ -115,25 +115,45 @@
             <li>
               <ol class="section">
                 <li class="chapter-item expanded">
-                  <div>
-                    <strong aria-hidden="true">2.1.</strong> Nix expression
-                    language
-                  </div>
+                  <a href="../../os/nixos/nix.html"
+                    ><strong aria-hidden="true">2.1.</strong> Nix</a
+                  >
                 </li>
                 <li class="chapter-item expanded">
-                  <div><strong aria-hidden="true">2.2.</strong> nixpkgs</div>
+                  <a href="../../os/nixos/nixpkgs.html"
+                    ><strong aria-hidden="true">2.2.</strong> Nixpkgs</a
+                  >
                 </li>
                 <li class="chapter-item expanded">
-                  <div><strong aria-hidden="true">2.3.</strong> NixOS</div>
+                  <a href="../../os/nixos/nixos/index.html"
+                    ><strong aria-hidden="true">2.3.</strong> NixOS</a
+                  >
                 </li>
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
-                      <div>
-                        <strong aria-hidden="true">2.3.1.</strong> home-manager
-                      </div>
+                      <a href="../../os/nixos/nixos/home-manager.html"
+                        ><strong aria-hidden="true">2.3.1.</strong>
+                        home-manager</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../os/nixos/nixos/impermanence.html"
+                        ><strong aria-hidden="true">2.3.2.</strong>
+                        impermanence</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../os/nixos/nixos/modules.html"
+                        ><strong aria-hidden="true">2.3.3.</strong> modules</a
+                      >
                     </li>
                   </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <a href="../../os/nixos/flakes.html"
+                    ><strong aria-hidden="true">2.4.</strong> Flakes</a
+                  >
                 </li>
               </ol>
             </li>
@@ -480,6 +500,13 @@
                         ><strong aria-hidden="true">8.1.4.</strong> plymouth</a
                       >
                     </li>
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../pkgs/os-specific/linux/tuxedo-keyboard.html"
+                        ><strong aria-hidden="true">8.1.5.</strong>
+                        tuxedo-keyboard</a
+                      >
+                    </li>
                   </ol>
                 </li>
               </ol>
@@ -590,18 +617,23 @@
                       >
                     </li>
                     <li class="chapter-item expanded">
+                      <a href="../../pkgs/tools/misc/plocate.html"
+                        ><strong aria-hidden="true">11.3.4.</strong> plocate</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
                       <a href="../../pkgs/tools/misc/qmk.html"
-                        ><strong aria-hidden="true">11.3.4.</strong> qmk</a
+                        ><strong aria-hidden="true">11.3.5.</strong> qmk</a
                       >
                     </li>
                     <li class="chapter-item expanded">
                       <a href="../../pkgs/tools/misc/tmux.html"
-                        ><strong aria-hidden="true">11.3.5.</strong> tmux</a
+                        ><strong aria-hidden="true">11.3.6.</strong> tmux</a
                       >
                     </li>
                     <li class="chapter-item expanded">
                       <a href="../../pkgs/tools/misc/yubikey-manager.html"
-                        ><strong aria-hidden="true">11.3.6.</strong>
+                        ><strong aria-hidden="true">11.3.7.</strong>
                         yubikey-manager</a
                       >
                     </li>
@@ -954,35 +986,12 @@
                 <li>filesystem: ext4</li>
                 <li>bootloader: grub</li>
               </ul>
-              <h2 id="tuxedo-specifics">
-                <a class="header" href="#tuxedo-specifics">tuxedo specifics</a>
-              </h2>
-              <ul>
-                <li>
-                  <a href="https://wiki.archlinux.org/title/Tuxedo_Pulse_15"
-                    >arch wiki - Tuxedo Pulse 15</a
-                  >
-                </li>
-                <li>install keyboard control</li>
-              </ul>
-              <pre><code class="language-shell">paru -S tuxedo-keyboard
-</code></pre>
-              <ul>
-                <li>install power / CPU / fan control</li>
-              </ul>
-              <pre><code class="language-shell">paru -S tuxedo-control-center-bin
-</code></pre>
-              <ul>
-                <li>set screen brightness (0-255)</li>
-              </ul>
-              <pre><code class="language-shell">echo 127 | sudo tee /sys/class/backlight/amdgpu_bl0/brightness
-</code></pre>
-              <ul>
-                <li>set keyboard backlight (0-2)</li>
-              </ul>
-              <pre><code class="language-shell">echo 0 | sudo tee /sys/devices/platform/tuxedo_keyboard/leds/white:kbd_backlight/brightness
-</code></pre>
-              <h2 id="uefi"><a class="header" href="#uefi">UEFI</a></h2>
+              <p>
+                <a href="/pkgs/os-specific/linux/tuxedo-keyboard.html"
+                  >tuxedo specific configuration</a
+                >
+              </p>
+              <h2 id="uefi"><a class="header" href="#uefi">uefi</a></h2>
               <ul>
                 <li>enter by holding <code>F2</code> on boot</li>
                 <li>or by selecting corresponding entry in GRUB</li>
@@ -1034,9 +1043,9 @@ arch-chroot /mnt
                 </li>
               </ol>
               <h2 id="miscellaneous">
-                <a class="header" href="#miscellaneous">Miscellaneous</a>
+                <a class="header" href="#miscellaneous">miscellaneous</a>
               </h2>
-              <h3 id="usb"><a class="header" href="#usb">USB</a></h3>
+              <h3 id="usb"><a class="header" href="#usb">usb</a></h3>
               <ul>
                 <li>
                   <a href="https://wiki.archlinux.org/title/USB_storage_devices"
@@ -1056,7 +1065,7 @@ arch-chroot /mnt
               <pre><code class="language-shell">sudo umount /mnt
 </code></pre>
               <h3 id="pdf-viewers">
-                <a class="header" href="#pdf-viewers">PDF viewers</a>
+                <a class="header" href="#pdf-viewers">pdf viewers</a>
               </h3>
               <ul>
                 <li>
@@ -1187,7 +1196,7 @@ arch-chroot /mnt
               <pre><code class="language-shell">pacman -S terminus-font
 </code></pre>
               <h3 id="proper-naming">
-                <a class="header" href="#proper-naming">Proper naming</a>
+                <a class="header" href="#proper-naming">proper naming</a>
               </h3>
               <ul>
                 <li>
@@ -1231,7 +1240,7 @@ arch-chroot /mnt
               <!-- Mobile navigation buttons -->
               <a
                 rel="prev"
-                href="../../os/nixos/index.html"
+                href="../../os/nixos/flakes.html"
                 class="mobile-nav-chapters previous"
                 title="Previous chapter"
                 aria-label="Previous chapter"
@@ -1259,7 +1268,7 @@ arch-chroot /mnt
         <nav class="nav-wide-wrapper" aria-label="Page navigation">
           <a
             rel="prev"
-            href="../../os/nixos/index.html"
+            href="../../os/nixos/flakes.html"
             class="nav-chapters previous"
             title="Previous chapter"
             aria-label="Previous chapter"

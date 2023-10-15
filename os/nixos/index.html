@@ -115,25 +115,45 @@
             <li>
               <ol class="section">
                 <li class="chapter-item expanded">
-                  <div>
-                    <strong aria-hidden="true">2.1.</strong> Nix expression
-                    language
-                  </div>
+                  <a href="../../os/nixos/nix.html"
+                    ><strong aria-hidden="true">2.1.</strong> Nix</a
+                  >
                 </li>
                 <li class="chapter-item expanded">
-                  <div><strong aria-hidden="true">2.2.</strong> nixpkgs</div>
+                  <a href="../../os/nixos/nixpkgs.html"
+                    ><strong aria-hidden="true">2.2.</strong> Nixpkgs</a
+                  >
                 </li>
                 <li class="chapter-item expanded">
-                  <div><strong aria-hidden="true">2.3.</strong> NixOS</div>
+                  <a href="../../os/nixos/nixos/index.html"
+                    ><strong aria-hidden="true">2.3.</strong> NixOS</a
+                  >
                 </li>
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
-                      <div>
-                        <strong aria-hidden="true">2.3.1.</strong> home-manager
-                      </div>
+                      <a href="../../os/nixos/nixos/home-manager.html"
+                        ><strong aria-hidden="true">2.3.1.</strong>
+                        home-manager</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../os/nixos/nixos/impermanence.html"
+                        ><strong aria-hidden="true">2.3.2.</strong>
+                        impermanence</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
+                      <a href="../../os/nixos/nixos/modules.html"
+                        ><strong aria-hidden="true">2.3.3.</strong> modules</a
+                      >
                     </li>
                   </ol>
+                </li>
+                <li class="chapter-item expanded">
+                  <a href="../../os/nixos/flakes.html"
+                    ><strong aria-hidden="true">2.4.</strong> Flakes</a
+                  >
                 </li>
               </ol>
             </li>
@@ -480,6 +500,13 @@
                         ><strong aria-hidden="true">8.1.4.</strong> plymouth</a
                       >
                     </li>
+                    <li class="chapter-item expanded">
+                      <a
+                        href="../../pkgs/os-specific/linux/tuxedo-keyboard.html"
+                        ><strong aria-hidden="true">8.1.5.</strong>
+                        tuxedo-keyboard</a
+                      >
+                    </li>
                   </ol>
                 </li>
               </ol>
@@ -590,18 +617,23 @@
                       >
                     </li>
                     <li class="chapter-item expanded">
+                      <a href="../../pkgs/tools/misc/plocate.html"
+                        ><strong aria-hidden="true">11.3.4.</strong> plocate</a
+                      >
+                    </li>
+                    <li class="chapter-item expanded">
                       <a href="../../pkgs/tools/misc/qmk.html"
-                        ><strong aria-hidden="true">11.3.4.</strong> qmk</a
+                        ><strong aria-hidden="true">11.3.5.</strong> qmk</a
                       >
                     </li>
                     <li class="chapter-item expanded">
                       <a href="../../pkgs/tools/misc/tmux.html"
-                        ><strong aria-hidden="true">11.3.5.</strong> tmux</a
+                        ><strong aria-hidden="true">11.3.6.</strong> tmux</a
                       >
                     </li>
                     <li class="chapter-item expanded">
                       <a href="../../pkgs/tools/misc/yubikey-manager.html"
-                        ><strong aria-hidden="true">11.3.6.</strong>
+                        ><strong aria-hidden="true">11.3.7.</strong>
                         yubikey-manager</a
                       >
                     </li>
@@ -935,7 +967,7 @@
                 will be the Nix code.
               </p>
               <p>
-                The structure of this book follows
+                The structure of this website follows
                 <a href="https://github.com/NixOS/nixpkgs/">nixpkgs</a> (you can
                 search for packages
                 <a href="https://search.nixos.org/packages">here</a>).
@@ -943,6 +975,64 @@
               <p>
                 I still have some notes on <a href="/os/arch">Arch Linux</a>.
               </p>
+              <h2 id="installing-from-arch">
+                <a class="header" href="#installing-from-arch"
+                  >installing from arch</a
+                >
+              </h2>
+              <p>
+                One can switch from Arch completely &quot;in-place&quot;, i.e.
+                without re-partitioning any drives. This can be done by
+                <a href="/pkgs/tools/package-management/nix.html"
+                  >prototyping</a
+                >
+                with
+                <a
+                  href="https://nixos.org/manual/nixos/stable/#sec-booting-via-kexec"
+                  >kexec</a
+                >
+                to get a working configuration and then using
+                <code>NIXOS_LUSTRATE</code> through the
+                <a
+                  href="https://nixos.org/manual/nixos/stable/#sec-installing-from-other-distro"
+                  >lustrate</a
+                >
+                mechanism (which will move the old root partition to
+                <code>/old-root</code>).
+              </p>
+              <p>
+                After this, it's still possible to get into arch with
+                <code>chroot</code>, e.g.
+              </p>
+              <pre><code class="language-shell">sudo chroot /old-root /bin/bash
+/bin/pacman -Q
+</code></pre>
+              <p>
+                Note that commands need to be fully qualified as the path is
+                different.
+              </p>
+              <h2 id="live-boot">
+                <a class="header" href="#live-boot">live boot</a>
+              </h2>
+              <ul>
+                <li>
+                  <a href="https://nixos.wiki/wiki/Change_root"
+                    >NixOS Wiki - Change root</a
+                  >
+                </li>
+                <li>
+                  can be done from an
+                  <a href="/os/arch/#live-boot">arch</a> live boot
+                  <pre><code class="language-shell">cryptsetup open /dev/nvme0n1p3 cryptlvm
+mount /dev/VolumeGroup/root /mnt
+mount -o bind /dev /mnt/dev
+mount -o bind /proc /mnt/proc
+mount -o bind /sys /mnt/sys
+chroot /mnt /nix/var/nix/profiles/system/activate
+chroot /mnt /run/current-system/sw/bin/bash
+</code></pre>
+                </li>
+              </ul>
             </main>
 
             <nav class="nav-wrapper" aria-label="Page navigation">
@@ -960,7 +1050,7 @@
 
               <a
                 rel="next"
-                href="../../os/arch/index.html"
+                href="../../os/nixos/nix.html"
                 class="mobile-nav-chapters next"
                 title="Next chapter"
                 aria-label="Next chapter"
@@ -988,7 +1078,7 @@
 
           <a
             rel="next"
-            href="../../os/arch/index.html"
+            href="../../os/nixos/nix.html"
             class="nav-chapters next"
             title="Next chapter"
             aria-label="Next chapter"
