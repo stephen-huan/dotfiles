@@ -17,7 +17,7 @@ local options = {
     -- miscellaneous
 
     -- shell
-    shell = "/bin/fish",
+    shell = "/run/current-system/sw/bin/fish",
     -- use system clipboard
     clipboard = { "unnamed", "unnamedplus" },
     -- disable mouse support

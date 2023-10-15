@@ -1,5 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # clean version of neovim for private editing
-/usr/bin/nvim --clean --noplugin -nu ~/.config/nvim/init-private.lua "$@"
+/run/current-system/sw/bin/nvim \
+    --clean --noplugin -nu ~/.config/nvim/init-private.lua "$@"
 

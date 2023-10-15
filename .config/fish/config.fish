@@ -15,9 +15,9 @@ fish_add_path ~/.local/share/nvim/mason/bin
 
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'mamba init' !!
-set -gx MAMBA_EXE "/usr/bin/micromamba"
-set -gx MAMBA_ROOT_PREFIX "$HOME/micromamba"
-$MAMBA_EXE shell hook --shell fish --prefix $MAMBA_ROOT_PREFIX | source
+# set -gx MAMBA_EXE "/usr/bin/micromamba"
+# set -gx MAMBA_ROOT_PREFIX "$HOME/micromamba"
+# $MAMBA_EXE shell hook --shell fish --prefix $MAMBA_ROOT_PREFIX | source
 # <<< mamba initialize <<<
 
 ### VARIABLES
@@ -36,13 +36,13 @@ set -gx WINEARCH win32
 set -gx DOTNET_CLI_TELEMETRY_OPTOUT 1
 
 # editors
-set -gx VISUAL /usr/bin/nvim
-set -gx EDITOR /usr/bin/nvim
+set -gx VISUAL /run/current-system/sw/bin/nvim
+set -gx EDITOR /run/current-system/sw/bin/nvim
 # use neovim to read man pages
-set -gx MANPAGER "/usr/bin/nvim +Man!"
+set -gx MANPAGER "/run/current-system/sw/bin/nvim +Man!"
 set -gx MANWIDTH 80
 
-set -gx BROWSER /usr/bin/firefox
+set -gx BROWSER /etc/profiles/per-user/ikue/bin/firefox
 
 # par
 set -gx PARINIT "rTbgqR B=.,?'_A_a_@ Q=_s>|"
