@@ -118,3 +118,9 @@ ncdu -x /
 ```
 
 (`-x` means to not cross filesystem boundaries)
+
+```shell
+sudo ncdu -x /
+```
+
+will show the contents of `/root`, which may not be accessible normally.
