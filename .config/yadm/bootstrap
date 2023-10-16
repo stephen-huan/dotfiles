@@ -1,9 +1,0 @@
-#!/usr/bin/env fish
-# ran after yadm clone repo
-# run with  yadm bootstrap
-
-# compile executables
-cd ~/bin
-clang++ -O3 far.cpp -o far
-clang++ -O3 nodup.cpp -o nodup
-
