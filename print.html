@@ -454,6 +454,14 @@ mdbook-toc.out                                2,347,464 x /nix/store/1jzsc6yvhd0
 mdbook-katex.out                              2,630,344 x /nix/store/x961ynwvdnjlxmdvp0d5lzvj2bmqlf32-mdbook-katex-0.5.8/bin/mdbook-katex
 mdbook-emojicodes.out                         3,890,048 x /nix/store/kic0qqckp1y8jda1g724nldfyn0xyrh8-mdbook-emojicodes-0.3.0/bin/mdbook-emojicodes
 </code></pre>
+<h2 id="store-permissions"><a class="header" href="#store-permissions">store permissions</a></h2>
+<p>As recommended by the
+<a href="https://nixos.org/manual/nixos/stable/#sec-installing-from-other-distro">NixOS Manual</a>,
+and the <a href="https://discourse.nixos.org/t/13882">Discourse</a>,
+the permissions on the store should be</p>
+<pre><code class="language-shell">sudo chown -R 0:0 /nix
+sudo chmod +t /nix
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="nixos-1"><a class="header" href="#nixos-1">NixOS</a></h1>
 <p>There is a search engine for <a href="https://search.nixos.org/options">options</a>.</p>
 <h2 id="writing-modules"><a class="header" href="#writing-modules">writing modules</a></h2>
@@ -652,6 +660,12 @@ by <code>mkpasswd</code>. Unfortunately <code>hashedPassword</code> and <code>pa
 their account. The configuration will warn on rebuild, however.</p>
 <pre><code class="language-text">warning: password file ‘’ does not exist
 </code></pre>
+<p>Generate password with <a href="https://www.openwall.com/yescrypt/">yescrypt</a>
+hash function, now
+<a href="https://archlinux.org/news/changes-to-default-password-hashing-algorithm-and-umask-settings/">default</a>
+on archlinux (and for <code>mkpasswd</code>).</p>
+<pre><code class="language-sh">mkpasswd --method=yescrypt &quot;$(pass encryption/tuxedo/password)&quot; &gt; root.yescrypt
+</code></pre>
 <p>See also <a href="https://www.reddit.com/r/NixOS/comments/o1er2p/">reddit</a>,
 impermanence <a href="https://github.com/nix-community/impermanence/issues/120">issue
 #120</a>.</p>
@@ -678,6 +692,9 @@ memory <a href="https://discourse.nixos.org/t/13957">issues</a>.</p>
 <pre><code class="language-shell">ncdu -x /
 </code></pre>
 <p>(<code>-x</code> means to not cross filesystem boundaries)</p>
+<pre><code class="language-shell">sudo ncdu -x /
+</code></pre>
+<p>will show the contents of <code>/root</code>, which may not be accessible normally.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="modules"><a class="header" href="#modules">modules</a></h1>
 <p>The <a href="https://discourse.nixos.org/t/11838">list of arguments</a> to a module are</p>
 <ul>

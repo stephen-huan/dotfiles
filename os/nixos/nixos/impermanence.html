@@ -1083,6 +1083,18 @@
               <pre><code class="language-text">warning: password file ‘’ does not exist
 </code></pre>
               <p>
+                Generate password with
+                <a href="https://www.openwall.com/yescrypt/">yescrypt</a>
+                hash function, now
+                <a
+                  href="https://archlinux.org/news/changes-to-default-password-hashing-algorithm-and-umask-settings/"
+                  >default</a
+                >
+                on archlinux (and for <code>mkpasswd</code>).
+              </p>
+              <pre><code class="language-sh">mkpasswd --method=yescrypt &quot;$(pass encryption/tuxedo/password)&quot; &gt; root.yescrypt
+</code></pre>
+              <p>
                 See also
                 <a href="https://www.reddit.com/r/NixOS/comments/o1er2p/"
                   >reddit</a
@@ -1124,6 +1136,12 @@ tmpfs                  3.1G   32K  3.1G   1% /run/user/1000
               <pre><code class="language-shell">ncdu -x /
 </code></pre>
               <p>(<code>-x</code> means to not cross filesystem boundaries)</p>
+              <pre><code class="language-shell">sudo ncdu -x /
+</code></pre>
+              <p>
+                will show the contents of <code>/root</code>, which may not be
+                accessible normally.
+              </p>
             </main>
 
             <nav class="nav-wrapper" aria-label="Page navigation">

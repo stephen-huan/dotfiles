@@ -1021,6 +1021,23 @@ mdbook-toc.out                                2,347,464 x /nix/store/1jzsc6yvhd0
 mdbook-katex.out                              2,630,344 x /nix/store/x961ynwvdnjlxmdvp0d5lzvj2bmqlf32-mdbook-katex-0.5.8/bin/mdbook-katex
 mdbook-emojicodes.out                         3,890,048 x /nix/store/kic0qqckp1y8jda1g724nldfyn0xyrh8-mdbook-emojicodes-0.3.0/bin/mdbook-emojicodes
 </code></pre>
+              <h2 id="store-permissions">
+                <a class="header" href="#store-permissions"
+                  >store permissions</a
+                >
+              </h2>
+              <p>
+                As recommended by the
+                <a
+                  href="https://nixos.org/manual/nixos/stable/#sec-installing-from-other-distro"
+                  >NixOS Manual</a
+                >, and the
+                <a href="https://discourse.nixos.org/t/13882">Discourse</a>, the
+                permissions on the store should be
+              </p>
+              <pre><code class="language-shell">sudo chown -R 0:0 /nix
+sudo chmod +t /nix
+</code></pre>
             </main>
 
             <nav class="nav-wrapper" aria-label="Page navigation">
