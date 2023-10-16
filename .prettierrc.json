@@ -1,6 +1,0 @@
-{
-  "plugins": [
-    "/nix/store/makckwg3h5c84f1zsnpmrba6vcsxi78n-node-dependencies-dotfiles/lib/node_modules/@prettier/plugin-xml/src/plugin.js"
-  ],
-  "xmlWhitespaceSensitivity": "ignore"
-}
