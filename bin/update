@@ -2,6 +2,7 @@
 # script to update dependencies
 
 nix flake update
-npm update --save
-rm -rf package-lock.json node_modules
-node2nix --development --nodejs-18
+# https://github.com/svanderburg/node2nix/issues/312
+npm update --save --lockfile-version 2
+rm -rf node_modules
+node2nix --nodejs-18 --development --lock package-lock.json
