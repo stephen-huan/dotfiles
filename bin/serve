@@ -2,4 +2,3 @@
 # script to serve the site locally
 
 mdbook serve --open
-

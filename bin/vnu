@@ -1,0 +1,17 @@
+#!/bin/sh
+# script to validate html/css/svg with the Nu Html Checker (v.Nu)
+# https://github.com/validator/validator
+
+set -o errexit
+
+site_dir="book"
+vnu_config=".vnurc"
+
+# https://github.com/validator/validator/issues/1217
+vnu --Werror --skip-non-html --filterfile "$vnu_config" "$site_dir"
+vnu --Werror --skip-non-css --filterfile "$vnu_config" "$site_dir"
+# no way to ignore path
+tmp="$site_dir/FontAwesome/fonts/.fontawesome-webfont.svg.tmp"
+mv "$site_dir/FontAwesome/fonts/fontawesome-webfont.svg" "$tmp"
+vnu --Werror --skip-non-svg --filterfile "$vnu_config" "$site_dir"
+mv "$tmp" "$site_dir/FontAwesome/fonts/fontawesome-webfont.svg"

@@ -5,5 +5,5 @@ site_dir="book"
 
 # build site
 mdbook build --dest-dir "$site_dir" &&
-prettier --write "$site_dir" --ignore-path=.prettierignore
-
+# don't ignore files in .gitignore
+prettier --write "$site_dir" --ignore-path .prettierignore
