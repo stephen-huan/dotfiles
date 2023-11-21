@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light" dir="ltr">
   <head>
     <!-- Book generated using mdBook -->
     <meta charset="UTF-8" />
@@ -29,7 +29,7 @@
 
     <!-- Custom theme stylesheets -->
   </head>
-  <body>
+  <body class="sidebar-visible no-js">
     <div id="body-container">
       <!-- Provide site root to javascript -->
       <script>
@@ -72,16 +72,20 @@
           theme = default_theme;
         }
         var html = document.querySelector("html");
-        html.classList.remove("no-js");
         html.classList.remove("light");
         html.classList.add(theme);
-        html.classList.add("js");
+        var body = document.querySelector("body");
+        body.classList.remove("no-js");
+        body.classList.add("js");
       </script>
+
+      <input type="checkbox" id="sidebar-toggle-anchor" class="hidden" />
 
       <!-- Hide / unhide sidebar before it is displayed -->
       <script>
-        var html = document.querySelector("html");
+        var body = document.querySelector("body");
         var sidebar = null;
+        var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
         if (document.body.clientWidth >= 1080) {
           try {
             sidebar = localStorage.getItem("mdbook-sidebar");
@@ -90,8 +94,9 @@
         } else {
           sidebar = "hidden";
         }
-        html.classList.remove("sidebar-visible");
-        html.classList.add("sidebar-" + sidebar);
+        sidebar_toggle.checked = sidebar === "visible";
+        body.classList.remove("sidebar-visible");
+        body.classList.add("sidebar-" + sidebar);
       </script>
 
       <nav id="sidebar" class="sidebar" aria-label="Table of contents">
@@ -120,9 +125,19 @@
                   >
                 </li>
                 <li class="chapter-item expanded">
-                  <a href="../../../os/nixos/nixpkgs.html"
+                  <a href="../../../os/nixos/nixpkgs/index.html"
                     ><strong aria-hidden="true">2.2.</strong> Nixpkgs</a
                   >
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../../os/nixos/nixpkgs/derivations.html"
+                        ><strong aria-hidden="true">2.2.1.</strong>
+                        derivations</a
+                      >
+                    </li>
+                  </ol>
                 </li>
                 <li class="chapter-item expanded">
                   <a href="../../../os/nixos/nixos/index.html"
@@ -784,8 +799,22 @@
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
+                      <div><strong aria-hidden="true">11.7.1.</strong> tex</div>
+                    </li>
+                    <li>
+                      <ol class="section">
+                        <li class="chapter-item expanded">
+                          <a
+                            href="../../../pkgs/tools/typesetting/tex/texlive.html"
+                            ><strong aria-hidden="true">11.7.1.1.</strong>
+                            texlive</a
+                          >
+                        </li>
+                      </ol>
+                    </li>
+                    <li class="chapter-item expanded">
                       <a href="../../../pkgs/tools/typesetting/tectonic.html"
-                        ><strong aria-hidden="true">11.7.1.</strong> tectonic</a
+                        ><strong aria-hidden="true">11.7.2.</strong> tectonic</a
                       >
                     </li>
                     <li class="spacer"></li>
@@ -846,16 +875,16 @@
           <div id="menu-bar-hover-placeholder"></div>
           <div id="menu-bar" class="menu-bar sticky">
             <div class="left-buttons">
-              <button
+              <label
                 id="sidebar-toggle"
                 class="icon-button"
-                type="button"
+                for="sidebar-toggle-anchor"
                 title="Toggle Table of Contents"
                 aria-label="Toggle Table of Contents"
                 aria-controls="sidebar"
               >
                 <i class="fa fa-bars"></i>
-              </button>
+              </label>
               <button
                 id="theme-toggle"
                 class="icon-button"
@@ -1106,7 +1135,7 @@ server:
               </a>
 
               <a
-                rel="next"
+                rel="next prefetch"
                 href="../../../pkgs/tools/package-management/conda.html"
                 class="mobile-nav-chapters next"
                 title="Next chapter"
@@ -1134,7 +1163,7 @@ server:
           </a>
 
           <a
-            rel="next"
+            rel="next prefetch"
             href="../../../pkgs/tools/package-management/conda.html"
             class="nav-chapters next"
             title="Next chapter"
