@@ -1,0 +1,2 @@
+# similar to https://github.com/lycheeverse/lychee/issues/1296
+exclude_path = ["book/print.html"]
