@@ -57,14 +57,15 @@ offlineimap is configured with Python, unfortunately Python 2. There's a
 and the same author also wrote [imapfw](https://github.com/OfflineIMAP/imapfw),
 a Python 3 replacement, but the project appears to be dead.
 
-In order to authenticate, we must use OAuth2 as mentioned before. The specific
-steps depends on the email provider, but in general we need a client id,
-secret, and refresh token. We can redeem the refresh token for an access token,
-which is what we actually use to authenticate. I store these credentials in the
-lightweight PGP-based password manager [pass](./pass.md). To generate an access
-token, we could use offlineimap's built-in `oauth2_refresh_token_eval` option
-but for integration with `msmtp` and caching we might as well use our own
-program: [offlineimap.py](../.dotfiles/config/offlineimap/offlineimap.py).
+In order to authenticate, we must use OAuth2 as mentioned before. The
+specific steps depends on the email provider, but in general we need a
+client id, secret, and refresh token. We can redeem the refresh token
+for an access token, which is what we actually use to authenticate. I
+store these credentials in the lightweight PGP-based password manager
+[pass](/pkgs/tools/security/pass). To generate an access token, we could use
+offlineimap's built-in `oauth2_refresh_token_eval` option but for integration
+with `msmtp` and caching we might as well use our own program:
+[offlineimap.py](https://github.com/stephen-huan/dotfiles/blob/archlinux/.config/offlineimap/offlineimap.py).
 
 Google and Microsoft cover all my email accounts, including those which
 that are not necessarily `@gmail.com` or `@hotmail.com`. For example,

@@ -24,8 +24,8 @@ which is developed by [GitHub](https://github.blog/2022-04-07-git-credential-man
 paru -S git-credential-manager-core
 ```
 
-It's possible to configure git-credential-manger to
-use the GPG-based password manger [pass](./pass.md).
+It's possible to configure git-credential-manger to use the
+GPG-based password manger [pass](/pkgs/tools/security/pass).
 
 ```shell
 git-credential-manager configure
