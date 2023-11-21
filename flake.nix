@@ -20,6 +20,7 @@
         site-builders = [ pkgs.mdbook ];
       in
       {
+        packages.${system} = import ./pkgs { inherit pkgs; };
         formatter.${system} = pkgs.writeShellScriptBin "prettier" ''
           ${nodeDependencies}/bin/prettier --write "$@"
         '';

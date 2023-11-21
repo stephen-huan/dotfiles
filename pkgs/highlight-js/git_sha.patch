@@ -1,0 +1,13 @@
+--- a/tools/build_browser.js
++++ b/tools/build_browser.js
+@@ -17,9 +17,7 @@ const Table = require('cli-table');
+ 
+ const getDefaultHeader = () => ({
+   ...require('../package.json'),
+-  git_sha: child_process
+-    .execSync("git rev-parse --short=10 HEAD")
+-    .toString().trim()
++  git_sha: "f47103d4f1"
+ });
+ function buildHeader(args = getDefaultHeader()) {
+   return "/*!\n"
