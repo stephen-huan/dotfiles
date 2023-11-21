@@ -117,6 +117,8 @@
       - [extensions]()
         - [pass-otp](./pkgs/tools/security/pass/extensions/otp.md)
   - [typesetting]()
+    - [tex]()
+      - [texlive](./pkgs/tools/typesetting/tex/texlive.md)
     - [tectonic](./pkgs/tools/typesetting/tectonic.md)
 
 ---

@@ -51,7 +51,7 @@ Important paths
 
 ## nix (cli)
 
-Here are some quick recipies for common tasks
+Here are some quick recipes for common tasks.
 
 - [query](https://nixos.org/manual/nix/stable/command-ref/nix-store/query)
   list of dependencies of (current) system
@@ -140,10 +140,6 @@ Here are some quick recipies for common tasks
   ```
 
 - and `--all` for all paths, not just the shortest one (or both flags)
-
-  ```shell
-  nix why-depends /nix/var/nix/profiles/system nixpkgs#nss
-  ```
 
   ```text
   /nix/store/7hjlhfzzf4ricswgm1wzvpaac34pwvbm-nixos-system-sora-23.11.20231009.f99e5f0

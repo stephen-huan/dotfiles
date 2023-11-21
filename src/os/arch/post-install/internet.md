@@ -3,8 +3,8 @@
 - [arch wiki - network configuration](https://wiki.archlinux.org/title/Network_configuration)
 - wifi: [iwd](/pkgs/os-specific/linux/iwd.md)
 - [ethernet](#ethernet)
-- dhcp: [dhclient](/pkgs/tools/networking/dhcpcd.md)
-  or [dhcp](/pkgs/tools/networking/dhcp.md) (deprecated)
+- dhcp: [dhcpcd](/pkgs/tools/networking/dhcpcd.md) or
+  [dhclient](/pkgs/tools/networking/dhcp.md) (deprecated)
 - [dns](#dns): [openresolv](/pkgs/tools/networking/openresolv.md) +
   [unbound](/pkgs/tools/networking/unbound.md)
 - vpn: [mullvad](/pkgs/tools/networking/mullvad.md),

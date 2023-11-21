@@ -108,8 +108,8 @@ The relevant line is
 tmpfs                  2.0G  1.6M  2.0G   1% /
 ```
 
-`nixos-rebuild` works in `/build` which can cause
-memory [issues](https://discourse.nixos.org/t/13957).
+Nix builds works in `/tmp` (see `boot.tmp.useTmpfs`) which can
+cause memory [issues](https://discourse.nixos.org/t/13957).
 
 Can check what's about to be cleared with
 
