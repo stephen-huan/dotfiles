@@ -8,15 +8,13 @@ build_branch="build"
 push_branch="cloudflare-pages"
 commit="$(git rev-parse --short HEAD)"
 
-build="$(dirname "$0")/build"
-
 git checkout -B "$build_branch" "$main_branch" &&
 # sync changes: https://stackoverflow.com/q/12858199
 rm --recursive --force "$site_dir" &&
 git subtree add --prefix "$site_dir" "$push_branch" &&
 
 # build site
-"$build" &&
+nix run .#build &&
 
 # publish
 git add --force "$site_dir" &&
