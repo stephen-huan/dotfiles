@@ -18,6 +18,14 @@
         linters = [ pkgs.validator-nu pkgs.lychee ];
         node-packages = [ pkgs.nodejs pkgs.node2nix nodeDependencies ];
         site-builders = [ pkgs.mdbook ];
+        highlight-js = "${self.packages.${system}.highlight-js.override {
+          languages = [
+            ":common"
+            "nix"
+            "python-repl"
+            "vim"
+          ];
+        }}/highlight.min.js";
       in
       {
         packages.${system} = import ./pkgs { inherit pkgs; };
@@ -68,7 +76,9 @@
             program = "${lib.getExe (pkgs.writeShellApplication {
               name = "update";
               runtimeInputs = node-packages;
-              text = builtins.readFile bin/update;
+              text = builtins.readFile bin/update + ''
+                install -Dm644 -T ${highlight-js} ./theme/highlight.js
+              '';
             })}";
           };
         };
