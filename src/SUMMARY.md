@@ -8,7 +8,8 @@
 
 - [NixOS](./os/nixos/README.md)
   - [Nix](./os/nixos/nix.md)
-  - [Nixpkgs](./os/nixos/nixpkgs.md)
+  - [Nixpkgs](./os/nixos/nixpkgs/README.md)
+    - [derivations](./os/nixos/nixpkgs/derivations.md)
   - [NixOS](./os/nixos/nixos/README.md)
     - [home-manager](./os/nixos/nixos/home-manager.md)
     - [impermanence](./os/nixos/nixos/impermanence.md)

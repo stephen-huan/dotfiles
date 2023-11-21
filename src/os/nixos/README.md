@@ -1,8 +1,8 @@
 # NixOS
 
-I am preparing to move to [NixOS](https://nixos.org/). I may still include
-notes here for archival purposes, commentary, tutorials, and guides, but
-when that happens, the canonical source of truth will be the Nix code.
+I have moved to [NixOS](https://nixos.org/). I may still include notes here for
+archival purposes, commentary, tutorials, and guides, but the canonical source
+of truth remains the [Nix code](https://github.com/stephen-huan/nixos-config).
 
 The structure of this website follows
 [nixpkgs](https://github.com/NixOS/nixpkgs/) (you can search
