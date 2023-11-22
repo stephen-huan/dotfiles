@@ -9,6 +9,9 @@
 , languages ? [ ":common" ]
 }:
 
+let
+  inherit (lib) optionalString;
+in
 buildNpmPackage rec {
   pname = "highlight-js";
   version = "11.9.0";
@@ -35,8 +38,8 @@ buildNpmPackage rec {
     runHook preBuild
 
     node tools/build.js \
-      ${lib.optionalString (! minified) "--no-minify"} \
-      ${lib.optionalString (! modules) "--no-esm"} \
+      ${optionalString (! minified) "--no-minify"} \
+      ${optionalString (! modules) "--no-esm"} \
       --target "${target}" \
       ${builtins.concatStringsSep " " languages}
 
@@ -46,7 +49,7 @@ buildNpmPackage rec {
   installPhase = ''
     runHook preInstall
 
-    install -Dm644 build/highlight${lib.optionalString minified ".min"}.js -t $out
+    install -Dm644 build/highlight${optionalString minified ".min"}.js -t $out
 
     runHook postInstall
   '';
