@@ -3,7 +3,7 @@
   <head>
     <!-- Book generated using mdBook -->
     <meta charset="UTF-8" />
-    <title>Nixpkgs - dotfiles</title>
+    <title>audio - dotfiles</title>
 
     <!-- Custom HTML head -->
 
@@ -11,21 +11,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#ffffff" />
 
-    <link rel="icon" href="../../../favicon.svg" />
-    <link rel="shortcut icon" href="../../../favicon.png" />
-    <link rel="stylesheet" href="../../../css/variables.css" />
-    <link rel="stylesheet" href="../../../css/general.css" />
-    <link rel="stylesheet" href="../../../css/chrome.css" />
-    <link rel="stylesheet" href="../../../css/print.css" media="print" />
+    <link rel="icon" href="../../favicon.svg" />
+    <link rel="shortcut icon" href="../../favicon.png" />
+    <link rel="stylesheet" href="../../css/variables.css" />
+    <link rel="stylesheet" href="../../css/general.css" />
+    <link rel="stylesheet" href="../../css/chrome.css" />
+    <link rel="stylesheet" href="../../css/print.css" media="print" />
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="../../../FontAwesome/css/font-awesome.css" />
-    <link rel="stylesheet" href="../../../fonts/fonts.css" />
+    <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="../../fonts/fonts.css" />
 
     <!-- Highlight.js Stylesheets -->
-    <link rel="stylesheet" href="../../../highlight.css" />
-    <link rel="stylesheet" href="../../../tomorrow-night.css" />
-    <link rel="stylesheet" href="../../../ayu-highlight.css" />
+    <link rel="stylesheet" href="../../highlight.css" />
+    <link rel="stylesheet" href="../../tomorrow-night.css" />
+    <link rel="stylesheet" href="../../ayu-highlight.css" />
 
     <!-- Custom theme stylesheets -->
   </head>
@@ -33,7 +33,7 @@
     <div id="body-container">
       <!-- Provide site root to javascript -->
       <script>
-        var path_to_root = "../../../";
+        var path_to_root = "../../";
         var default_theme = window.matchMedia("(prefers-color-scheme: dark)")
           .matches
           ? "navy"
@@ -103,257 +103,180 @@
         <div class="sidebar-scrollbox">
           <ol class="chapter">
             <li class="chapter-item expanded affix">
-              <a href="../../../index.html">home</a>
-            </li>
-            <li class="chapter-item expanded">
-              <a href="../../../dotfiles.html"
-                ><strong aria-hidden="true">1.</strong> dotfiles management</a
-              >
+              <a href="../../index.html">home</a>
             </li>
             <li class="chapter-item expanded affix"></li>
-            <li class="part-title">os</li>
+            <li class="part-title">nix</li>
             <li class="chapter-item expanded">
-              <a href="../../../os/nixos/index.html"
-                ><strong aria-hidden="true">2.</strong> NixOS</a
+              <a href="../../nix/index.html"
+                ><strong aria-hidden="true">1.</strong> Nix</a
+              >
+            </li>
+            <li class="chapter-item expanded">
+              <a href="../../nix/nixpkgs/index.html"
+                ><strong aria-hidden="true">2.</strong> Nixpkgs</a
               >
             </li>
             <li>
               <ol class="section">
                 <li class="chapter-item expanded">
-                  <a href="../../../os/nixos/nix.html"
-                    ><strong aria-hidden="true">2.1.</strong> Nix</a
-                  >
-                </li>
-                <li class="chapter-item expanded">
-                  <a href="../../../os/nixos/nixpkgs/index.html" class="active"
-                    ><strong aria-hidden="true">2.2.</strong> Nixpkgs</a
-                  >
-                </li>
-                <li>
-                  <ol class="section">
-                    <li class="chapter-item expanded">
-                      <a href="../../../os/nixos/nixpkgs/derivations.html"
-                        ><strong aria-hidden="true">2.2.1.</strong>
-                        derivations</a
-                      >
-                    </li>
-                  </ol>
-                </li>
-                <li class="chapter-item expanded">
-                  <a href="../../../os/nixos/nixos/index.html"
-                    ><strong aria-hidden="true">2.3.</strong> NixOS</a
-                  >
-                </li>
-                <li>
-                  <ol class="section">
-                    <li class="chapter-item expanded">
-                      <a href="../../../os/nixos/nixos/home-manager.html"
-                        ><strong aria-hidden="true">2.3.1.</strong>
-                        home-manager</a
-                      >
-                    </li>
-                    <li class="chapter-item expanded">
-                      <a href="../../../os/nixos/nixos/impermanence.html"
-                        ><strong aria-hidden="true">2.3.2.</strong>
-                        impermanence</a
-                      >
-                    </li>
-                    <li class="chapter-item expanded">
-                      <a href="../../../os/nixos/nixos/modules.html"
-                        ><strong aria-hidden="true">2.3.3.</strong> modules</a
-                      >
-                    </li>
-                  </ol>
-                </li>
-                <li class="chapter-item expanded">
-                  <a href="../../../os/nixos/flakes.html"
-                    ><strong aria-hidden="true">2.4.</strong> Flakes</a
+                  <a href="../../nix/nixpkgs/derivations.html"
+                    ><strong aria-hidden="true">2.1.</strong> derivations</a
                   >
                 </li>
               </ol>
             </li>
             <li class="chapter-item expanded">
-              <a href="../../../os/arch/index.html"
-                ><strong aria-hidden="true">3.</strong> Arch Linux</a
+              <a href="../../nix/nixos/index.html"
+                ><strong aria-hidden="true">3.</strong> NixOS</a
               >
             </li>
             <li>
               <ol class="section">
                 <li class="chapter-item expanded">
-                  <a href="../../../os/arch/install.html"
-                    ><strong aria-hidden="true">3.1.</strong> install</a
+                  <a href="../../nix/nixos/home-manager.html"
+                    ><strong aria-hidden="true">3.1.</strong> home-manager</a
                   >
                 </li>
                 <li class="chapter-item expanded">
-                  <a href="../../../os/arch/post-install/index.html"
-                    ><strong aria-hidden="true">3.2.</strong> post-install</a
+                  <a href="../../nix/nixos/impermanence.html"
+                    ><strong aria-hidden="true">3.2.</strong> impermanence</a
                   >
                 </li>
-                <li>
-                  <ol class="section">
-                    <li class="chapter-item expanded">
-                      <a href="../../../os/arch/post-install/audio.html"
-                        ><strong aria-hidden="true">3.2.1.</strong> audio</a
-                      >
-                    </li>
-                    <li class="chapter-item expanded">
-                      <a href="../../../os/arch/post-install/clipboard.html"
-                        ><strong aria-hidden="true">3.2.2.</strong> clipboard</a
-                      >
-                    </li>
-                    <li class="chapter-item expanded">
-                      <a href="../../../os/arch/post-install/gpu.html"
-                        ><strong aria-hidden="true">3.2.3.</strong> gpu</a
-                      >
-                    </li>
-                    <li class="chapter-item expanded">
-                      <a href="../../../os/arch/post-install/internet.html"
-                        ><strong aria-hidden="true">3.2.4.</strong> internet</a
-                      >
-                    </li>
-                    <li class="chapter-item expanded">
-                      <a href="../../../os/arch/post-install/input.html"
-                        ><strong aria-hidden="true">3.2.5.</strong> input</a
-                      >
-                    </li>
-                    <li class="chapter-item expanded">
-                      <a
-                        href="../../../os/arch/post-install/screen-capture.html"
-                        ><strong aria-hidden="true">3.2.6.</strong> screen
-                        capture</a
-                      >
-                    </li>
-                    <li class="chapter-item expanded">
-                      <a href="../../../os/arch/post-install/security.html"
-                        ><strong aria-hidden="true">3.2.7.</strong> security</a
-                      >
-                    </li>
-                    <li class="spacer"></li>
-                  </ol>
+                <li class="chapter-item expanded">
+                  <a href="../../nix/nixos/modules.html"
+                    ><strong aria-hidden="true">3.3.</strong> modules</a
+                  >
                 </li>
               </ol>
             </li>
-            <li class="chapter-item expanded"></li>
+            <li class="chapter-item expanded">
+              <a href="../../nix/flakes.html"
+                ><strong aria-hidden="true">4.</strong> Flakes</a
+              >
+            </li>
+            <li class="chapter-item expanded">
+              <a href="../../nix/packages.html"
+                ><strong aria-hidden="true">5.</strong> Packages</a
+              >
+            </li>
+            <li class="spacer"></li>
+            <li class="chapter-item expanded affix"></li>
             <li class="part-title">pkgs</li>
             <li class="chapter-item expanded">
-              <div><strong aria-hidden="true">4.</strong> applications</div>
+              <div><strong aria-hidden="true">6.</strong> applications</div>
             </li>
             <li>
               <ol class="section">
                 <li class="chapter-item expanded">
-                  <div><strong aria-hidden="true">4.1.</strong> audio</div>
+                  <div><strong aria-hidden="true">6.1.</strong> audio</div>
                 </li>
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/applications/audio/cider.html"
-                        ><strong aria-hidden="true">4.1.1.</strong> cider</a
-                      >
-                    </li>
-                    <li class="chapter-item expanded">
-                      <a href="../../../pkgs/applications/audio/cmus.html"
-                        ><strong aria-hidden="true">4.1.2.</strong> cmus</a
+                      <a href="../../pkgs/applications/audio/cmus.html"
+                        ><strong aria-hidden="true">6.1.1.</strong> cmus</a
                       >
                     </li>
                   </ol>
                 </li>
                 <li class="chapter-item expanded">
                   <div>
-                    <strong aria-hidden="true">4.2.</strong> display-managers
+                    <strong aria-hidden="true">6.2.</strong> display-managers
                   </div>
                 </li>
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
                       <a
-                        href="../../../pkgs/applications/display-managers/sddm.html"
-                        ><strong aria-hidden="true">4.2.1.</strong> sddm</a
+                        href="../../pkgs/applications/display-managers/sddm.html"
+                        ><strong aria-hidden="true">6.2.1.</strong> sddm</a
                       >
                     </li>
                   </ol>
                 </li>
                 <li class="chapter-item expanded">
-                  <div><strong aria-hidden="true">4.3.</strong> editors</div>
+                  <div><strong aria-hidden="true">6.3.</strong> editors</div>
                 </li>
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/applications/editors/neovim.html"
-                        ><strong aria-hidden="true">4.3.1.</strong> neovim</a
+                      <a href="../../pkgs/applications/editors/neovim.html"
+                        ><strong aria-hidden="true">6.3.1.</strong> neovim</a
                       >
                     </li>
                   </ol>
                 </li>
                 <li class="chapter-item expanded">
-                  <div><strong aria-hidden="true">4.4.</strong> emulators</div>
+                  <div><strong aria-hidden="true">6.4.</strong> emulators</div>
                 </li>
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/applications/emulators/wine.html"
-                        ><strong aria-hidden="true">4.4.1.</strong> wine</a
+                      <a href="../../pkgs/applications/emulators/wine.html"
+                        ><strong aria-hidden="true">6.4.1.</strong> wine</a
                       >
                     </li>
                   </ol>
                 </li>
                 <li class="chapter-item expanded">
                   <div>
-                    <strong aria-hidden="true">4.5.</strong> file-managers
+                    <strong aria-hidden="true">6.5.</strong> file-managers
                   </div>
                 </li>
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
                       <a
-                        href="../../../pkgs/applications/file-managers/ranger.html"
-                        ><strong aria-hidden="true">4.5.1.</strong> ranger</a
+                        href="../../pkgs/applications/file-managers/ranger.html"
+                        ><strong aria-hidden="true">6.5.1.</strong> ranger</a
                       >
                     </li>
                   </ol>
                 </li>
                 <li class="chapter-item expanded">
-                  <div><strong aria-hidden="true">4.6.</strong> misc</div>
+                  <div><strong aria-hidden="true">6.6.</strong> misc</div>
                 </li>
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/applications/misc/mupdf.html"
-                        ><strong aria-hidden="true">4.6.1.</strong> mupdf</a
+                      <a href="../../pkgs/applications/misc/mupdf.html"
+                        ><strong aria-hidden="true">6.6.1.</strong> mupdf</a
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/applications/misc/redshift.html"
-                        ><strong aria-hidden="true">4.6.2.</strong> redshift</a
+                      <a href="../../pkgs/applications/misc/redshift.html"
+                        ><strong aria-hidden="true">6.6.2.</strong> redshift</a
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/applications/misc/sioyek.html"
-                        ><strong aria-hidden="true">4.6.3.</strong> sioyek</a
+                      <a href="../../pkgs/applications/misc/sioyek.html"
+                        ><strong aria-hidden="true">6.6.3.</strong> sioyek</a
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/applications/misc/zathura.html"
-                        ><strong aria-hidden="true">4.6.4.</strong> zathura</a
+                      <a href="../../pkgs/applications/misc/zathura.html"
+                        ><strong aria-hidden="true">6.6.4.</strong> zathura</a
                       >
                     </li>
                   </ol>
                 </li>
                 <li class="chapter-item expanded">
-                  <div><strong aria-hidden="true">4.7.</strong> networking</div>
+                  <div><strong aria-hidden="true">6.7.</strong> networking</div>
                 </li>
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
                       <div>
-                        <strong aria-hidden="true">4.7.1.</strong> mailreaders
+                        <strong aria-hidden="true">6.7.1.</strong> mailreaders
                       </div>
                     </li>
                     <li>
                       <ol class="section">
                         <li class="chapter-item expanded">
                           <a
-                            href="../../../pkgs/applications/networking/mailreaders/neomutt.html"
-                            ><strong aria-hidden="true">4.7.1.1.</strong>
+                            href="../../pkgs/applications/networking/mailreaders/neomutt.html"
+                            ><strong aria-hidden="true">6.7.1.1.</strong>
                             neomutt</a
                           >
                         </li>
@@ -363,36 +286,36 @@
                 </li>
                 <li class="chapter-item expanded">
                   <div>
-                    <strong aria-hidden="true">4.8.</strong> terminal-emulators
+                    <strong aria-hidden="true">6.8.</strong> terminal-emulators
                   </div>
                 </li>
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
                       <a
-                        href="../../../pkgs/applications/terminal-emulators/alacritty.html"
-                        ><strong aria-hidden="true">4.8.1.</strong> alacritty</a
+                        href="../../pkgs/applications/terminal-emulators/alacritty.html"
+                        ><strong aria-hidden="true">6.8.1.</strong> alacritty</a
                       >
                     </li>
                   </ol>
                 </li>
                 <li class="chapter-item expanded">
                   <div>
-                    <strong aria-hidden="true">4.9.</strong> version-management
+                    <strong aria-hidden="true">6.9.</strong> version-management
                   </div>
                 </li>
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
                       <a
-                        href="../../../pkgs/applications/version-management/git.html"
-                        ><strong aria-hidden="true">4.9.1.</strong> git</a
+                        href="../../pkgs/applications/version-management/git.html"
+                        ><strong aria-hidden="true">6.9.1.</strong> git</a
                       >
                     </li>
                     <li class="chapter-item expanded">
                       <a
-                        href="../../../pkgs/applications/version-management/git-credential-manager.html"
-                        ><strong aria-hidden="true">4.9.2.</strong>
+                        href="../../pkgs/applications/version-management/git-credential-manager.html"
+                        ><strong aria-hidden="true">6.9.2.</strong>
                         git-credential-manager</a
                       >
                     </li>
@@ -400,40 +323,20 @@
                 </li>
                 <li class="chapter-item expanded">
                   <div>
-                    <strong aria-hidden="true">4.10.</strong> window-managers
+                    <strong aria-hidden="true">6.10.</strong> window-managers
                   </div>
                 </li>
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
-                      <a
-                        href="../../../pkgs/applications/window-managers/i3.html"
-                        ><strong aria-hidden="true">4.10.1.</strong> i3</a
+                      <a href="../../pkgs/applications/window-managers/i3.html"
+                        ><strong aria-hidden="true">6.10.1.</strong> i3</a
                       >
                     </li>
                     <li class="chapter-item expanded">
                       <a
-                        href="../../../pkgs/applications/window-managers/picom.html"
-                        ><strong aria-hidden="true">4.10.2.</strong> picom</a
-                      >
-                    </li>
-                  </ol>
-                </li>
-              </ol>
-            </li>
-            <li class="chapter-item expanded">
-              <div><strong aria-hidden="true">5.</strong> data</div>
-            </li>
-            <li>
-              <ol class="section">
-                <li class="chapter-item expanded">
-                  <div><strong aria-hidden="true">5.1.</strong> fonts</div>
-                </li>
-                <li>
-                  <ol class="section">
-                    <li class="chapter-item expanded">
-                      <a href="../../../pkgs/data/fonts/ipafont.html"
-                        ><strong aria-hidden="true">5.1.1.</strong> ipafont</a
+                        href="../../pkgs/applications/window-managers/picom.html"
+                        ><strong aria-hidden="true">6.10.2.</strong> picom</a
                       >
                     </li>
                   </ol>
@@ -441,26 +344,43 @@
               </ol>
             </li>
             <li class="chapter-item expanded">
-              <div><strong aria-hidden="true">6.</strong> development</div>
+              <div><strong aria-hidden="true">7.</strong> data</div>
             </li>
             <li>
               <ol class="section">
                 <li class="chapter-item expanded">
-                  <div><strong aria-hidden="true">6.1.</strong> libraries</div>
+                  <div><strong aria-hidden="true">7.1.</strong> fonts</div>
                 </li>
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
-                      <a
-                        href="../../../pkgs/development/libraries/fontconfig.html"
-                        ><strong aria-hidden="true">6.1.1.</strong>
+                      <a href="../../pkgs/data/fonts/ipafont.html"
+                        ><strong aria-hidden="true">7.1.1.</strong> ipafont</a
+                      >
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+            <li class="chapter-item expanded">
+              <div><strong aria-hidden="true">8.</strong> development</div>
+            </li>
+            <li>
+              <ol class="section">
+                <li class="chapter-item expanded">
+                  <div><strong aria-hidden="true">8.1.</strong> libraries</div>
+                </li>
+                <li>
+                  <ol class="section">
+                    <li class="chapter-item expanded">
+                      <a href="../../pkgs/development/libraries/fontconfig.html"
+                        ><strong aria-hidden="true">8.1.1.</strong>
                         fontconfig</a
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a
-                        href="../../../pkgs/development/libraries/pipewire.html"
-                        ><strong aria-hidden="true">6.1.2.</strong> pipewire</a
+                      <a href="../../pkgs/development/libraries/pipewire.html"
+                        ><strong aria-hidden="true">8.1.2.</strong> pipewire</a
                       >
                     </li>
                   </ol>
@@ -468,20 +388,20 @@
               </ol>
             </li>
             <li class="chapter-item expanded">
-              <div><strong aria-hidden="true">7.</strong> misc</div>
+              <div><strong aria-hidden="true">9.</strong> misc</div>
             </li>
             <li>
               <ol class="section">
                 <li class="chapter-item expanded">
                   <div>
-                    <strong aria-hidden="true">7.1.</strong> screensavers
+                    <strong aria-hidden="true">9.1.</strong> screensavers
                   </div>
                 </li>
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/misc/screensavers/xss-lock.html"
-                        ><strong aria-hidden="true">7.1.1.</strong> xss-lock</a
+                      <a href="../../pkgs/misc/screensavers/xss-lock.html"
+                        ><strong aria-hidden="true">9.1.1.</strong> xss-lock</a
                       >
                     </li>
                   </ol>
@@ -489,41 +409,40 @@
               </ol>
             </li>
             <li class="chapter-item expanded">
-              <div><strong aria-hidden="true">8.</strong> os-specific</div>
+              <div><strong aria-hidden="true">10.</strong> os-specific</div>
             </li>
             <li>
               <ol class="section">
                 <li class="chapter-item expanded">
-                  <div><strong aria-hidden="true">8.1.</strong> linux</div>
+                  <div><strong aria-hidden="true">10.1.</strong> linux</div>
                 </li>
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
-                      <a
-                        href="../../../pkgs/os-specific/linux/alsa-project.html"
-                        ><strong aria-hidden="true">8.1.1.</strong>
+                      <a href="../../pkgs/os-specific/linux/alsa-project.html"
+                        ><strong aria-hidden="true">10.1.1.</strong>
                         alsa-project</a
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/os-specific/linux/bluez.html"
-                        ><strong aria-hidden="true">8.1.2.</strong> bluez</a
+                      <a href="../../pkgs/os-specific/linux/bluez.html"
+                        ><strong aria-hidden="true">10.1.2.</strong> bluez</a
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/os-specific/linux/iwd.html"
-                        ><strong aria-hidden="true">8.1.3.</strong> iwd</a
+                      <a href="../../pkgs/os-specific/linux/iwd.html"
+                        ><strong aria-hidden="true">10.1.3.</strong> iwd</a
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/os-specific/linux/plymouth.html"
-                        ><strong aria-hidden="true">8.1.4.</strong> plymouth</a
+                      <a href="../../pkgs/os-specific/linux/plymouth.html"
+                        ><strong aria-hidden="true">10.1.4.</strong> plymouth</a
                       >
                     </li>
                     <li class="chapter-item expanded">
                       <a
-                        href="../../../pkgs/os-specific/linux/tuxedo-keyboard.html"
-                        ><strong aria-hidden="true">8.1.5.</strong>
+                        href="../../pkgs/os-specific/linux/tuxedo-keyboard.html"
+                        ><strong aria-hidden="true">10.1.5.</strong>
                         tuxedo-keyboard</a
                       >
                     </li>
@@ -532,54 +451,54 @@
               </ol>
             </li>
             <li class="chapter-item expanded">
-              <div><strong aria-hidden="true">9.</strong> servers</div>
+              <div><strong aria-hidden="true">11.</strong> servers</div>
             </li>
             <li>
               <ol class="section">
                 <li class="chapter-item expanded">
-                  <div><strong aria-hidden="true">9.1.</strong> x11</div>
+                  <div><strong aria-hidden="true">11.1.</strong> x11</div>
                 </li>
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/servers/x11/xorg.html"
-                        ><strong aria-hidden="true">9.1.1.</strong> xorg</a
+                      <a href="../../pkgs/servers/x11/xorg.html"
+                        ><strong aria-hidden="true">11.1.1.</strong> xorg</a
                       >
                     </li>
                   </ol>
                 </li>
                 <li class="chapter-item expanded">
-                  <a href="../../../pkgs/servers/pulseaudio.html"
-                    ><strong aria-hidden="true">9.2.</strong> pulseaudio</a
+                  <a href="../../pkgs/servers/pulseaudio.html"
+                    ><strong aria-hidden="true">11.2.</strong> pulseaudio</a
                   >
                 </li>
               </ol>
             </li>
             <li class="chapter-item expanded">
-              <div><strong aria-hidden="true">10.</strong> shells</div>
+              <div><strong aria-hidden="true">12.</strong> shells</div>
             </li>
             <li>
               <ol class="section">
                 <li class="chapter-item expanded">
-                  <a href="../../../pkgs/shells/fish.html"
-                    ><strong aria-hidden="true">10.1.</strong> fish</a
+                  <a href="../../pkgs/shells/fish.html"
+                    ><strong aria-hidden="true">12.1.</strong> fish</a
                   >
                 </li>
               </ol>
             </li>
             <li class="chapter-item expanded">
-              <div><strong aria-hidden="true">11.</strong> tools</div>
+              <div><strong aria-hidden="true">13.</strong> tools</div>
             </li>
             <li>
               <ol class="section">
                 <li class="chapter-item expanded">
-                  <div><strong aria-hidden="true">11.1.</strong> audio</div>
+                  <div><strong aria-hidden="true">13.1.</strong> audio</div>
                 </li>
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/tools/audio/playerctl.html"
-                        ><strong aria-hidden="true">11.1.1.</strong>
+                      <a href="../../pkgs/tools/audio/playerctl.html"
+                        ><strong aria-hidden="true">13.1.1.</strong>
                         playerctl</a
                       >
                     </li>
@@ -587,27 +506,27 @@
                 </li>
                 <li class="chapter-item expanded">
                   <div>
-                    <strong aria-hidden="true">11.2.</strong> inputmethods
+                    <strong aria-hidden="true">13.2.</strong> inputmethods
                   </div>
                 </li>
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/tools/inputmethods/ibus.html"
-                        ><strong aria-hidden="true">11.2.1.</strong> ibus</a
+                      <a href="../../pkgs/tools/inputmethods/ibus.html"
+                        ><strong aria-hidden="true">13.2.1.</strong> ibus</a
                       >
                     </li>
                     <li class="chapter-item expanded">
                       <div>
-                        <strong aria-hidden="true">11.2.2.</strong> ibus-engines
+                        <strong aria-hidden="true">13.2.2.</strong> ibus-engines
                       </div>
                     </li>
                     <li>
                       <ol class="section">
                         <li class="chapter-item expanded">
                           <a
-                            href="../../../pkgs/tools/inputmethods/ibus-engines/ibus-mozc.html"
-                            ><strong aria-hidden="true">11.2.2.1.</strong>
+                            href="../../pkgs/tools/inputmethods/ibus-engines/ibus-mozc.html"
+                            ><strong aria-hidden="true">13.2.2.1.</strong>
                             ibus-mozc</a
                           >
                         </li>
@@ -616,44 +535,44 @@
                   </ol>
                 </li>
                 <li class="chapter-item expanded">
-                  <div><strong aria-hidden="true">11.3.</strong> misc</div>
+                  <div><strong aria-hidden="true">13.3.</strong> misc</div>
                 </li>
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/tools/misc/android-tools.html"
-                        ><strong aria-hidden="true">11.3.1.</strong>
+                      <a href="../../pkgs/tools/misc/android-tools.html"
+                        ><strong aria-hidden="true">13.3.1.</strong>
                         android-tools</a
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/tools/misc/clipster.html"
-                        ><strong aria-hidden="true">11.3.2.</strong> clipster</a
+                      <a href="../../pkgs/tools/misc/clipster.html"
+                        ><strong aria-hidden="true">13.3.2.</strong> clipster</a
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/tools/misc/grub.html"
-                        ><strong aria-hidden="true">11.3.3.</strong> grub</a
+                      <a href="../../pkgs/tools/misc/grub.html"
+                        ><strong aria-hidden="true">13.3.3.</strong> grub</a
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/tools/misc/plocate.html"
-                        ><strong aria-hidden="true">11.3.4.</strong> plocate</a
+                      <a href="../../pkgs/tools/misc/plocate.html"
+                        ><strong aria-hidden="true">13.3.4.</strong> plocate</a
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/tools/misc/qmk.html"
-                        ><strong aria-hidden="true">11.3.5.</strong> qmk</a
+                      <a href="../../pkgs/tools/misc/qmk.html"
+                        ><strong aria-hidden="true">13.3.5.</strong> qmk</a
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/tools/misc/tmux.html"
-                        ><strong aria-hidden="true">11.3.6.</strong> tmux</a
+                      <a href="../../pkgs/tools/misc/tmux.html"
+                        ><strong aria-hidden="true">13.3.6.</strong> tmux</a
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/tools/misc/yubikey-manager.html"
-                        ><strong aria-hidden="true">11.3.7.</strong>
+                      <a href="../../pkgs/tools/misc/yubikey-manager.html"
+                        ><strong aria-hidden="true">13.3.7.</strong>
                         yubikey-manager</a
                       >
                     </li>
@@ -661,116 +580,114 @@
                 </li>
                 <li class="chapter-item expanded">
                   <div>
-                    <strong aria-hidden="true">11.4.</strong> networking
+                    <strong aria-hidden="true">13.4.</strong> networking
                   </div>
                 </li>
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/tools/networking/dhcp.html"
-                        ><strong aria-hidden="true">11.4.1.</strong> dhcp</a
+                      <a href="../../pkgs/tools/networking/dhcp.html"
+                        ><strong aria-hidden="true">13.4.1.</strong> dhcp</a
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/tools/networking/dhcpcd.html"
-                        ><strong aria-hidden="true">11.4.2.</strong> dhcpcd</a
+                      <a href="../../pkgs/tools/networking/dhcpcd.html"
+                        ><strong aria-hidden="true">13.4.2.</strong> dhcpcd</a
                       >
                     </li>
                     <li class="chapter-item expanded">
                       <a
-                        href="../../../pkgs/tools/networking/globalprotect-openconnect.html"
-                        ><strong aria-hidden="true">11.4.3.</strong>
+                        href="../../pkgs/tools/networking/globalprotect-openconnect.html"
+                        ><strong aria-hidden="true">13.4.3.</strong>
                         globalprotect-openconnect</a
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/tools/networking/ifplugd.html"
-                        ><strong aria-hidden="true">11.4.4.</strong> ifplugd</a
+                      <a href="../../pkgs/tools/networking/ifplugd.html"
+                        ><strong aria-hidden="true">13.4.4.</strong> ifplugd</a
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/tools/networking/mullvad.html"
-                        ><strong aria-hidden="true">11.4.5.</strong> mullvad</a
+                      <a href="../../pkgs/tools/networking/mullvad.html"
+                        ><strong aria-hidden="true">13.4.5.</strong> mullvad</a
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/tools/networking/openconnect.html"
-                        ><strong aria-hidden="true">11.4.6.</strong>
+                      <a href="../../pkgs/tools/networking/openconnect.html"
+                        ><strong aria-hidden="true">13.4.6.</strong>
                         openconnect</a
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/tools/networking/openresolv.html"
-                        ><strong aria-hidden="true">11.4.7.</strong>
+                      <a href="../../pkgs/tools/networking/openresolv.html"
+                        ><strong aria-hidden="true">13.4.7.</strong>
                         openresolv</a
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/tools/networking/unbound.html"
-                        ><strong aria-hidden="true">11.4.8.</strong> unbound</a
+                      <a href="../../pkgs/tools/networking/unbound.html"
+                        ><strong aria-hidden="true">13.4.8.</strong> unbound</a
                       >
                     </li>
                   </ol>
                 </li>
                 <li class="chapter-item expanded">
                   <div>
-                    <strong aria-hidden="true">11.5.</strong> package-management
+                    <strong aria-hidden="true">13.5.</strong> package-management
                   </div>
                 </li>
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
-                      <a
-                        href="../../../pkgs/tools/package-management/conda.html"
-                        ><strong aria-hidden="true">11.5.1.</strong> conda</a
+                      <a href="../../pkgs/tools/package-management/conda.html"
+                        ><strong aria-hidden="true">13.5.1.</strong> conda</a
                       >
                     </li>
                     <li class="chapter-item expanded">
                       <a
-                        href="../../../pkgs/tools/package-management/micromamba.html"
-                        ><strong aria-hidden="true">11.5.2.</strong>
+                        href="../../pkgs/tools/package-management/micromamba.html"
+                        ><strong aria-hidden="true">13.5.2.</strong>
                         micromamba</a
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/tools/package-management/nix.html"
-                        ><strong aria-hidden="true">11.5.3.</strong> nix</a
+                      <a href="../../pkgs/tools/package-management/nix.html"
+                        ><strong aria-hidden="true">13.5.3.</strong> nix</a
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a
-                        href="../../../pkgs/tools/package-management/pacman.html"
-                        ><strong aria-hidden="true">11.5.4.</strong> pacman</a
+                      <a href="../../pkgs/tools/package-management/pacman.html"
+                        ><strong aria-hidden="true">13.5.4.</strong> pacman</a
                       >
                     </li>
                   </ol>
                 </li>
                 <li class="chapter-item expanded">
-                  <div><strong aria-hidden="true">11.6.</strong> security</div>
+                  <div><strong aria-hidden="true">13.6.</strong> security</div>
                 </li>
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/tools/security/browserpass.html"
-                        ><strong aria-hidden="true">11.6.1.</strong>
+                      <a href="../../pkgs/tools/security/browserpass.html"
+                        ><strong aria-hidden="true">13.6.1.</strong>
                         browerpass</a
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/tools/security/gnupg.html"
-                        ><strong aria-hidden="true">11.6.2.</strong> gnupg</a
+                      <a href="../../pkgs/tools/security/gnupg.html"
+                        ><strong aria-hidden="true">13.6.2.</strong> gnupg</a
                       >
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/tools/security/pass/index.html"
-                        ><strong aria-hidden="true">11.6.3.</strong> pass</a
+                      <a href="../../pkgs/tools/security/pass/index.html"
+                        ><strong aria-hidden="true">13.6.3.</strong> pass</a
                       >
                     </li>
                     <li>
                       <ol class="section">
                         <li class="chapter-item expanded">
                           <div>
-                            <strong aria-hidden="true">11.6.3.1.</strong>
+                            <strong aria-hidden="true">13.6.3.1.</strong>
                             extensions
                           </div>
                         </li>
@@ -778,8 +695,8 @@
                           <ol class="section">
                             <li class="chapter-item expanded">
                               <a
-                                href="../../../pkgs/tools/security/pass/extensions/otp.html"
-                                ><strong aria-hidden="true">11.6.3.1.1.</strong>
+                                href="../../pkgs/tools/security/pass/extensions/otp.html"
+                                ><strong aria-hidden="true">13.6.3.1.1.</strong>
                                 pass-otp</a
                               >
                             </li>
@@ -791,28 +708,28 @@
                 </li>
                 <li class="chapter-item expanded">
                   <div>
-                    <strong aria-hidden="true">11.7.</strong> typesetting
+                    <strong aria-hidden="true">13.7.</strong> typesetting
                   </div>
                 </li>
                 <li>
                   <ol class="section">
                     <li class="chapter-item expanded">
-                      <div><strong aria-hidden="true">11.7.1.</strong> tex</div>
+                      <div><strong aria-hidden="true">13.7.1.</strong> tex</div>
                     </li>
                     <li>
                       <ol class="section">
                         <li class="chapter-item expanded">
                           <a
-                            href="../../../pkgs/tools/typesetting/tex/texlive.html"
-                            ><strong aria-hidden="true">11.7.1.1.</strong>
+                            href="../../pkgs/tools/typesetting/tex/texlive.html"
+                            ><strong aria-hidden="true">13.7.1.1.</strong>
                             texlive</a
                           >
                         </li>
                       </ol>
                     </li>
                     <li class="chapter-item expanded">
-                      <a href="../../../pkgs/tools/typesetting/tectonic.html"
-                        ><strong aria-hidden="true">11.7.2.</strong> tectonic</a
+                      <a href="../../pkgs/tools/typesetting/tectonic.html"
+                        ><strong aria-hidden="true">13.7.2.</strong> tectonic</a
                       >
                     </li>
                     <li class="spacer"></li>
@@ -823,14 +740,70 @@
             <li class="chapter-item expanded"></li>
             <li class="part-title">misc</li>
             <li class="chapter-item expanded">
-              <a href="../../../misc/pace.html"
-                ><strong aria-hidden="true">12.</strong> pace</a
+              <a href="../../misc/pace.html"
+                ><strong aria-hidden="true">14.</strong> pace</a
               >
             </li>
             <li class="chapter-item expanded">
-              <a href="../../../misc/far.html"
-                ><strong aria-hidden="true">13.</strong> far</a
+              <a href="../../misc/far.html"
+                ><strong aria-hidden="true">15.</strong> far</a
               >
+            </li>
+            <li class="chapter-item expanded affix"></li>
+            <li class="part-title">arch</li>
+            <li class="chapter-item expanded">
+              <a href="../../arch/index.html"
+                ><strong aria-hidden="true">16.</strong> Arch Linux</a
+              >
+            </li>
+            <li class="chapter-item expanded">
+              <a href="../../arch/install.html"
+                ><strong aria-hidden="true">17.</strong> install</a
+              >
+            </li>
+            <li class="chapter-item expanded">
+              <a href="../../arch/post-install/index.html"
+                ><strong aria-hidden="true">18.</strong> post-install</a
+              >
+            </li>
+            <li>
+              <ol class="section">
+                <li class="chapter-item expanded">
+                  <a href="../../arch/post-install/audio.html" class="active"
+                    ><strong aria-hidden="true">18.1.</strong> audio</a
+                  >
+                </li>
+                <li class="chapter-item expanded">
+                  <a href="../../arch/post-install/clipboard.html"
+                    ><strong aria-hidden="true">18.2.</strong> clipboard</a
+                  >
+                </li>
+                <li class="chapter-item expanded">
+                  <a href="../../arch/post-install/gpu.html"
+                    ><strong aria-hidden="true">18.3.</strong> gpu</a
+                  >
+                </li>
+                <li class="chapter-item expanded">
+                  <a href="../../arch/post-install/internet.html"
+                    ><strong aria-hidden="true">18.4.</strong> internet</a
+                  >
+                </li>
+                <li class="chapter-item expanded">
+                  <a href="../../arch/post-install/input.html"
+                    ><strong aria-hidden="true">18.5.</strong> input</a
+                  >
+                </li>
+                <li class="chapter-item expanded">
+                  <a href="../../arch/post-install/screen-capture.html"
+                    ><strong aria-hidden="true">18.6.</strong> screen capture</a
+                  >
+                </li>
+                <li class="chapter-item expanded">
+                  <a href="../../arch/post-install/security.html"
+                    ><strong aria-hidden="true">18.7.</strong> security</a
+                  >
+                </li>
+              </ol>
             </li>
           </ol>
         </div>
@@ -937,7 +910,7 @@
 
             <div class="right-buttons">
               <a
-                href="../../../print.html"
+                href="../../print.html"
                 title="Print this book"
                 aria-label="Print this book"
               >
@@ -951,7 +924,7 @@
                 <i id="git-repository-button" class="fa fa-code-fork"></i>
               </a>
               <a
-                href="https://github.com/stephen-huan/dotfiles/edit/master/src/os/nixos/nixpkgs/README.md"
+                href="https://github.com/stephen-huan/dotfiles/edit/master/src/arch/post-install/audio.md"
                 title="Suggest an edit"
                 aria-label="Suggest an edit"
               >
@@ -994,85 +967,176 @@
 
           <div id="content" class="content">
             <main>
-              <h1 id="nixpkgs">
-                <a class="header" href="#nixpkgs">Nixpkgs</a>
-              </h1>
-              <p>
-                <a href="https://github.com/NixOS/nixpkgs">Nixpkgs</a> is the
-                package repository. There are search engines for
-                <a href="https://search.nixos.org/packages">packages</a> and
-                <a href="https://noogle.dev/">library functions</a>.
-              </p>
-              <h2 id="nur"><a class="header" href="#nur">NUR</a></h2>
-              <p>
-                Like Arch, there is a
-                <a href="https://github.com/nix-community/NUR"
-                  >Nix User Repository</a
-                >
-                with an associated
-                <a href="https://github.com/nix-community/nur-combined"
-                  >package repository</a
-                >
-                and <a href="https://nur.nix-community.org/">search engine</a>.
-              </p>
-              <h2 id="nix-index">
-                <a class="header" href="#nix-index">nix-index</a>
-              </h2>
-              <p>
-                <a href="https://github.com/nix-community/nix-index"
-                  >nix-index</a
-                >
-                is a nixpkgs search tool. There are also
-                <a href="https://github.com/nix-community/nix-index-database"
-                  >pre-built databases</a
-                >
-                and an
-                <a href="https://github.com/nix-community/comma">auto-run</a>
-                wrapper.
-              </p>
-              <p>Generate the index with</p>
-              <pre><code class="language-shell">nix-index --nixpkgs flake:nixpkgs
-</code></pre>
-              <p>and search for something with</p>
-              <pre><code class="language-shell">nix-locate bin/mdbook
-</code></pre>
-              <pre><code class="language-text">mdbook-open-on-gh.out                         3,824,576 x /nix/store/7f33s7i9q9qr3l4ahpbpgrqp2icgml0n-mdbook-open-on-gh-2.4.1/bin/mdbook-open-on-gh
-mdbook-i18n-helpers.out                       4,095,192 x /nix/store/v06r1p7zpy9x6jlfrrssrf6nbqqm64pk-mdbook-i18n-helpers-0.2.4/bin/mdbook-gettext
-mdbook-i18n-helpers.out                       3,807,080 x /nix/store/v06r1p7zpy9x6jlfrrssrf6nbqqm64pk-mdbook-i18n-helpers-0.2.4/bin/mdbook-i18n-normalize
-mdbook-i18n-helpers.out                       4,140,880 x /nix/store/v06r1p7zpy9x6jlfrrssrf6nbqqm64pk-mdbook-i18n-helpers-0.2.4/bin/mdbook-xgettext
-mdbook-kroki-preprocessor.out                 8,566,376 x /nix/store/f5gxdaa8fw43ar0wcrsz5bc52yzsjkr2-mdbook-kroki-preprocessor-0.2.0/bin/mdbook-kroki-preprocessor
-mdbook-linkcheck.out                         13,164,440 x /nix/store/4kicypw0dc07i1syzv6abnyfzfns6n1m-mdbook-linkcheck-0.7.7/bin/mdbook-linkcheck
-mdbook-man.out                                3,166,272 x /nix/store/s1rmgghpfxam6f0bf5kb9q8ag2305ld7-mdbook-man-unstable-2022-11-05/bin/mdbook-man
-mdbook-mermaid.out                            5,643,400 x /nix/store/1z7b8af7j3plzkk6i5p4176i5w839b4j-mdbook-mermaid-0.12.6/bin/mdbook-mermaid
-mdbook.out                                   16,064,552 x /nix/store/44ygcgxpw8q7d7gldihkpbjlxd0181gn-mdbook-0.4.34/bin/mdbook
-mdbook-admonish.out                           5,479,400 x /nix/store/rnpfm3pk7rhj4f7l0lcy0d91630qwa45-mdbook-admonish-1.12.1/bin/mdbook-admonish
-mdbook-d2.out                                 2,453,072 x /nix/store/jyziwz01h3ykich7wcanyw05rbjk8swc-mdbook-d2-unstable-2023-03-30/bin/mdbook-d2
-mdbook-epub.out                               9,321,376 x /nix/store/v2q8j9gbbwis37x41w53r4p2a07m6pjz-mdbook-epub-unstable-2022-12-25/bin/mdbook-epub
-mdbook-pdf.out                               10,520,968 x /nix/store/mr5hz1vbpx9jgc27f29890w4k25p3c7c-mdbook-pdf-0.1.7/bin/mdbook-pdf
-mdbook-plantuml.out                           6,485,488 x /nix/store/09dvwh1ifpr32bj940xsg5p0w1zshvad-mdbook-plantuml-0.8.0/bin/mdbook-plantuml
-mdbook-graphviz.out                           4,792,168 x /nix/store/lynyplv8i5yq9kigpl0ibslp6hq6l3sl-mdbook-graphviz-0.1.6/bin/mdbook-graphviz
-mdbook-cmdrun.out                             3,254,448 x /nix/store/mk8d2xv5kpyznpd4yk8b73q6s0qak1cb-mdbook-cmdrun-unstable-2023-01-10/bin/mdbook-cmdrun
-mdbook-pagetoc.out                            3,700,888 x /nix/store/c46jrg5bj2yg0cqixraxj0jwhjxipdqv-mdbook-pagetoc-0.1.7/bin/mdbook-pagetoc
-mdbook-toc.out                                2,347,464 x /nix/store/1jzsc6yvhd0daqnwrk1k14y31xwl0lqm-mdbook-toc-0.14.1/bin/mdbook-toc
-mdbook-katex.out                              2,630,344 x /nix/store/x961ynwvdnjlxmdvp0d5lzvj2bmqlf32-mdbook-katex-0.5.8/bin/mdbook-katex
-mdbook-emojicodes.out                         3,890,048 x /nix/store/kic0qqckp1y8jda1g724nldfyn0xyrh8-mdbook-emojicodes-0.3.0/bin/mdbook-emojicodes
-</code></pre>
-              <h2 id="store-permissions">
-                <a class="header" href="#store-permissions"
-                  >store permissions</a
+              <h1 id="audio"><a class="header" href="#audio">audio</a></h1>
+              <ul>
+                <li>
+                  <a href="https://wiki.archlinux.org/title/Sound_system"
+                    >arch wiki - sound system</a
+                  >
+                </li>
+                <li>
+                  <a href="/pkgs/os-specific/linux/alsa-project.html">ALSA</a>:
+                  kernel driver
+                </li>
+                <li>
+                  <a href="/pkgs/development/libraries/pipewire.html"
+                    >PipeWire</a
+                  >/<a href="/pkgs/servers/pulseaudio.html">PulseAudio</a> on
+                  top
+                </li>
+                <li>
+                  bluetooth:
+                  <a href="/pkgs/os-specific/linux/bluez.html">bluez</a>
+                </li>
+                <li>
+                  mpris:
+                  <a href="/pkgs/tools/audio/playerctl.html">playerctl</a>
+                </li>
+              </ul>
+              <h2 id="music-applications">
+                <a class="header" href="#music-applications"
+                  >Music applications</a
                 >
               </h2>
-              <p>
-                As recommended by the
-                <a
-                  href="https://nixos.org/manual/nixos/stable/#sec-installing-from-other-distro"
-                  >NixOS Manual</a
-                >, and the
-                <a href="https://discourse.nixos.org/t/13882">Discourse</a>, the
-                permissions on the store should be
-              </p>
-              <pre><code class="language-shell">sudo chown -R 0:0 /nix
-sudo chmod +t /nix
+              <ul>
+                <li><a href="/pkgs/applications/audio/cmus.html">cmus</a></li>
+                <li><a href="/pkgs/applications/audio/cider.html">cider</a></li>
+                <li><a href="#apple-music">Apple Music</a></li>
+                <li><a href="#itunes">iTunes</a></li>
+              </ul>
+              <h3 id="apple-music">
+                <a class="header" href="#apple-music">Apple Music</a>
+              </h3>
+              <ul>
+                <li>
+                  use web client:
+                  <a href="https://music.apple.com/">music.apple.com</a>
+                </li>
+                <li>pros: no installation/configuration</li>
+                <li>
+                  cons: many
+                  <ul>
+                    <li>
+                      need apple device for 2fa sign in
+                      <ul>
+                        <li>this is not true</li>
+                      </ul>
+                    </li>
+                    <li>feels slow/clunky</li>
+                    <li>randomly breaks</li>
+                    <li>doesn't store place</li>
+                  </ul>
+                </li>
+              </ul>
+              <h3 id="itunes"><a class="header" href="#itunes">iTunes</a></h3>
+              <ul>
+                <li>
+                  this is possible to
+                  <a href="/pkgs/applications/emulators/wine.html">wine</a> but
+                  is broken on the latest version
+                </li>
+                <li>black screen from some rendering issue</li>
+                <li>
+                  version list:
+                  <a href="https://www.theiphonewiki.com/wiki/ITunes"
+                    >https://www.theiphonewiki.com/wiki/ITunes</a
+                  >
+                </li>
+                <li>
+                  doesn't seem to be able to import many things, randomly
+                  crashes
+                </li>
+                <li>
+                  <a href="https://forums.linuxmint.com/viewtopic.php?t=292556"
+                    >https://forums.linuxmint.com/viewtopic.php?t=292556</a
+                  >
+                </li>
+                <li>
+                  probably not worth the effort, just use
+                  <a href="/pkgs/applications/audio/cider.html">cider</a>, an
+                  open-source electron Apple Music client
+                </li>
+              </ul>
+              <h2 id="sync-music">
+                <a class="header" href="#sync-music">Sync music</a>
+              </h2>
+              <h3 id="sync-to-iphone">
+                <a class="header" href="#sync-to-iphone">sync to iphone</a>
+              </h3>
+              <ul>
+                <li>
+                  to replace sync to iPhone feature see
+                  <a href="https://wiki.archlinux.org/title/IOS"
+                    >arch wiki - ios</a
+                  >
+                </li>
+                <li>
+                  install
+                  <a href="https://github.com/libimobiledevice/ifuse">ifuse</a>
+                  to allow access to filesystem from linux (uses
+                  <a href="https://libimobiledevice.org/">libimobiledevice</a>)
+                </li>
+              </ul>
+              <pre><code class="language-shell">pacman -S ifuse
+</code></pre>
+              <ul>
+                <li>
+                  if freezes on write (see
+                  <a href="https://github.com/libimobiledevice/ifuse/issues/63"
+                    >#63</a
+                  >, probably fixed in newest versions) try aur
+                </li>
+              </ul>
+              <pre><code class="language-shell">paru -S ifuse-git
+</code></pre>
+              <ul>
+                <li>
+                  use vlc on phone since simple copying directly to folder, see
+                  provided fish script
+                </li>
+              </ul>
+              <pre><code class="language-fish">function musicsync --description &quot;sync music to phone&quot;
+  # mount vlc media folder to ~/mnt
+  ifuse --documents org.videolan.vlc-ios ~/mnt
+  # see https://superuser.com/questions/1192448/rsync-mkstemp-filename-failed-function-not-implemented-38
+  rsync -av --progress --no-perms --no-owner --no-group --exclude &quot;*.m3u&quot; \
+    ~/Music/personal ~/mnt/
+  # copy playlists from cmus
+  set temp (pwd)
+  cd ~/Music/personal/playlists
+  python cmus_copy.py
+  # generate playlists from artists
+  python artist_playlist.py
+  cd &quot;$temp&quot;
+  rsync -av --progress --no-perms --no-owner --no-group \
+    ~/Music/personal/playlists ~/mnt/personal
+  # done
+  umount ~/mnt
+end
+</code></pre>
+              <h3 id="sync-to-android">
+                <a class="header" href="#sync-to-android">sync to android</a>
+              </h3>
+              <ul>
+                <li>
+                  see
+                  <a href="/pkgs/tools/misc/android-tools.html"
+                    >android-tools</a
+                  >
+                </li>
+                <li>syncing music</li>
+              </ul>
+              <pre><code class="language-fish">function musicsync --description 'sync music to phone'
+    # copy playlists from cmus
+    set temp (pwd)
+    cd ~/Music/personal/playlists
+    python cmus_copy.py
+    # generate playlists from artists
+    python artist_playlist.py
+    cd &quot;$temp&quot;
+    # copy over to phone
+    adb push --sync ~/Music/ /storage/self/primary/
+end
 </code></pre>
             </main>
 
@@ -1080,7 +1144,7 @@ sudo chmod +t /nix
               <!-- Mobile navigation buttons -->
               <a
                 rel="prev"
-                href="../../../os/nixos/nix.html"
+                href="../../arch/post-install/index.html"
                 class="mobile-nav-chapters previous"
                 title="Previous chapter"
                 aria-label="Previous chapter"
@@ -1091,7 +1155,7 @@ sudo chmod +t /nix
 
               <a
                 rel="next prefetch"
-                href="../../../os/nixos/nixpkgs/derivations.html"
+                href="../../arch/post-install/clipboard.html"
                 class="mobile-nav-chapters next"
                 title="Next chapter"
                 aria-label="Next chapter"
@@ -1108,7 +1172,7 @@ sudo chmod +t /nix
         <nav class="nav-wide-wrapper" aria-label="Page navigation">
           <a
             rel="prev"
-            href="../../../os/nixos/nix.html"
+            href="../../arch/post-install/index.html"
             class="nav-chapters previous"
             title="Previous chapter"
             aria-label="Previous chapter"
@@ -1119,7 +1183,7 @@ sudo chmod +t /nix
 
           <a
             rel="next prefetch"
-            href="../../../os/nixos/nixpkgs/derivations.html"
+            href="../../arch/post-install/clipboard.html"
             class="nav-chapters next"
             title="Next chapter"
             aria-label="Next chapter"
@@ -1134,13 +1198,13 @@ sudo chmod +t /nix
         window.playground_copyable = true;
       </script>
 
-      <script src="../../../elasticlunr.min.js"></script>
-      <script src="../../../mark.min.js"></script>
-      <script src="../../../searcher.js"></script>
+      <script src="../../elasticlunr.min.js"></script>
+      <script src="../../mark.min.js"></script>
+      <script src="../../searcher.js"></script>
 
-      <script src="../../../clipboard.min.js"></script>
-      <script src="../../../highlight.js"></script>
-      <script src="../../../book.js"></script>
+      <script src="../../clipboard.min.js"></script>
+      <script src="../../highlight.js"></script>
+      <script src="../../book.js"></script>
 
       <!-- Custom JS scripts -->
     </div>
