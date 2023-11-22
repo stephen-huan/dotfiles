@@ -1,10 +1,9 @@
 # NixOS
 
+The canonical source of truth is the [Nix
+code](https://github.com/stephen-huan/nixos-config).
+
 There is a search engine for [options](https://search.nixos.org/options).
-
-## writing modules
-
-Tips for writing modules can be found at [modules](./modules.md).
 
 ## testing configuration
 
@@ -93,6 +92,40 @@ sudo nixos-rebuild switch
   - the result is a symlink placed in `./result`
 
 ## miscellaneous
+
+### installing from arch
+
+One can switch from [Arch Linux](/os/arch) completely "in-place",
+i.e. without re-partitioning any drives. This can be done by
+[prototyping](/pkgs/tools/package-management/nix.md) with
+[kexec](https://nixos.org/manual/nixos/stable/#sec-booting-via-kexec) to get a
+working configuration and then using `NIXOS_LUSTRATE` through the
+[lustrate](https://nixos.org/manual/nixos/stable/#sec-installing-from-other-distro)
+mechanism (which will move the old root partition to `/old-root`).
+
+After this, it's still possible to get into arch with `chroot`, e.g.
+
+```shell
+sudo chroot /old-root /bin/bash
+/bin/pacman -Q
+```
+
+Note that commands need to be fully qualified as `$PATH` is still from NixOS.
+
+### live boot
+
+Live boot can be done from an [Arch](/os/arch/#live-boot) live boot
+(see [NixOS Wiki - Change root](https://nixos.wiki/wiki/Change_root)).
+
+```shell
+cryptsetup open /dev/nvme0n1p3 cryptlvm
+mount /dev/VolumeGroup/root /mnt
+mount -o bind /dev /mnt/dev
+mount -o bind /proc /mnt/proc
+mount -o bind /sys /mnt/sys
+chroot /mnt /nix/var/nix/profiles/system/activate
+chroot /mnt /run/current-system/sw/bin/bash
+```
 
 ### /bin/sh
 

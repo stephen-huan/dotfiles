@@ -1,45 +1,5 @@
 # cmus
 
-- [arch wiki - cmus](https://wiki.archlinux.org/title/Cmus)
-- install
-
-```
-pacman -S cmus
-```
-
-- make sure pulseaudio backend is used: `:set output_plugin=pulse`
-- install backends for specific filetypes, e.g. .mp3:
-
-```
-pacman -S libmad
-```
-
-- .flac
-
-```
-pacman -S flac
-```
-
-- note `ffmpeg` provides large number of codecs
-
-## hangs after close
-
-- hangs if music is paused and then cmus is closed
-- trying to open another cmus window results in
-
-```
-cmus: Error: an error occured while initializing MPRIS: File exists. MPRIS will be disabled.
-cmus: Press <enter> to continue.
-```
-
-- MPRIS is the freedesktop specification for music player
-  control, see [MPRIS](/pkgs/tools/audio/playerctl.md)
-- seems to be a pipewire issue, see [Delayed exit from paused music in cmus](https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/946)
-- as well as [Quitting while playback is paused takes several seconds](https://github.com/cmus/cmus/issues/1064)
-- brought back up again recently, see [Cmus hangs when paused for a long time](https://github.com/pop-os/pipewire/issues/6)
-
-## detailed notes
-
 [cmus](https://cmus.github.io/) is a terminal based music player. It's
 lightweight and fast; what more could you ask for? My only complaint is
 that if you close the window, the music stops playing. One solution is
@@ -47,7 +7,7 @@ to put it in a [tmux](/pkgs/tools/misc/tmux.md) server (this has the
 added benefit of being able to open multiple cmus windows at the same
 time, because each is a view into the same running process). These days
 I'm too lazy to start tmux, so I just put a cmus window in a high-number
-workspace and switch to that workspace when I need to.
+workspace and switch to that workspace on demand.
 
 My friend swears by [mpd](https://www.musicpd.org/) because of its
 client-server architecture: that gives the ability to use any client,
@@ -57,8 +17,93 @@ sharing what music you're listening to on a webserver. I don't have
 these use cases, so I stick to cmus. And when I tried to setup mpd a
 long time ago, I found it hard to do and never got it working.
 
-The highest praise I can give cmus is that I have not
-touched the configuration at all, but I use it very often.
+The highest praise I can give is that I have not
+touched the configuration at all, but I use cmus daily.
+
+## pipewire
+
+Make sure the pulseaudio backend is used with `:set output_plugin=pulse`.
+
+## plugins
+
+The default build supports many different audio formats (`cmus --plugins`).
+
+```text
+Input Plugins: /nix/store/ndlabjql98bw7yzrdm8cg0yncp0qfg12-cmus-2.10.0/lib/cmus/ip
+  mad:
+    Priority: 55
+    File Types: mp3 mp2
+    MIME Types: audio/mpeg audio/x-mp3 audio/x-mpeg
+  cue:
+    Priority: 50
+    File Types:
+    MIME Types: application/x-cue
+  cdio:
+    Priority: 50
+    File Types:
+    MIME Types: x-content/audio-cdda
+  wav:
+    Priority: 50
+    File Types: wav
+    MIME Types:
+  opus:
+    Priority: 50
+    File Types: opus
+    MIME Types:
+  flac:
+    Priority: 50
+    File Types: flac fla
+    MIME Types:
+  vorbis:
+    Priority: 50
+    File Types: ogg oga ogx
+    MIME Types: application/ogg audio/x-ogg
+  mpc:
+    Priority: 50
+    File Types: mpc mpp mp+
+    MIME Types: audio/x-musepack
+  wavpack:
+    Priority: 50
+    File Types: wv
+    MIME Types: audio/x-wavpack
+  modplug:
+    Priority: 50
+    File Types: mod s3m xm it 669 amf ams dbm dmf dsm far mdl med mtm okt ptm stm ult umx mt2 psm
+    MIME Types:
+  mikmod:
+    Priority: 40
+    File Types: mod s3m xm it 669 amf dsm far med mtm stm ult
+    MIME Types:
+  ffmpeg:
+    Priority: 30
+    File Types: aa aac ac3 aif aifc aiff ape au fla flac m4a m4b mka mkv mp+ mp2 mp3 mp4 mpc mpp ogg opus shn tak tta wav webm wma wv
+    MIME Types:
+
+Output Plugins: /nix/store/ndlabjql98bw7yzrdm8cg0yncp0qfg12-cmus-2.10.0/lib/cmus/op
+  pulse
+  alsa
+```
+
+## hangs after close
+
+If playing music is paused and then cmus is closed, cmus will hang. Quickly
+attempting to open another cmus window results in the error message
+
+```
+cmus: Error: an error occured while initializing MPRIS: File exists. MPRIS will be disabled.
+cmus: Press <enter> to continue.
+```
+
+MPRIS is the freedesktop specification for music player control,
+see [MPRIS](/pkgs/tools/audio/playerctl.md). It's probably
+a pipewire issue, see [Delayed exit from paused music in
+cmus](https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/946)
+as well as [Quitting while playback is paused takes several
+seconds](https://github.com/cmus/cmus/issues/1064) which has
+made a recent recurrence ([Cmus hangs when paused for a long
+time](https://github.com/pop-os/pipewire/issues/6)).
+
+## usage notes
 
 ### Playlists
 

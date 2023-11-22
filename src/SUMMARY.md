@@ -2,29 +2,17 @@
 
 [home](README.md)
 
-- [dotfiles management](dotfiles.md)
+# nix
 
-# os
-
-- [NixOS](./os/nixos/README.md)
-  - [Nix](./os/nixos/nix.md)
-  - [Nixpkgs](./os/nixos/nixpkgs/README.md)
-    - [derivations](./os/nixos/nixpkgs/derivations.md)
-  - [NixOS](./os/nixos/nixos/README.md)
-    - [home-manager](./os/nixos/nixos/home-manager.md)
-    - [impermanence](./os/nixos/nixos/impermanence.md)
-    - [modules](./os/nixos/nixos/modules.md)
-  - [Flakes](./os/nixos/flakes.md)
-- [Arch Linux](./os/arch/README.md)
-  - [install](./os/arch/install.md)
-  - [post-install](./os/arch/post-install/README.md)
-    - [audio](./os/arch/post-install/audio.md)
-    - [clipboard](./os/arch/post-install/clipboard.md)
-    - [gpu](./os/arch/post-install/gpu.md)
-    - [internet](./os/arch/post-install/internet.md)
-    - [input](./os/arch/post-install/input.md)
-    - [screen capture](./os/arch/post-install/screen-capture.md)
-    - [security](./os/arch/post-install/security.md)
+- [Nix](./nix/README.md)
+- [Nixpkgs](./nix/nixpkgs/README.md)
+  - [derivations](./nix/nixpkgs/derivations.md)
+- [NixOS](./nix/nixos/README.md)
+  - [home-manager](./nix/nixos/home-manager.md)
+  - [impermanence](./nix/nixos/impermanence.md)
+  - [modules](./nix/nixos/modules.md)
+- [Flakes](./nix/flakes.md)
+- [Packages](./nix/packages.md)
 
 ---
 
@@ -32,7 +20,6 @@
 
 - [applications]()
   - [audio]()
-    - [cider](./pkgs/applications/audio/cider.md)
     - [cmus](./pkgs/applications/audio/cmus.md)
   - [display-managers]()
     - [sddm](./pkgs/applications/display-managers/sddm.md)
@@ -128,3 +115,16 @@
 
 - [pace](./misc/pace.md)
 - [far](./misc/far.md)
+
+# arch
+
+- [Arch Linux](./arch/README.md)
+- [install](./arch/install.md)
+- [post-install](./arch/post-install/README.md)
+  - [audio](./arch/post-install/audio.md)
+  - [clipboard](./arch/post-install/clipboard.md)
+  - [gpu](./arch/post-install/gpu.md)
+  - [internet](./arch/post-install/internet.md)
+  - [input](./arch/post-install/input.md)
+  - [screen capture](./arch/post-install/screen-capture.md)
+  - [security](./arch/post-install/security.md)
