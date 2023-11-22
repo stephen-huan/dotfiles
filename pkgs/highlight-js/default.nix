@@ -1,6 +1,7 @@
 { lib
 , buildNpmPackage
 , fetchFromGitHub
+, writeShellScriptBin
 , nodejs
 , minified ? true
 , modules ? true
@@ -21,10 +22,14 @@ buildNpmPackage rec {
 
   npmDepsHash = "sha256-YhD3HADU7sjDDtnNfemH5QGz+A0G2FEfsWUgAjEflJY=";
 
-  patches = [ ./git_sha.patch ];
+  # https://github.com/NixOS/nixpkgs/issues/107556
+  # spoof `git rev-parse --short=10 HEAD`
+  fakegit = writeShellScriptBin "git" ''
+    echo ${builtins.substring 0 10 "f47103d4f1ac1592c56904574d1fbf5bf2475605"}
+  '';
 
   strictDeps = true;
-  nativeBuildInputs = [ nodejs ];
+  nativeBuildInputs = [ nodejs fakegit ];
 
   buildPhase = ''
     runHook preBuild
