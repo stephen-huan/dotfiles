@@ -1,6 +1,6 @@
 # Home manager
 
-[Home manager](https://nix-community.github.io/home-manager/)
+[Home Manager](https://nix-community.github.io/home-manager/)
 brings NixOS-like modules to per-user configuration (files in `~`).
 
 If the
@@ -13,7 +13,7 @@ not to be confused with NixOS modules/options.
 
 ## not updating
 
-If one deletes a folder managed by home-manager,
+If one deletes a folder managed by Home Manager,
 `~/.config/nix/nix.conf`, say, it won't necessarily be regenerated
 by `sudo nixos-rebuild switch` if the configuration hasn't changed.
 

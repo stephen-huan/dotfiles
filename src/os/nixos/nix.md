@@ -46,7 +46,7 @@ Important paths
 - `/nix/var/nix/profiles/system`: Current system
 - `/etc/profiles/per-user/<user>`: User [packages](https://discourse.nixos.org/t/17004)
 - `~/.local/state/nix/profiles`: User profiles (if using xdg)
-- `~/.local/state/nix/profiles/home-manager`: Current home-manager generation
+- `~/.local/state/nix/profiles/home-manager`: Current Home Manager generation
 - `~/.nix-profile` (if not using xdg)
 
 ## nix (cli)

@@ -29,12 +29,11 @@ therefore makes sense to use neomutt rather than mutt.
 ### General notes
 
 My primary email is gmail, which has its quirks. In particular, all emails go
-into "all mail" (including emails sent by you!) and the different "folders" are
-more like _tags_ --- attributes of the emails in all mail. This mirrors notmuch
-nicely but IMAP not so much so there will be a few oddities.
+into "all mail" (including emails sent by oneself!) and the different "folders"
+are more like _tags_ --- attributes of the emails in all mail. This mirrors
+notmuch nicely but IMAP not so much so there will be a few oddities.
 
-I use PGP to sign and encrypt email. For more information (and tips),
-see [my website](https://stephen-huan.github.io/2021/02/21/email.html).
+I use PGP to sign and encrypt email.
 
 Lastly, I use Google's [Advanced
 Protection](https://landing.google.com/advancedprotection/) program.
@@ -86,8 +85,9 @@ Follow the instructions
 The Google Cloud Console is pretty poorly designed, so it may
 take some effort to figure out how to create a new project.
 
-If you're getting something along the lines of `KeyError: 'access_token'` it
-might be that the refresh token is invalid. This is because Google's [OAuth
+If it initially works but after a week there's the
+error `KeyError: 'access_token'` it might be that the
+refresh token is invalid. This is because Google's [OAuth
 policy](https://developers.google.com/identity/protocols/oauth2#expiration)
 restricts the lifespan of a refresh token to 7 days if the app is configured
 for external users and the publishing setting is "Testing", a common situation
@@ -112,7 +112,7 @@ These instructions are a bit verbose, so I'll condense them here:
 3. Find "App registrations" in the side bar
    under "Manage" and press "New registration"
 4. Under "Manage", select "Authentication". Use the "Web"
-   platform with a redirect URI of "http://localhost".
+   platform with a redirect URI of `http://localhost`.
 5. Select "Certificates & secrets" and press "New
    client secret". Record the client id and secret.
 6. Select "API Permissions". Press "Add a permission" and use "Microsoft
@@ -146,4 +146,4 @@ the above `offlineimap.py` script, passing in the email. That way both
 [notmuch](https://notmuchmail.org/) is an email indexer, tagger, and
 searcher. Add a postsync hook to `offlineimap` so tagging happens on
 new mail. We can also use notmuch as an address book by searching the
-addresses of the emails you've received.
+addresses of previously received emails.

@@ -24,19 +24,28 @@ with a shell script like
 ```sh
 #!/bin/sh
 
-nix repl --file "$(dirname "$0")/repl.nix"
+nix repl \
+  --file "$(dirname "$0")/repl.nix" \
+  --argstr username "$(whoami)" \
+  --argstr hostname "$(hostname)" \
+  --argstr path "/persistent$HOME/.config/home-manager"
 ```
 
 that loads a `repl.nix` placed in the same directory.
 
 ```nix
+{ username, hostname, path }:
+
 let
-  hostname = "<hostname>";
-  flake = builtins.getFlake "/home/<user>/.config/home-manager";
+  self = builtins.getFlake path;
+  nixos = self.nixosConfigurations.${hostname};
 in
 {
-  inherit flake;
-  ${hostname} = flake.nixosConfigurations.${hostname};
+  inherit self;
+  ${hostname} = nixos;
+  ${username} = nixos.config.home-manager.users.${username};
+  inherit (nixos) config pkgs options;
+  inherit (nixos.pkgs) lib;
 }
 ```
 
