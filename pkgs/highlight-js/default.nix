@@ -35,8 +35,8 @@ buildNpmPackage rec {
     runHook preBuild
 
     node tools/build.js \
-      ${if ! minified then "--no-minify" else ""} \
-      ${if ! modules then "--no-esm" else ""} \
+      ${lib.optionalString (! minified) "--no-minify"} \
+      ${lib.optionalString (! modules) "--no-esm"} \
       --target "${target}" \
       ${builtins.concatStringsSep " " languages}
 
@@ -46,7 +46,7 @@ buildNpmPackage rec {
   installPhase = ''
     runHook preInstall
 
-    install -Dm644 build/highlight${if minified then ".min" else ""}.js -t $out
+    install -Dm644 build/highlight${lib.optionalString minified ".min"}.js -t $out
 
     runHook postInstall
   '';
