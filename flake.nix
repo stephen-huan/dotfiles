@@ -42,7 +42,7 @@
             source .envrc || true
             prettier --check .
             source ./bin/build
-            source ./bin/vnu
+            source ./bin/vnu book
           '';
           installPhase = "touch $out";
         };
