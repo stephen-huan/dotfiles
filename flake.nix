@@ -52,7 +52,9 @@
             program = "${lib.getExe (pkgs.writeShellApplication {
               name = "build";
               runtimeInputs = node-packages ++ site-builders;
-              text = builtins.readFile bin/build;
+              text = ''
+                install -Dm644 -T ${highlight-js} ./theme/highlight.js
+              '' + builtins.readFile bin/build;
             })}";
           };
           publish = {
@@ -76,9 +78,7 @@
             program = "${lib.getExe (pkgs.writeShellApplication {
               name = "update";
               runtimeInputs = node-packages;
-              text = builtins.readFile bin/update + ''
-                install -Dm644 -T ${highlight-js} ./theme/highlight.js
-              '';
+              text = builtins.readFile bin/update;
             })}";
           };
         };
