@@ -82,7 +82,11 @@
             })}";
           };
         };
-        devShells.${system}.default = pkgs.mkShellNoCC {
+        devShells.${system}.default = (pkgs.mkShellNoCC.override {
+          stdenv = pkgs.stdenvNoCC.override {
+            initialPath = [ pkgs.coreutils ];
+          };
+        }) {
           packages = linters
             ++ node-packages
             ++ site-builders;
