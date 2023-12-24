@@ -24,7 +24,7 @@ of virtual keycodes. See
 - [github - WindowEvent missing virtual_keycode while DeviceEvent contains
   it on Linux](https://github.com/rust-windowing/winit/issues/1443)
 - [github - WindowEvent missing virtual keycode on Linux](https://github.com/alacritty/alacritty/issues/3460)
-- [github - Keybinding doesn't work (Shift + Key4)](https://github.com/alacritty/alacritty/issues/3460)
+- [github - Keybinding doesn't work (Shift + Key4)](https://github.com/alacritty/alacritty/issues/4111)
 
 To fix, use the scancodes instead of the key
 names. Edit `~/.config/alacritty/alacritty.yml`:
