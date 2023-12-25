@@ -7,8 +7,9 @@ Nixpkgs, and the operating system NixOS (at the very least).
 These parts are documented in the [Nix Reference
 Manual](https://nixos.org/manual/nix/stable/), the [Nixpkgs
 Manual](https://nixos.org/manual/nixpkgs/stable/), the [NixOS
-Manual](https://nixos.org/manual/nixos/stable/), and a short-form
-tutorial series called the [Nix Pills](https://nixos.org/guides/nix-pills/).
+Manual](https://nixos.org/manual/nixos/stable/), a short-form tutorial
+series called the [Nix Pills](https://nixos.org/guides/nix-pills/),
+and the official documentation [nix.dev](https://nix.dev/).
 
 ## nix (language)
 
@@ -20,9 +21,11 @@ a comprehensive reference.
 
 The editor tooling I use is
 
-- lsp: [nil](https://github.com/oxalica/nil)
+- lsp: [nil](https://github.com/oxalica/nil) (alternative:
+  [rnix-lsp](https://github.com/nix-community/rnix-lsp))
 - formatter: [nixpkgs-fmt](https://github.com/nix-community/nixpkgs-fmt)
-- linter: [nixpkgs-lint](https://github.com/nix-community/nixpkgs-lint)
+  (alternative: [alejandra](https://github.com/kamadorueda/alejandra))
+- linter: [statix](https://github.com/nerdypepper/statix)
 
 Despite the relative simplicity of the language ("JSON with functions"),
 there can still be unusual behavior. Within a few days of playing around
@@ -53,6 +56,21 @@ Important paths
 
 Here are some quick recipes for common tasks.
 
+- enter a (bash) shell with a given package
+
+  ```shell
+  nix-shell -I nixpkgs=$(nixpkgs) -p python3
+  ```
+
+  or, to use the current shell,
+
+  ```shell
+  nix shell $(nixpkgs)#python3
+  ```
+
+  where the `$(nixpkgs)` syntax is explained in ["removing channels and flake
+  registries"](/nix/nixos/index.html#removing-channels-and-flake-registries).
+
 - [query](https://nixos.org/manual/nix/stable/command-ref/nix-store/query)
   list of dependencies of (current) system
 
@@ -79,6 +97,12 @@ Here are some quick recipes for common tasks.
   nix-store --optimise
   ```
 
+  or
+
+  ```shell
+  nix store optimise
+  ```
+
 - [garbage collection](https://nixos.org/manual/nix/stable/package-management/garbage-collection)
 
   ```sh
@@ -87,20 +111,27 @@ Here are some quick recipes for common tasks.
   nix-store --gc
   ```
 
-- or use `nix-collect-garbage -d` which essentially wraps the above
+  or use `nix-collect-garbage -d` which essentially wraps the above
 
   ```shell
   nix-collect-garbage --delete-old
   nix-collect-garbage --delete-older-than 14d
   ```
 
-- difference between `sudo` (system) and no `sudo` (user) (try `--dry-run`)
+  There is a difference between running with `sudo`
+  (system) and no `sudo` (user); try `--dry-run`.
+
+- verify nix store paths are valid (hashes match and it is trusted)
+
+  ```shell
+  nix store verify --all
+  ```
 
 - [why](https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-why-depends)
   does one package depend on another?
 
   ```shell
-  nix why-depends nixpkgs#zotero nixpkgs#nss
+  nix why-depends $(nixpkgs)#zotero $(nixpkgs)#nss
   ```
 
   ```text
@@ -111,7 +142,7 @@ Here are some quick recipes for common tasks.
 - why does my (current) system depend on a package?
 
   ```shell
-  nix why-depends /nix/var/nix/profiles/system nixpkgs#nss
+  nix why-depends /nix/var/nix/profiles/system $(nixpkgs)#nss
   ```
 
   ```text

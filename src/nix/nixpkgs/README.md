@@ -21,7 +21,7 @@ and an [auto-run](https://github.com/nix-community/comma) wrapper.
 Generate the index with
 
 ```shell
-nix-index --nixpkgs flake:nixpkgs
+nix-index --nixpkgs $(nixpkgs)
 ```
 
 and search for something with

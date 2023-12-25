@@ -21,16 +21,16 @@ repl`](https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-repl)
 with a shell script like
 
 ```sh
-#!/bin/sh
+#!/run/current-system/sw/bin/sh
 
 nix repl \
-  --file "$(dirname "$0")/repl.nix" \
+  --file "$(dirname "$0")/nixos-repl.nix" \
   --argstr username "$(whoami)" \
   --argstr hostname "$(hostname)" \
   --argstr path "/persistent$HOME/.config/home-manager"
 ```
 
-that loads a `repl.nix` placed in the same directory.
+that loads `nixos-repl.nix` placed in the same directory.
 
 ```nix
 { username, hostname, path }:
@@ -74,7 +74,7 @@ nixos-eval "<hostname>.config.system.activationScripts.usrbinenv"
 Simple script to make sure `/boot` is mounted before updating.
 
 ```sh
-#!/bin/sh
+#!/run/current-system/sw/bin/sh
 
 if [ ! "$(findmnt /boot)" ]; then
     sudo mkdir --parents /boot
@@ -90,6 +90,73 @@ sudo nixos-rebuild switch
 - `test`: activate but don't make boot default
 - `build`: neither activate nor make boot default
   - the result is a symlink placed in `./result`
+
+## removing channels and flake registries
+
+Channels and flake registries are unnecessary
+and a source of impurity as they are unpinned.
+
+In NixOS the following configuration disables channels.
+
+```nix
+{
+  nix.channel.enable = false;
+}
+```
+
+In Home Manager the following configuration disables flake registries.
+
+```nix
+{
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" "repl-flake" ];
+    flake-registry = "";
+    use-registries = false;
+  };
+}
+```
+
+Note `flake-registry` controls the [global
+registry](https://github.com/NixOS/flake-registry)
+while `use-registries` controls user registries.
+
+It is convenient to replace the `nixpkgs`
+reference with the shell script `nixpkgs`.
+
+```sh
+#!/run/current-system/sw/bin/sh
+
+flake="/persistent$HOME/.config/home-manager"
+# `--impure` as the flake may be dirty and considered unlocked
+# error: cannot call 'getFlake' on unlocked flake reference
+nix eval --impure --raw \
+  --expr "(builtins.getFlake \"$flake\").inputs.nixpkgs.outPath"
+```
+
+Then commands like
+
+```shell
+nix-shell -I nixpkgs=flake:nixpkgs -p python3
+nix shell nixpkgs#python3
+```
+
+can be replaced by
+
+```shell
+nix-shell -I nixpkgs=$(nixpkgs) -p python3
+nix shell $(nixpkgs)#python3
+```
+
+which has the advantage of not requiring internet
+as it uses the NixOS configuration's nixpkgs.
+
+In addition, a dependency lookup like
+
+```shell
+nix why-depends /nix/var/nix/profiles/system $(nixpkgs)#nss
+```
+
+is more accurate as it uses the same version of the package as the system.
 
 ## miscellaneous
 

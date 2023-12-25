@@ -8,6 +8,14 @@ many inputs. Writing derivations is a skill developed through trial and
 error. Here I attempt to document implicit conventions, lessons, common
 gotcha's, and other tips and tricks for writing derivations.
 
+## hacking on nixpkgs
+
+Build the NixOS configuration from a nixpkgs fork with
+
+```
+sudo nixos-rebuild test --override-input nixpkgs . --fast
+```
+
 ## pull requests
 
 For reference, here is a list of pull requests I've
