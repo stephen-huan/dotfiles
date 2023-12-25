@@ -93,9 +93,9 @@
             ++ node-packages
             ++ site-builders;
           shellHook = ''
+            ln -sf "${node-env}" node-env.nix
             # clear nodejs and node2nix from $NODE_PATH
             export NODE_PATH=${nodeDependencies}/lib/node_modules
-            ln -sf "${node-env}" node-env.nix
           '';
         };
       }
