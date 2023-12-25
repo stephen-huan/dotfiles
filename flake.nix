@@ -15,6 +15,8 @@
         pkgs = nixpkgs.legacyPackages.${system};
         generated = import ./default.nix { inherit pkgs system; };
         inherit (generated) nodeDependencies;
+        node-env =
+          "${nixpkgs.outPath}/pkgs/development/node-packages/node-env.nix";
         linters = [ pkgs.validator-nu pkgs.lychee ];
         node-packages = [ pkgs.nodejs pkgs.node2nix nodeDependencies ];
         site-builders = [ pkgs.mdbook ];
@@ -90,9 +92,10 @@
           packages = linters
             ++ node-packages
             ++ site-builders;
-          # clear nodejs and node2nix from $NODE_PATH
           shellHook = ''
+            # clear nodejs and node2nix from $NODE_PATH
             export NODE_PATH=${nodeDependencies}/lib/node_modules
+            ln -sf "${node-env}" node-env.nix
           '';
         };
       }
