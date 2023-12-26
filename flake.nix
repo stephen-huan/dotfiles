@@ -63,7 +63,8 @@
               runtimeInputs = node-packages ++ site-builders;
               text = ''
                 install -Dm644 -T ${highlight-js} ./theme/highlight.js
-              '' + builtins.readFile bin/build;
+                ${builtins.readFile bin/build}
+              '';
             })}";
           };
           publish = {
