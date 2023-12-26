@@ -2,7 +2,6 @@
 , buildNpmPackage
 , fetchFromGitHub
 , writeShellScriptBin
-, nodejs
 # minified is non-deterministic
 , minified ? false
 , modules ? true
@@ -33,7 +32,7 @@ buildNpmPackage rec {
   '';
 
   strictDeps = true;
-  nativeBuildInputs = [ nodejs git' ];
+  nativeBuildInputs = [ git' ];
 
   buildPhase = ''
     runHook preBuild
@@ -59,7 +58,6 @@ buildNpmPackage rec {
     description = "Syntax highlighting with language autodetection";
     homepage = "https://highlightjs.org";
     license = licenses.bsd3;
-    inherit (nodejs.meta) platforms;
     maintainers = [ ];
   };
 }
