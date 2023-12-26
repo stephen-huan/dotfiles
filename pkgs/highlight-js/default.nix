@@ -28,12 +28,12 @@ buildNpmPackage rec {
 
   # https://github.com/NixOS/nixpkgs/issues/107556
   # spoof `git rev-parse --short=10 HEAD`
-  fakegit = writeShellScriptBin "git" ''
+  git' = writeShellScriptBin "git" ''
     echo ${builtins.substring 0 10 "f47103d4f1ac1592c56904574d1fbf5bf2475605"}
   '';
 
   strictDeps = true;
-  nativeBuildInputs = [ nodejs fakegit ];
+  nativeBuildInputs = [ nodejs git' ];
 
   buildPhase = ''
     runHook preBuild
