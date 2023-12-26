@@ -30,7 +30,9 @@
         }}/highlight.min.js";
       in
       {
-        packages.${system} = import ./pkgs { inherit pkgs; };
+        packages.${system} = let inherit (pkgs) callPackage; in {
+          highlight-js = callPackage ./pkgs/highlight-js { };
+        };
 
         formatter.${system} = pkgs.writeShellScriptBin "prettier" ''
           ${nodeDependencies}/bin/prettier --write "$@"
