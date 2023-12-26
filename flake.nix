@@ -20,18 +20,20 @@
         linters = [ pkgs.validator-nu pkgs.lychee ];
         node-packages = [ pkgs.nodejs pkgs.node2nix nodeDependencies ];
         site-builders = [ pkgs.mdbook ];
-        highlight-js = "${self.packages.${system}.highlight-js.override {
-          languages = [
-            ":common"
-            "nix"
-            "python-repl"
-            "vim"
-          ];
-        }}/highlight.min.js";
+        highlight-js =
+          "${self.packages.${system}.highlight-js}/highlight.min.js";
       in
       {
         packages.${system} = let inherit (pkgs) callPackage; in {
-          highlight-js = callPackage ./pkgs/highlight-js { };
+          highlight-js = callPackage ./pkgs/highlight-js {
+            languages = [
+              ":common"
+              "nix"
+              "python-repl"
+              "vim"
+            ];
+            minified = true;
+          };
         };
 
         formatter.${system} = pkgs.writeShellScriptBin "prettier" ''
