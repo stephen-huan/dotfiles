@@ -3,7 +3,8 @@
 , fetchFromGitHub
 , writeShellScriptBin
 , nodejs
-, minified ? true
+# minified is non-deterministic
+, minified ? false
 , modules ? true
 , target ? "browser"
 , languages ? [ ":common" ]
