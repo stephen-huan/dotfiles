@@ -31,9 +31,11 @@
       in
       {
         packages.${system} = import ./pkgs { inherit pkgs; };
+
         formatter.${system} = pkgs.writeShellScriptBin "prettier" ''
           ${nodeDependencies}/bin/prettier --write "$@"
         '';
+
         checks.${system}.lint = pkgs.stdenvNoCC.mkDerivation {
           name = "lint";
           src = ./.;
@@ -48,6 +50,7 @@
           '';
           installPhase = "touch $out";
         };
+
         apps.${system} = {
           build = {
             type = "app";
@@ -84,6 +87,7 @@
             })}";
           };
         };
+
         devShells.${system}.default = (pkgs.mkShellNoCC.override {
           stdenv = pkgs.stdenvNoCC.override {
             initialPath = [ pkgs.coreutils ];
